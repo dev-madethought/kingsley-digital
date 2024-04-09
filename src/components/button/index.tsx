@@ -7,13 +7,22 @@ import { theme } from "@/styles/stitches"
 import { Box } from "../box"
 
 interface ButtonProps {
-  type?: "primary" | "secondary"
+  type?: "primary" | "secondary" | "tertiary"
   children: ReactNode
   href?: string
   onClick?: () => void
+  disabled?: boolean
 }
 
-const Layout = ({ type, children }: { type: string; children?: ReactNode }) => {
+const Layout = ({
+  type,
+  disabled,
+  children,
+}: {
+  type: string
+  disabled?: boolean
+  children?: ReactNode
+}) => {
   const [hover, setHover] = useState(false)
   const begin = "circle(4px at 20px 50%)"
   const end = "circle(100% at 50% 50%)"
@@ -91,6 +100,38 @@ const Layout = ({ type, children }: { type: string; children?: ReactNode }) => {
         </Box>
       )
 
+    case "tertiary":
+      return (
+        <Box
+          as="span"
+          css={{
+            display: "inline-flex",
+            fontFamily: "$favorite",
+            fontSize: 14,
+            fontStyle: "normal",
+            fontWeight: 400,
+            letterSpacing: "0.28px",
+            color: "$typography",
+            cursor: "pointer",
+            alignItems: "center",
+            gap: 8,
+
+            ...(!disabled && {
+              "&:hover": {
+                color: "$black",
+              },
+            }),
+
+            ...(disabled && {
+              opacity: 0.5,
+              pointerEvents: "none",
+            }),
+          }}
+        >
+          {children}
+        </Box>
+      )
+
     default:
       return (
         <Box
@@ -108,11 +149,14 @@ export const Button = ({
   children,
   onClick,
   href,
+  disabled,
 }: ButtonProps) => {
   if (href) {
     return (
       <Link href={href}>
-        <Layout type={type}>{children}</Layout>
+        <Layout type={type} disabled={disabled}>
+          {children}
+        </Layout>
       </Link>
     )
   }
@@ -125,7 +169,9 @@ export const Button = ({
         border: "none",
       }}
     >
-      <Layout type={type}>{children}</Layout>
+      <Layout type={type} disabled={disabled}>
+        {children}
+      </Layout>
     </button>
   )
 }

@@ -5,12 +5,7 @@ import type { PayloadAction } from "@reduxjs/toolkit"
 import { createSlice } from "@reduxjs/toolkit"
 
 import { getSteps } from "@/sdk"
-import { Node } from "@/types"
-
-const Korean = "korean" as const
-const English = "english" as const
-
-type Languages = typeof English | typeof Korean
+import { English, Korean, Languages, Node } from "@/types"
 
 interface IState {
   ready: boolean
@@ -43,7 +38,7 @@ const slice = createSlice({
   },
 })
 
-export const { setReady, getInitialData } = slice.actions
+export const { setReady, getInitialData, setLanguage } = slice.actions
 export default slice.reducer
 
 function* handleSaga(): any {

@@ -2,6 +2,7 @@ import { ReactNode, useEffect } from "react"
 import { Roboto } from "next/font/google"
 import { useDispatch, useSelector } from "react-redux"
 
+import { Cookies } from "@/containers/cookies"
 import { getInitialData } from "@/state/reducers/global"
 import { RootState } from "@/state/store"
 
@@ -21,5 +22,10 @@ export function Application({ children }: { children?: ReactNode }) {
     }
   }, [dispatch, ready])
 
-  return <main className={inter.className}>{children}</main>
+  return (
+    <main className={inter.className}>
+      {children}
+      <Cookies />
+    </main>
+  )
 }

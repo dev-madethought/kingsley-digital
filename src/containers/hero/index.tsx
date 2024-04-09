@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 import { AnimateRectMask } from "@/components/animate-rect-mask"
 import { Box } from "@/components/box"
 import { Container } from "@/components/container"
-import { Cookies } from "@/components/cookies"
 import { Text } from "@/components/text"
 import useDebug from "@/hooks/useDebug"
 
@@ -13,7 +12,6 @@ import { Sentence } from "./sentence"
 // video mask animation: https://bertchcapital.com/
 export const Hero = () => {
   const [expanded, setExpanded] = useState(false)
-  const [complete, setComplete] = useState(false)
   const { border } = useDebug()
 
   useEffect(() => {
@@ -36,10 +34,7 @@ export const Hero = () => {
 
   return (
     <Box css={{ position: "relative" }}>
-      <AnimateRectMask
-        expanded={expanded}
-        onAnimationComplete={() => setComplete(expanded)}
-      >
+      <AnimateRectMask expanded={expanded}>
         <video
           src={"/hero.mp4"}
           autoPlay
@@ -66,43 +61,20 @@ export const Hero = () => {
           }}
         >
           <Sentence />
-
-          {/* hides on mobile */}
-          <Box
-            css={{
-              // display: "none",
-              "@tablet": {
-                display: "flex",
-                gridColumn: "span 2",
-                border,
-              },
-            }}
-          />
-
-          <Box
-            css={{
-              gridColumn: "span 12",
-              border,
-              "@tablet": {
-                gridColumn: "span 6",
-              },
-            }}
-          >
-            {!complete && <Cookies />}
-          </Box>
         </Container>
       </AnimateRectMask>
 
       <Container
         css={{
           position: "relative",
+          justifyContent: "end",
           paddingTop: "calc(100vh + 150px)",
           paddingBottom: 115,
           color: "white",
           zIndex: 0,
         }}
       >
-        <Box
+        {/* <Box
           css={{
             gridColumn: "span 12",
             border,
@@ -110,7 +82,7 @@ export const Hero = () => {
               gridColumn: "span 12",
             },
           }}
-        />
+        /> */}
         <Box
           css={{
             flexDirection: "column",
@@ -118,7 +90,7 @@ export const Hero = () => {
             marginBottom: 32,
             border,
             "@tablet": {
-              gridColumn: "span 4",
+              gridColumn: "13/17",
               marginBottom: 0,
             },
           }}
@@ -151,33 +123,6 @@ export const Hero = () => {
               소추되지 아니하며.
             </Text>
           </Box>
-        </Box>
-      </Container>
-
-      <Container
-        css={{
-          position: "fixed",
-          bottom: 20,
-          right: 0,
-          left: 0,
-          pointerEvents: "none",
-
-          "@tablet": {
-            bottom: 40,
-          },
-        }}
-      >
-        <Box
-          css={{
-            pointerEvents: "auto",
-            gridColumn: "span 12",
-
-            "@tablet": {
-              gridColumn: "19 / 25",
-            },
-          }}
-        >
-          {complete && <Cookies />}
         </Box>
       </Container>
     </Box>

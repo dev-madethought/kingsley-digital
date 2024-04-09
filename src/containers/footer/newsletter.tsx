@@ -41,10 +41,9 @@ export const Newsletter = () => {
     })
 
     const message = await request.text()
-    console.log("newsletter", message)
 
     if (inputRef.current) {
-      inputRef.current.value = ""
+      inputRef.current.value = message
       setShowSubmit(false)
     }
   }
@@ -82,7 +81,8 @@ export const Newsletter = () => {
             fontWeight: 400,
             letterSpacing: "0.28px",
             padding: "16px 0",
-            color: "$typography",
+            color:
+              invalidEmail && !isTyping ? "$colors$red" : "$colors$typography",
             width: "100%",
 
             "&::placeholder": {

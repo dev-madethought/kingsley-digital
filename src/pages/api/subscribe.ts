@@ -1,7 +1,5 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextApiRequest, NextApiResponse } from "next"
 import md5 from "md5"
-
-// README: https://mailchimp.com/developer/guides/manage-subscribers-with-the-mailchimp-api/
 
 const MESSAGES = {
   SUBSCRIBED: "You already subscribed",
@@ -9,16 +7,20 @@ const MESSAGES = {
   ERROR: "Something went wrong",
   SUCCESS: "Thanks for subscribing",
 }
-export async function POST(request: NextRequest) {
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const { MAILCHIMP_LIST_ID, MAILCHIMP_API_KEY } = process.env
   if (!MAILCHIMP_LIST_ID || !MAILCHIMP_API_KEY) {
-    return new NextResponse("Missing API key", { status: 400 })
+    return res.status(400).send("Missing API key")
   }
 
-  const { email } = await request.json()
+  const { email } = req.body
 
   if (!email) {
-    return new NextResponse("Email required", { status: 400 })
+    return res.status(400).send("Email required")
   }
 
   const DATACENTER = MAILCHIMP_API_KEY.split("-")[1]
@@ -39,11 +41,11 @@ export async function POST(request: NextRequest) {
   ).then((r) => r.json())
 
   if (verify.status === "subscribed") {
-    return new NextResponse(MESSAGES.SUBSCRIBED, { status: 200 })
+    return res.status(200).send(MESSAGES.SUBSCRIBED)
   }
 
   if (verify.status === "pending") {
-    return new NextResponse(MESSAGES.PENDING, { status: 200 })
+    return res.status(200).send(MESSAGES.PENDING)
   }
 
   const data = {
@@ -64,8 +66,8 @@ export async function POST(request: NextRequest) {
   )
 
   if (response.status >= 400) {
-    return new NextResponse(MESSAGES.ERROR, { status: 400 })
+    return res.status(400).send(MESSAGES.ERROR)
   }
 
-  return new NextResponse(MESSAGES.SUCCESS, { status: 200 })
+  return res.status(200).send(MESSAGES.SUCCESS)
 }
