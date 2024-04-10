@@ -9,10 +9,15 @@ export default defineType({
     { title: "Korean", name: "korean" },
   ],
   fields: [
-    // TODO: remove this
+    // newsletter
     defineField({
-      name: "test",
-      title: "Test",
+      name: "newsletterTitle",
+      title: "Newsletter Title",
+      type: "string",
+    }),
+    defineField({
+      name: "newsletterAgreement",
+      title: "Newsletter Agreement",
       type: "string",
     }),
     // Social links

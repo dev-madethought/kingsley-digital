@@ -5,7 +5,13 @@ import { Text } from "@/components/text"
 
 import { ArrowRight } from "./icon"
 
-export const Newsletter = () => {
+export const Newsletter = ({
+  title,
+  agreement,
+}: {
+  title: string
+  agreement: string
+}) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [showSubmit, setShowSubmit] = useState(false)
   const [invalidEmail, setInvalidEmail] = useState(false)
@@ -60,7 +66,7 @@ export const Newsletter = () => {
       noValidate
       css={{ flexDirection: "column", maxWidth: 333 }}
     >
-      <Text headingS>Subscribe to our newsletter for regular updates</Text>
+      <Text headingS>{title}</Text>
       <Box css={{ position: "relative" }}>
         <Box
           ref={inputRef}
@@ -112,9 +118,7 @@ export const Newsletter = () => {
         )}
       </Box>
 
-      <Text css={{ fontSize: 12, color: "#CCCCC6" }}>
-        By signing up, I agree with the data protection policy.
-      </Text>
+      <Text css={{ fontSize: 12, color: "#CCCCC6" }}>{agreement}</Text>
     </Box>
   )
 }

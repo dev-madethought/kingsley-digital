@@ -43,11 +43,13 @@ export const { setReady, getInitialData, setLanguage } = slice.actions
 export default slice.reducer
 
 function fetchFooterData() {
-  const pageQuery = groq`*[_type == "footer"]{
+  const footerQuery = groq`*[_type == "footer"]{
     "links": links[]->{_id,title, slug},
-    socialLinks
+    socialLinks,
+    newsletterTitle,
+    newsletterAgreement
   }`
-  return client.fetch(pageQuery)
+  return client.fetch(footerQuery)
 }
 
 function* handleSaga(): any {

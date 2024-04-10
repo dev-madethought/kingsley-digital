@@ -16,7 +16,7 @@ export const Footer = () => {
   const footer = useSelector((state: RootState) => state.global.footer)
   const { border } = useDebug()
 
-  const { links, socialLinks } = footer
+  const { links, socialLinks, newsletterTitle, newsletterAgreement } = footer
   console.log("footer data", footer)
 
   return (
@@ -82,7 +82,7 @@ export const Footer = () => {
           },
         }}
       >
-        <Newsletter />
+        <Newsletter title={newsletterTitle} agreement={newsletterAgreement} />
       </Box>
       <Box
         css={{

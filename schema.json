@@ -2579,7 +2579,14 @@
           "type": "string"
         }
       },
-      "test": {
+      "newsletterTitle": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "newsletterAgreement": {
         "type": "objectAttribute",
         "value": {
           "type": "string"

@@ -389,7 +389,8 @@ export type Footer = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  test?: string;
+  newsletterTitle?: string;
+  newsletterAgreement?: string;
   socialLinks?: Array<{
     label?: string;
     url?: string;
@@ -475,5 +476,23 @@ export type PageQueryResult = Array<{
     _key: string;
     [internalGroqTypeReferenceTo]?: "services";
   }>;
+}>;
+
+// Source: src/state/reducers/global.ts
+// Variable: footerQuery
+// Query: *[_type == "footer"]{    "links": links[]->{_id,title, slug},    socialLinks,    newsletterTitle,    newsletterAgreement  }
+export type FooterQueryResult = Array<{
+  links: Array<{
+    _id: string;
+    title: string | null;
+    slug: Slug | null;
+  }> | null;
+  socialLinks: Array<{
+    label?: string;
+    url?: string;
+    _key: string;
+  }> | null;
+  newsletterTitle: string | null;
+  newsletterAgreement: string | null;
 }>;
 
