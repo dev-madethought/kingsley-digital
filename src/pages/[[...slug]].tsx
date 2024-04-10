@@ -58,15 +58,25 @@ const pageQuery = groq`*[_type == "page" && slug.current == $slug]`
 export default function Page() {
   const router = useRouter()
   const { slug } = router.query
-  const [pageData, setPageData] = useState<PageProps>()
+  const [pageData, setPageData] = useState<PageProps | null>(null)
 
   useEffect(() => {
-    const nextSlug = slug || "homepage"
+    // on initial page load, the router is not ready yet
+    if (router.asPath === "/[[...slug]]") return
+    const nextSlug = slug || ["homepage"]
+
     client
-      .fetch(pageQuery, { slug: nextSlug })
-      .then((data) => setPageData(data[0]))
+      .fetch(pageQuery, { slug: nextSlug[0] })
+      .then((data) => {
+        // if no data is returned, redirect to homepage
+        if (data.length === 0) {
+          router.push("/")
+        } else {
+          setPageData(data[0])
+        }
+      })
       .catch(console.error)
-  }, [slug])
+  }, [router, slug, router.asPath])
 
   if (!pageData) return <Box>Loading...</Box>
 
