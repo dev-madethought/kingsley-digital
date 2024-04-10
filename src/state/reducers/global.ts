@@ -1,19 +1,23 @@
-import { put, takeLatest } from "redux-saga/effects"
+import groq from "groq"
+import { call, put, takeLatest } from "redux-saga/effects"
 import Cookie from "universal-cookie"
 
 import type { PayloadAction } from "@reduxjs/toolkit"
 import { createSlice } from "@reduxjs/toolkit"
 
+import { client } from "@/sanity/lib/client"
 import { English, Korean, Languages } from "@/types/language"
 
 interface IState {
   ready: boolean
   language: Languages
+  footer: any
 }
 
 const initialState: IState = {
   ready: false,
   language: English,
+  footer: null,
 }
 
 const slice = createSlice({
@@ -29,14 +33,29 @@ const slice = createSlice({
     getInitialData(state) {
       state.ready = false
     },
+    setInitialData(state, action: PayloadAction<any>) {
+      state.footer = action.payload
+    },
   },
 })
 
 export const { setReady, getInitialData, setLanguage } = slice.actions
 export default slice.reducer
 
+function fetchFooterData() {
+  const pageQuery = groq`*[_type == "footer"]{
+    "links": links[]->{_id,title, slug},
+    socialLinks
+  }`
+  return client.fetch(pageQuery)
+}
+
 function* handleSaga(): any {
-  // 1) language (We're explicitely not using nextjs i18n)
+  // 1) load footer
+  const footer = yield call(fetchFooterData)
+  yield put(slice.actions.setInitialData(footer[0]))
+
+  // 2) setup language (We're explicitely not using nextjs i18n)
   const cookies = new Cookie()
   let nextLanguage: Languages = English
   const savedLanguage = cookies.get("language")
@@ -55,7 +74,7 @@ function* handleSaga(): any {
   }
   yield put(slice.actions.setLanguage(nextLanguage))
 
-  // 2) ready
+  // 3) fire ready event
   yield put(slice.actions.setReady(true))
 }
 

@@ -1,8 +1,6 @@
 export { default as blockContent } from "./blockContent"
 export { default as contacts } from "./contacts"
-export { default as footer } from "./footer"
 export { default as Hero } from "./hero"
-export { default as page } from "./page"
 export { default as people } from "./people"
 export { default as philosophy } from "./philosophy"
 export { default as services } from "./services"

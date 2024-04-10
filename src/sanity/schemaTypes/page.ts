@@ -39,9 +39,6 @@ export default defineType({
         {
           type: "contacts",
         },
-        {
-          type: "footer",
-        },
       ],
     }),
   ],

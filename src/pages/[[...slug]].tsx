@@ -4,6 +4,7 @@ import groq from "groq"
 
 import { Box } from "@/components/box"
 import { Contacts } from "@/containers/contacts"
+import { Cookies } from "@/containers/cookies"
 import { Footer } from "@/containers/footer"
 import { Hero } from "@/containers/hero"
 import { People } from "@/containers/people"
@@ -12,7 +13,6 @@ import { Services } from "@/containers/services"
 import { client } from "@/sanity/lib/client"
 import {
   Contacts as ContactsProps,
-  Footer as FooterProps,
   Hero as HeroProps,
   People as PeopleProps,
   Philosophy as PhilosophyProps,
@@ -21,7 +21,6 @@ import {
 
 type ContentItem = (
   | ContactsProps
-  | FooterProps
   | HeroProps
   | PeopleProps
   | PhilosophyProps
@@ -46,8 +45,6 @@ const renderComponent = (props: ContentItem) => {
       return <Services key={props._key} {...props} />
     case "contacts":
       return <Contacts key={props._key} {...props} />
-    case "footer":
-      return <Footer key={props._key} {...props} />
     default:
       return null
   }
@@ -83,6 +80,8 @@ export default function Page() {
   return (
     <Box css={{ flexDirection: "column" }}>
       {pageData.content?.map(renderComponent)}
+      <Footer />
+      <Cookies />
     </Box>
   )
 }

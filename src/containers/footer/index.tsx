@@ -1,4 +1,4 @@
-// import Link from "next/link"
+import { useSelector } from "react-redux"
 
 import { Box } from "@/components/box"
 import { Button } from "@/components/button"
@@ -6,13 +6,18 @@ import { Container } from "@/components/container"
 import { ArrowUp } from "@/components/icons"
 import { Text } from "@/components/text"
 import useDebug from "@/hooks/useDebug"
+import { RootState } from "@/state/store"
 
 import { Icon } from "./icon"
 import { Language } from "./language"
 import { Newsletter } from "./newsletter"
 
 export const Footer = () => {
+  const footer = useSelector((state: RootState) => state.global.footer)
   const { border } = useDebug()
+
+  const { links, socialLinks } = footer
+  console.log("footer data", footer)
 
   return (
     <Container
@@ -59,14 +64,12 @@ export const Footer = () => {
           flexDirection: "column",
         }}
       >
-        <Button type="secondary" href="https://instagram.com">
-          INSTAGRAM
-          <ArrowUp />
-        </Button>
-        <Button type="secondary" href="https://linkedin.com">
-          LINKEDIN
-          <ArrowUp />
-        </Button>
+        {socialLinks.map((link: any) => (
+          <Button key={link._key} type="secondary" href={link.url}>
+            {String(link.label).toUpperCase()}
+            <ArrowUp />
+          </Button>
+        ))}
       </Box>
 
       <Box
@@ -94,7 +97,7 @@ export const Footer = () => {
         }}
       >
         <Text cta css={{ color: "$typography" }}>
-          © 2024 Alder Partners
+          © {new Date().getFullYear()} Alder Partners
         </Text>
       </Box>
       <Box
@@ -110,12 +113,15 @@ export const Footer = () => {
         }}
       >
         <Language />
-        <Button type="secondary" href="/privacy">
-          PRIVACY POLICY
-        </Button>
-        <Button type="secondary" href="/terms">
-          TERMS & CONDITIONS
-        </Button>
+        {links.map((link: any) => (
+          <Button
+            key={link._id}
+            type="secondary"
+            href={`/${link.slug.current}`}
+          >
+            {String(link.title).toUpperCase()}
+          </Button>
+        ))}
       </Box>
     </Container>
   )

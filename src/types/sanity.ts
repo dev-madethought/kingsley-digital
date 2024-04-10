@@ -255,12 +255,6 @@ export type Page = {
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: "contacts";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "footer";
   }>;
 };
 
@@ -396,6 +390,18 @@ export type Footer = {
   _updatedAt: string;
   _rev: string;
   test?: string;
+  socialLinks?: Array<{
+    label?: string;
+    url?: string;
+    _key: string;
+  }>;
+  links?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "page";
+  }>;
 };
 
 export type Contacts = {
@@ -444,12 +450,6 @@ export type PageQueryResult = Array<{
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: "contacts";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "footer";
   } | {
     _ref: string;
     _type: "reference";

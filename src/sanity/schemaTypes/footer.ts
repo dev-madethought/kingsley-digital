@@ -5,15 +5,39 @@ export default defineType({
   title: "Footer",
   type: "document",
   groups: [
-    { title: "English", name: "english", default: true },
+    { title: "English", name: "english" },
     { title: "Korean", name: "korean" },
   ],
   fields: [
+    // TODO: remove this
     defineField({
       name: "test",
       title: "Test",
       type: "string",
     }),
+    // Social links
+    defineField({
+      name: "socialLinks",
+      title: "Social Links",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            { name: "label", type: "string", title: "Label" },
+            { name: "url", type: "url", title: "URL" },
+          ],
+        },
+      ],
+    }),
+    // internal links
+    {
+      name: "links",
+      title: "Links",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "page" }] }],
+      description: 'Select existing "page" documents',
+    },
   ],
 
   preview: {
