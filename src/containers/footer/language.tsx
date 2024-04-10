@@ -6,7 +6,7 @@ import { Button } from "@/components/button"
 import { Text } from "@/components/text"
 import { setLanguage } from "@/state/reducers/global"
 import { RootState } from "@/state/store"
-import { English, Korean, Languages } from "@/types"
+import { English, Korean, Languages } from "@/types/language"
 
 export const Language = () => {
   const dispatch = useDispatch()

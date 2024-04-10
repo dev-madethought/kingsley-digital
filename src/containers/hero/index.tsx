@@ -1,16 +1,31 @@
 import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
+
+import { PortableText } from "@portabletext/react"
 
 import { AnimateRectMask } from "@/components/animate-rect-mask"
 import { Box } from "@/components/box"
 import { Container } from "@/components/container"
+import { components } from "@/components/portable-text"
 import { Text } from "@/components/text"
 import useDebug from "@/hooks/useDebug"
+import { RootState } from "@/state/store"
+import { Hero as HeroProps } from "@/types/sanity"
 
 import { Sentence } from "./sentence"
+import {
+  getGreeting,
+  getMainDescription,
+  getMainTitle,
+  getSecondaryDescription,
+  getSecondaryTitle,
+  getSentence,
+} from "./translations"
 
 // text reveal animation: https://brad-carter.medium.com/how-to-animate-a-text-reveal-effect-in-react-with-framer-motion-ae8ddd296f0d
 // video mask animation: https://bertchcapital.com/
-export const Hero = () => {
+export const Hero = (props: HeroProps) => {
+  const language = useSelector((state: RootState) => state.global.language)
   const [expanded, setExpanded] = useState(false)
   const { border } = useDebug()
 
@@ -32,6 +47,7 @@ export const Hero = () => {
     // }
   }, [])
 
+  console.log("render", props)
   return (
     <Box css={{ position: "relative" }}>
       <AnimateRectMask expanded={expanded}>
@@ -60,7 +76,10 @@ export const Hero = () => {
             zIndex: 999,
           }}
         >
-          <Sentence />
+          <Sentence
+            greeting={getGreeting(language, props)!}
+            sentence={getSentence(language, props)!}
+          />
         </Container>
       </AnimateRectMask>
 
@@ -74,15 +93,6 @@ export const Hero = () => {
           zIndex: 0,
         }}
       >
-        {/* <Box
-          css={{
-            gridColumn: "span 12",
-            border,
-            "@tablet": {
-              gridColumn: "span 12",
-            },
-          }}
-        /> */}
         <Box
           css={{
             flexDirection: "column",
@@ -95,9 +105,9 @@ export const Hero = () => {
             },
           }}
         >
-          <Text uppercase>We are alder</Text>
+          <Text uppercase>{getMainTitle(language, props)}</Text>
           <Text uppercase css={{ opacity: 0.5 }}>
-            서울 남한
+            {getSecondaryTitle(language, props)}
           </Text>
         </Box>
         <Box
@@ -110,18 +120,16 @@ export const Hero = () => {
           }}
         >
           <Box css={{ flexDirection: "column", gap: 20 }}>
-            <Text>
-              Alder is a boutique multi-family office established in 2023. We
-              cast our vision far into the future to unlock sustainable,
-              long-term growth that can be passed down for generations. This is
-              our privilege.
-            </Text>
-            <Text css={{ opacity: 0.5 }}>
-              종교와 정치는 분리된다. 모든 국민은 행위시의 법률에 의하여 범죄를
-              구성하지 아니하는 행위로 소추되지 아니하며.종교와 정치는 분리된다.
-              모든 국민은 행위시의 법률에 의하여 범죄를 구성하지 아니하는 행위로
-              소추되지 아니하며.
-            </Text>
+            <PortableText
+              value={getMainDescription(language, props)!}
+              components={components}
+            />
+            <Box css={{ opacity: 0.5 }}>
+              <PortableText
+                value={getSecondaryDescription(language, props)!}
+                components={components}
+              />
+            </Box>
           </Box>
         </Box>
       </Container>

@@ -1,7 +1,13 @@
 import { Text } from "@/components/text"
 import useDebug from "@/hooks/useDebug"
 
-export const Sentence = () => {
+export const Sentence = ({
+  greeting,
+  sentence,
+}: {
+  greeting: string
+  sentence: string
+}) => {
   const { border } = useDebug()
 
   return (
@@ -25,14 +31,14 @@ export const Sentence = () => {
         },
 
         "&:before": {
-          content: "안녕",
+          content: greeting,
           fontSize: 18,
           padding: "0 40px",
           verticalAlign: "middle",
         },
       }}
     >
-      We Invest in the World &rsquo;s Potential
+      {sentence}
     </Text>
   )
 }
