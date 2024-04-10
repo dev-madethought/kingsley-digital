@@ -243,6 +243,12 @@ export type Page = {
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: "contacts";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "footer";
   }>;
 };
 
@@ -371,13 +377,22 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
+export type Footer = {
+  _id: string;
+  _type: "footer";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  test?: string;
+};
+
 export type Contacts = {
   _id: string;
   _type: "contacts";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  map?: string;
+  test?: string;
 };
 
 export type BlockContent = Array<{
@@ -417,6 +432,12 @@ export type PageQueryResult = Array<{
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: "contacts";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "footer";
   } | {
     _ref: string;
     _type: "reference";

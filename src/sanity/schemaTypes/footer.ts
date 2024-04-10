@@ -1,8 +1,8 @@
 import { defineField, defineType } from "sanity"
 
 export default defineType({
-  name: "contacts",
-  title: "Contacts",
+  name: "footer",
+  title: "Footer",
   type: "document",
   groups: [
     { title: "English", name: "english", default: true },
@@ -19,7 +19,7 @@ export default defineType({
   preview: {
     prepare() {
       return {
-        title: "Contacts Component",
+        title: "Footer Component",
       }
     },
   },
