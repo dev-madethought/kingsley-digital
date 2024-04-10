@@ -68,6 +68,51 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Services = {
+  _id: string;
+  _type: "services";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  englishBody?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  koreanBody?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
 export type Philosophy = {
   _id: string;
   _type: "philosophy";
@@ -120,8 +165,44 @@ export type People = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  englishSentence?: string;
-  koreanSentence?: string;
+  englishTitle?: string;
+  englishBody?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  koreanTitle?: string;
+  koreanBody?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
 };
 
 export type Page = {
@@ -144,6 +225,24 @@ export type Page = {
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: "philosophy";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "people";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "services";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "contacts";
   }>;
 };
 
@@ -272,6 +371,15 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
+export type Contacts = {
+  _id: string;
+  _type: "contacts";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  map?: string;
+};
+
 export type BlockContent = Array<{
   children?: Array<{
     marks?: Array<string>;
@@ -308,13 +416,31 @@ export type PageQueryResult = Array<{
     _type: "reference";
     _weak?: boolean;
     _key: string;
+    [internalGroqTypeReferenceTo]?: "contacts";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
     [internalGroqTypeReferenceTo]?: "hero";
   } | {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
     _key: string;
+    [internalGroqTypeReferenceTo]?: "people";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
     [internalGroqTypeReferenceTo]?: "philosophy";
+  } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "services";
   }>;
 }>;
 

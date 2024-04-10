@@ -3,26 +3,33 @@ import { useRouter } from "next/router"
 import groq from "groq"
 
 import { Box } from "@/components/box"
+import { Contacts } from "@/containers/contacts"
 import { Hero } from "@/containers/hero"
 import { People } from "@/containers/people"
 import { Philosophy } from "@/containers/philosophy"
+import { Services } from "@/containers/services"
 import { client } from "@/sanity/lib/client"
 import {
+  Contacts as ContactsProps,
   Hero as HeroProps,
   People as PeopleProps,
   Philosophy as PhilosophyProps,
+  Services as ServicesProps,
 } from "@/types/sanity"
 
 /*
-{true && <Hero />}
-{true && <Philosophy />}
-{false && <People />}
 {false && <Services />}
 {false && <Contacts />}
 {true && <Footer />}
 */
 
-type ContentItem = (HeroProps | PhilosophyProps | PeopleProps) & {
+type ContentItem = (
+  | HeroProps
+  | PhilosophyProps
+  | PeopleProps
+  | ServicesProps
+  | ContactsProps
+) & {
   _key: string
 }
 
@@ -38,6 +45,10 @@ const renderComponent = (props: ContentItem) => {
       return <Philosophy key={props._key} {...props} />
     case "people":
       return <People key={props._key} {...props} />
+    case "services":
+      return <Services key={props._key} {...props} />
+    case "contacts":
+      return <Contacts key={props._key} {...props} />
     default:
       return null
   }

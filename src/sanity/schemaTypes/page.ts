@@ -33,6 +33,12 @@ export default defineType({
         {
           type: "people",
         },
+        {
+          type: "services",
+        },
+        {
+          type: "contacts",
+        },
       ],
     }),
   ],
