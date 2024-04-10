@@ -114,6 +114,16 @@ export type Philosophy = {
   }>;
 };
 
+export type People = {
+  _id: string;
+  _type: "people";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  englishSentence?: string;
+  koreanSentence?: string;
+};
+
 export type Page = {
   _id: string;
   _type: "page";

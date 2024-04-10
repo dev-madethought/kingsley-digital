@@ -4,10 +4,12 @@ import groq from "groq"
 
 import { Box } from "@/components/box"
 import { Hero } from "@/containers/hero"
+import { People } from "@/containers/people"
 import { Philosophy } from "@/containers/philosophy"
 import { client } from "@/sanity/lib/client"
 import {
   Hero as HeroProps,
+  People as PeopleProps,
   Philosophy as PhilosophyProps,
 } from "@/types/sanity"
 
@@ -20,7 +22,7 @@ import {
 {true && <Footer />}
 */
 
-type ContentItem = (HeroProps | PhilosophyProps) & {
+type ContentItem = (HeroProps | PhilosophyProps | PeopleProps) & {
   _key: string
 }
 
@@ -34,6 +36,8 @@ const renderComponent = (props: ContentItem) => {
       return <Hero key={props._key} {...props} />
     case "philosophy":
       return <Philosophy key={props._key} {...props} />
+    case "people":
+      return <People key={props._key} {...props} />
     default:
       return null
   }

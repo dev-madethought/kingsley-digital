@@ -30,6 +30,9 @@ export default defineType({
         {
           type: "philosophy",
         },
+        {
+          type: "people",
+        },
       ],
     }),
   ],

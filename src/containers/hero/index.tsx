@@ -47,7 +47,6 @@ export const Hero = (props: HeroProps) => {
     // }
   }, [])
 
-  console.log("render", props)
   return (
     <Box css={{ position: "relative" }}>
       <AnimateRectMask expanded={expanded}>
