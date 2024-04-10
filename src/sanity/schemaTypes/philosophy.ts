@@ -5,33 +5,46 @@ export default defineType({
   title: "Philosophy",
   type: "document",
   groups: [
-    { title: "English", name: "english", default: true },
+    { title: "English", name: "english" },
     { title: "Korean", name: "korean" },
   ],
   fields: [
+    // COMMON
+    defineField({
+      name: "image",
+      type: "image",
+      title: "Image",
+      fields: [
+        {
+          name: "alt",
+          type: "string",
+          title: "Alternative text",
+        },
+      ],
+    }),
     // ENGLISH
     defineField({
       name: "englishTitle",
-      title: "Title",
+      title: "English Title",
       type: "string",
       group: "english",
     }),
     defineField({
       name: "englishBody",
-      title: "Body",
+      title: "English Body",
       type: "blockContent",
       group: "english",
     }),
     // KOREAN
     defineField({
       name: "koreanTitle",
-      title: "Title",
+      title: "Korean Title",
       type: "string",
       group: "korean",
     }),
     defineField({
       name: "koreanBody",
-      title: "Body",
+      title: "Korean Body",
       type: "blockContent",
       group: "korean",
     }),

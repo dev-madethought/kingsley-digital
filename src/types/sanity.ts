@@ -119,6 +119,18 @@ export type Philosophy = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
   englishTitle?: string;
   englishBody?: Array<{
     children?: Array<{
