@@ -1,34 +1,21 @@
-import { Korean } from "@/types/language"
 import { Philosophy } from "@/types/sanity"
 
 export const getMainTitle = (language: string, props: Philosophy) => {
-  if (language === Korean) {
-    return props.koreanTitle
-  }
-
-  return props.englishTitle
+  const data = props.title?.find((e) => e._key === language)
+  return data?.value
 }
 
 export const getSecondaryTitle = (language: string, props: Philosophy) => {
-  if (language === Korean) {
-    return props.englishTitle
-  }
-
-  return props.koreanTitle
+  const data = props.title?.find((e) => e._key !== language)
+  return data?.value
 }
 
 export const getMainBody = (language: string, props: Philosophy) => {
-  if (language === Korean) {
-    return props.koreanBody
-  }
-
-  return props.englishBody
+  const data = props.body?.find((e) => e._key === language)
+  return data?.value
 }
 
 export const getSecondaryBody = (language: string, props: Philosophy) => {
-  if (language === Korean) {
-    return props.englishBody
-  }
-
-  return props.koreanBody
+  const data = props.body?.find((e) => e._key !== language)
+  return data?.value
 }

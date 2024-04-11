@@ -39,9 +39,9 @@ export const Philosophy = (props: PhilosophyProps) => {
           },
         }}
       >
-        {props.image && (
-          <img src={urlForImage(props.image)} alt={props.image.alt} />
-        )}
+        {/* {props.image && (
+          <img src={urlForImage(props.image)} alt="philosophy image" />
+        )} */}
       </Box>
 
       {/* mobile, tablet and desktop */}

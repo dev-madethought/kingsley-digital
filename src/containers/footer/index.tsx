@@ -22,6 +22,7 @@ export const Footer = () => {
   const settings = useSelector((state: RootState) => state.global.settings)
   const { border } = useDebug()
 
+  if (!settings) return null
   const { links, socialLinks } = settings
 
   return (
