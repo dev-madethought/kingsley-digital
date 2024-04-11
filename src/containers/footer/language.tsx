@@ -28,7 +28,6 @@ export const Language = () => {
         marginBottom: 24,
       }}
     >
-      <Text>Language:</Text>
       <Button
         type="tertiary"
         disabled={language === English}

@@ -1,50 +1,31 @@
-import { Korean } from "@/types/language"
 import { Hero } from "@/types/sanity"
 
 export const getGreeting = (language: string, props: Hero) => {
-  if (language === Korean) {
-    return props.koreanGreeting
-  }
-
-  return props.englishGreeting
+  const data = props.greeting?.find((g) => g._key === language)
+  return data?.value
 }
 
 export const getSentence = (language: string, props: Hero) => {
-  if (language === Korean) {
-    return props.koreanSentence
-  }
-
-  return props.englishSentence
+  const data = props.sentence?.find((g) => g._key === language)
+  return data?.value
 }
 
 export const getMainTitle = (language: string, props: Hero) => {
-  if (language === Korean) {
-    return props.koreanTitle
-  }
-
-  return props.englishTitle
+  const data = props.title?.find((g) => g._key === language)
+  return data?.value
 }
 
 export const getSecondaryTitle = (language: string, props: Hero) => {
-  if (language === Korean) {
-    return props.englishTitle
-  }
-
-  return props.koreanTitle
+  const data = props.title?.find((g) => g._key !== language)
+  return data?.value
 }
 
 export const getMainDescription = (language: string, props: Hero) => {
-  if (language === Korean) {
-    return props.koreanDescription
-  }
-
-  return props.englishDescription
+  const data = props.description?.find((g) => g._key === language)
+  return data?.value
 }
 
 export const getSecondaryDescription = (language: string, props: Hero) => {
-  if (language === Korean) {
-    return props.englishDescription
-  }
-
-  return props.koreanDescription
+  const data = props.description?.find((g) => g._key !== language)
+  return data?.value
 }

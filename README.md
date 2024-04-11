@@ -11,5 +11,5 @@ Below are the list of current components and their implementation stages.
 | People         |     |     |     |                  |
 | Services       |     |     |     |                  |
 | Contacts       |     |     |     |                  |
-| Footer         |     |     | ✅  |        ✅        |
+| Settings       |     |     | ✅  |        ✅        |
 | Header         |     |     |     |                  |

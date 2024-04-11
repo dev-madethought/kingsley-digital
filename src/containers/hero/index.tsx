@@ -76,8 +76,8 @@ export const Hero = (props: HeroProps) => {
           }}
         >
           <Sentence
-            greeting={getGreeting(language, props)!}
-            sentence={getSentence(language, props)!}
+            greeting={getGreeting(language, props) as any}
+            sentence={getSentence(language, props) as any}
           />
         </Container>
       </AnimateRectMask>
@@ -120,12 +120,12 @@ export const Hero = (props: HeroProps) => {
         >
           <Box css={{ flexDirection: "column", gap: 20 }}>
             <PortableText
-              value={getMainDescription(language, props)!}
+              value={getMainDescription(language, props) as any}
               components={components}
             />
             <Box css={{ opacity: 0.5 }}>
               <PortableText
-                value={getSecondaryDescription(language, props)!}
+                value={getSecondaryDescription(language, props) as any}
                 components={components}
               />
             </Box>

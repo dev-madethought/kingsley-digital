@@ -3,7 +3,7 @@ import { defineField, defineType } from "sanity"
 export default defineType({
   name: "philosophy",
   title: "Philosophy",
-  type: "document",
+  type: "object",
   groups: [
     { title: "English", name: "english" },
     { title: "Korean", name: "korean" },

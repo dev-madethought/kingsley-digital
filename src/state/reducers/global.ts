@@ -11,13 +11,13 @@ import { English, Korean, Languages } from "@/types/language"
 interface IState {
   ready: boolean
   language: Languages
-  footer: any
+  settings: any
 }
 
 const initialState: IState = {
   ready: false,
   language: English,
-  footer: null,
+  settings: null,
 }
 
 const slice = createSlice({
@@ -34,7 +34,7 @@ const slice = createSlice({
       state.ready = false
     },
     setInitialData(state, action: PayloadAction<any>) {
-      state.footer = action.payload
+      state.settings = action.payload
     },
   },
 })
@@ -42,20 +42,27 @@ const slice = createSlice({
 export const { setReady, getInitialData, setLanguage } = slice.actions
 export default slice.reducer
 
-function fetchFooterData() {
-  const footerQuery = groq`*[_type == "footer"]{
+function fetchSettingsData() {
+  const settingsQuery = groq`*[_type == "settings"]{
     "links": links[]->{_id,title, slug},
     socialLinks,
-    newsletterTitle,
-    newsletterAgreement
+    "newsletter": {
+      "title": newsletterTitle,
+      "agreement": newsletterAgreement,
+      "placeholder": newsletterPlaceholder,
+    },
+    "cookies":{
+      "message": cookiesMessage,
+      "cta": cookiesCTA,
+    }
   }`
-  return client.fetch(footerQuery)
+  return client.fetch(settingsQuery)
 }
 
 function* handleSaga(): any {
   // 1) load footer
-  const footer = yield call(fetchFooterData)
-  yield put(slice.actions.setInitialData(footer[0]))
+  const settings = yield call(fetchSettingsData)
+  yield put(slice.actions.setInitialData(settings[0]))
 
   // 2) setup language (We're explicitely not using nextjs i18n)
   const cookies = new Cookie()

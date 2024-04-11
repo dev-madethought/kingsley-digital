@@ -68,12 +68,43 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type Services = {
+export type Settings = {
   _id: string;
-  _type: "services";
+  _type: "settings";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  socialLinks?: Array<{
+    label?: string;
+    url?: string;
+    _key: string;
+  }>;
+  links?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "page";
+  }>;
+  newsletterTitle?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  newsletterPlaceholder?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  newsletterAgreement?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  cookiesMessage?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  cookiesCTA?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+};
+
+export type Services = {
+  _type: "services";
   title?: string;
   englishBody?: Array<{
     children?: Array<{
@@ -114,11 +145,7 @@ export type Services = {
 };
 
 export type Philosophy = {
-  _id: string;
   _type: "philosophy";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
   image?: {
     asset?: {
       _ref: string;
@@ -225,105 +252,21 @@ export type Page = {
   _rev: string;
   title?: string;
   slug?: Slug;
-  content?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
+  content?: Array<({
     _key: string;
-    [internalGroqTypeReferenceTo]?: "hero";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
+  } & Hero) | ({
     _key: string;
-    [internalGroqTypeReferenceTo]?: "philosophy";
-  } | {
+  } & Philosophy) | {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: "people";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
+  } | ({
     _key: string;
-    [internalGroqTypeReferenceTo]?: "services";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
+  } & Services) | ({
     _key: string;
-    [internalGroqTypeReferenceTo]?: "contacts";
-  }>;
-};
-
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
-export type Hero = {
-  _id: string;
-  _type: "hero";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  englishGreeting?: string;
-  englishSentence?: string;
-  englishTitle?: string;
-  englishDescription?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-  koreanGreeting?: string;
-  koreanSentence?: string;
-  koreanTitle?: string;
-  koreanDescription?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-  };
+  } & Contacts)>;
 };
 
 export type SanityImageCrop = {
@@ -383,34 +326,30 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type Footer = {
-  _id: string;
-  _type: "footer";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  newsletterTitle?: string;
-  newsletterAgreement?: string;
-  socialLinks?: Array<{
-    label?: string;
-    url?: string;
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
+export type Hero = {
+  _type: "hero";
+  greeting?: Array<{
     _key: string;
-  }>;
-  links?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
+  } & InternationalizedArrayStringValue>;
+  sentence?: Array<{
     _key: string;
-    [internalGroqTypeReferenceTo]?: "page";
-  }>;
+  } & InternationalizedArrayStringValue>;
+  title?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  description?: Array<{
+    _key: string;
+  } & InternationalizedArrayBlockContentValue>;
 };
 
 export type Contacts = {
-  _id: string;
   _type: "contacts";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
   test?: string;
 };
 
@@ -432,6 +371,24 @@ export type BlockContent = Array<{
   _type: "block";
   _key: string;
 }>;
+
+export type InternationalizedArrayBlockContentValue = {
+  _type: "internationalizedArrayBlockContentValue";
+  value?: BlockContent;
+};
+
+export type InternationalizedArrayStringValue = {
+  _type: "internationalizedArrayStringValue";
+  value?: string;
+};
+
+export type InternationalizedArrayBlockContent = Array<{
+  _key: string;
+} & InternationalizedArrayBlockContentValue>;
+
+export type InternationalizedArrayString = Array<{
+  _key: string;
+} & InternationalizedArrayStringValue>;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: src/pages/[[...slug]].tsx
@@ -450,38 +407,22 @@ export type PageQueryResult = Array<{
     _type: "reference";
     _weak?: boolean;
     _key: string;
-    [internalGroqTypeReferenceTo]?: "contacts";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "hero";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
     [internalGroqTypeReferenceTo]?: "people";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
+  } | ({
     _key: string;
-    [internalGroqTypeReferenceTo]?: "philosophy";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
+  } & Contacts) | ({
     _key: string;
-    [internalGroqTypeReferenceTo]?: "services";
-  }>;
+  } & Hero) | ({
+    _key: string;
+  } & Philosophy) | ({
+    _key: string;
+  } & Services)>;
 }>;
 
 // Source: src/state/reducers/global.ts
-// Variable: footerQuery
-// Query: *[_type == "footer"]{    "links": links[]->{_id,title, slug},    socialLinks,    newsletterTitle,    newsletterAgreement  }
-export type FooterQueryResult = Array<{
+// Variable: settingsQuery
+// Query: *[_type == "settings"]{    "links": links[]->{_id,title, slug},    socialLinks,    "newsletter": {      "title": newsletterTitle,      "agreement": newsletterAgreement,      "placeholder": newsletterPlaceholder,    },    "cookies":{      "message": cookiesMessage,      "cta": cookiesCTA,    }  }
+export type SettingsQueryResult = Array<{
   links: Array<{
     _id: string;
     title: string | null;
@@ -492,7 +433,24 @@ export type FooterQueryResult = Array<{
     url?: string;
     _key: string;
   }> | null;
-  newsletterTitle: string | null;
-  newsletterAgreement: string | null;
+  newsletter: {
+    title: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+    agreement: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+    placeholder: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+  };
+  cookies: {
+    message: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+    cta: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+  };
 }>;
 

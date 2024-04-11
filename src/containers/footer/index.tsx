@@ -11,13 +11,18 @@ import { RootState } from "@/state/store"
 import { Icon } from "./icon"
 import { Language } from "./language"
 import { Newsletter } from "./newsletter"
+import {
+  getNewsletterAgreement,
+  getNewsletterPlaceholder,
+  getNewsletterTitle,
+} from "./translations"
 
 export const Footer = () => {
-  const footer = useSelector((state: RootState) => state.global.footer)
+  const language = useSelector((state: RootState) => state.global.language)
+  const settings = useSelector((state: RootState) => state.global.settings)
   const { border } = useDebug()
 
-  const { links, socialLinks, newsletterTitle, newsletterAgreement } = footer
-  console.log("footer data", footer)
+  const { links, socialLinks } = settings
 
   return (
     <Container
@@ -64,7 +69,7 @@ export const Footer = () => {
           flexDirection: "column",
         }}
       >
-        {socialLinks.map((link: any) => (
+        {socialLinks?.map((link: any) => (
           <Button key={link._key} type="secondary" href={link.url}>
             {String(link.label).toUpperCase()}
             <ArrowUp />
@@ -82,7 +87,11 @@ export const Footer = () => {
           },
         }}
       >
-        <Newsletter title={newsletterTitle} agreement={newsletterAgreement} />
+        <Newsletter
+          title={getNewsletterTitle(language, settings)}
+          placeholder={getNewsletterPlaceholder(language, settings)}
+          agreement={getNewsletterAgreement(language, settings)}
+        />
       </Box>
       <Box
         css={{
@@ -113,7 +122,7 @@ export const Footer = () => {
         }}
       >
         <Language />
-        {links.map((link: any) => (
+        {links?.map((link: any) => (
           <Button
             key={link._id}
             type="secondary"

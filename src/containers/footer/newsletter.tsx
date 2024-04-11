@@ -7,9 +7,11 @@ import { ArrowRight } from "./icon"
 
 export const Newsletter = ({
   title,
+  placeholder,
   agreement,
 }: {
   title: string
+  placeholder: string
   agreement: string
 }) => {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -73,7 +75,7 @@ export const Newsletter = ({
           as="input"
           type="email"
           name="email"
-          placeholder="E-email address"
+          placeholder={placeholder}
           onChange={handleInputChange}
           css={{
             background: "transparent",
