@@ -2,10 +2,10 @@ import { useSelector } from "react-redux"
 
 import { Box } from "@/components/box"
 import { Button } from "@/components/button"
-import { Container } from "@/components/container"
+import { Grid } from "@/components/grid"
+import { useDebug } from "@/components/grid"
 import { ArrowUp } from "@/components/icons"
 import { Text } from "@/components/text"
-import useDebug from "@/hooks/useDebug"
 import { RootState } from "@/state/store"
 
 import { Icon } from "./icon"
@@ -20,20 +20,23 @@ import {
 export const Footer = () => {
   const language = useSelector((state: RootState) => state.global.language)
   const settings = useSelector((state: RootState) => state.global.settings)
-  const { border } = useDebug()
+  const { debug, border } = useDebug()
 
   if (!settings) return null
   const { links, socialLinks } = settings
 
   return (
-    <Container
+    <Grid
       as="footer"
+      debug={debug}
       css={{
         flexDirection: "column",
-        width: "100vw",
-        padding: "$20",
+        paddingTop: "$space$20",
+        paddingBottom: "$space$20",
+
         "@tablet": {
-          padding: "$40",
+          paddingTop: "$space$40",
+          paddingBottom: "$space$40",
         },
       }}
     >
@@ -41,33 +44,29 @@ export const Footer = () => {
         css={{
           gridColumn: "span 12",
           border,
+          svg: {
+            width: "100%",
+          },
+
           "@tablet": {
-            gridColumn: "span 13",
+            gridColumn: "1 / span 13",
             paddingBottom: 250,
           },
         }}
       >
         <Icon />
       </Box>
+
       <Box
         css={{
-          gridColumn: "span 12",
-          border,
-          "@tablet": {
-            gridColumn: "span 5",
-          },
-        }}
-      />
-      <Box
-        css={{
-          gridColumn: "span 12",
-          alignItems: "flex-end",
-          justifyContent: "flex-start",
-          border,
-          "@tablet": {
-            gridColumn: "span 6",
-          },
           flexDirection: "column",
+          gridColumn: "span 12",
+          justifyContent: "flex-start",
+          alignItems: "flex-end",
+          border,
+          "@tablet": {
+            gridColumn: "19 / span 6",
+          },
         }}
       >
         {socialLinks?.map((link: any) => (
@@ -84,7 +83,7 @@ export const Footer = () => {
           gridColumn: "span 12",
           border,
           "@tablet": {
-            gridColumn: "span 6",
+            gridColumn: "1 / span 6",
           },
         }}
       >
@@ -94,6 +93,7 @@ export const Footer = () => {
           agreement={getNewsletterAgreement(language, settings)}
         />
       </Box>
+
       <Box
         css={{
           flexDirection: "column",
@@ -102,7 +102,7 @@ export const Footer = () => {
           gridColumn: "span 12",
           border,
           "@tablet": {
-            gridColumn: "span 12",
+            gridColumn: "11 / span 4",
           },
         }}
       >
@@ -110,6 +110,7 @@ export const Footer = () => {
           © {new Date().getFullYear()} Alder Partners
         </Text>
       </Box>
+
       <Box
         css={{
           flexDirection: "column",
@@ -118,7 +119,7 @@ export const Footer = () => {
           gridColumn: "span 12",
           border,
           "@tablet": {
-            gridColumn: "span 6",
+            gridColumn: "19 / span 6",
           },
         }}
       >
@@ -133,6 +134,6 @@ export const Footer = () => {
           </Button>
         ))}
       </Box>
-    </Container>
+    </Grid>
   )
 }

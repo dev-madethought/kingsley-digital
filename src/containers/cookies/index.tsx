@@ -4,12 +4,14 @@ import Cookie from "universal-cookie"
 
 import { Box } from "@/components/box"
 import { Button } from "@/components/button"
-import { Container } from "@/components/container"
+import { Grid } from "@/components/grid"
+import { useDebug } from "@/components/grid"
 import { Text } from "@/components/text"
 
 export const Cookies = () => {
   const [cookieValue, setCookieValue] = useState<string | null>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const { border } = useDebug()
   const cookies = new Cookie()
 
   useEffect(() => {
@@ -42,7 +44,7 @@ export const Cookies = () => {
       animate={{ opacity: isVisible ? 1 : 0 }}
       transition={{ duration: 0.25 }}
     >
-      <Container
+      <Grid
         css={{
           position: "fixed",
           bottom: 20,
@@ -60,9 +62,10 @@ export const Cookies = () => {
           css={{
             pointerEvents: "auto",
             gridColumn: "span 12",
+            border,
 
             "@tablet": {
-              gridColumn: "19 / 25",
+              gridColumn: "19 / span 6",
             },
           }}
         >
@@ -107,7 +110,7 @@ export const Cookies = () => {
             <Button onClick={handleAccept}>GOT IT</Button>
           </Box>
         </Box>
-      </Container>
+      </Grid>
     </motion.div>
   )
 }

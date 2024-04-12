@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 function useDebug() {
-  const [debugMode, setDebugMode] = useState(false)
+  const [debug, setDebug] = useState(false)
 
   useEffect(() => {
     const debugCookie = document.cookie.split("; ").find((row) => {
@@ -9,16 +9,16 @@ function useDebug() {
       return cookie[0] === "debug" && cookie[1] === "true"
     })
     if (debugCookie) {
-      setDebugMode(true)
+      setDebug(true)
     }
 
     const urlParams = new URLSearchParams(window.location.search)
     if (urlParams.get("debug") === "true") {
-      setDebugMode(true)
+      setDebug(true)
     }
   }, [])
 
-  return { debugMode, border: debugMode ? "1px dashed black" : "none" }
+  return { debug, border: debug ? "1px dashed black" : "none" }
 }
 
-export default useDebug
+export { useDebug }

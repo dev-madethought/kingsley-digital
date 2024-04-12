@@ -16,6 +16,7 @@ export const {
       favorithangul: '"FavoritHangul"',
     },
     space: {
+      10: "10px",
       40: "40px",
       20: "20px",
     },
@@ -39,6 +40,12 @@ export const {
       16: "16px",
       6: "6px",
       4: "4px",
+    },
+    grid: {
+      color: "#ff00001a",
+      mobile: 12,
+      tablet: 24,
+      desktop: 24,
     },
   },
   media: {

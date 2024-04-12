@@ -5,10 +5,10 @@ import { PortableText } from "@portabletext/react"
 
 import { AnimateRectMask } from "@/components/animate-rect-mask"
 import { Box } from "@/components/box"
-import { Container } from "@/components/container"
+import { Grid } from "@/components/grid"
+import { useDebug } from "@/components/grid"
 import { components } from "@/components/portable-text"
 import { Text } from "@/components/text"
-import useDebug from "@/hooks/useDebug"
 import { RootState } from "@/state/store"
 import { Hero as HeroProps } from "@/types/sanity"
 
@@ -22,12 +22,10 @@ import {
   getSentence,
 } from "./translations"
 
-// text reveal animation: https://brad-carter.medium.com/how-to-animate-a-text-reveal-effect-in-react-with-framer-motion-ae8ddd296f0d
-// video mask animation: https://bertchcapital.com/
 export const Hero = (props: HeroProps) => {
   const language = useSelector((state: RootState) => state.global.language)
   const [expanded, setExpanded] = useState(false)
-  const { border } = useDebug()
+  const { debug, border } = useDebug()
 
   useEffect(() => {
     // animation on timeout
@@ -48,8 +46,8 @@ export const Hero = (props: HeroProps) => {
   }, [])
 
   return (
-    <Box css={{ position: "relative" }}>
-      <AnimateRectMask expanded={expanded}>
+    <AnimateRectMask expanded={expanded}>
+      <Grid debug={debug} css={{ position: "relative" }}>
         <video
           src={"/hero.mp4"}
           autoPlay
@@ -65,42 +63,37 @@ export const Hero = (props: HeroProps) => {
             objectFit: "cover",
           }}
         />
-        <Container
+        <Box
           css={{
-            position: "absolute",
-            top: "100vh",
-            left: 0,
-            width: "100vw",
-            transform: "translateY(calc(-100% - 40px))",
-            zIndex: 999,
+            marginTop: "calc(100vh - 40px)",
+            transform: "translateY(-100%)",
+            zIndex: 1,
+            gridColumn: "span 12",
+            border,
+
+            "@tablet": {
+              gridColumn: "1 / span 14",
+            },
           }}
         >
           <Sentence
             greeting={getGreeting(language, props) as any}
             sentence={getSentence(language, props) as any}
           />
-        </Container>
-      </AnimateRectMask>
+        </Box>
 
-      <Container
-        css={{
-          position: "relative",
-          justifyContent: "end",
-          paddingTop: "calc(100vh + 150px)",
-          paddingBottom: 115,
-          color: "white",
-          zIndex: 0,
-        }}
-      >
         <Box
           css={{
             flexDirection: "column",
             gridColumn: "span 12",
-            marginBottom: 32,
+            color: "white",
             border,
+            zIndex: 1,
+            marginBottom: 32,
+
             "@tablet": {
-              gridColumn: "13/17",
-              marginBottom: 0,
+              gridColumn: "13 / span 4",
+              marginBottom: 115,
             },
           }}
         >
@@ -109,29 +102,44 @@ export const Hero = (props: HeroProps) => {
             {getSecondaryTitle(language, props)}
           </Text>
         </Box>
+
         <Box
           css={{
+            flexDirection: "column",
             gridColumn: "span 12",
+            color: "white",
             border,
+            gap: 20,
+            zIndex: 1,
+            marginBottom: 50,
+
             "@tablet": {
-              gridColumn: "span 8",
+              gridColumn: "17 / span 8",
+              marginBottom: 115,
             },
           }}
         >
-          <Box css={{ flexDirection: "column", gap: 20 }}>
+          <PortableText
+            value={getMainDescription(language, props) as any}
+            components={components}
+          />
+          <Box
+            css={{
+              display: "none",
+
+              "@tablet": {
+                opacity: 0.5,
+                display: "flex",
+              },
+            }}
+          >
             <PortableText
-              value={getMainDescription(language, props) as any}
+              value={getSecondaryDescription(language, props) as any}
               components={components}
             />
-            <Box css={{ opacity: 0.5 }}>
-              <PortableText
-                value={getSecondaryDescription(language, props) as any}
-                components={components}
-              />
-            </Box>
           </Box>
         </Box>
-      </Container>
-    </Box>
+      </Grid>
+    </AnimateRectMask>
   )
 }

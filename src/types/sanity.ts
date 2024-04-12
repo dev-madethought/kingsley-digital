@@ -166,49 +166,13 @@ export type Philosophy = {
 };
 
 export type People = {
-  _id: string;
   _type: "people";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  englishTitle?: string;
-  englishBody?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
+  title?: Array<{
     _key: string;
-  }>;
-  koreanTitle?: string;
-  koreanBody?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
+  } & InternationalizedArrayStringValue>;
+  description?: Array<{
     _key: string;
-  }>;
+  } & InternationalizedArrayStringValue>;
 };
 
 export type Page = {
@@ -223,13 +187,9 @@ export type Page = {
     _key: string;
   } & Hero) | ({
     _key: string;
-  } & Philosophy) | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
+  } & Philosophy) | ({
     _key: string;
-    [internalGroqTypeReferenceTo]?: "people";
-  } | ({
+  } & People) | ({
     _key: string;
   } & Services) | ({
     _key: string;
@@ -369,17 +329,13 @@ export type PageQueryResult = Array<{
   _rev: string;
   title?: string;
   slug?: Slug;
-  content?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "people";
-  } | ({
+  content?: Array<({
     _key: string;
   } & Contacts) | ({
     _key: string;
   } & Hero) | ({
+    _key: string;
+  } & People) | ({
     _key: string;
   } & Philosophy) | ({
     _key: string;

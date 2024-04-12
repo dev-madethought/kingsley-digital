@@ -1,5 +1,4 @@
 import { Text } from "@/components/text"
-import useDebug from "@/hooks/useDebug"
 
 export const Sentence = ({
   greeting,
@@ -8,8 +7,6 @@ export const Sentence = ({
   greeting: string
   sentence: string
 }) => {
-  const { border } = useDebug()
-
   return (
     <Text
       css={{
@@ -23,17 +20,10 @@ export const Sentence = ({
         fontWeight: 400,
         lineHeight: "90%",
 
-        gridColumn: "span 12",
-        border,
-
-        "@tablet": {
-          gridColumn: "span 16",
-        },
-
         "&:before": {
           content: greeting,
           fontSize: 18,
-          padding: "0 40px",
+          padding: "0 $space$40",
           verticalAlign: "middle",
         },
       }}

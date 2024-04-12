@@ -79,7 +79,7 @@ export default function Page() {
 
   return (
     <Box css={{ flexDirection: "column" }}>
-      {pageData.content?.map(renderComponent)}
+      {pageData?.content?.map(renderComponent)}
       <Footer />
       <Cookies />
     </Box>

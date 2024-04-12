@@ -3,37 +3,17 @@ import { defineField, defineType } from "sanity"
 export default defineType({
   name: "people",
   title: "People",
-  type: "document",
-  groups: [
-    { title: "English", name: "english", default: true },
-    { title: "Korean", name: "korean" },
-  ],
+  type: "object",
   fields: [
-    // ENGLISH
     defineField({
-      name: "englishTitle",
+      name: "title",
       title: "Title",
-      type: "string",
-      group: "english",
+      type: "internationalizedArrayString",
     }),
     defineField({
-      name: "englishBody",
-      title: "Body",
-      type: "blockContent",
-      group: "english",
-    }),
-    // KOREAN
-    defineField({
-      name: "koreanTitle",
-      title: "Title",
-      type: "string",
-      group: "korean",
-    }),
-    defineField({
-      name: "koreanBody",
-      title: "Body",
-      type: "blockContent",
-      group: "korean",
+      name: "description",
+      title: "Description",
+      type: "internationalizedArrayString",
     }),
   ],
 

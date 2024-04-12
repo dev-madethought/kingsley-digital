@@ -19,6 +19,22 @@ export const Text = styled("p", {
         letterSpacing: "0.28px",
       },
     },
+
+    // D/Heading/M
+    headingM: {
+      true: {
+        leadingTrim: "both",
+        textEdge: "cap",
+        fontFamily: "$favorit",
+        fontSize: 28,
+        fontStyle: "normal",
+        fontWeight: 400,
+        lineHeight: "100%",
+        letterSpacing: "0.56px",
+        textTransform: "uppercase",
+      },
+    },
+
     heading: {
       true: {
         fontSize: 90,

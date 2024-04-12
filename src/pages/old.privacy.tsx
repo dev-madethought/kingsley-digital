@@ -1,7 +1,7 @@
 import { Box } from "@/components/box"
 import { Container } from "@/components/container"
+import { useDebug } from "@/components/grid"
 import { Text } from "@/components/text"
-import useDebug from "@/hooks/useDebug"
 
 export default function Page() {
   const { border } = useDebug()

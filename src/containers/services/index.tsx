@@ -1,5 +1,5 @@
 import { Box } from "@/components/box"
-import useDebug from "@/hooks/useDebug"
+import { useDebug } from "@/components/grid"
 
 export const Services = () => {
   const { border } = useDebug()

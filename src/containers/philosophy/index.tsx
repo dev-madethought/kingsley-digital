@@ -4,10 +4,10 @@ import { useSelector } from "react-redux"
 import { PortableText } from "@portabletext/react"
 
 import { Box } from "@/components/box"
-import { Container } from "@/components/container"
+import { Grid } from "@/components/grid"
+import { useDebug } from "@/components/grid"
 import { components } from "@/components/portable-text"
 import { Text } from "@/components/text"
-import useDebug from "@/hooks/useDebug"
 import { urlForImage } from "@/sanity/lib/image"
 import { RootState } from "@/state/store"
 import { Philosophy as PhilosophyProps } from "@/types/sanity"
@@ -21,7 +21,7 @@ import {
 
 export const Philosophy = (props: PhilosophyProps) => {
   const language = useSelector((state: RootState) => state.global.language)
-  const { border } = useDebug()
+  const { debug, border } = useDebug()
 
   return (
     <>
@@ -45,7 +45,8 @@ export const Philosophy = (props: PhilosophyProps) => {
       </Box>
 
       {/* mobile, tablet and desktop */}
-      <Container
+      <Grid
+        debug={debug}
         css={{
           paddingTop: 88,
           paddingBottom: 60,
@@ -62,7 +63,7 @@ export const Philosophy = (props: PhilosophyProps) => {
             gridColumn: "span 12",
             border,
             "@tablet": {
-              gridColumn: "span 5",
+              gridColumn: "1 / span 5",
             },
           }}
         >
@@ -78,18 +79,6 @@ export const Philosophy = (props: PhilosophyProps) => {
           </Box>
         </Box>
 
-        {/* spacer hidden on mobile */}
-        <Box
-          css={{
-            display: "none",
-            "@tablet": {
-              display: "flex",
-              gridColumn: "span 1",
-              border,
-            },
-          }}
-        />
-
         {/* Secondary language (hides on mobile) */}
         <Box
           css={{
@@ -98,7 +87,7 @@ export const Philosophy = (props: PhilosophyProps) => {
               display: "flex",
               flexDirection: "column",
               border,
-              gridColumn: "span 5",
+              gridColumn: "7 / span 5",
             },
           }}
         >
@@ -117,29 +106,21 @@ export const Philosophy = (props: PhilosophyProps) => {
         <Box
           tablet
           css={{
-            display: "grid",
-            gridTemplateColumns: "repeat(13, 1fr)",
-            columnGap: 10,
-            gridColumn: "span 13",
+            gridColumn: "22 / span 3",
             border,
+
+            img: {
+              width: "100%",
+              alignSelf: "center",
+              justifyContent: "center",
+            },
           }}
         >
-          <Box
-            css={{
-              gridColumn: "10/14",
-              img: {
-                width: "100%",
-                alignSelf: "center",
-                justifyContent: "center",
-              },
-            }}
-          >
-            {props.image && (
-              <img src={urlForImage(props.image)} alt="philosophy image" />
-            )}
-          </Box>
+          {props.image && (
+            <img src={urlForImage(props.image)} alt="philosophy image" />
+          )}
         </Box>
-      </Container>
+      </Grid>
     </>
   )
 }

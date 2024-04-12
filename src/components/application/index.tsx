@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { getInitialData } from "@/state/reducers/global"
 import { RootState } from "@/state/store"
 
+import { Main, useDebug } from "../grid"
+
 const inter = Roboto({
   weight: ["400", "700"],
   display: "swap",
@@ -14,6 +16,7 @@ const inter = Roboto({
 export function Application({ children }: { children?: ReactNode }) {
   const dispatch = useDispatch()
   const ready = useSelector((state: RootState) => state.global.ready)
+  const { debug } = useDebug()
 
   useEffect(() => {
     if (!ready) {
@@ -21,5 +24,9 @@ export function Application({ children }: { children?: ReactNode }) {
     }
   }, [dispatch, ready])
 
-  return <main className={inter.className}>{children}</main>
+  return (
+    <Main debug={debug} className={inter.className}>
+      {children}
+    </Main>
+  )
 }
