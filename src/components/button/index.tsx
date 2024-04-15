@@ -68,6 +68,7 @@ const Layout = ({
               fontWeight: 400,
               letterSpacing: "0.28px",
               transition: "all 0.3s linear",
+              textTransform: "uppercase",
             }}
           >
             {children}
@@ -152,8 +153,9 @@ export const Button = ({
   disabled,
 }: ButtonProps) => {
   if (href) {
+    const rel = href.startsWith("/") ? "noreferrer noopener" : undefined
     return (
-      <Link href={href}>
+      <Link href={href} rel={rel}>
         <Layout type={type} disabled={disabled}>
           {children}
         </Layout>

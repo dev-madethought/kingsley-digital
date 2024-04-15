@@ -74,7 +74,7 @@ export default defineType({
     defineField({
       name: "cookiesMessage",
       title: "Message",
-      type: "internationalizedArrayString",
+      type: "internationalizedArrayBlockContent", // "internationalizedArrayString",
       group: "cookies",
     }),
     defineField({

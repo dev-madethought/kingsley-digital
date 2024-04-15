@@ -1,14 +1,22 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
+import { useSelector } from "react-redux"
 import Cookie from "universal-cookie"
+
+import { PortableText } from "@portabletext/react"
 
 import { Box } from "@/components/box"
 import { Button } from "@/components/button"
 import { Grid } from "@/components/grid"
 import { useDebug } from "@/components/grid"
-import { Text } from "@/components/text"
+import { RootState } from "@/state/store"
+
+import { components } from "./components"
+import { getCookiesCTA, getCookiesMessage } from "./translations"
 
 export const Cookies = () => {
+  const settings = useSelector((state: RootState) => state.global.settings)
+  const language = useSelector((state: RootState) => state.global.language)
   const [cookieValue, setCookieValue] = useState<string | null>(null)
   const [isVisible, setIsVisible] = useState(false)
   const { border } = useDebug()
@@ -82,32 +90,14 @@ export const Cookies = () => {
               // border: "1px solid $background",
             }}
           >
-            <Text
-              css={{
-                fontFamily: "$favorite",
-                fontSize: "14px",
-                fontStyle: "normal",
-                fontWeight: "400",
-                lineHeight: "120%",
-                letterSpacing: "0.28px",
-                color: "$typography",
+            <PortableText
+              value={getCookiesMessage(language, settings?.cookies) as any}
+              components={components}
+            />
 
-                a: {
-                  color: "inherit",
-                  textDecoration: "underline",
-
-                  "&:hover": {
-                    textDecoration: "none",
-                  },
-                },
-              }}
-            >
-              WE USE{" "}
-              <Button type="secondary" href="/privacy">
-                COOKIES
-              </Button>
-            </Text>
-            <Button onClick={handleAccept}>GOT IT</Button>
+            <Button onClick={handleAccept}>
+              {getCookiesCTA(language, settings?.cookies)}
+            </Button>
           </Box>
         </Box>
       </Grid>

@@ -34,6 +34,19 @@ export const Text = styled("p", {
         textTransform: "uppercase",
       },
     },
+    // D/CTA
+    cta: {
+      true: {
+        fontFamily: "$favorite",
+        fontSize: "14px",
+        fontStyle: "normal",
+        fontWeight: "400",
+        lineHeight: "16.8px",
+        letterSpacing: "0.02em",
+        textAlign: "left",
+        textTransform: "uppercase",
+      },
+    },
 
     heading: {
       true: {
@@ -51,17 +64,6 @@ export const Text = styled("p", {
       true: {
         fontSize: 16,
         lineHeight: "22px",
-      },
-    },
-
-    cta: {
-      true: {
-        fontFamily: "$favorit",
-        fontSize: 14,
-        fontStyle: "normal",
-        fontWeight: 400,
-        lineHeight: "120%",
-        letterSpacing: "0.28px",
       },
     },
 

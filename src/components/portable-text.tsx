@@ -1,5 +1,3 @@
-import { ReactNode } from "react"
-
 import { Text } from "./text"
 
 export const components = {
