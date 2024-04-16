@@ -5,11 +5,9 @@ export const Grid = styled("div", {
   gridTemplateColumns: "repeat($grid$mobile, 1fr)",
   columnGap: 10,
   rowGap: 10,
-  padding: "0 $20",
 
   "@tablet": {
     gridTemplateColumns: "repeat($grid$tablet, 1fr)",
-    padding: "0 $40",
   },
 
   "@desktop": {

@@ -15,6 +15,13 @@ export default defineType({
       title: "Description",
       type: "internationalizedArrayString",
     }),
+    defineField({
+      name: "people",
+      title: "People",
+      type: "array",
+      // of: [{ type: "reference", to: [{ type: "person" }] }],
+      of: [{ type: "person" }],
+    }),
   ],
 
   preview: {

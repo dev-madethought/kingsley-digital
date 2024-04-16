@@ -5,6 +5,7 @@ import { PortableText } from "@portabletext/react"
 
 import { AnimateRectMask } from "@/components/animate-rect-mask"
 import { Box } from "@/components/box"
+import { Container } from "@/components/container"
 import { Grid } from "@/components/grid"
 import { useDebug } from "@/components/grid"
 import { components } from "@/components/portable-text"
@@ -47,99 +48,109 @@ export const Hero = (props: HeroProps) => {
 
   return (
     <AnimateRectMask expanded={expanded}>
-      <Grid debug={debug} css={{ position: "relative" }}>
-        <video
-          src={"/hero.mp4"}
-          autoPlay
-          muted
-          loop
-          playsInline
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-          }}
-        />
-        <Box
-          css={{
-            marginTop: "calc(100vh - 40px)",
-            transform: "translateY(-100%)",
-            zIndex: 1,
-            gridColumn: "span 12",
-            border,
+      <Container>
+        <Grid debug={debug} css={{ position: "relative" }}>
+          <Box
+            as="video"
+            src={"/hero.mp4"}
+            autoPlay
+            muted
+            loop
+            playsInline
+            css={{
+              display: "unset",
+              position: "absolute",
+              top: -20,
+              left: -20,
+              width: "calc(100% + 40px)",
+              height: "100%",
+              objectFit: "cover",
 
-            "@tablet": {
-              gridColumn: "1 / span 14",
-            },
-          }}
-        >
-          <Sentence
-            greeting={getGreeting(language, props) as any}
-            sentence={getSentence(language, props) as any}
-          />
-        </Box>
-
-        <Box
-          css={{
-            flexDirection: "column",
-            gridColumn: "span 12",
-            color: "white",
-            border,
-            zIndex: 1,
-            marginBottom: 32,
-
-            "@tablet": {
-              gridColumn: "13 / span 4",
-              marginBottom: 115,
-            },
-          }}
-        >
-          <Text uppercase>{getMainTitle(language, props)}</Text>
-          <Text uppercase css={{ opacity: 0.5 }}>
-            {getSecondaryTitle(language, props)}
-          </Text>
-        </Box>
-
-        <Box
-          css={{
-            flexDirection: "column",
-            gridColumn: "span 12",
-            color: "white",
-            border,
-            gap: 20,
-            zIndex: 1,
-            marginBottom: 50,
-
-            "@tablet": {
-              gridColumn: "17 / span 8",
-              marginBottom: 115,
-            },
-          }}
-        >
-          <PortableText
-            value={getMainDescription(language, props) as any}
-            components={components}
+              "@tablet": {
+                top: -40,
+                left: -40,
+                width: "calc(100% + 80px)",
+              },
+            }}
           />
           <Box
             css={{
-              display: "none",
+              marginTop: "calc(100vh - 48px)",
+              transform: "translateY(-100%)",
+              zIndex: 1,
+              gridColumn: "span 12",
+              border,
 
               "@tablet": {
-                opacity: 0.5,
-                display: "flex",
+                gridColumn: "1 / span 14",
+              },
+            }}
+          >
+            <Sentence
+              greeting={getGreeting(language, props) as any}
+              sentence={getSentence(language, props) as any}
+            />
+          </Box>
+
+          <Box
+            css={{
+              flexDirection: "column",
+              gridColumn: "span 12",
+              color: "white",
+              border,
+              zIndex: 1,
+              marginBottom: 32,
+
+              "@tablet": {
+                gridColumn: "13 / span 4",
+                marginBottom: 115,
+              },
+            }}
+          >
+            <Text uppercase>{getMainTitle(language, props)}</Text>
+            <Text uppercase css={{ opacity: 0.5 }}>
+              {getSecondaryTitle(language, props)}
+            </Text>
+          </Box>
+
+          <Box
+            css={{
+              flexDirection: "column",
+              gridColumn: "span 12",
+              color: "white",
+              border,
+              gap: 20,
+              zIndex: 1,
+              marginBottom: 50,
+
+              "@tablet": {
+                gridColumn: "17 / span 8",
+                marginBottom: 115,
               },
             }}
           >
             <PortableText
-              value={getSecondaryDescription(language, props) as any}
+              value={getMainDescription(language, props) as any}
               components={components}
             />
+            <Box
+              css={{
+                display: "none",
+
+                "@tablet": {
+                  opacity: 0.5,
+                  display: "flex",
+                },
+              }}
+            >
+              <PortableText
+                value={getSecondaryDescription(language, props) as any}
+                components={components}
+              />
+            </Box>
           </Box>
-        </Box>
-      </Grid>
+        </Grid>
+      </Container>
     </AnimateRectMask>
   )
 }

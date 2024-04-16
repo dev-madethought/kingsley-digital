@@ -5,6 +5,7 @@ import contacts from "./schemaTypes/contacts"
 import hero from "./schemaTypes/hero"
 import page from "./schemaTypes/page"
 import people from "./schemaTypes/people"
+import person from "./schemaTypes/person"
 import philosophy from "./schemaTypes/philosophy"
 import services from "./schemaTypes/services"
 import settings from "./schemaTypes/settings"
@@ -16,6 +17,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     hero,
     page,
     people,
+    person,
     philosophy,
     services,
     settings,

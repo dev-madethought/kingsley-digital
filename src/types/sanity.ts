@@ -97,7 +97,7 @@ export type Settings = {
   } & InternationalizedArrayStringValue>;
   cookiesMessage?: Array<{
     _key: string;
-  } & InternationalizedArrayStringValue>;
+  } & InternationalizedArrayBlockContentValue>;
   cookiesCTA?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
@@ -165,6 +165,33 @@ export type Philosophy = {
   };
 };
 
+export type Person = {
+  _type: "person";
+  name?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  role?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  email?: string;
+  phone?: string;
+  linkedin?: string;
+  bio?: Array<{
+    _key: string;
+  } & InternationalizedArrayBlockContentValue>;
+};
+
 export type People = {
   _type: "people";
   title?: Array<{
@@ -173,6 +200,9 @@ export type People = {
   description?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
+  people?: Array<{
+    _key: string;
+  } & Person>;
 };
 
 export type Page = {
@@ -370,7 +400,7 @@ export type SettingsQueryResult = Array<{
   cookies: {
     message: Array<{
       _key: string;
-    } & InternationalizedArrayStringValue> | null;
+    } & InternationalizedArrayBlockContentValue> | null;
     cta: Array<{
       _key: string;
     } & InternationalizedArrayStringValue> | null;

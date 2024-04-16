@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "sanity:generate-types": "npx sanity schema extract && npx sanity typegen generate"
+    "sanity:generate": "npx sanity schema extract && npx sanity typegen generate"
   },
   "dependencies": {
     "@portabletext/react": "^3.0.17",
