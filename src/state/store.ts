@@ -4,6 +4,7 @@ import { all, fork } from "redux-saga/effects"
 import { configureStore } from "@reduxjs/toolkit"
 
 import global, { saga as globalSaga } from "./reducers/global"
+import modals from "./reducers/modals"
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -12,6 +13,7 @@ const middleware = [sagaMiddleware]
 export const store: any = configureStore({
   reducer: {
     global,
+    modals,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(middleware),

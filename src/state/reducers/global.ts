@@ -8,6 +8,8 @@ import { createSlice } from "@reduxjs/toolkit"
 import { client } from "@/sanity/lib/client"
 import { English, Korean, Languages } from "@/types/language"
 
+import { setModal } from "./modals"
+
 interface IState {
   ready: boolean
   language: Languages
@@ -85,6 +87,21 @@ function* handleSaga(): any {
 
   // 3) fire ready event
   yield put(slice.actions.setReady(true))
+
+  // 4) fake modal
+  // yield put(
+  //   setModal({
+  //     type: "bio",
+  //     data: {
+  //       image: "/test.png",
+  //       name: "Andre",
+  //       role: "Creative Developer",
+  //       email: "test@test.com",
+  //       phone: "+447402929819",
+  //       linkedin: "https://www.linkedin.com/in/andrevenancio",
+  //     },
+  //   })
+  // )
 }
 
 export function* saga() {

@@ -48,8 +48,8 @@ export const Hero = (props: HeroProps) => {
 
   return (
     <AnimateRectMask expanded={expanded}>
-      <Container>
-        <Grid debug={debug} css={{ position: "relative" }}>
+      <Container css={{ position: "relative" }}>
+        <Grid debug={debug}>
           <Box
             as="video"
             src={"/hero.mp4"}
@@ -60,17 +60,11 @@ export const Hero = (props: HeroProps) => {
             css={{
               display: "unset",
               position: "absolute",
-              top: -20,
-              left: -20,
-              width: "calc(100% + 40px)",
+              top: 0,
+              left: 0,
+              width: "100%",
               height: "100%",
               objectFit: "cover",
-
-              "@tablet": {
-                top: -40,
-                left: -40,
-                width: "calc(100% + 80px)",
-              },
             }}
           />
           <Box

@@ -20,6 +20,7 @@ export const Main = styled("main", {
           backgroundSize: `calc(100% + $space$10) 100%`,
           inset: "0 $space$20",
           pointerEvents: "none",
+          zIndex: 9999999,
         },
 
         "@tablet": {

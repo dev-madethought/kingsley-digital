@@ -10,6 +10,7 @@ interface ButtonProps {
   type?: "primary" | "secondary" | "tertiary"
   children: ReactNode
   href?: string
+  className?: string
   onClick?: () => void
   disabled?: boolean
 }
@@ -148,6 +149,7 @@ const Layout = ({
 export const Button = ({
   type = "primary",
   children,
+  className,
   onClick,
   href,
   disabled,
@@ -155,7 +157,7 @@ export const Button = ({
   if (href) {
     const rel = href.startsWith("/") ? "noreferrer noopener" : undefined
     return (
-      <Link href={href} rel={rel}>
+      <Link href={href} rel={rel} className={className}>
         <Layout type={type} disabled={disabled}>
           {children}
         </Layout>
@@ -164,9 +166,11 @@ export const Button = ({
   }
 
   return (
-    <button
+    <Box
+      as="button"
       onClick={onClick}
-      style={{
+      className={className}
+      css={{
         background: "none",
         border: "none",
       }}
@@ -174,6 +178,6 @@ export const Button = ({
       <Layout type={type} disabled={disabled}>
         {children}
       </Layout>
-    </button>
+    </Box>
   )
 }

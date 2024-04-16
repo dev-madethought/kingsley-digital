@@ -1,10 +1,10 @@
 import { styled } from "@/styles/stitches"
 
 export const Container = styled("div", {
-  margin: "0 $20",
+  padding: "0 $20",
 
   "@tablet": {
-    margin: "0 $40",
+    padding: "0 $40",
   },
 
   "@desktop": {},

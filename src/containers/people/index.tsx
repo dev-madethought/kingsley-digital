@@ -19,21 +19,22 @@ export const People = (props: PeopleProps) => {
   const language = useSelector((state: RootState) => state.global.language)
   const { debug, border } = useDebug()
 
-  // TODO: add Container
   return (
-    <>
+    <Box
+      css={{
+        flexDirection: "column",
+        background: "$background",
+        paddingTop: 120,
+        paddingBottom: 50,
+
+        "@tablet": {
+          paddingTop: 172,
+          paddingBottom: 108,
+        },
+      }}
+    >
       <Container>
-        <Grid
-          debug={debug}
-          css={{
-            paddingTop: 88,
-            paddingBottom: 60,
-            background: "$background",
-            "@tablet": {
-              paddingTop: 250,
-            },
-          }}
-        >
+        <Grid debug={debug}>
           <Box
             css={{
               flexDirection: "column",
@@ -72,26 +73,6 @@ export const People = (props: PeopleProps) => {
           >
             {getSecondaryDescription(language, props)}
           </Box>
-
-          <Box
-            css={{
-              gridColumn: "10 / 25",
-              overflow: "hidden",
-              overflowX: "auto",
-            }}
-          >
-            <Box
-              css={{
-                gridColumn: "10 / span 6",
-                display: "flex",
-                gap: "10px",
-              }}
-            >
-              {props.people?.map((person, i) => (
-                <Person key={i} {...person} />
-              ))}
-            </Box>
-          </Box>
         </Grid>
       </Container>
 
@@ -99,7 +80,15 @@ export const People = (props: PeopleProps) => {
         css={{
           display: "unset",
           overflowX: "auto",
-          border: "1px solid red",
+          margin: "0 $20",
+          padding: 0,
+          marginTop: 114,
+
+          "@tablet": {
+            margin: "0 $40",
+            padding: 0,
+            marginTop: 229,
+          },
         }}
       >
         <Grid>
@@ -116,6 +105,6 @@ export const People = (props: PeopleProps) => {
           </Box>
         </Grid>
       </Container>
-    </>
+    </Box>
   )
 }

@@ -6,6 +6,7 @@ import { getInitialData } from "@/state/reducers/global"
 import { RootState } from "@/state/store"
 
 import { Main, useDebug } from "../grid"
+import ModalManager from "../modal-manager"
 
 const inter = Roboto({
   weight: ["400", "700"],
@@ -27,6 +28,7 @@ export function Application({ children }: { children?: ReactNode }) {
   return (
     <Main debug={debug} className={inter.className}>
       {children}
+      <ModalManager />
     </Main>
   )
 }
