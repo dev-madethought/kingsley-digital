@@ -1,9 +1,12 @@
+import { useEffect, useRef } from "react"
+import { scroll } from "framer-motion/dom"
 import { useSelector } from "react-redux"
 
 import { Box } from "@/components/box"
 import { Container } from "@/components/container"
 import { Grid } from "@/components/grid"
 import { useDebug } from "@/components/grid"
+import { getWidth } from "@/components/grid"
 import { Person } from "@/components/person"
 import { Text } from "@/components/text"
 import { RootState } from "@/state/store"
@@ -17,8 +20,24 @@ import {
 
 export const People = (props: PeopleProps) => {
   const language = useSelector((state: RootState) => state.global.language)
-  const { debug, border } = useDebug()
+  const { debug, boxShadow } = useDebug()
 
+  const domElement = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    let unsubscribe = null
+
+    if (domElement.current) {
+      unsubscribe = scroll(() => null, {
+        source: domElement.current,
+        axis: "x",
+      })
+    }
+
+    return () => {
+      unsubscribe?.()
+    }
+  }, [])
   return (
     <Box
       css={{
@@ -39,7 +58,7 @@ export const People = (props: PeopleProps) => {
             css={{
               flexDirection: "column",
               gridColumn: "span 12",
-              border,
+              boxShadow,
               "@tablet": {
                 gridColumn: "1 / span 5",
               },
@@ -51,7 +70,7 @@ export const People = (props: PeopleProps) => {
             css={{
               flexDirection: "column",
               gridColumn: "span 12",
-              border,
+              boxShadow,
               "@tablet": {
                 gridColumn: "10 / span 6",
               },
@@ -65,7 +84,7 @@ export const People = (props: PeopleProps) => {
               flexDirection: "column",
               gridColumn: "span 12",
               opacity: 0.5,
-              border,
+              boxShadow,
               "@tablet": {
                 gridColumn: "17 / span 6",
               },
@@ -97,13 +116,52 @@ export const People = (props: PeopleProps) => {
               gridColumn: "10 / span 6",
               display: "flex",
               gap: "10px",
+              overflowX: "visible",
             }}
           >
             {props.people?.map((person, i) => (
-              <Person key={i} {...person} />
+              <Person key={i} person={person} />
             ))}
           </Box>
         </Grid>
+      </Container>
+
+      <Container
+        css={{
+          marginTop: 114,
+          paddingBottom: 100,
+          boxShadow,
+
+          "@tablet": {
+            paddingTop: 229,
+          },
+        }}
+      >
+        <Box css={{ justifyContent: "flex-end" }}>
+          <Box
+            css={{
+              overflowX: "scroll",
+              width: getWidth(15),
+              gap: 10,
+              paddingBottom: 40,
+
+              "&::-webkit-scrollbar": {
+                height: 5,
+                width: 5,
+                background: "$darker",
+                borderRadius: "1ex",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                background: "$typography",
+                borderRadius: "1ex",
+              },
+            }}
+          >
+            {props.people?.map((person, i) => (
+              <Person key={i} person={person} />
+            ))}
+          </Box>
+        </Box>
       </Container>
     </Box>
   )

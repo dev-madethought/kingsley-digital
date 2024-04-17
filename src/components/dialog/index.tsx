@@ -1,4 +1,5 @@
 import { ReactNode } from "react"
+import { AnimatePresence, motion } from "framer-motion"
 
 import * as RadixDialog from "@radix-ui/react-dialog"
 
@@ -21,7 +22,7 @@ export const Dialog = ({ children, open, onOpenChange }: IDialog) => {
   }
 
   return (
-    <RadixDialog.Root open={open} onOpenChange={onOpenChange} modal>
+    <RadixDialog.Root open={open} onOpenChange={onOpenChange}>
       <RadixDialog.Portal>
         <Styles.Overlay />
         <Styles.Content

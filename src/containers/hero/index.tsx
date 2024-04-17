@@ -26,7 +26,7 @@ import {
 export const Hero = (props: HeroProps) => {
   const language = useSelector((state: RootState) => state.global.language)
   const [expanded, setExpanded] = useState(false)
-  const { debug, border } = useDebug()
+  const { debug, boxShadow } = useDebug()
 
   useEffect(() => {
     // animation on timeout
@@ -73,7 +73,7 @@ export const Hero = (props: HeroProps) => {
               transform: "translateY(-100%)",
               zIndex: 1,
               gridColumn: "span 12",
-              border,
+              boxShadow,
 
               "@tablet": {
                 gridColumn: "1 / span 14",
@@ -91,7 +91,7 @@ export const Hero = (props: HeroProps) => {
               flexDirection: "column",
               gridColumn: "span 12",
               color: "white",
-              border,
+              boxShadow,
               zIndex: 1,
               marginBottom: 32,
 
@@ -112,7 +112,7 @@ export const Hero = (props: HeroProps) => {
               flexDirection: "column",
               gridColumn: "span 12",
               color: "white",
-              border,
+              boxShadow,
               gap: 20,
               zIndex: 1,
               marginBottom: 50,

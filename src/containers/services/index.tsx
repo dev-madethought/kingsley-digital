@@ -2,7 +2,7 @@ import { Box } from "@/components/box"
 import { useDebug } from "@/components/grid"
 
 export const Services = () => {
-  const { border } = useDebug()
+  const { boxShadow } = useDebug()
 
   return (
     <Box
@@ -10,7 +10,7 @@ export const Services = () => {
         flexDirection: "column",
         width: "100vw",
         height: "100vh",
-        border,
+        boxShadow,
         padding: "$20",
         "@tablet": {
           padding: "$40",

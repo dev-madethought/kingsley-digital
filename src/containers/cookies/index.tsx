@@ -20,7 +20,7 @@ export const Cookies = () => {
   const language = useSelector((state: RootState) => state.global.language)
   const [cookieValue, setCookieValue] = useState<string | null>(null)
   const [isVisible, setIsVisible] = useState(false)
-  const { border } = useDebug()
+  const { boxShadow } = useDebug()
   const cookies = new Cookie()
 
   useEffect(() => {
@@ -72,7 +72,7 @@ export const Cookies = () => {
             css={{
               pointerEvents: "auto",
               gridColumn: "span 12",
-              border,
+              boxShadow,
 
               "@tablet": {
                 gridColumn: "19 / span 6",

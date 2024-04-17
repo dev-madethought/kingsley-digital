@@ -22,7 +22,7 @@ import {
 
 export const Philosophy = (props: PhilosophyProps) => {
   const language = useSelector((state: RootState) => state.global.language)
-  const { debug, border } = useDebug()
+  const { debug, boxShadow } = useDebug()
 
   return (
     <>
@@ -31,7 +31,7 @@ export const Philosophy = (props: PhilosophyProps) => {
         mobile
         css={{
           gridColumn: "span 12",
-          border,
+          boxShadow,
 
           img: {
             width: "100%",
@@ -62,7 +62,7 @@ export const Philosophy = (props: PhilosophyProps) => {
             css={{
               flexDirection: "column",
               gridColumn: "span 12",
-              border,
+              boxShadow,
               "@tablet": {
                 gridColumn: "1 / span 5",
               },
@@ -87,7 +87,7 @@ export const Philosophy = (props: PhilosophyProps) => {
               "@tablet": {
                 display: "flex",
                 flexDirection: "column",
-                border,
+                boxShadow,
                 gridColumn: "7 / span 5",
               },
             }}
@@ -108,7 +108,7 @@ export const Philosophy = (props: PhilosophyProps) => {
             tablet
             css={{
               gridColumn: "22 / span 3",
-              border,
+              boxShadow,
 
               img: {
                 width: "100%",

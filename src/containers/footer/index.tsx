@@ -21,7 +21,7 @@ import {
 export const Footer = () => {
   const language = useSelector((state: RootState) => state.global.language)
   const settings = useSelector((state: RootState) => state.global.settings)
-  const { debug, border } = useDebug()
+  const { debug, boxShadow } = useDebug()
 
   if (!settings) return null
   const { links, socialLinks } = settings
@@ -45,7 +45,7 @@ export const Footer = () => {
         <Box
           css={{
             gridColumn: "span 12",
-            border,
+            boxShadow,
             svg: {
               width: "100%",
             },
@@ -65,7 +65,7 @@ export const Footer = () => {
             gridColumn: "span 12",
             justifyContent: "flex-start",
             alignItems: "flex-end",
-            border,
+            boxShadow,
             "@tablet": {
               gridColumn: "19 / span 6",
             },
@@ -83,7 +83,7 @@ export const Footer = () => {
           css={{
             flexDirection: "column",
             gridColumn: "span 12",
-            border,
+            boxShadow,
             "@tablet": {
               gridColumn: "1 / span 6",
             },
@@ -102,7 +102,7 @@ export const Footer = () => {
             alignItems: "center",
             justifyContent: "flex-end",
             gridColumn: "span 12",
-            border,
+            boxShadow,
             "@tablet": {
               gridColumn: "11 / span 4",
             },
@@ -119,7 +119,7 @@ export const Footer = () => {
             alignItems: "flex-end",
             justifyContent: "flex-end",
             gridColumn: "span 12",
-            border,
+            boxShadow,
             "@tablet": {
               gridColumn: "19 / span 6",
             },

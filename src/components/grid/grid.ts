@@ -4,7 +4,6 @@ export const Grid = styled("div", {
   display: "grid",
   gridTemplateColumns: "repeat($grid$mobile, 1fr)",
   columnGap: 10,
-  rowGap: 10,
 
   "@tablet": {
     gridTemplateColumns: "repeat($grid$tablet, 1fr)",

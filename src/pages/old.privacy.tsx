@@ -4,7 +4,7 @@ import { Grid, useDebug } from "@/components/grid"
 import { Text } from "@/components/text"
 
 export default function Page() {
-  const { border } = useDebug()
+  const { boxShadow } = useDebug()
 
   return (
     <Container css={{ paddingTop: 200 }}>
@@ -12,7 +12,7 @@ export default function Page() {
         <Box
           css={{
             gridColumn: "span 12",
-            border,
+            boxShadow,
             "@tablet": {
               gridColumn: "span 7",
             },
@@ -36,7 +36,7 @@ export default function Page() {
         <Box
           css={{
             gridColumn: "span 12",
-            border,
+            boxShadow,
             "@tablet": {
               gridColumn: "span 8",
             },
@@ -90,7 +90,7 @@ export default function Page() {
         <Box
           css={{
             gridColumn: "span 12",
-            border,
+            boxShadow,
             "@tablet": {
               gridColumn: "span 1",
             },
@@ -99,7 +99,7 @@ export default function Page() {
         <Box
           css={{
             gridColumn: "span 12",
-            border,
+            boxShadow,
             "@tablet": {
               gridColumn: "span 8",
             },

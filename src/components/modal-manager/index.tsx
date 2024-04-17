@@ -18,9 +18,9 @@ const ModalManager = () => {
   return (
     <>
       {modals.map((m) => {
-        if (modal.type === "none") {
-          return null
-        }
+        // if (modal.type === "none") {
+        //   return null
+        // }
 
         return (
           <m.Component
