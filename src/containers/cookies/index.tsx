@@ -25,7 +25,6 @@ export const Cookies = () => {
     const timeout = setTimeout(() => {
       if (!savedCookie) {
         setIsVisible(true)
-        console.log("HERE", savedCookie)
       }
     }, 1000)
     return () => {
