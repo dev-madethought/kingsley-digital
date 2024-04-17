@@ -1,6 +1,23 @@
 import { styled } from "@/styles/stitches"
 
 export const Main = styled("main", {
+  "--width": "calc(100vw - $space$20 * 2)",
+  "--slices": "calc(($grid$mobile - 1) * $space$10)",
+  "--available": "calc(var(--width) - var(--slices))",
+  "--span": "calc(var(--available) / $grid$mobile)",
+
+  "@tablet": {
+    "--width": "calc(100vw - $space$40 * 2)",
+    "--slices": "calc(($grid$tablet - 1) * $space$10)",
+    "--span": "calc(var(--available) / $grid$tablet)",
+  },
+
+  "@desktop": {
+    "--width": "calc(100vw - $space$40 * 2)",
+    "--slices": "calc(($grid$desktop - 1) * $space$10)",
+    "--span": "calc(var(--available) / $grid$desktop)",
+  },
+
   variants: {
     debug: {
       true: {

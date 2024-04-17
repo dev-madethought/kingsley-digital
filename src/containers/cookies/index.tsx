@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { useSelector } from "react-redux"
 import Cookie from "universal-cookie"
 
@@ -8,7 +8,7 @@ import { PortableText } from "@portabletext/react"
 import { Box } from "@/components/box"
 import { Button } from "@/components/button"
 import { Container } from "@/components/container"
-import { Grid } from "@/components/grid"
+import { getWidth, Grid } from "@/components/grid"
 import { useDebug } from "@/components/grid"
 import { RootState } from "@/state/store"
 
@@ -47,63 +47,49 @@ export const Cookies = () => {
     return null
   }
 
-  return (
-    <motion.div
+  /*
+ <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: isVisible ? 1 : 0 }}
       transition={{ duration: 0.25 }}
     >
-      <Container>
-        <Grid
+  */
+
+  return (
+    <AnimatePresence>
+      {isVisible && (
+        <Box
           css={{
             position: "fixed",
-            bottom: 20,
-            right: 0,
-            left: 0,
-            pointerEvents: "none",
-            zIndex: 999,
-
-            "@tablet": {
-              bottom: 40,
-            },
+            bottom: 40,
+            right: 40,
+            width: getWidth(6),
           }}
         >
           <Box
             css={{
-              pointerEvents: "auto",
-              gridColumn: "span 12",
-              boxShadow,
-
-              "@tablet": {
-                gridColumn: "19 / span 6",
-              },
+              width: "100%",
+              padding: 20,
+              backgroundColor: "$darker",
+              borderRadius: 5,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              alignSelf: "end",
+              // border: "1px solid $background",
             }}
           >
-            <Box
-              css={{
-                width: "100%",
-                padding: 20,
-                backgroundColor: "$darker",
-                borderRadius: 5,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                alignSelf: "end",
-                // border: "1px solid $background",
-              }}
-            >
-              <PortableText
-                value={getCookiesMessage(language, settings?.cookies) as any}
-                components={components}
-              />
+            <PortableText
+              value={getCookiesMessage(language, settings?.cookies) as any}
+              components={components}
+            />
 
-              <Button onClick={handleAccept}>
-                {getCookiesCTA(language, settings?.cookies)}
-              </Button>
-            </Box>
+            <Button onClick={handleAccept}>
+              {getCookiesCTA(language, settings?.cookies)}
+            </Button>
           </Box>
-        </Grid>
-      </Container>
-    </motion.div>
+        </Box>
+      )}
+    </AnimatePresence>
   )
 }

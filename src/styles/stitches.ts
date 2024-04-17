@@ -1,31 +1,5 @@
 import { createStitches } from "@stitches/react"
 
-// grid settings
-export const GRID = {
-  mobile: {
-    columns: 12,
-    gap: 10,
-    padding: 20,
-  },
-  tablet: {
-    columns: 24,
-    gap: 10,
-    padding: 40,
-  },
-  desktop: {
-    columns: 24,
-    gap: 10,
-    padding: 40,
-  },
-}
-
-// breakpoints
-export const MEDIA = {
-  tablet: 640,
-  desktop: 1280,
-  large: 1600,
-}
-
 export const {
   styled,
   css,
@@ -69,15 +43,15 @@ export const {
     },
     grid: {
       color: "#ff00001a",
-      mobile: GRID.mobile.columns,
-      tablet: GRID.tablet.columns,
-      desktop: GRID.desktop.columns,
+      mobile: 12,
+      tablet: 24,
+      desktop: 24,
     },
   },
   media: {
-    tablet: `(min-width: ${MEDIA.tablet}px)`,
-    desktop: `(min-width: ${MEDIA.desktop}px)`,
-    large: `(min-width: ${MEDIA.large}px)`,
+    tablet: `(min-width: 640px)`,
+    desktop: `(min-width: 1280px)`,
+    large: `(min-width: 1600px)`,
   },
 })
 
