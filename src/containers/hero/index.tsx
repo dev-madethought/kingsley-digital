@@ -26,7 +26,7 @@ import {
 export const Hero = (props: HeroProps) => {
   const language = useSelector((state: RootState) => state.global.language)
   const [expanded, setExpanded] = useState(false)
-  const { debug, boxShadow } = useDebug()
+  const { boxShadow } = useDebug()
 
   useEffect(() => {
     // animation on timeout
@@ -49,7 +49,7 @@ export const Hero = (props: HeroProps) => {
   return (
     <AnimateRectMask expanded={expanded}>
       <Container css={{ position: "relative" }}>
-        <Grid debug={debug}>
+        <Grid>
           <Box
             as="video"
             src={"/hero.mp4"}

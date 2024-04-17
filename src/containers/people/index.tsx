@@ -20,7 +20,7 @@ import {
 
 export const People = (props: PeopleProps) => {
   const language = useSelector((state: RootState) => state.global.language)
-  const { debug, boxShadow } = useDebug()
+  const { boxShadow } = useDebug()
 
   const domElement = useRef<HTMLDivElement>(null)
 
@@ -53,7 +53,7 @@ export const People = (props: PeopleProps) => {
       }}
     >
       <Container>
-        <Grid debug={debug}>
+        <Grid>
           <Box
             css={{
               flexDirection: "column",
@@ -130,7 +130,6 @@ export const People = (props: PeopleProps) => {
         css={{
           marginTop: 114,
           paddingBottom: 100,
-          boxShadow,
 
           "@tablet": {
             paddingTop: 229,

@@ -20,7 +20,6 @@ function useDebug() {
 
   return {
     debug,
-    border: debug ? "1px dashed black" : "none",
     boxShadow: debug ? `inset 0px 0px 0px 1px black` : "none",
   }
 }

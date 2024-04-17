@@ -21,7 +21,7 @@ import {
 export const Footer = () => {
   const language = useSelector((state: RootState) => state.global.language)
   const settings = useSelector((state: RootState) => state.global.settings)
-  const { debug, boxShadow } = useDebug()
+  const { boxShadow } = useDebug()
 
   if (!settings) return null
   const { links, socialLinks } = settings
@@ -30,7 +30,6 @@ export const Footer = () => {
     <Container>
       <Grid
         as="footer"
-        debug={debug}
         css={{
           flexDirection: "column",
           paddingTop: "$space$20",
