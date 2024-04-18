@@ -4,29 +4,23 @@ export default defineType({
   name: "services",
   title: "Services",
   type: "object",
-  groups: [
-    { title: "English", name: "english", default: true },
-    { title: "Korean", name: "korean" },
-  ],
   fields: [
     defineField({
       name: "title",
       title: "Title",
-      type: "string",
+      type: "internationalizedArrayString",
     }),
-    // ENGLISH
     defineField({
-      name: "englishBody",
-      title: "Body",
-      type: "blockContent",
-      group: "english",
+      name: "description",
+      title: "Description",
+      type: "internationalizedArrayString",
     }),
-    // KOREAN
+
     defineField({
-      name: "koreanBody",
-      title: "Body",
-      type: "blockContent",
-      group: "korean",
+      name: "allServices",
+      title: "Services",
+      type: "array",
+      of: [{ type: "service" }],
     }),
   ],
 

@@ -105,41 +105,38 @@ export type Settings = {
 
 export type Services = {
   _type: "services";
-  title?: string;
-  englishBody?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
+  title?: Array<{
     _key: string;
-  }>;
-  koreanBody?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
+  } & InternationalizedArrayStringValue>;
+  description?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  allServices?: Array<{
+    _key: string;
+  } & Service>;
+};
+
+export type Service = {
+  _type: "service";
+  title?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  sinopsis?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  description?: Array<{
+    _key: string;
+  } & InternationalizedArrayBlockContentValue>;
+  images?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
     _key: string;
   }>;
 };

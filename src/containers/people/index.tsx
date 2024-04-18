@@ -95,7 +95,7 @@ export const People = (props: PeopleProps) => {
         </Grid>
       </Container>
 
-      <Container
+      {/* <Container
         css={{
           display: "unset",
           overflowX: "auto",
@@ -124,12 +124,11 @@ export const People = (props: PeopleProps) => {
             ))}
           </Box>
         </Grid>
-      </Container>
+      </Container> */}
 
       <Container
         css={{
-          marginTop: 114,
-          paddingBottom: 100,
+          paddingTop: 114,
 
           "@tablet": {
             paddingTop: 229,
