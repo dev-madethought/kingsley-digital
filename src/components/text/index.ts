@@ -37,7 +37,7 @@ export const Text = styled("p", {
     // D/CTA
     cta: {
       true: {
-        fontFamily: "$favorite",
+        fontFamily: "$favorit",
         fontSize: "14px",
         fontStyle: "normal",
         fontWeight: "400",

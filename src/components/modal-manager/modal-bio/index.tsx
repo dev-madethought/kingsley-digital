@@ -5,9 +5,8 @@ import { PortableText } from "@portabletext/react"
 
 import { Box } from "@/components/box"
 import { Button } from "@/components/button"
-import { Container } from "@/components/container"
 import { Dialog } from "@/components/dialog"
-import { Grid, useDebug } from "@/components/grid"
+import { getWidth, useDebug } from "@/components/grid"
 import { components } from "@/components/portable-text"
 import { Text } from "@/components/text"
 import { urlForImage } from "@/sanity/lib/image"
@@ -36,96 +35,110 @@ export const ModalBio = ({ open, onOpenChange }: ModalBioProps) => {
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <Container>
-        <Grid
+      <Box
+        css={{
+          width: getWidth(11),
+          height: "100vh",
+          overflow: "auto",
+          marginRight: 20,
+          flexDirection: "column",
+
+          // "&::-webkit-scrollbar": {
+          //   height: 5,
+          //   width: 5,
+          //   background: "$darker",
+          //   borderRadius: "1ex",
+          // },
+          // "&::-webkit-scrollbar-thumb": {
+          //   background: "$typography",
+          //   borderRadius: "1ex",
+          // },
+
+          "@tablet": {
+            marginRight: 40,
+          },
+        }}
+      >
+        {/* image */}
+        <Box
           css={{
-            position: "relative",
-            overflowX: "auto",
-            overflowY: "scroll",
-            // height: "100vh",
+            width: getWidth(4),
+            marginBottom: 44,
           }}
         >
-          <Box
-            css={{
-              position: "fixed",
-              top: 0,
-              bottom: 0,
-              gridColumn: "14 / span 11",
-              width: "calc(100% + 40px)",
-              height: "100vh",
-              backgroundColor: "$background",
-              zIndex: -1,
-            }}
-          />
+          {person?.image && (
+            <img
+              src={urlForImage(person.image)}
+              alt={`${getName(language, person)} image`}
+            />
+          )}
+        </Box>
+
+        {/* name */}
+        <Box css={{ gap: 10, marginBottom: 27 }}>
+          <Box css={{ width: getWidth(1) }} />
 
           <Box
             css={{
-              gridColumn: "14 / span 4",
-              marginBottom: 44,
+              width: getWidth(4),
+              boxShadow,
             }}
           >
-            {person?.image && (
-              <img
-                src={urlForImage(person.image)}
-                alt={`${getName(language, person)} image`}
-              />
+            {person && (
+              <Text headingS>
+                {getName(language, person)}
+                <br />
+                {getRole(language, person)}
+              </Text>
             )}
           </Box>
+        </Box>
 
-          {person && (
-            <Box
-              css={{
-                gridColumn: "15 / span 4",
-                flexDirection: "column",
-                marginBottom: 27,
-                boxShadow,
-              }}
-            >
-              <Text headingS>{getName(language, person)}</Text>
-              <Text headingS>{getRole(language, person)}</Text>
-            </Box>
-          )}
-
-          {person && (
-            <Box
-              css={{
-                flexDirection: "column",
-                gridColumn: "15 / span 4",
-                boxShadow,
-              }}
-            >
+        <Box css={{ gap: 10 }}>
+          <Box css={{ width: getWidth(1) }} />
+          <Box
+            css={{
+              flexDirection: "column",
+              width: getWidth(4),
+              boxShadow,
+            }}
+          >
+            {person && (
               <PortableText
                 value={getPrimaryBio(language, person) as any}
                 components={components}
               />
-            </Box>
-          )}
-
-          {person && (
-            <Box
-              css={{
-                flexDirection: "column",
-                gridColumn: "20 / span 4",
-                opacity: 0.5,
-                boxShadow,
-              }}
-            >
+            )}
+          </Box>
+          <Box css={{ width: getWidth(1) }} />
+          <Box
+            css={{
+              flexDirection: "column",
+              width: getWidth(4),
+              boxShadow,
+            }}
+          >
+            {person && (
               <PortableText
                 value={getSecondaryBio(language, person) as any}
                 components={components}
               />
-            </Box>
-          )}
+            )}
+          </Box>
+        </Box>
 
-          {person && (
-            <Box
-              css={{
-                gridColumn: "15 / span 10",
-                marginTop: 50,
-                marginBottom: 50,
-                boxShadow,
-              }}
-            >
+        {person && (
+          <Box
+            css={{
+              width: getWidth(11),
+              gap: 10,
+              marginTop: 50,
+              marginBottom: 50,
+            }}
+          >
+            <Box css={{ width: getWidth(1) }} />
+
+            <Box css={{ width: getWidth(10), boxShadow }}>
               <Box
                 css={{
                   justifyContent: "space-between",
@@ -144,9 +157,9 @@ export const ModalBio = ({ open, onOpenChange }: ModalBioProps) => {
                 </Button>
               </Box>
             </Box>
-          )}
-        </Grid>
-      </Container>
+          </Box>
+        )}
+      </Box>
     </Dialog>
   )
 }

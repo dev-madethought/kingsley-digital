@@ -1,4 +1,6 @@
 export const getWidth = (total: number) => {
+  if (typeof document === "undefined") return
+
   const main = document.querySelector("main")
   if (!main) {
     console.warn("no <main> element found")

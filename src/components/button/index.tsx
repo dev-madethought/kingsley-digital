@@ -63,7 +63,7 @@ const Layout = ({
             css={{
               color: hover ? "$white" : "$typography",
               zIndex: 2,
-              fontFamily: "$favorite",
+              fontFamily: "$favorit",
               fontSize: 14,
               fontStyle: "normal",
               fontWeight: 400,
@@ -82,7 +82,7 @@ const Layout = ({
           as="span"
           css={{
             display: "inline-flex",
-            fontFamily: "$favorite",
+            fontFamily: "$favorit",
             fontSize: 14,
             fontStyle: "normal",
             fontWeight: 400,
@@ -108,7 +108,7 @@ const Layout = ({
           as="span"
           css={{
             display: "inline-flex",
-            fontFamily: "$favorite",
+            fontFamily: "$favorit",
             fontSize: 14,
             fontStyle: "normal",
             fontWeight: 400,

@@ -33,7 +33,7 @@ export const Dialog = ({ children, open, onOpenChange }: IDialog) => {
           <RadixDialog.Close asChild>
             <Box
               css={{
-                position: "absolute",
+                position: "fixed",
                 top: 20,
                 right: 20,
 

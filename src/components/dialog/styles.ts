@@ -39,18 +39,21 @@ export const Overlay = styled(Dialog.Overlay, {
 export const Content = styled(Dialog.Content, {
   position: "fixed",
   top: 0,
-  left: 0,
+  right: 0,
+  bottom: 0,
+  background: "$background",
   overflow: "hidden",
+  zIndex: 9999,
 
   "&:focus": {
     outline: "none",
   },
 
   '&[data-state="open"]': {
-    animation: `${slideIn} 0.5s ease-out`,
+    animation: `${slideIn} 0.3s ease-out`,
   },
 
   '&[data-state="closed"]': {
-    animation: `${slideOut} 0.5s ease-out`,
+    animation: `${slideOut} 0.3s ease-out`,
   },
 })

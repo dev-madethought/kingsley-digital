@@ -12,13 +12,13 @@ export const {
 } = createStitches({
   theme: {
     fonts: {
-      favorite: '"Favorit"',
+      favorit: '"Favorit"',
       favorithangul: '"FavoritHangul"',
     },
     space: {
       10: "10px",
-      40: "40px",
       20: "20px",
+      40: "40px",
     },
     transitions: {
       fast: "all 0.125s linear",
