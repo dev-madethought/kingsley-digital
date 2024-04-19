@@ -22,7 +22,7 @@ import {
 
 export const Philosophy = (props: PhilosophyProps) => {
   const language = useSelector((state: RootState) => state.global.language)
-  const { boxShadow } = useDebug()
+  const { debug, boxShadow } = useDebug()
 
   return (
     <>
@@ -46,7 +46,7 @@ export const Philosophy = (props: PhilosophyProps) => {
       </Box>
 
       {/* mobile, tablet and desktop */}
-      <Container css={{ background: "$background" }}>
+      <Container debug={debug} css={{ background: "$background" }}>
         <Grid
           css={{
             paddingTop: 88,

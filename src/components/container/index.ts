@@ -13,6 +13,14 @@ export const Container = styled("div", {
   //   width: 1600,
   //   margin: "0 auto",
   // },
+
+  variants: {
+    debug: {
+      true: {
+        borderBottom: "1px solid #ff00001a",
+      },
+    },
+  },
 })
 
 Container.displayName = "Container"

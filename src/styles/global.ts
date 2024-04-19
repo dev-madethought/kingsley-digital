@@ -71,6 +71,26 @@ export const globalCss = createGlobalCss({
     "@media (prefers-color-scheme: light)": { ...LightTheme },
     '&[data-theme="dark"]': { ...DarkTheme },
     '&[data-theme="light"]': { ...LightTheme },
+
+    // grid system
+    "--vw": "100vw",
+    "--vh": "100vh",
+    "--width": "calc(var(--vw) - $space$20 * 2)",
+    "--slices": "calc(($grid$mobile - 1) * $space$10)",
+    "--available": "calc(var(--width) - var(--slices))",
+    "--span": "calc(var(--available) / $grid$mobile)",
+
+    "@tablet": {
+      "--width": "calc(var(--vw) - $space$40 * 2)",
+      "--slices": "calc(($grid$tablet - 1) * $space$10)",
+      "--span": "calc(var(--available) / $grid$tablet)",
+    },
+
+    "@desktop": {
+      "--width": "calc(var(--vw) - $space$40 * 2)",
+      "--slices": "calc(($grid$desktop - 1) * $space$10)",
+      "--span": "calc(var(--available) / $grid$desktop)",
+    },
   },
 
   // webfonts

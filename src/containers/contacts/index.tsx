@@ -8,7 +8,7 @@ export const Contacts = () => {
     <Box
       css={{
         flexDirection: "column",
-        width: "100vw",
+        width: "var(--vw)",
         height: "100vh",
         boxShadow,
         padding: "$20",

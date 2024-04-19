@@ -21,13 +21,13 @@ import {
 export const Footer = () => {
   const language = useSelector((state: RootState) => state.global.language)
   const settings = useSelector((state: RootState) => state.global.settings)
-  const { boxShadow } = useDebug()
+  const { debug, boxShadow } = useDebug()
 
   if (!settings) return null
   const { links, socialLinks } = settings
 
   return (
-    <Container>
+    <Container debug={debug}>
       <Grid
         as="footer"
         css={{

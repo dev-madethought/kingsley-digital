@@ -20,7 +20,7 @@ import {
 
 export const People = (props: PeopleProps) => {
   const language = useSelector((state: RootState) => state.global.language)
-  const { boxShadow } = useDebug()
+  const { debug, boxShadow } = useDebug()
 
   const domElement = useRef<HTMLDivElement>(null)
 
@@ -39,10 +39,9 @@ export const People = (props: PeopleProps) => {
     }
   }, [])
   return (
-    <Box
+    <Container
+      debug={debug}
       css={{
-        flexDirection: "column",
-        background: "$background",
         paddingTop: 120,
         paddingBottom: 50,
 
@@ -52,90 +51,59 @@ export const People = (props: PeopleProps) => {
         },
       }}
     >
-      <Container>
-        <Grid>
-          <Box
-            css={{
-              flexDirection: "column",
-              gridColumn: "span 12",
-              boxShadow,
-              "@tablet": {
-                gridColumn: "1 / span 5",
-              },
-            }}
-          >
-            <Text headingM>{getTitle(language, props)}</Text>
-          </Box>
-          <Box
-            css={{
-              flexDirection: "column",
-              gridColumn: "span 12",
-              boxShadow,
-              "@tablet": {
-                gridColumn: "10 / span 6",
-              },
-            }}
-          >
-            {getPrimaryDescription(language, props)}
-          </Box>
-
-          <Box
-            css={{
-              flexDirection: "column",
-              gridColumn: "span 12",
-              opacity: 0.5,
-              boxShadow,
-              "@tablet": {
-                gridColumn: "17 / span 6",
-              },
-            }}
-          >
-            {getSecondaryDescription(language, props)}
-          </Box>
-        </Grid>
-      </Container>
-
-      {/* <Container
-        css={{
-          display: "unset",
-          overflowX: "auto",
-          margin: "0 $20",
-          padding: 0,
-          marginTop: 114,
-
-          "@tablet": {
-            margin: "0 $40",
-            padding: 0,
-            marginTop: 229,
-          },
-        }}
-      >
-        <Grid>
-          <Box
-            css={{
+      <Grid>
+        <Box
+          css={{
+            flexDirection: "column",
+            gridColumn: "span 12",
+            boxShadow,
+            "@tablet": {
+              gridColumn: "1 / span 5",
+            },
+          }}
+        >
+          <Text headingM>{getTitle(language, props)}</Text>
+        </Box>
+        <Box
+          css={{
+            flexDirection: "column",
+            gridColumn: "span 12",
+            boxShadow,
+            "@tablet": {
               gridColumn: "10 / span 6",
-              display: "flex",
-              gap: "10px",
-              overflowX: "visible",
-            }}
-          >
-            {props.people?.map((person, i) => (
-              <Person key={i} person={person} />
-            ))}
-          </Box>
-        </Grid>
-      </Container> */}
+            },
+          }}
+        >
+          {getPrimaryDescription(language, props)}
+        </Box>
 
-      <Container
-        css={{
-          paddingTop: 114,
+        <Box
+          css={{
+            flexDirection: "column",
+            gridColumn: "span 12",
+            opacity: 0.5,
+            boxShadow,
+            "@tablet": {
+              gridColumn: "17 / span 6",
+            },
+          }}
+        >
+          {getSecondaryDescription(language, props)}
+        </Box>
 
-          "@tablet": {
-            paddingTop: 229,
-          },
-        }}
-      >
-        <Box css={{ justifyContent: "flex-end" }}>
+        <Box
+          css={{
+            gridColumn: "1 / span 12",
+            justifyContent: "flex-end",
+            boxShadow,
+            paddingTop: 114,
+
+            "@tablet": {
+              gridColumn: "1 / span 24",
+              paddingTop: 229,
+            },
+          }}
+        >
           <Box
             css={{
               overflowX: "scroll",
@@ -160,7 +128,7 @@ export const People = (props: PeopleProps) => {
             ))}
           </Box>
         </Box>
-      </Container>
-    </Box>
+      </Grid>
+    </Container>
   )
 }

@@ -18,8 +18,8 @@ export const AnimateRectMask = ({
   expanded = false,
   onAnimationComplete,
 }: AnimateRectMaskProps) => {
-  const centerX = `calc((100vw - ${width}px) / 2)`
-  const centerY = `calc((100vh - ${height}px) / 2)`
+  const centerX = `calc((var(--vw) - ${width}px) / 2)`
+  const centerY = `calc((var(--vh) - ${height}px) / 2)`
   const rectWidth = `${width}px`
   const rectHeight = `${height}px`
   const begin = [

@@ -38,6 +38,7 @@ export const ModalBio = ({ open, onOpenChange }: ModalBioProps) => {
       <Box
         css={{
           width: getWidth(11),
+          maxWidth: "100%",
           height: "100vh",
           overflow: "auto",
           marginRight: 20,

@@ -4,10 +4,10 @@ import { Grid, useDebug } from "@/components/grid"
 import { Text } from "@/components/text"
 
 export default function Page() {
-  const { boxShadow } = useDebug()
+  const { debug, boxShadow } = useDebug()
 
   return (
-    <Container css={{ paddingTop: 200 }}>
+    <Container debug={debug} css={{ paddingTop: 200 }}>
       <Grid>
         <Box
           css={{
