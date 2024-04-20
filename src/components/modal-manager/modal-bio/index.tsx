@@ -6,13 +6,15 @@ import { PortableText } from "@portabletext/react"
 import { Box } from "@/components/box"
 import { Button } from "@/components/button"
 import { Dialog } from "@/components/dialog"
-import { getWidth, useDebug } from "@/components/grid"
+import { useDebug } from "@/components/grid"
 import { components } from "@/components/portable-text"
 import { Text } from "@/components/text"
 import { urlForImage } from "@/sanity/lib/image"
 import { RootState } from "@/state/store"
 
 import {
+  getEmailButton,
+  getLinkedinButton,
   getName,
   getPrimaryBio,
   getRole,
@@ -27,6 +29,7 @@ type ModalBioProps = {
 export const ModalBio = ({ open, onOpenChange }: ModalBioProps) => {
   const { boxShadow } = useDebug()
   const language = useSelector((state: RootState) => state.global.language)
+  const settings = useSelector((state: RootState) => state.global.settings)
   const person = useSelector((state: RootState) => state.people.person)
 
   const handleOpenChange = (value: boolean) => {
@@ -37,33 +40,33 @@ export const ModalBio = ({ open, onOpenChange }: ModalBioProps) => {
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <Box
         css={{
-          width: getWidth(11),
-          maxWidth: "100%",
-          height: "100vh",
-          overflow: "auto",
+          height: "var(--vh)",
+          overflowY: "auto",
           marginRight: 20,
           flexDirection: "column",
-
-          // "&::-webkit-scrollbar": {
-          //   height: 5,
-          //   width: 5,
-          //   background: "$darker",
-          //   borderRadius: "1ex",
-          // },
-          // "&::-webkit-scrollbar-thumb": {
-          //   background: "$typography",
-          //   borderRadius: "1ex",
-          // },
+          column: 11,
 
           "@tablet": {
             marginRight: 40,
+          },
+
+          "&::-webkit-scrollbar": {
+            height: 5,
+            width: 5,
+            background: "$darker",
+            borderRadius: "1ex",
+          },
+
+          "&::-webkit-scrollbar-thumb": {
+            background: "$typography",
+            borderRadius: "1ex",
           },
         }}
       >
         {/* image */}
         <Box
           css={{
-            width: getWidth(4),
+            column: 4,
             marginBottom: 44,
           }}
         >
@@ -77,11 +80,11 @@ export const ModalBio = ({ open, onOpenChange }: ModalBioProps) => {
 
         {/* name */}
         <Box css={{ gap: 10, marginBottom: 27 }}>
-          <Box css={{ width: getWidth(1) }} />
+          <Box css={{ column: 1 }} />
 
           <Box
             css={{
-              width: getWidth(4),
+              column: 4,
               boxShadow,
             }}
           >
@@ -96,11 +99,11 @@ export const ModalBio = ({ open, onOpenChange }: ModalBioProps) => {
         </Box>
 
         <Box css={{ gap: 10 }}>
-          <Box css={{ width: getWidth(1) }} />
+          <Box css={{ column: 1 }} />
           <Box
             css={{
               flexDirection: "column",
-              width: getWidth(4),
+              column: 4,
               boxShadow,
             }}
           >
@@ -111,11 +114,11 @@ export const ModalBio = ({ open, onOpenChange }: ModalBioProps) => {
               />
             )}
           </Box>
-          <Box css={{ width: getWidth(1) }} />
+          <Box css={{ column: 1 }} />
           <Box
             css={{
               flexDirection: "column",
-              width: getWidth(4),
+              column: 4,
               boxShadow,
             }}
           >
@@ -131,15 +134,23 @@ export const ModalBio = ({ open, onOpenChange }: ModalBioProps) => {
         {person && (
           <Box
             css={{
-              width: getWidth(11),
               gap: 10,
               marginTop: 50,
               marginBottom: 50,
             }}
           >
-            <Box css={{ width: getWidth(1) }} />
+            <Box
+              css={{
+                column: 1,
+              }}
+            />
 
-            <Box css={{ width: getWidth(10), boxShadow }}>
+            <Box
+              css={{
+                column: 10,
+                boxShadow,
+              }}
+            >
               <Box
                 css={{
                   justifyContent: "space-between",
@@ -148,13 +159,13 @@ export const ModalBio = ({ open, onOpenChange }: ModalBioProps) => {
                 }}
               >
                 <Button type="secondary" href={`mailto:${person.email}`}>
-                  Email
+                  {getEmailButton(language, settings?.buttons)}
                 </Button>
                 <Button type="tertiary" href={`tel:${person.phone}`}>
                   {person.phone}
                 </Button>
                 <Button type="secondary" href={person.linkedin}>
-                  LinkedIN
+                  {getLinkedinButton(language, settings?.buttons)}
                 </Button>
               </Box>
             </Box>

@@ -29,26 +29,18 @@ export const Hero = (props: HeroProps) => {
   const { debug, boxShadow } = useDebug()
 
   useEffect(() => {
-    // animation on timeout
     const timeout = setTimeout(() => setExpanded(true), 300)
     return () => {
       clearTimeout(timeout)
     }
-
-    // animation on scroll
-    // const handleScroll = () => {
-    //   setExpanded(true)
-    //   window.removeEventListener("scroll", handleScroll)
-    // }
-    // window.addEventListener("scroll", handleScroll)
-    // return () => {
-    //   window.removeEventListener("scroll", handleScroll)
-    // }
   }, [])
 
   return (
     <AnimateRectMask expanded={expanded}>
-      <Container debug={debug} css={{ position: "relative" }}>
+      <Container
+        debug={debug}
+        css={{ position: "relative", overflow: "hidden" }}
+      >
         <Grid>
           <Box
             as="video"
@@ -101,8 +93,10 @@ export const Hero = (props: HeroProps) => {
               },
             }}
           >
-            <Text uppercase>{getMainTitle(language, props)}</Text>
-            <Text uppercase css={{ opacity: 0.5 }}>
+            <Text uppercase wrap>
+              {getMainTitle(language, props)}
+            </Text>
+            <Text uppercase wrap css={{ opacity: 0.5 }}>
               {getSecondaryTitle(language, props)}
             </Text>
           </Box>

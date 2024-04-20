@@ -33,8 +33,6 @@ export const AnimateRectMask = ({
   return (
     <motion.div
       style={{
-        // width: "100%",
-        // height: "100%",
         clipPath: `polygon(${begin.join(", ")})`,
       }}
       initial={{

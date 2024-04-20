@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useDispatch, useSelector } from "react-redux"
 
-import { getWidth } from "@/components/grid"
 import { setModal } from "@/state/reducers/modals"
 import { setPerson } from "@/state/reducers/people"
 import { RootState } from "@/state/store"
@@ -12,23 +11,23 @@ import { Button } from "../button"
 import { useDebug } from "../grid"
 import { Text } from "../text"
 
-import { getName } from "./translations"
+import {
+  getCTA,
+  getPrimaryName,
+  getPrimaryRole,
+  getSecondaryName,
+  getSecondaryRole,
+} from "./translations"
 
 export const Person = ({ person }: { person: PersonProps }) => {
   const dispatch = useDispatch()
   const language = useSelector((state: RootState) => state.global.language)
+  const settings = useSelector((state: RootState) => state.global.settings)
   const { boxShadow } = useDebug()
 
   const handlePersonClick = () => {
-    // set person
     dispatch(setPerson({ ...person }))
-    // show
-    dispatch(
-      setModal({
-        type: "bio",
-        data: person,
-      })
-    )
+    dispatch(setModal({ type: "bio" }))
   }
 
   return (
@@ -41,34 +40,45 @@ export const Person = ({ person }: { person: PersonProps }) => {
       }}
     >
       {/* IMAGE */}
-      <Box css={{ width: getWidth(6), gap: 10 }}>
-        <Box css={{ width: getWidth(1) }} />
-        <Box css={{ flexShrink: 0, width: getWidth(2) }}>
+      <Box css={{ column: 6, gap: 10 }}>
+        <Box css={{ column: 1 }} />
+        <Box css={{ flexShrink: 0, column: 2 }}>
           <img src="/test.png" alt="Yo" />
         </Box>
       </Box>
 
       {/* TEXT */}
       <Box css={{ marginTop: 60, gap: 10 }}>
-        <Text body css={{ width: getWidth(3), boxShadow }}>
-          {getName(language, person)}
+        <Text
+          body
+          css={{
+            column: 3,
+            boxShadow,
+          }}
+        >
+          {getPrimaryName(language, person)}
           <br />
-          CEO
+          {getPrimaryRole(language, person)}
         </Text>
 
-        <Text body css={{ width: getWidth(3), opacity: 0.5, boxShadow }}>
-          Person KO
+        <Text
+          body
+          css={{
+            column: 3,
+            opacity: 0.5,
+            boxShadow,
+          }}
+        >
+          {getSecondaryName(language, person)}
           <br />
-          CEO
+          {getSecondaryRole(language, person)}
         </Text>
       </Box>
 
       {/* BUTTON */}
-      <Box>
-        <Button type="primary" onClick={handlePersonClick}>
-          READ BIO
-        </Button>
-      </Box>
+      <Button type="primary" onClick={handlePersonClick}>
+        {getCTA(language, settings?.buttons)}
+      </Button>
     </Box>
   )
 }

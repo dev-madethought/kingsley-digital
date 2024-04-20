@@ -53,6 +53,45 @@ export const {
     desktop: `(min-width: 1280px)`,
     large: `(min-width: 1600px)`,
   },
+  utils: {
+    column: (value: number) => {
+      // mobile
+      const Msize = `calc(var(--vw) - $space$20 * 2)`
+      const Mslices = `calc(($grid$mobile - 1) * $space$10)`
+      const Mavailable = `calc(${Msize} - ${Mslices})`
+      const Mspan = `calc(${Mavailable} / $grid$mobile)`
+      const Mgutter = `calc($space$10 * (${value} - 1))`
+      const Mwidth = `calc(${Mspan} * ${value} + ${Mgutter})`
+
+      // tablet
+      const Tsize = `calc(var(--vw) - $space$40 * 2)`
+      const Tslices = `calc(($grid$tablet - 1) * $space$10)`
+      const Tavailable = `calc(${Tsize} - ${Tslices})`
+      const Tspan = `calc(${Tavailable} / $grid$tablet)`
+      const Tgutter = `calc($space$10 * (${value} - 1))`
+      const Twidth = `calc(${Tspan} * ${value} + ${Tgutter})`
+
+      // desktop
+      const Dsize = `calc(var(--vw) - $space$40 * 2)`
+      const Dslices = `calc(($grid$desktop - 1) * $space$10)`
+      const Davailable = `calc(${Dsize} - ${Dslices})`
+      const Dspan = `calc(${Davailable} / $grid$desktop)`
+      const Dgutter = `calc($space$10 * (${value} - 1))`
+      const Dwidth = `calc(${Dspan} * ${value} + ${Dgutter})`
+
+      return {
+        width: Mwidth,
+
+        "@tablet": {
+          width: Twidth,
+        },
+
+        "@desktop": {
+          width: Dwidth,
+        },
+      }
+    },
+  },
 })
 
 export const DarkTheme = {}

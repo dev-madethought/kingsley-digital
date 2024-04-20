@@ -65,8 +65,8 @@ export const globalCss = createGlobalCss({
     textAlign: "left",
   },
 
-  // Theme
   ":root": {
+    // theme
     "@media (prefers-color-scheme: dark)": { ...DarkTheme },
     "@media (prefers-color-scheme: light)": { ...LightTheme },
     '&[data-theme="dark"]': { ...DarkTheme },
@@ -75,22 +75,6 @@ export const globalCss = createGlobalCss({
     // grid system
     "--vw": "100vw",
     "--vh": "100vh",
-    "--width": "calc(var(--vw) - $space$20 * 2)",
-    "--slices": "calc(($grid$mobile - 1) * $space$10)",
-    "--available": "calc(var(--width) - var(--slices))",
-    "--span": "calc(var(--available) / $grid$mobile)",
-
-    "@tablet": {
-      "--width": "calc(var(--vw) - $space$40 * 2)",
-      "--slices": "calc(($grid$tablet - 1) * $space$10)",
-      "--span": "calc(var(--available) / $grid$tablet)",
-    },
-
-    "@desktop": {
-      "--width": "calc(var(--vw) - $space$40 * 2)",
-      "--slices": "calc(($grid$desktop - 1) * $space$10)",
-      "--span": "calc(var(--available) / $grid$desktop)",
-    },
   },
 
   // webfonts
@@ -161,18 +145,4 @@ export const globalCss = createGlobalCss({
     direction: "ltr",
     userSelect: "none",
   },
-
-  // major third (1.25) from base 16
-  h1: { fontSize: "2.441em", fontWeight: "normal" },
-  h2: { fontSize: "1.953em", fontWeight: "normal" },
-  h3: { fontSize: "1.563em", fontWeight: "normal" },
-  h4: { fontSize: "1.25em", fontWeight: "bold" },
-  h5: { fontSize: "1em", fontWeight: "normal" },
-  h6: { fontSize: "0.8em", fontWeight: "normal" },
-
-  blockquotes: { fontSize: "2rem" },
-
-  p: { fontSize: "1rem", lineHeight: 1.3 },
-
-  a: { textDecoration: "none" },
 })

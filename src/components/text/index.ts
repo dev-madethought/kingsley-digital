@@ -48,18 +48,6 @@ export const Text = styled("p", {
       },
     },
 
-    heading: {
-      true: {
-        fontSize: 90,
-
-        "@tablet": {
-          fontSize: 160,
-        },
-
-        "@desktop": {},
-      },
-    },
-
     body: {
       true: {
         fontSize: 16,

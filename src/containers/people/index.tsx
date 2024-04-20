@@ -6,7 +6,6 @@ import { Box } from "@/components/box"
 import { Container } from "@/components/container"
 import { Grid } from "@/components/grid"
 import { useDebug } from "@/components/grid"
-import { getWidth } from "@/components/grid"
 import { Person } from "@/components/person"
 import { Text } from "@/components/text"
 import { RootState } from "@/state/store"
@@ -44,6 +43,9 @@ export const People = (props: PeopleProps) => {
       css={{
         paddingTop: 120,
         paddingBottom: 50,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-end",
 
         "@tablet": {
           paddingTop: 172,
@@ -90,45 +92,36 @@ export const People = (props: PeopleProps) => {
         >
           {getSecondaryDescription(language, props)}
         </Box>
-
-        <Box
-          css={{
-            gridColumn: "1 / span 12",
-            justifyContent: "flex-end",
-            boxShadow,
-            paddingTop: 114,
-
-            "@tablet": {
-              gridColumn: "1 / span 24",
-              paddingTop: 229,
-            },
-          }}
-        >
-          <Box
-            css={{
-              overflowX: "scroll",
-              width: getWidth(15),
-              gap: 10,
-              paddingBottom: 40,
-
-              "&::-webkit-scrollbar": {
-                height: 5,
-                width: 5,
-                background: "$darker",
-                borderRadius: "1ex",
-              },
-              "&::-webkit-scrollbar-thumb": {
-                background: "$typography",
-                borderRadius: "1ex",
-              },
-            }}
-          >
-            {props.people?.map((person, i) => (
-              <Person key={i} person={person} />
-            ))}
-          </Box>
-        </Box>
       </Grid>
+
+      <Box
+        css={{
+          overflowX: "scroll",
+          column: 12,
+          gap: 10,
+          paddingTop: 114,
+          paddingBottom: 40,
+
+          "@tablet": {
+            paddingTop: 229,
+          },
+
+          "&::-webkit-scrollbar": {
+            height: 5,
+            width: 5,
+            background: "$darker",
+            borderRadius: "1ex",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            background: "$typography",
+            borderRadius: "1ex",
+          },
+        }}
+      >
+        {props.people?.map((person, i) => (
+          <Person key={i} person={person} />
+        ))}
+      </Box>
     </Container>
   )
 }

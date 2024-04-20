@@ -21,6 +21,10 @@ export default defineType({
       title: "Cookies",
       name: "cookies",
     },
+    {
+      title: "Buttons",
+      name: "buttons",
+    },
   ],
   fields: [
     // SOCIAL LINKS
@@ -82,6 +86,26 @@ export default defineType({
       title: "CTA",
       type: "internationalizedArrayString",
       group: "cookies",
+    }),
+
+    // BUTTONS
+    defineField({
+      name: "buttonsReadBio",
+      title: "Bio",
+      type: "internationalizedArrayString",
+      group: "buttons",
+    }),
+    defineField({
+      name: "buttonsEmail",
+      title: "Email",
+      type: "internationalizedArrayString",
+      group: "buttons",
+    }),
+    defineField({
+      name: "buttonsLinkedIn",
+      title: "LinkedIN",
+      type: "internationalizedArrayString",
+      group: "buttons",
     }),
   ],
 

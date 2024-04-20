@@ -41,10 +41,10 @@ const renderComponent = (props: ContentItem) => {
       return <Philosophy key={props._key} {...props} />
     case "people":
       return <People key={props._key} {...props} />
-    case "services":
-      return <Services key={props._key} {...props} />
-    case "contacts":
-      return <Contacts key={props._key} {...props} />
+    // case "services":
+    //   return <Services key={props._key} {...props} />
+    // case "contacts":
+    //   return <Contacts key={props._key} {...props} />
     default:
       return null
   }

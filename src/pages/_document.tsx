@@ -3,7 +3,18 @@ import { Head, Html, Main, NextScript } from "next/document"
 import { getCssText } from "@/styles/stitches"
 
 export default function Document() {
-  const viewport = `function updateViewport() {console.log('update viewport'); document.documentElement.style.setProperty('--vw', document.documentElement.clientWidth + 'px'); document.documentElement.style.setProperty('--vh', document.documentElement.clientHeight + 'px');}; window.addEventListener('resize', updateViewport); updateViewport();`
+  const viewport = `
+  const resizeObserver = new ResizeObserver(entries => {
+    for (let entry of entries) {
+      const target = entry.target;
+      const width = target.clientWidth;
+      const height = target.clientHeight;
+      target.style.setProperty('--vw', width + 'px');
+      target.style.setProperty('--vh', height + 'px');
+    }
+  });
+  resizeObserver.observe(document.documentElement);
+  `
   return (
     <Html lang="en">
       <Head>

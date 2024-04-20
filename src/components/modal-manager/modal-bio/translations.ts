@@ -19,3 +19,13 @@ export const getSecondaryBio = (language: string, props: Person) => {
   const data = props.bio?.find((g) => g._key !== language)
   return data?.value
 }
+
+export const getEmailButton = (language: string, props: any) => {
+  const data = props?.email?.find((g: any) => g._key === language)
+  return data?.value
+}
+
+export const getLinkedinButton = (language: string, props: any) => {
+  const data = props?.linkedin?.find((g: any) => g._key === language)
+  return data?.value
+}

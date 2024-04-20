@@ -7,7 +7,6 @@ import { PortableText } from "@portabletext/react"
 
 import { Box } from "@/components/box"
 import { Button } from "@/components/button"
-import { getWidth } from "@/components/grid"
 import { RootState } from "@/state/store"
 
 import { components } from "./components"
@@ -44,9 +43,18 @@ export const Cookies = () => {
         <Box
           css={{
             position: "fixed",
-            bottom: 40,
-            right: 40,
-            width: getWidth(6),
+            bottom: "$space$20",
+            right: "$space$20",
+            column: 12,
+
+            "@tablet": {
+              bottom: "$space$40",
+              right: "$space$40",
+            },
+
+            "@desktop": {
+              column: 6,
+            },
           }}
         >
           <motion.div
