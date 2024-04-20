@@ -1,7 +1,5 @@
 import { useSelector } from "react-redux"
 
-import * as Accordion from "@radix-ui/react-accordion"
-
 import { Box } from "@/components/box"
 import { Container } from "@/components/container"
 import { Grid } from "@/components/grid"
@@ -20,7 +18,6 @@ import {
 export const Services = (props: ServicesProps) => {
   const language = useSelector((state: RootState) => state.global.language)
   const { debug, boxShadow } = useDebug()
-  console.log("services", props)
 
   return (
     <Container
@@ -93,7 +90,7 @@ export const Services = (props: ServicesProps) => {
         <Box
           css={{
             gridColumn: "span 12",
-            boxShadow,
+            // boxShadow,
 
             "@tablet": {
               gridColumn: "15 / span 10",
@@ -101,20 +98,38 @@ export const Services = (props: ServicesProps) => {
             },
           }}
         >
-          <Styles.AccordionRoot type="single" defaultValue="item-1" collapsible>
-            <Styles.AccordionItem value="item-1">
-              <Styles.AccordionTrigger>Item 1</Styles.AccordionTrigger>
-              <Styles.AccordionContent>
-                Small text for item 1
-              </Styles.AccordionContent>
-            </Styles.AccordionItem>
-
-            <Styles.AccordionItem value="item-2">
-              <Styles.AccordionTrigger>Item 2</Styles.AccordionTrigger>
-              <Styles.AccordionContent>
-                Small text for item 2
-              </Styles.AccordionContent>
-            </Styles.AccordionItem>
+          <Styles.AccordionRoot type="single" collapsible>
+            {props.allServices?.map((service, i) => (
+              <Styles.AccordionItem key={service._key} value={service._key}>
+                <Styles.AccordionTrigger>
+                  <Box css={{ gap: 10 }}>
+                    <Box
+                      css={{
+                        column: 2,
+                        paddingLeft: 8,
+                        alignItems: "center",
+                      }}
+                    >
+                      0{i + 1}
+                    </Box>
+                    <Text>Item {i + 1}</Text>
+                  </Box>
+                  <Box
+                    css={{
+                      column: 1,
+                      paddingRight: 8,
+                      alignItems: "center",
+                      justifyContent: "flex-end",
+                    }}
+                  >
+                    +
+                  </Box>
+                </Styles.AccordionTrigger>
+                <Styles.AccordionContent>
+                  Small text for item {i + 1} Lorem ipsum dolor sit amet
+                </Styles.AccordionContent>
+              </Styles.AccordionItem>
+            ))}
           </Styles.AccordionRoot>
         </Box>
       </Grid>

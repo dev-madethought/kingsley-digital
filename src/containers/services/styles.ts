@@ -12,9 +12,16 @@ export const AccordionItem = styled(Accordion.Item, {
 })
 
 export const AccordionTrigger = styled(Accordion.Trigger, {
-  border: "1px solid red",
+  background: "transparent",
+  border: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  width: "100%",
+  height: 74,
+  borderTop: "1px solid $colors$darker",
 })
 
 export const AccordionContent = styled(Accordion.Content, {
-  border: "1px solid black",
+  // border: "1px solid black",
 })
