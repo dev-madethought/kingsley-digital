@@ -120,6 +120,17 @@ export type Services = {
   description?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
   allServices?: Array<{
     _key: string;
   } & Service>;

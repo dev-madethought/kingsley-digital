@@ -17,6 +17,12 @@ export default defineType({
     }),
 
     defineField({
+      name: "image",
+      type: "image",
+      title: "Image",
+    }),
+
+    defineField({
       name: "allServices",
       title: "Services",
       type: "array",

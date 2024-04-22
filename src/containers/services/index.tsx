@@ -1,10 +1,14 @@
+import { useState } from "react"
+import Image from "next/image"
 import { useSelector } from "react-redux"
 
 import { Box } from "@/components/box"
+import { Button } from "@/components/button"
 import { Container } from "@/components/container"
 import { Grid } from "@/components/grid"
 import { useDebug } from "@/components/grid"
 import { Text } from "@/components/text"
+import { urlForImage } from "@/sanity/lib/image"
 import { RootState } from "@/state/store"
 import { Services as ServicesProps } from "@/types/sanity"
 
@@ -12,13 +16,51 @@ import * as Styles from "./styles"
 import {
   getPrimaryDescription,
   getSecondaryDescription,
+  getServiceSinopsis,
+  getServiceTitle,
   getTitle,
 } from "./translations"
 
 export const Services = (props: ServicesProps) => {
   const language = useSelector((state: RootState) => state.global.language)
+  const [index, setIndex] = useState(-1)
   const { debug, boxShadow } = useDebug()
 
+  const handleChange = (value: string) => {
+    const service = props.allServices?.find((s) => s._key === value)
+    const nextIndex = props.allServices?.findIndex((s) => s._key === value)
+    setIndex(nextIndex === undefined ? -1 : nextIndex)
+  }
+
+  const getImageLayout = (index: number) => {
+    // console.log("index", index)
+    switch (index) {
+      // case 0:
+      //   return <Box>0</Box>
+      default:
+        return (
+          <Box
+            css={{
+              column: 9,
+
+              img: {
+                width: "100%",
+                height: "auto",
+              },
+            }}
+          >
+            <Image
+              src={urlForImage(props.image)}
+              alt="default"
+              width={504}
+              height={756}
+            />
+          </Box>
+        )
+    }
+  }
+
+  console.log("render", index)
   return (
     <Container
       debug={debug}
@@ -83,7 +125,7 @@ export const Services = (props: ServicesProps) => {
             },
           }}
         >
-          IMAGES GO HERE
+          {getImageLayout(index)}
         </Box>
 
         {/* ACCORDION */}
@@ -98,7 +140,11 @@ export const Services = (props: ServicesProps) => {
             },
           }}
         >
-          <Styles.AccordionRoot type="single" collapsible>
+          <Styles.AccordionRoot
+            type="single"
+            collapsible
+            onValueChange={handleChange}
+          >
             {props.allServices?.map((service, i) => (
               <Styles.AccordionItem key={service._key} value={service._key}>
                 <Styles.AccordionTrigger>
@@ -112,21 +158,67 @@ export const Services = (props: ServicesProps) => {
                     >
                       0{i + 1}
                     </Box>
-                    <Text>Item {i + 1}</Text>
+                    <Text>{getServiceTitle(language, service)}</Text>
                   </Box>
                   <Box
                     css={{
-                      column: 1,
-                      paddingRight: 8,
+                      position: "relative",
+                      // column: 1,
+                      // paddingRight: 8,
                       alignItems: "center",
                       justifyContent: "flex-end",
+                      width: 24,
+                      height: 24,
+
+                      "&:before": {
+                        content: '""',
+                        position: "absolute",
+                        top: "50%",
+                        right: 6,
+                        width: 13,
+                        height: 1,
+                        background: "$typography",
+                        transition: "all 300ms ease-out",
+                      },
+
+                      "&:after": {
+                        content: '""',
+                        position: "absolute",
+                        right: 12,
+                        width: 1,
+                        height: 13,
+                        background: "$typography",
+                        opacity: 1,
+                        transition: "all 300ms ease-out",
+                      },
+
+                      "[data-state=open] &": {
+                        "&:before": {
+                          transform: "rotate(180deg)",
+                        },
+
+                        "&:after": {
+                          opacity: 0,
+                          transform: "rotate(270deg)",
+                        },
+                      },
                     }}
-                  >
-                    +
-                  </Box>
+                  ></Box>
                 </Styles.AccordionTrigger>
                 <Styles.AccordionContent>
-                  Small text for item {i + 1} Lorem ipsum dolor sit amet
+                  <Box css={{ column: 1 }} />
+                  <Box
+                    css={{
+                      column: 8,
+                      flexDirection: "column",
+                      gap: 24,
+                      paddingTop: 24,
+                      paddingBottom: 64,
+                    }}
+                  >
+                    {getServiceSinopsis(language, service)}
+                    <Button>Learn More</Button>
+                  </Box>
                 </Styles.AccordionContent>
               </Styles.AccordionItem>
             ))}

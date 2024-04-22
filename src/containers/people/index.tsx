@@ -97,7 +97,7 @@ export const People = (props: PeopleProps) => {
       <Box
         css={{
           overflowX: "scroll",
-          column: 12,
+          column: 15,
           gap: 10,
           paddingTop: 114,
           paddingBottom: 40,
