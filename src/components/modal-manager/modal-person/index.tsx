@@ -21,12 +21,12 @@ import {
   getSecondaryBio,
 } from "./translations"
 
-type ModalBioProps = {
+type ModalPersonProps = {
   open?: boolean
   onOpenChange?: (value: boolean) => void
 }
 
-export const ModalBio = ({ open, onOpenChange }: ModalBioProps) => {
+export const ModalPerson = ({ open, onOpenChange }: ModalPersonProps) => {
   const { boxShadow } = useDebug()
   const language = useSelector((state: RootState) => state.global.language)
   const settings = useSelector((state: RootState) => state.global.settings)

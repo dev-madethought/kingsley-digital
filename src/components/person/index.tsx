@@ -27,7 +27,7 @@ export const Person = ({ person }: { person: PersonProps }) => {
 
   const handlePersonClick = () => {
     dispatch(setPerson({ ...person }))
-    dispatch(setModal({ type: "bio" }))
+    dispatch(setModal({ type: "person" }))
   }
 
   return (

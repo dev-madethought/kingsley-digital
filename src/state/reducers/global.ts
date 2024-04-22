@@ -190,7 +190,7 @@ function* handleSaga(): any {
   //     ],
   //   })
   // )
-  // yield put(setModal({ type: "bio" }))
+  // yield put(setModal({ type: "person" }))
 }
 
 export function* saga() {

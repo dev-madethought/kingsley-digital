@@ -35,16 +35,16 @@ type PageProps = {
 
 const renderComponent = (props: ContentItem) => {
   switch (props._type) {
-    case "hero":
-      return <Hero key={props._key} {...props} />
-    case "philosophy":
-      return <Philosophy key={props._key} {...props} />
-    case "people":
-      return <People key={props._key} {...props} />
+    // case "hero":
+    //   return <Hero key={props._key} {...props} />
+    // case "philosophy":
+    //   return <Philosophy key={props._key} {...props} />
+    // case "people":
+    //   return <People key={props._key} {...props} />
     case "services":
       return <Services key={props._key} {...props} />
-    case "contacts":
-      return <Contacts key={props._key} {...props} />
+    // case "contacts":
+    //   return <Contacts key={props._key} {...props} />
     default:
       return null
   }

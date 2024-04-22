@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Image from "next/image"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 import { Box } from "@/components/box"
 import { Button } from "@/components/button"
@@ -9,6 +9,7 @@ import { Grid } from "@/components/grid"
 import { useDebug } from "@/components/grid"
 import { Text } from "@/components/text"
 import { urlForImage } from "@/sanity/lib/image"
+import { setModal } from "@/state/reducers/modals"
 import { RootState } from "@/state/store"
 import { Services as ServicesProps } from "@/types/sanity"
 
@@ -21,23 +22,140 @@ import {
   getTitle,
 } from "./translations"
 
+const LAYOUTS = ["layout1", "layout2", "layout1", "layout3"]
+
 export const Services = (props: ServicesProps) => {
+  const dispatch = useDispatch()
   const language = useSelector((state: RootState) => state.global.language)
   const [index, setIndex] = useState(-1)
   const { debug, boxShadow } = useDebug()
 
   const handleChange = (value: string) => {
-    const service = props.allServices?.find((s) => s._key === value)
+    // const service = props.allServices?.find((s) => s._key === value)
     const nextIndex = props.allServices?.findIndex((s) => s._key === value)
     setIndex(nextIndex === undefined ? -1 : nextIndex)
   }
 
   const getImageLayout = (index: number) => {
     // console.log("index", index)
-    switch (index) {
-      // case 0:
-      //   return <Box>0</Box>
+
+    const images =
+      props.allServices?.[index]?.images?.map((i) => urlForImage(i)) || []
+    const key = props.allServices?.[index]?._key
+
+    const layout = LAYOUTS[index % LAYOUTS.length]
+
+    switch (layout) {
+      case "layout1":
+        return (
+          <Box css={{ gap: 10 }} key={key}>
+            <Box
+              css={{
+                column: 9,
+                boxShadow,
+
+                img: {
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "contain",
+                  objectPosition: "top",
+                },
+              }}
+            >
+              <Image src={images[0]} alt="image 1" width={504} height={756} />
+            </Box>
+            <Box
+              css={{
+                column: 5,
+                boxShadow,
+
+                img: {
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "contain",
+                  objectPosition: "top",
+                },
+              }}
+            >
+              <Image src={images[1]} alt="image 2" width={275} height={367} />
+            </Box>
+          </Box>
+        )
+      case "layout2":
+        return (
+          <Box css={{ gap: 10 }} key={key}>
+            <Box
+              css={{
+                column: 5,
+                boxShadow,
+
+                img: {
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "contain",
+                  objectPosition: "top",
+                },
+              }}
+            >
+              <Image src={images[0]} alt="image 1" width={275} height={367} />
+            </Box>
+
+            <Box
+              css={{
+                column: 9,
+                boxShadow,
+
+                img: {
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "contain",
+                  objectPosition: "top",
+                },
+              }}
+            >
+              <Image src={images[1]} alt="image 2" width={504} height={756} />
+            </Box>
+          </Box>
+        )
+      case "layout3":
+        return (
+          <Box css={{ gap: 10 }} key={key}>
+            <Box
+              css={{
+                column: 6,
+                boxShadow,
+
+                img: {
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "contain",
+                  objectPosition: "bottom",
+                },
+              }}
+            >
+              <Image src={images[0]} alt="image 1" width={333} height={445} />
+            </Box>
+
+            <Box
+              css={{
+                column: 8,
+                boxShadow,
+
+                img: {
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "contain",
+                  objectPosition: "top",
+                  marginBottom: 100,
+                },
+              }}
+            >
+              <Image src={images[1]} alt="image 2" width={446} height={669} />
+            </Box>
+          </Box>
+        )
       default:
+        // generic image
         return (
           <Box
             css={{
@@ -46,6 +164,7 @@ export const Services = (props: ServicesProps) => {
               img: {
                 width: "100%",
                 height: "auto",
+                objectFit: "contain",
               },
             }}
           >
@@ -54,13 +173,17 @@ export const Services = (props: ServicesProps) => {
               alt="default"
               width={504}
               height={756}
+              priority
             />
           </Box>
         )
     }
   }
 
-  console.log("render", index)
+  const handleLearnMore = () => {
+    dispatch(setModal({ type: "service" }))
+  }
+
   return (
     <Container
       debug={debug}
@@ -90,7 +213,7 @@ export const Services = (props: ServicesProps) => {
           css={{
             flexDirection: "column",
             gridColumn: "span 12",
-            boxShadow,
+
             "@tablet": {
               gridColumn: "1 / span 6",
             },
@@ -117,7 +240,6 @@ export const Services = (props: ServicesProps) => {
         <Box
           css={{
             gridColumn: "span 12",
-            boxShadow,
 
             "@tablet": {
               gridColumn: "1 / span 14",
@@ -217,7 +339,7 @@ export const Services = (props: ServicesProps) => {
                     }}
                   >
                     {getServiceSinopsis(language, service)}
-                    <Button>Learn More</Button>
+                    <Button onClick={handleLearnMore}>Learn More</Button>
                   </Box>
                 </Styles.AccordionContent>
               </Styles.AccordionItem>
