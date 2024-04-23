@@ -4,8 +4,12 @@ import { setModal } from "@/state/reducers/modals"
 import { RootState } from "@/state/store"
 
 import { ModalPerson } from "./modal-person"
+import { ModalService } from "./modal-service"
 
-const modals = [{ key: "person", Component: ModalPerson }]
+const modals = [
+  { key: "person", Component: ModalPerson },
+  { key: "service", Component: ModalService },
+]
 
 const ModalManager = () => {
   const dispatch = useDispatch()
@@ -18,10 +22,6 @@ const ModalManager = () => {
   return (
     <>
       {modals.map((m) => {
-        // if (modal.type === "none") {
-        //   return null
-        // }
-
         return (
           <m.Component
             key={m.key}

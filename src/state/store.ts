@@ -6,6 +6,7 @@ import { configureStore } from "@reduxjs/toolkit"
 import global, { saga as globalSaga } from "./reducers/global"
 import modals from "./reducers/modals"
 import people from "./reducers/people"
+import service from "./reducers/service"
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -16,6 +17,7 @@ export const store: any = configureStore({
     global,
     modals,
     people,
+    service,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(middleware),

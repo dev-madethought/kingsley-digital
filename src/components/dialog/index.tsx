@@ -35,11 +35,11 @@ export const Dialog = ({ children, open, onOpenChange }: IDialog) => {
               css={{
                 position: "fixed",
                 top: 20,
-                right: 20,
+                right: "calc(20px - 10px)",
 
                 "@tablet": {
                   top: 40,
-                  right: 40,
+                  right: "calc(40px + 10px)",
                 },
               }}
             >

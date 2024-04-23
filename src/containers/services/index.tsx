@@ -10,6 +10,7 @@ import { useDebug } from "@/components/grid"
 import { Text } from "@/components/text"
 import { urlForImage } from "@/sanity/lib/image"
 import { setModal } from "@/state/reducers/modals"
+import { setService } from "@/state/reducers/service"
 import { RootState } from "@/state/store"
 import { Services as ServicesProps } from "@/types/sanity"
 
@@ -31,14 +32,14 @@ export const Services = (props: ServicesProps) => {
   const { debug, boxShadow } = useDebug()
 
   const handleChange = (value: string) => {
-    // const service = props.allServices?.find((s) => s._key === value)
+    const service = props.allServices?.find((s) => s._key === value)
+    dispatch(setService({ ...service }))
+
     const nextIndex = props.allServices?.findIndex((s) => s._key === value)
     setIndex(nextIndex === undefined ? -1 : nextIndex)
   }
 
   const getImageLayout = (index: number) => {
-    // console.log("index", index)
-
     const images =
       props.allServices?.[index]?.images?.map((i) => urlForImage(i)) || []
     const key = props.allServices?.[index]?._key

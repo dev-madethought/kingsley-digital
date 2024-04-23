@@ -9,7 +9,7 @@ import { client } from "@/sanity/lib/client"
 import { English, Korean, Languages } from "@/types/language"
 
 // import { setModal } from "./modals"
-// import { setPerson } from "./people"
+// import { setService } from "./service"
 
 interface IState {
   ready: boolean
@@ -96,72 +96,23 @@ function* handleSaga(): any {
 
   // 4) fake modal
   // yield put(
-  //   setPerson({
-  //     image: {
-  //       _type: "image",
-  //       asset: {
-  //         _ref: "image-644b592635bb21864fd9d47477b5228b734a991e-738x914-png",
-  //         _type: "reference",
-  //       },
-  //     },
-  //     _type: "person",
-  //     name: [
-  //       {
-  //         _type: "internationalizedArrayStringValue",
-  //         _key: "en",
-  //         value: "Person1 EN",
-  //       },
-  //       {
-  //         _type: "internationalizedArrayStringValue",
-  //         _key: "ko",
-  //         value: "Person1 KO",
-  //       },
-  //     ],
-  //     linkedin: "https://www.linkedin.com/in/person",
-  //     role: [
-  //       {
-  //         value: "Role EN",
-  //         _type: "internationalizedArrayStringValue",
-  //         _key: "en",
-  //       },
-  //       {
-  //         _type: "internationalizedArrayStringValue",
-  //         _key: "ko",
-  //         value: "Role KO",
-  //       },
-  //     ],
-  //     phone: "+447676456456",
-  //     email: "email@email.com",
-  //     bio: [
+  //   setService({
+  //     description: [
   //       {
   //         value: [
   //           {
-  //             style: "normal",
-  //             _key: "7ff4d2dde934",
-  //             markDefs: [],
-  //             children: [
-  //               {
-  //                 text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis ultricies enim. Aenean at nisl molestie nisi laoreet dapibus nec ac est. Duis felis ex, consectetur a massa non, convallis mattis urna.",
-  //                 _key: "e57694ab2f600",
-  //                 _type: "span",
-  //                 marks: [],
-  //               },
-  //             ],
-  //             _type: "block",
-  //           },
-  //           {
-  //             _type: "block",
-  //             style: "normal",
-  //             _key: "9aa0dd2d5810",
   //             markDefs: [],
   //             children: [
   //               {
   //                 _type: "span",
   //                 marks: [],
-  //                 text: "Sed nec metus eget felis pulvinar lacinia. Donec sodales dui lacus, eu vulputate nunc eleifend ac. Vivamus faucibus, lacus eget vestibulum luctus, diam sapien eleifend lorem, id auctor enim tellus sit amet.",
-  //                 _key: "2c4459e81e6f",
+  //                 text: "Lorem ipsum dolor sit amet EN",
+  //                 _key: "3f80e73b98a5",
   //               },
   //             ],
+  //             _type: "block",
+  //             style: "normal",
+  //             _key: "1477db3373d0",
   //           },
   //         ],
   //         _type: "internationalizedArrayBlockContentValue",
@@ -172,14 +123,14 @@ function* handleSaga(): any {
   //         _key: "ko",
   //         value: [
   //           {
-  //             _key: "20028fd2e297",
+  //             _key: "93e35c97ade3",
   //             markDefs: [],
   //             children: [
   //               {
   //                 _type: "span",
   //                 marks: [],
-  //                 text: "교육의 자주성·전문성·정치적 중립성 및 대학의 자율성은 법률이 정하는 바에 의하여 보장된다. 나는 헌법을 준수하고 국가를 보위하며 조국의 평화적 통일과 국민의 자유와 복리의 증진 및 민족문화의 창달에 노력하여 대통령으로서의 직책을 성실히 수행할 것을 국민 앞에 엄숙히 선서합니다.\n법률안에 이의가 있을 때에는 대통령은 제1항의 기간내에 이의서를 붙여 국회로 환부하고, 그 재의를 요구할 수 있다. 국회의 폐회중에도 또한 같다. 탄핵소추의 의결을 받은 자는 탄핵심판이.",
-  //                 _key: "8203846e24cb0",
+  //                 text: "Lorem ipsum dolor sit amet KO",
+  //                 _key: "a4d3d0816676",
   //               },
   //             ],
   //             _type: "block",
@@ -188,9 +139,53 @@ function* handleSaga(): any {
   //         ],
   //       },
   //     ],
+  //     _key: "8f4bd132dab1",
+  //     title: [
+  //       {
+  //         value: "Portfolio Health Checks",
+  //         _type: "internationalizedArrayStringValue",
+  //         _key: "en",
+  //       },
+  //       {
+  //         _type: "internationalizedArrayStringValue",
+  //         _key: "ko",
+  //         value: "Item 1 KO",
+  //       },
+  //     ],
+  //     sinopsis: [
+  //       {
+  //         _type: "internationalizedArrayStringValue",
+  //         _key: "en",
+  //         value: "lorem ipsum EN",
+  //       },
+  //       {
+  //         _type: "internationalizedArrayStringValue",
+  //         _key: "ko",
+  //         value: "lorem ipsum KO",
+  //       },
+  //     ],
+  //     images: [
+  //       {
+  //         _type: "image",
+  //         _key: "aca9f4da6605",
+  //         asset: {
+  //           _ref: "image-429a9a73debd061bfdbcbc5280fd19936503fd12-563x794-jpg",
+  //           _type: "reference",
+  //         },
+  //       },
+  //       {
+  //         _type: "image",
+  //         _key: "b580194e6edb",
+  //         asset: {
+  //           _ref: "image-77da911fae444f3f5206328bee43425b0ac30a32-1400x1750-jpg",
+  //           _type: "reference",
+  //         },
+  //       },
+  //     ],
+  //     _type: "service",
   //   })
   // )
-  // yield put(setModal({ type: "person" }))
+  // yield put(setModal({ type: "service" }))
 }
 
 export function* saga() {
