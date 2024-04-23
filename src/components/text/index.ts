@@ -34,17 +34,26 @@ export const Text = styled("p", {
         textTransform: "uppercase",
       },
     },
+
+    // D/Heading/L
+    headingL: {
+      true: {
+        fontFamily: "$favorit",
+        fontSize: 70,
+        fontWeight: 400,
+        lineHeight: "70px",
+      },
+    },
+
     // D/CTA
     cta: {
       true: {
         fontFamily: "$favorit",
-        fontSize: "14px",
+        fontSize: 14,
         fontStyle: "normal",
-        fontWeight: "400",
+        fontWeight: 400,
         lineHeight: "16.8px",
         letterSpacing: "0.02em",
-        textAlign: "left",
-        textTransform: "uppercase",
       },
     },
 
@@ -68,8 +77,5 @@ export const Text = styled("p", {
         textTransform: "uppercase",
       },
     },
-  },
-  defaultVariants: {
-    body: true,
   },
 })

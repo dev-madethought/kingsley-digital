@@ -10,7 +10,7 @@ import { Button } from "@/components/button"
 import { RootState } from "@/state/store"
 
 import { components } from "./components"
-import { getCookiesCTA, getCookiesMessage } from "./translations"
+import { getButtonGotIt, getCookiesMessage } from "./translations"
 
 export const Cookies = () => {
   const settings = useSelector((state: RootState) => state.global.settings)
@@ -82,7 +82,7 @@ export const Cookies = () => {
               />
 
               <Button onClick={handleAccept}>
-                {getCookiesCTA(language, settings?.cookies)}
+                {getButtonGotIt(language, settings?.buttons)}
               </Button>
             </Box>
           </motion.div>

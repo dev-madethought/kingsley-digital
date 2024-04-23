@@ -3,7 +3,7 @@ export const getCookiesMessage = (language: string, props: any) => {
   return data?.value
 }
 
-export const getCookiesCTA = (language: string, props: any) => {
-  const data = props?.cta?.find((g: any) => g._key === language)
+export const getButtonGotIt = (language: string, props: any) => {
+  const data = props?.gotit?.find((g: any) => g._key === language)
   return data?.value
 }

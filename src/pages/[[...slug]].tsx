@@ -46,6 +46,7 @@ const renderComponent = (props: ContentItem) => {
     case "contacts":
       return <Contacts key={props._key} {...props} />
     default:
+      return null
   }
 }
 

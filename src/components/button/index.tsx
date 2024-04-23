@@ -156,8 +156,10 @@ export const Button = ({
 }: ButtonProps) => {
   if (href) {
     const rel = href.startsWith("/") ? "noreferrer noopener" : undefined
+    const target = href.startsWith("http") ? "_blank" : undefined
+
     return (
-      <Link href={href} rel={rel} className={className}>
+      <Link href={href} rel={rel} className={className} target={target}>
         <Layout type={type} disabled={disabled}>
           {children}
         </Layout>

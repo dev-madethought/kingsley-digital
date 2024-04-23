@@ -56,13 +56,16 @@ function fetchSettingsData() {
     },
     "cookies":{
       "message": cookiesMessage,
-      "cta": cookiesCTA,
     },
     "buttons": {
       "biography": buttonsReadBio,
       "email": buttonsEmail,
       "linkedin": buttonsLinkedIn,
-      "learnMore": buttonsLearnMove,
+      "gotit": buttonsGotIt,
+      "learnmore": buttonsLearnMore,
+      "contactus": buttonsContactUs,
+      "map": buttonsMap,
+
     }
   }`
   return client.fetch(settingsQuery)

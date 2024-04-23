@@ -81,17 +81,11 @@ export default defineType({
       type: "internationalizedArrayBlockContent", // "internationalizedArrayString",
       group: "cookies",
     }),
-    defineField({
-      name: "cookiesCTA",
-      title: "CTA",
-      type: "internationalizedArrayString",
-      group: "cookies",
-    }),
 
     // BUTTONS
     defineField({
       name: "buttonsReadBio",
-      title: "Bio",
+      title: "Read Bio",
       type: "internationalizedArrayString",
       group: "buttons",
     }),
@@ -108,8 +102,26 @@ export default defineType({
       group: "buttons",
     }),
     defineField({
-      name: "buttonsLearnMove",
+      name: "buttonsGotIt",
+      title: "Got it",
+      type: "internationalizedArrayString",
+      group: "buttons",
+    }),
+    defineField({
+      name: "buttonsLearnMore",
       title: "Learn More",
+      type: "internationalizedArrayString",
+      group: "buttons",
+    }),
+    defineField({
+      name: "buttonsContactUs",
+      title: "Contact Us",
+      type: "internationalizedArrayString",
+      group: "buttons",
+    }),
+    defineField({
+      name: "buttonsMap",
+      title: "Map",
       type: "internationalizedArrayString",
       group: "buttons",
     }),

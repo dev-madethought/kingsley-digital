@@ -58,7 +58,6 @@ export const Services = (props: ServicesProps) => {
             <Box
               css={{
                 column: 9,
-                boxShadow,
 
                 img: {
                   width: "100%",
@@ -75,7 +74,6 @@ export const Services = (props: ServicesProps) => {
             <Box
               css={{
                 column: 5,
-                boxShadow,
 
                 img: {
                   width: "100%",
@@ -97,7 +95,6 @@ export const Services = (props: ServicesProps) => {
             <Box
               css={{
                 column: 5,
-                boxShadow,
 
                 img: {
                   width: "100%",
@@ -115,7 +112,6 @@ export const Services = (props: ServicesProps) => {
             <Box
               css={{
                 column: 9,
-                boxShadow,
 
                 img: {
                   width: "100%",
@@ -137,7 +133,6 @@ export const Services = (props: ServicesProps) => {
             <Box
               css={{
                 column: 6,
-                boxShadow,
 
                 img: {
                   width: "100%",
@@ -155,7 +150,6 @@ export const Services = (props: ServicesProps) => {
             <Box
               css={{
                 column: 8,
-                boxShadow,
 
                 img: {
                   width: "100%",
@@ -231,6 +225,7 @@ export const Services = (props: ServicesProps) => {
           css={{
             flexDirection: "column",
             gridColumn: "span 12",
+            boxShadow,
 
             "@tablet": {
               gridColumn: "1 / span 6",
@@ -358,7 +353,7 @@ export const Services = (props: ServicesProps) => {
                   >
                     {getServiceSinopsis(language, service)}
                     <Button onClick={handleLearnMore}>
-                      {getLearnMoreButton(language, settings.buttons)}
+                      {getLearnMoreButton(language, settings?.buttons)}
                     </Button>
                   </Box>
                 </Styles.AccordionContent>

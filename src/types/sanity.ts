@@ -98,9 +98,6 @@ export type Settings = {
   cookiesMessage?: Array<{
     _key: string;
   } & InternationalizedArrayBlockContentValue>;
-  cookiesCTA?: Array<{
-    _key: string;
-  } & InternationalizedArrayStringValue>;
   buttonsReadBio?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
@@ -110,7 +107,16 @@ export type Settings = {
   buttonsLinkedIn?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
-  buttonsLearnMove?: Array<{
+  buttonsGotIt?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  buttonsLearnMore?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  buttonsContactUs?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  buttonsMap?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
 };
@@ -246,6 +252,67 @@ export type Page = {
   } & Contacts)>;
 };
 
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
+export type Hero = {
+  _type: "hero";
+  greeting?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  sentence?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  title?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  description?: Array<{
+    _key: string;
+  } & InternationalizedArrayBlockContentValue>;
+};
+
+export type Contacts = {
+  _type: "contacts";
+  title?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  description?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  address?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  gps?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  links?: Array<{
+    label?: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue>;
+    email?: string;
+    _key: string;
+  }>;
+  numbers?: Array<{
+    label?: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue>;
+    phone?: string;
+    _key: string;
+  }>;
+};
+
 export type SanityImageCrop = {
   _type: "sanity.imageCrop";
   top?: number;
@@ -301,33 +368,6 @@ export type SanityImageMetadata = {
   blurHash?: string;
   hasAlpha?: boolean;
   isOpaque?: boolean;
-};
-
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
-export type Hero = {
-  _type: "hero";
-  greeting?: Array<{
-    _key: string;
-  } & InternationalizedArrayStringValue>;
-  sentence?: Array<{
-    _key: string;
-  } & InternationalizedArrayStringValue>;
-  title?: Array<{
-    _key: string;
-  } & InternationalizedArrayStringValue>;
-  description?: Array<{
-    _key: string;
-  } & InternationalizedArrayBlockContentValue>;
-};
-
-export type Contacts = {
-  _type: "contacts";
-  test?: string;
 };
 
 export type BlockContent = Array<{
@@ -394,7 +434,7 @@ export type PageQueryResult = Array<{
 
 // Source: src/state/reducers/global.ts
 // Variable: settingsQuery
-// Query: *[_type == "settings"]{    "links": links[]->{_id,title, slug},    socialLinks,    "newsletter": {      "title": newsletterTitle,      "agreement": newsletterAgreement,      "placeholder": newsletterPlaceholder,    },    "cookies":{      "message": cookiesMessage,      "cta": cookiesCTA,    },    "buttons": {      "biography": buttonsReadBio,      "email": buttonsEmail,      "linkedin": buttonsLinkedIn,      "learnMore": buttonsLearnMove,    }  }
+// Query: *[_type == "settings"]{    "links": links[]->{_id,title, slug},    socialLinks,    "newsletter": {      "title": newsletterTitle,      "agreement": newsletterAgreement,      "placeholder": newsletterPlaceholder,    },    "cookies":{      "message": cookiesMessage,    },    "buttons": {      "biography": buttonsReadBio,      "email": buttonsEmail,      "linkedin": buttonsLinkedIn,      "gotit": buttonsGotIt,      "learnmore": buttonsLearnMore,      "contactus": buttonsContactUs,      "map": buttonsMap,    }  }
 export type SettingsQueryResult = Array<{
   links: Array<{
     _id: string;
@@ -421,9 +461,6 @@ export type SettingsQueryResult = Array<{
     message: Array<{
       _key: string;
     } & InternationalizedArrayBlockContentValue> | null;
-    cta: Array<{
-      _key: string;
-    } & InternationalizedArrayStringValue> | null;
   };
   buttons: {
     biography: Array<{
@@ -435,7 +472,16 @@ export type SettingsQueryResult = Array<{
     linkedin: Array<{
       _key: string;
     } & InternationalizedArrayStringValue> | null;
-    learnMore: Array<{
+    gotit: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+    learnmore: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+    contactus: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+    map: Array<{
       _key: string;
     } & InternationalizedArrayStringValue> | null;
   };
