@@ -110,6 +110,9 @@ export type Settings = {
   buttonsLinkedIn?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
+  buttonsLearnMove?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
 };
 
 export type Services = {
@@ -391,7 +394,7 @@ export type PageQueryResult = Array<{
 
 // Source: src/state/reducers/global.ts
 // Variable: settingsQuery
-// Query: *[_type == "settings"]{    "links": links[]->{_id,title, slug},    socialLinks,    "newsletter": {      "title": newsletterTitle,      "agreement": newsletterAgreement,      "placeholder": newsletterPlaceholder,    },    "cookies":{      "message": cookiesMessage,      "cta": cookiesCTA,    },    "buttons": {      "biography": buttonsReadBio,      "email": buttonsEmail,      "linkedin": buttonsLinkedIn,    }  }
+// Query: *[_type == "settings"]{    "links": links[]->{_id,title, slug},    socialLinks,    "newsletter": {      "title": newsletterTitle,      "agreement": newsletterAgreement,      "placeholder": newsletterPlaceholder,    },    "cookies":{      "message": cookiesMessage,      "cta": cookiesCTA,    },    "buttons": {      "biography": buttonsReadBio,      "email": buttonsEmail,      "linkedin": buttonsLinkedIn,      "learnMore": buttonsLearnMove,    }  }
 export type SettingsQueryResult = Array<{
   links: Array<{
     _id: string;
@@ -430,6 +433,9 @@ export type SettingsQueryResult = Array<{
       _key: string;
     } & InternationalizedArrayStringValue> | null;
     linkedin: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+    learnMore: Array<{
       _key: string;
     } & InternationalizedArrayStringValue> | null;
   };

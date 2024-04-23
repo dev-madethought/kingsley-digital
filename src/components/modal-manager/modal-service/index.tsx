@@ -4,7 +4,6 @@ import { useSelector } from "react-redux"
 import { PortableText } from "@portabletext/react"
 
 import { Box } from "@/components/box"
-// import { Button } from "@/components/button"
 import { Dialog } from "@/components/dialog"
 import { useDebug } from "@/components/grid"
 import { components } from "@/components/portable-text"
@@ -28,10 +27,9 @@ type ModalServiceProps = {
 export const ModalService = ({ open, onOpenChange }: ModalServiceProps) => {
   const { boxShadow } = useDebug()
   const language = useSelector((state: RootState) => state.global.language)
-  const settings = useSelector((state: RootState) => state.global.settings)
   const service = useSelector((state: RootState) => state.service.service)
 
-  const image = service?.images[1]
+  const image = service?.images?.[1]
 
   const handleOpenChange = (value: boolean) => {
     if (onOpenChange) onOpenChange(value)
@@ -45,7 +43,7 @@ export const ModalService = ({ open, onOpenChange }: ModalServiceProps) => {
           overflowY: "auto",
           marginRight: 20,
           flexDirection: "column",
-          column: 14,
+          column: 13,
 
           "@tablet": {
             marginRight: 40,
@@ -99,7 +97,7 @@ export const ModalService = ({ open, onOpenChange }: ModalServiceProps) => {
           <Box
             css={{
               flexDirection: "column",
-              column: 6,
+              column: 5,
               marginBottom: 48,
               boxShadow,
             }}
@@ -110,7 +108,7 @@ export const ModalService = ({ open, onOpenChange }: ModalServiceProps) => {
           <Box
             css={{
               flexDirection: "column",
-              column: 6,
+              column: 5,
               opacity: 0.5,
               marginBottom: 48,
               boxShadow,
@@ -125,7 +123,7 @@ export const ModalService = ({ open, onOpenChange }: ModalServiceProps) => {
           <Box
             css={{
               flexDirection: "column",
-              column: 6,
+              column: 5,
               marginBottom: 50,
               boxShadow,
             }}
@@ -139,7 +137,7 @@ export const ModalService = ({ open, onOpenChange }: ModalServiceProps) => {
           <Box
             css={{
               flexDirection: "column",
-              column: 6,
+              column: 5,
               opacity: 0.5,
               marginBottom: 50,
               boxShadow,

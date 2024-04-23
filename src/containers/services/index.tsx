@@ -16,6 +16,7 @@ import { Services as ServicesProps } from "@/types/sanity"
 
 import * as Styles from "./styles"
 import {
+  getLearnMoreButton,
   getPrimaryDescription,
   getSecondaryDescription,
   getServiceSinopsis,
@@ -28,6 +29,7 @@ const LAYOUTS = ["layout1", "layout2", "layout1", "layout3"]
 export const Services = (props: ServicesProps) => {
   const dispatch = useDispatch()
   const language = useSelector((state: RootState) => state.global.language)
+  const settings = useSelector((state: RootState) => state.global.settings)
   const [index, setIndex] = useState(-1)
   const { debug, boxShadow } = useDebug()
 
@@ -46,6 +48,9 @@ export const Services = (props: ServicesProps) => {
 
     const layout = LAYOUTS[index % LAYOUTS.length]
 
+    const image1 = images?.[0]
+    const image2 = images?.[1]
+
     switch (layout) {
       case "layout1":
         return (
@@ -63,7 +68,9 @@ export const Services = (props: ServicesProps) => {
                 },
               }}
             >
-              <Image src={images[0]} alt="image 1" width={504} height={756} />
+              {image1 && (
+                <Image src={image1} alt="image 1" width={504} height={756} />
+              )}
             </Box>
             <Box
               css={{
@@ -78,7 +85,9 @@ export const Services = (props: ServicesProps) => {
                 },
               }}
             >
-              <Image src={images[1]} alt="image 2" width={275} height={367} />
+              {image2 && (
+                <Image src={image2} alt="image 2" width={275} height={367} />
+              )}
             </Box>
           </Box>
         )
@@ -98,7 +107,9 @@ export const Services = (props: ServicesProps) => {
                 },
               }}
             >
-              <Image src={images[0]} alt="image 1" width={275} height={367} />
+              {image1 && (
+                <Image src={image1} alt="image 1" width={275} height={367} />
+              )}
             </Box>
 
             <Box
@@ -114,7 +125,9 @@ export const Services = (props: ServicesProps) => {
                 },
               }}
             >
-              <Image src={images[1]} alt="image 2" width={504} height={756} />
+              {image2 && (
+                <Image src={image2} alt="image 2" width={504} height={756} />
+              )}
             </Box>
           </Box>
         )
@@ -134,7 +147,9 @@ export const Services = (props: ServicesProps) => {
                 },
               }}
             >
-              <Image src={images[0]} alt="image 1" width={333} height={445} />
+              {image1 && (
+                <Image src={image1} alt="image 1" width={333} height={445} />
+              )}
             </Box>
 
             <Box
@@ -151,7 +166,9 @@ export const Services = (props: ServicesProps) => {
                 },
               }}
             >
-              <Image src={images[1]} alt="image 2" width={446} height={669} />
+              {image2 && (
+                <Image src={image2} alt="image 2" width={446} height={669} />
+              )}
             </Box>
           </Box>
         )
@@ -340,7 +357,9 @@ export const Services = (props: ServicesProps) => {
                     }}
                   >
                     {getServiceSinopsis(language, service)}
-                    <Button onClick={handleLearnMore}>Learn More</Button>
+                    <Button onClick={handleLearnMore}>
+                      {getLearnMoreButton(language, settings.buttons)}
+                    </Button>
                   </Box>
                 </Styles.AccordionContent>
               </Styles.AccordionItem>

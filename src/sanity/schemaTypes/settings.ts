@@ -107,6 +107,12 @@ export default defineType({
       type: "internationalizedArrayString",
       group: "buttons",
     }),
+    defineField({
+      name: "buttonsLearnMove",
+      title: "Learn More",
+      type: "internationalizedArrayString",
+      group: "buttons",
+    }),
   ],
 
   preview: {

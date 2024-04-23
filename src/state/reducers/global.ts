@@ -62,6 +62,7 @@ function fetchSettingsData() {
       "biography": buttonsReadBio,
       "email": buttonsEmail,
       "linkedin": buttonsLinkedIn,
+      "learnMore": buttonsLearnMove,
     }
   }`
   return client.fetch(settingsQuery)

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { Fragment, useEffect, useRef } from "react"
 import { scroll } from "framer-motion/dom"
 import { useSelector } from "react-redux"
 
@@ -119,7 +119,12 @@ export const People = (props: PeopleProps) => {
         }}
       >
         {props.people?.map((person, i) => (
-          <Person key={i} person={person} />
+          <Fragment key={i}>
+            <Person person={person} />
+            {i < (props.people?.length || 1) - 1 && (
+              <Box css={{ flexShrink: 0, column: 1, boxShadow }} />
+            )}
+          </Fragment>
         ))}
       </Box>
     </Container>

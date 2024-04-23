@@ -24,3 +24,8 @@ export const getServiceSinopsis = (language: string, props: Service) => {
   const data = props.sinopsis?.find((g) => g._key === language)
   return data?.value
 }
+
+export const getLearnMoreButton = (language: string, props: any) => {
+  const data = props?.learnMore?.find((g: any) => g._key === language)
+  return data?.value
+}
