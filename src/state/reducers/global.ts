@@ -8,8 +8,7 @@ import { createSlice } from "@reduxjs/toolkit"
 import { client } from "@/sanity/lib/client"
 import { English, Korean, Languages } from "@/types/language"
 
-// import { setModal } from "./modals"
-// import { setService } from "./service"
+import { setModal } from "./modals"
 
 interface IState {
   ready: boolean
@@ -99,97 +98,7 @@ function* handleSaga(): any {
   yield put(slice.actions.setReady(true))
 
   // 4) fake modal
-  // yield put(
-  //   setService({
-  //     description: [
-  //       {
-  //         value: [
-  //           {
-  //             markDefs: [],
-  //             children: [
-  //               {
-  //                 _type: "span",
-  //                 marks: [],
-  //                 text: "Lorem ipsum dolor sit amet EN",
-  //                 _key: "3f80e73b98a5",
-  //               },
-  //             ],
-  //             _type: "block",
-  //             style: "normal",
-  //             _key: "1477db3373d0",
-  //           },
-  //         ],
-  //         _type: "internationalizedArrayBlockContentValue",
-  //         _key: "en",
-  //       },
-  //       {
-  //         _type: "internationalizedArrayBlockContentValue",
-  //         _key: "ko",
-  //         value: [
-  //           {
-  //             _key: "93e35c97ade3",
-  //             markDefs: [],
-  //             children: [
-  //               {
-  //                 _type: "span",
-  //                 marks: [],
-  //                 text: "Lorem ipsum dolor sit amet KO",
-  //                 _key: "a4d3d0816676",
-  //               },
-  //             ],
-  //             _type: "block",
-  //             style: "normal",
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //     _key: "8f4bd132dab1",
-  //     title: [
-  //       {
-  //         value: "Portfolio Health Checks",
-  //         _type: "internationalizedArrayStringValue",
-  //         _key: "en",
-  //       },
-  //       {
-  //         _type: "internationalizedArrayStringValue",
-  //         _key: "ko",
-  //         value: "Item 1 KO",
-  //       },
-  //     ],
-  //     sinopsis: [
-  //       {
-  //         _type: "internationalizedArrayStringValue",
-  //         _key: "en",
-  //         value: "lorem ipsum EN",
-  //       },
-  //       {
-  //         _type: "internationalizedArrayStringValue",
-  //         _key: "ko",
-  //         value: "lorem ipsum KO",
-  //       },
-  //     ],
-  //     images: [
-  //       {
-  //         _type: "image",
-  //         _key: "aca9f4da6605",
-  //         asset: {
-  //           _ref: "image-429a9a73debd061bfdbcbc5280fd19936503fd12-563x794-jpg",
-  //           _type: "reference",
-  //         },
-  //       },
-  //       {
-  //         _type: "image",
-  //         _key: "b580194e6edb",
-  //         asset: {
-  //           _ref: "image-77da911fae444f3f5206328bee43425b0ac30a32-1400x1750-jpg",
-  //           _type: "reference",
-  //         },
-  //       },
-  //     ],
-  //     _type: "service",
-  //   })
-  // )
-  // yield put(setModal({ type: "service" }))
+  yield put(setModal({ type: "contacts" }))
 }
 
 export function* saga() {

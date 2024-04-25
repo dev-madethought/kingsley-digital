@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 import { Box } from "@/components/box"
 import { Button } from "@/components/button"
@@ -8,6 +8,7 @@ import { useDebug } from "@/components/grid"
 import { Grid } from "@/components/grid"
 import { Text } from "@/components/text"
 import { urlForImage } from "@/sanity/lib/image"
+import { setModal } from "@/state/reducers/modals"
 import { RootState } from "@/state/store"
 import { Contacts as ContactsProps } from "@/types/sanity"
 
@@ -26,11 +27,16 @@ import {
 } from "./translations"
 
 export const Contacts = (props: ContactsProps) => {
+  const dispatch = useDispatch()
   const settings = useSelector((state: RootState) => state.global.settings)
   const language = useSelector((state: RootState) => state.global.language)
   const { debug, boxShadow } = useDebug()
 
   const image = urlForImage(props.image)
+
+  const handleClick = () => {
+    dispatch(setModal({ type: "contacts" }))
+  }
 
   return (
     <Container debug={debug} css={{ background: "$background" }}>
@@ -100,7 +106,9 @@ export const Contacts = (props: ContactsProps) => {
             },
           }}
         >
-          <Button>{getButtonContactUs(language, settings?.buttons)}</Button>
+          <Button onClick={handleClick}>
+            {getButtonContactUs(language, settings?.buttons)}
+          </Button>
         </Box>
 
         {/* emails */}
@@ -155,7 +163,7 @@ export const Contacts = (props: ContactsProps) => {
           {props.links?.map((link) => (
             <Button
               key={link._key}
-              type="secondary"
+              variant="secondary"
               href={`mailto:${link.email}`}
             >
               <Text cta css={{ textAlign: "right" }}>
@@ -217,7 +225,7 @@ export const Contacts = (props: ContactsProps) => {
           {props.numbers?.map((number) => (
             <Button
               key={number._key}
-              type="secondary"
+              variant="secondary"
               href={`tel:${number.phone}`}
             >
               <Text cta css={{ textAlign: "right" }}>
@@ -246,7 +254,7 @@ export const Contacts = (props: ContactsProps) => {
           <Text body css={{ marginBottom: 16, opacity: 0.5 }}>
             {getSecondaryAddress(language, props)}
           </Text>
-          <Button type="secondary" href={props.gps}>
+          <Button variant="secondary" href={props.gps}>
             {getButtonMap(language, settings?.buttons)}
           </Button>
         </Box>

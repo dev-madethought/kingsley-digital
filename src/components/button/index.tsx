@@ -6,21 +6,24 @@ import { theme } from "@/styles/stitches"
 
 import { Box } from "../box"
 
+type variants = "primary" | "secondary" | "tertiary"
+
 interface ButtonProps {
-  type?: "primary" | "secondary" | "tertiary"
+  variant?: variants
   children: ReactNode
   href?: string
   className?: string
   onClick?: () => void
   disabled?: boolean
+  type?: "button" | "submit" | "reset"
 }
 
 const Layout = ({
-  type,
+  variant,
   disabled,
   children,
 }: {
-  type: string
+  variant: variants
   disabled?: boolean
   children?: ReactNode
 }) => {
@@ -28,7 +31,7 @@ const Layout = ({
   const begin = "circle(4px at 20px 50%)"
   const end = "circle(100% at 50% 50%)"
 
-  switch (type) {
+  switch (variant) {
     case "primary":
       return (
         <Box
@@ -147,20 +150,28 @@ const Layout = ({
 }
 
 export const Button = ({
-  type = "primary",
+  variant = "primary",
   children,
   className,
   onClick,
   href,
   disabled,
+  type,
+  ...props
 }: ButtonProps) => {
   if (href) {
     const rel = href.startsWith("/") ? "noreferrer noopener" : undefined
     const target = href.startsWith("http") ? "_blank" : undefined
 
     return (
-      <Link href={href} rel={rel} className={className} target={target}>
-        <Layout type={type} disabled={disabled}>
+      <Link
+        href={href}
+        rel={rel}
+        className={className}
+        target={target}
+        {...props}
+      >
+        <Layout variant={variant} disabled={disabled}>
           {children}
         </Layout>
       </Link>
@@ -172,12 +183,14 @@ export const Button = ({
       as="button"
       onClick={onClick}
       className={className}
+      type={type}
+      {...props}
       css={{
         background: "none",
         border: "none",
       }}
     >
-      <Layout type={type} disabled={disabled}>
+      <Layout variant={variant} disabled={disabled}>
         {children}
       </Layout>
     </Box>

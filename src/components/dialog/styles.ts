@@ -42,7 +42,7 @@ export const Content = styled(Dialog.Content, {
   right: 0,
   bottom: 0,
   background: "$background",
-  overflow: "hidden",
+  // overflow: "hidden",
   zIndex: 9999,
 
   "&:focus": {

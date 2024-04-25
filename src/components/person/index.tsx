@@ -76,7 +76,7 @@ export const Person = ({ person }: { person: PersonProps }) => {
       </Box>
 
       {/* BUTTON */}
-      <Button type="primary" onClick={handlePersonClick}>
+      <Button variant="primary" onClick={handlePersonClick}>
         {getCTA(language, settings?.buttons)}
       </Button>
     </Box>

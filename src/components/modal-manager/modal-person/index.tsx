@@ -158,13 +158,13 @@ export const ModalPerson = ({ open, onOpenChange }: ModalPersonProps) => {
                   textTransform: "uppercase",
                 }}
               >
-                <Button type="secondary" href={`mailto:${person.email}`}>
+                <Button variant="secondary" href={`mailto:${person.email}`}>
                   {getEmailButton(language, settings?.buttons)}
                 </Button>
-                <Button type="tertiary" href={`tel:${person.phone}`}>
+                <Button variant="tertiary" href={`tel:${person.phone}`}>
                   {person.phone}
                 </Button>
-                <Button type="secondary" href={person.linkedin}>
+                <Button variant="secondary" href={person.linkedin}>
                   {getLinkedinButton(language, settings?.buttons)}
                 </Button>
               </Box>

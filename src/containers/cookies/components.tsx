@@ -14,7 +14,7 @@ export const components = {
   marks: {
     link: ({ children, value }: any) => {
       return (
-        <Button type="secondary" href={value.href}>
+        <Button variant="secondary" href={value.href}>
           {children}
         </Button>
       )

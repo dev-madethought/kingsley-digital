@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from "react-redux"
 import { setModal } from "@/state/reducers/modals"
 import { RootState } from "@/state/store"
 
+import { ModalContacts } from "./modal-contacts"
 import { ModalPerson } from "./modal-person"
 import { ModalService } from "./modal-service"
 
 const modals = [
   { key: "person", Component: ModalPerson },
   { key: "service", Component: ModalService },
+  { key: "contacts", Component: ModalContacts },
 ]
 
 const ModalManager = () => {

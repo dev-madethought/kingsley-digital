@@ -1,0 +1,43 @@
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.element,
+.filled {
+  border: none;
+  font-size: 14px;
+  padding: 16px 0;
+  width: 100%;
+  background-color: transparent;
+  appearance: none;
+  color: inherit;
+  /* chevron */
+  background-image: url("/chevron.svg");
+  background-repeat: no-repeat;
+  background-position: right 20px center;
+}
+
+.element:focus,
+.filled:focus {
+  outline: none;
+}
+
+.label {
+  position: absolute;
+  top: 16px;
+  left: 0px;
+  font-size: 14px;
+  /* opacity: 0; */
+  transition: all 0.15s ease-in-out;
+  pointer-events: none;
+
+  display: flex;
+  align-items: flex-end;
+}
+
+.filled + .label {
+  top: 0px;
+  font-size: 10px;
+  /* opacity: 1; */
+}

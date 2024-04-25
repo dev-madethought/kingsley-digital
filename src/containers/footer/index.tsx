@@ -71,7 +71,7 @@ export const Footer = () => {
           }}
         >
           {socialLinks?.map((link: any) => (
-            <Button key={link._key} type="secondary" href={link.url}>
+            <Button key={link._key} variant="secondary" href={link.url}>
               {String(link.label).toUpperCase()}
               <ArrowUp />
             </Button>
@@ -128,7 +128,7 @@ export const Footer = () => {
           {links?.map((link: any) => (
             <Button
               key={link._id}
-              type="secondary"
+              variant="secondary"
               href={`/${link.slug.current}`}
             >
               {String(link.title).toUpperCase()}

@@ -43,7 +43,7 @@ export const Dialog = ({ children, open, onOpenChange }: IDialog) => {
                 },
               }}
             >
-              <Button type="tertiary">
+              <Button variant="tertiary">
                 <i>close</i>
               </Button>
             </Box>

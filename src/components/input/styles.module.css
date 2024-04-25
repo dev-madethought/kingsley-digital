@@ -1,0 +1,49 @@
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.container textarea {
+  resize: vertical;
+  height: 44px;
+  min-height: 44px;
+  max-height: 120px;
+  overflow: scroll;
+}
+
+.container textarea + .label {
+  background: var(--colors-background);
+}
+
+.element,
+.filled {
+  border: none;
+  font-size: 14px;
+  padding: 16px 0;
+  width: 100%;
+  background-color: transparent;
+  color: inherit;
+}
+
+.element:focus,
+.filled:focus {
+  outline: none;
+}
+
+.label {
+  position: absolute;
+  top: 16px;
+  left: 0px;
+  font-size: 14px;
+  transition: all 0.15s ease-in-out;
+  pointer-events: none;
+  width: calc(100% - 32px);
+
+  display: flex;
+  align-items: flex-end;
+}
+
+.filled + .label {
+  top: 0px;
+  font-size: 10px;
+}
