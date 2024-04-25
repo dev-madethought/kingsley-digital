@@ -8,7 +8,7 @@ import { createSlice } from "@reduxjs/toolkit"
 import { client } from "@/sanity/lib/client"
 import { English, Korean, Languages } from "@/types/language"
 
-import { setModal } from "./modals"
+// import { setModal } from "./modals"
 
 interface IState {
   ready: boolean
@@ -98,7 +98,7 @@ function* handleSaga(): any {
   yield put(slice.actions.setReady(true))
 
   // 4) fake modal
-  yield put(setModal({ type: "contacts" }))
+  // yield put(setModal({ type: "contacts" }))
 }
 
 export function* saga() {
