@@ -1,14 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
-import { useSelector } from "react-redux"
+import { useState } from "react"
 
 import { Box } from "@/components/box"
 import { Button } from "@/components/button"
+import { Checkbox } from "@/components/checkbox"
 import { Dialog } from "@/components/dialog"
 import { useDebug } from "@/components/grid"
 import { Input } from "@/components/input"
 import { Select } from "@/components/select"
+import { Spinner } from "@/components/spinner"
 import { Text } from "@/components/text"
-import { RootState } from "@/state/store"
+import { sendContactForm } from "@/lib/api"
 
 type ModalContactsProps = {
   open?: boolean
@@ -17,16 +19,41 @@ type ModalContactsProps = {
 
 export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
   const { boxShadow } = useDebug()
-  const person = useSelector((state: RootState) => state.people.person)
+  const [sending, setSending] = useState(false)
+  const [sent, setSent] = useState(false)
 
   const handleOpenChange = (value: boolean) => {
     if (onOpenChange) onOpenChange(value)
   }
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setSending(true)
+
     const data = new FormData(event.currentTarget)
-    console.log("event", event, data.get("subject"))
+    const name = data.get("name")
+    const phone = data.get("phone")
+    const organisation = data.get("organisation")
+    const email = data.get("email")
+    const subject = data.get("subject")
+    const message = data.get("message")
+    const subscribe = data.get("subscribe") === "on"
+
+    // send email
+    const result = await sendContactForm({
+      name,
+      phone,
+      organisation,
+      email,
+      subject,
+      message,
+      subscribe,
+    })
+
+    const d = await result.json()
+
+    setSent(true)
+    setSending(false)
   }
 
   return (
@@ -94,108 +121,150 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
         </Box>
 
         {/* FORM */}
-        <Box
-          as="form"
-          css={{
-            flexDirection: "column",
-            gap: 16,
-            color: "$typography",
-          }}
-          onSubmit={handleSubmit}
-        >
+        {!sent ? (
           <Box
+            as="form"
             css={{
-              width: "100%",
-              gap: 10,
-              borderBottom: "1px solid $typography",
+              flexDirection: "column",
+              gap: 16,
+              color: "$typography",
             }}
+            onSubmit={handleSubmit}
           >
-            <Box css={{ column: 1 }} />
-            <Input name="name" placeholder="Full Name" required />
-          </Box>
-
-          <Box
-            css={{
-              width: "100%",
-              gap: 10,
-              borderBottom: "1px solid $typography",
-            }}
-          >
-            <Box css={{ column: 1 }} />
-            <Box css={{ column: 5 }}>
+            <Box
+              css={{
+                gap: 10,
+                borderBottom: "1px solid $typography",
+              }}
+            >
+              <Box css={{ column: 1 }} />
               <Input
-                name="phone"
-                placeholder="Phone Number"
-                type="tel"
+                name="name"
+                placeholder="Full Name"
                 required
+                disabled={sending}
               />
             </Box>
-            <Box css={{ column: 5 }}>
-              <Input name="organisation" placeholder="Organisation" />
+
+            <Box
+              css={{
+                gap: 10,
+                borderBottom: "1px solid $typography",
+              }}
+            >
+              <Box css={{ column: 1 }} />
+              <Box css={{ column: 5 }}>
+                <Input
+                  name="phone"
+                  placeholder="Phone Number"
+                  type="tel"
+                  required
+                  disabled={sending}
+                />
+              </Box>
+              <Box css={{ column: 5 }}>
+                <Input
+                  name="organisation"
+                  placeholder="Organisation"
+                  disabled={sending}
+                />
+              </Box>
+            </Box>
+
+            <Box
+              css={{
+                gap: 10,
+                borderBottom: "1px solid $typography",
+              }}
+            >
+              <Box css={{ column: 1 }} />
+              <Input
+                name="email"
+                placeholder="Email address"
+                required
+                disabled={sending}
+              />
+            </Box>
+
+            <Box
+              css={{
+                gap: 10,
+                borderBottom: "1px solid $typography",
+              }}
+            >
+              <Box css={{ column: 1 }} />
+              <Select
+                name="subject"
+                placeholder="What would you like to discuss with us?"
+                required
+                disabled={sending}
+                options={[
+                  { value: "0", label: "Arranging a meeting with an expert" },
+                  {
+                    value: "1",
+                    label: "A bespoke asset portfolio health check",
+                  },
+                  { value: "2", label: "Customised asset management" },
+                  { value: "3", label: "Tax, inheritance, gift advice" },
+                  { value: "4", label: "Corporate consulting" },
+                  { value: "5", label: "General queries/Other" },
+                ]}
+              />
+            </Box>
+            <Box
+              css={{
+                gap: 10,
+                borderBottom: "1px solid $typography",
+              }}
+            >
+              <Box css={{ column: 1 }} />
+
+              <Input
+                name="message"
+                placeholder="Your Message"
+                disabled={sending}
+                required
+                textarea
+              />
+            </Box>
+
+            <Box css={{ gap: 10 }}>
+              <Box css={{ column: 1 }} />
+              <Checkbox
+                name="subscribe"
+                label="Please check this box to be added to our mailing list"
+                disabled={sending}
+              />
+            </Box>
+
+            <Box css={{ gap: 10 }}>
+              <Box css={{ column: 1 }} />
+              <Button type="submit" disabled={sending}>
+                {sending && (
+                  <Box css={{ marginRight: 16 }}>
+                    <Spinner />
+                  </Box>
+                )}
+                Submit
+              </Button>
             </Box>
           </Box>
-
-          <Box
-            css={{
-              width: "100%",
-              gap: 10,
-              borderBottom: "1px solid $typography",
-            }}
-          >
+        ) : (
+          <Box css={{ gap: 10 }}>
             <Box css={{ column: 1 }} />
-            <Input name="email" placeholder="Email address" required />
+            <Text>Email sent</Text>
           </Box>
-
-          <Box
-            css={{
-              width: "100%",
-              gap: 10,
-              borderBottom: "1px solid $typography",
-            }}
-          >
-            <Box css={{ column: 1 }} />
-            <Select
-              name="subject"
-              placeholder="What would you like to discuss with us?"
-              required
-              options={[
-                { value: "0", label: "Arranging a meeting with an expert" },
-                { value: "1", label: "A bespoke asset portfolio health check" },
-                { value: "2", label: "Customised asset management" },
-                { value: "3", label: "Tax, inheritance, gift advice" },
-                { value: "4", label: "Corporate consulting" },
-                { value: "5", label: "General queries/Other" },
-              ]}
-            />
-          </Box>
-          <Box
-            css={{
-              width: "100%",
-              gap: 10,
-              borderBottom: "1px solid $typography",
-            }}
-          >
-            <Box css={{ column: 1 }} />
-
-            <Input
-              name="message"
-              placeholder="Your Message"
-              required
-              textarea
-            />
-          </Box>
-
-          <Box css={{ width: "100%", gap: 10 }}>
-            <Box css={{ column: 1 }} />
-            {/* TODO MISSING CHECKBOX COMPONENT */}
-          </Box>
-
-          <Box css={{ width: "100%", gap: 10 }}>
-            <Box css={{ column: 1 }} />
-            <Button type="submit">Submit</Button>
-          </Box>
-        </Box>
+        )}
       </Box>
     </Dialog>
   )
 }
+
+/*
+Missing:
+
+Add some labels to the settings,
+add some of this to the translations.
+
+Mobile layouts
+*/

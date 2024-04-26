@@ -13,6 +13,7 @@ type SelectProps = {
   name: string
   placeholder: string
   required?: boolean
+  disabled?: boolean
   options?: SelectOptionsProps[]
   onChange?: (name: string, value: string) => void
 }
@@ -41,6 +42,7 @@ export const Select = ({
         className={value !== "" ? styles.filled : styles.element}
         onChange={handleChange}
         required={required}
+        disabled={props.disabled}
         {...(props as SelectElementProps)}
       >
         <option value="" disabled>

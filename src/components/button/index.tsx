@@ -35,14 +35,20 @@ const Layout = ({
     case "primary":
       return (
         <Box
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
+          onMouseEnter={() => {
+            if (disabled) return
+            setHover(true)
+          }}
+          onMouseLeave={() => {
+            if (disabled) return
+            setHover(false)
+          }}
           css={{
             position: "relative",
             borderRadius: "100px",
             overflow: "hidden",
             padding: "16px 32px",
-            cursor: "pointer",
+            cursor: disabled ? "not-allowed" : "pointer",
           }}
         >
           <motion.div
@@ -92,7 +98,7 @@ const Layout = ({
             letterSpacing: "0.28px",
             color: "$typography",
             textDecoration: "underline",
-            cursor: "pointer",
+            cursor: disabled ? "not-allowed" : "pointer",
             alignItems: "center",
             gap: 8,
 
@@ -117,7 +123,7 @@ const Layout = ({
             fontWeight: 400,
             letterSpacing: "0.28px",
             color: "$typography",
-            cursor: "pointer",
+            cursor: disabled ? "not-allowed" : "pointer",
             alignItems: "center",
             gap: 8,
 
@@ -184,6 +190,7 @@ export const Button = ({
       onClick={onClick}
       className={className}
       type={type}
+      disabled={disabled}
       {...props}
       css={{
         background: "none",
