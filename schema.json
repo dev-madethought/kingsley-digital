@@ -683,7 +683,7 @@
         },
         "optional": true
       },
-      "subjects": {
+      "contactsSubjects": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
@@ -751,6 +751,28 @@
         "optional": true
       },
       "contactsSubscribe": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "_key": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                }
+              }
+            },
+            "rest": {
+              "type": "inline",
+              "name": "internationalizedArrayStringValue"
+            }
+          }
+        },
+        "optional": true
+      },
+      "contactsSuccess": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
@@ -962,6 +984,13 @@
             "type": "string",
             "value": "services"
           }
+        },
+        "anchor": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
         },
         "title": {
           "type": "objectAttribute",
@@ -1265,6 +1294,13 @@
             "value": "philosophy"
           }
         },
+        "anchor": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
         "title": {
           "type": "objectAttribute",
           "value": {
@@ -1552,6 +1588,13 @@
             "value": "people"
           }
         },
+        "anchor": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
         "title": {
           "type": "objectAttribute",
           "value": {
@@ -1803,6 +1846,13 @@
             "value": "hero"
           }
         },
+        "anchor": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
         "greeting": {
           "type": "objectAttribute",
           "value": {
@@ -1906,6 +1956,13 @@
             "type": "string",
             "value": "contacts"
           }
+        },
+        "anchor": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
         },
         "title": {
           "type": "objectAttribute",

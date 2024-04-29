@@ -1,19 +1,12 @@
 import { ReactNode, useEffect } from "react"
-// import { Roboto } from "next/font/google"
 import { useDispatch, useSelector } from "react-redux"
 
 import { getInitialData } from "@/state/reducers/global"
 import { RootState } from "@/state/store"
 
 import { Main, useDebug } from "../grid"
+import { Header } from "../header"
 import ModalManager from "../modal-manager"
-
-// const inter = Roboto({
-//   weight: ["400", "700"],
-//   display: "swap",
-//   subsets: ["latin"],
-// })
-// className={inter.className}
 
 export function Application({ children }: { children?: ReactNode }) {
   const dispatch = useDispatch()
@@ -28,6 +21,7 @@ export function Application({ children }: { children?: ReactNode }) {
 
   return (
     <Main debug={debug}>
+      <Header />
       {children}
       <ModalManager />
     </Main>

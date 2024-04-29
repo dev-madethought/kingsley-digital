@@ -6,6 +6,11 @@ export default defineType({
   type: "object",
   fields: [
     defineField({
+      name: "anchor",
+      title: "Anchor",
+      type: "string",
+    }),
+    defineField({
       name: "title",
       title: "Title",
       type: "internationalizedArrayString",

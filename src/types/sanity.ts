@@ -119,7 +119,7 @@ export type Settings = {
   contactsSubject?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
-  subjects?: Array<{
+  contactsSubjects?: Array<{
     label?: Array<{
       _key: string;
     } & InternationalizedArrayStringValue>;
@@ -129,6 +129,9 @@ export type Settings = {
     _key: string;
   } & InternationalizedArrayStringValue>;
   contactsSubscribe?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  contactsSuccess?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
   buttonsReadBio?: Array<{
@@ -159,6 +162,7 @@ export type Settings = {
 
 export type Services = {
   _type: "services";
+  anchor?: string;
   title?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
@@ -208,6 +212,7 @@ export type Service = {
 
 export type Philosophy = {
   _type: "philosophy";
+  anchor?: string;
   title?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
@@ -256,6 +261,7 @@ export type Person = {
 
 export type People = {
   _type: "people";
+  anchor?: string;
   title?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
@@ -296,6 +302,7 @@ export type Slug = {
 
 export type Hero = {
   _type: "hero";
+  anchor?: string;
   greeting?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
@@ -312,6 +319,7 @@ export type Hero = {
 
 export type Contacts = {
   _type: "contacts";
+  anchor?: string;
   title?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
@@ -520,7 +528,12 @@ export type SettingsQueryResult = Array<{
     subject: Array<{
       _key: string;
     } & InternationalizedArrayStringValue> | null;
-    subjects: null;
+    subjects: Array<{
+      label?: Array<{
+        _key: string;
+      } & InternationalizedArrayStringValue>;
+      _key: string;
+    }> | null;
     message: Array<{
       _key: string;
     } & InternationalizedArrayStringValue> | null;
