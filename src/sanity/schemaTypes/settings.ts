@@ -130,7 +130,7 @@ export default defineType({
       group: "contacts",
     }),
     defineField({
-      name: "subjects",
+      name: "contactsSubjects",
       title: "Subjects",
       type: "array",
       group: "contacts",
@@ -156,6 +156,12 @@ export default defineType({
     defineField({
       name: "contactsSubscribe",
       title: "Subscribe",
+      type: "internationalizedArrayString",
+      group: "contacts",
+    }),
+    defineField({
+      name: "contactsSuccess",
+      title: "Contact Success",
       type: "internationalizedArrayString",
       group: "contacts",
     }),

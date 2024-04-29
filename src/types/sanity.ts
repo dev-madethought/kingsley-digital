@@ -470,7 +470,7 @@ export type PageQueryResult = Array<{
 
 // Source: src/state/reducers/global.ts
 // Variable: settingsQuery
-// Query: *[_type == "settings"]{    "links": links[]->{_id,title, slug},    socialLinks,    "newsletter": {      "title": newsletterTitle,      "agreement": newsletterAgreement,      "placeholder": newsletterPlaceholder,    },    "cookies":{      "message": cookiesMessage,    },    "buttons": {      "biography": buttonsReadBio,      "email": buttonsEmail,      "linkedin": buttonsLinkedIn,      "gotit": buttonsGotIt,      "learnmore": buttonsLearnMore,      "contactus": buttonsContactUs,      "map": buttonsMap,      "submit": buttonsSubmit,    }  }
+// Query: *[_type == "settings"]{    "links": links[]->{_id,title, slug},    socialLinks,    "newsletter": {      "title": newsletterTitle,      "agreement": newsletterAgreement,      "placeholder": newsletterPlaceholder,    },    "cookies":{      "message": cookiesMessage,    },    "contacts": {      "title": contactsTitle,      "description": contactsDescription,      "name": contactsName,      "phone": contactsPhone,      "organisation": contactsOrganisation,      "email": contactsEmail,      "subject": contactsSubject,      "subjects": contactsSubjects,      "message": contactsMessage,      "subscribe": contactsSubscribe    },    "buttons": {      "biography": buttonsReadBio,      "email": buttonsEmail,      "linkedin": buttonsLinkedIn,      "gotit": buttonsGotIt,      "learnmore": buttonsLearnMore,      "contactus": buttonsContactUs,      "map": buttonsMap,      "submit": buttonsSubmit    }  }
 export type SettingsQueryResult = Array<{
   links: Array<{
     _id: string;
@@ -497,6 +497,36 @@ export type SettingsQueryResult = Array<{
     message: Array<{
       _key: string;
     } & InternationalizedArrayBlockContentValue> | null;
+  };
+  contacts: {
+    title: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+    description: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+    name: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+    phone: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+    organisation: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+    email: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+    subject: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+    subjects: null;
+    message: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+    subscribe: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
   };
   buttons: {
     biography: Array<{

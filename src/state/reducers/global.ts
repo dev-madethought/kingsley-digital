@@ -8,7 +8,7 @@ import { createSlice } from "@reduxjs/toolkit"
 import { client } from "@/sanity/lib/client"
 import { English, Korean, Languages } from "@/types/language"
 
-import { setModal } from "./modals"
+// import { setModal } from "./modals"
 
 interface IState {
   ready: boolean
@@ -56,6 +56,18 @@ function fetchSettingsData() {
     "cookies":{
       "message": cookiesMessage,
     },
+    "contacts": {
+      "title": contactsTitle,
+      "description": contactsDescription,
+      "name": contactsName,
+      "phone": contactsPhone,
+      "organisation": contactsOrganisation,
+      "email": contactsEmail,
+      "subject": contactsSubject,
+      "subjects": contactsSubjects,
+      "message": contactsMessage,
+      "subscribe": contactsSubscribe
+    },
     "buttons": {
       "biography": buttonsReadBio,
       "email": buttonsEmail,
@@ -64,8 +76,7 @@ function fetchSettingsData() {
       "learnmore": buttonsLearnMore,
       "contactus": buttonsContactUs,
       "map": buttonsMap,
-      "submit": buttonsSubmit,
-
+      "submit": buttonsSubmit
     }
   }`
   return client.fetch(settingsQuery)
@@ -99,7 +110,7 @@ function* handleSaga(): any {
   yield put(slice.actions.setReady(true))
 
   // 4) fake modal
-  yield put(setModal({ type: "contacts" }))
+  // yield put(setModal({ type: "contacts" }))
 }
 
 export function* saga() {

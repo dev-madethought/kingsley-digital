@@ -14,7 +14,20 @@ import { Text } from "@/components/text"
 import { sendContactForm } from "@/lib/api"
 import { RootState } from "@/state/store"
 
-import { getSubmitButton } from "./translations"
+import {
+  getEmail,
+  getMessage,
+  getName,
+  getOrganisation,
+  getPhone,
+  getPrimaryDescription,
+  getSecondaryDescription,
+  getSubject,
+  getSubjectsArray,
+  getSubmitButton,
+  getSubscribe,
+  getTitle,
+} from "./translations"
 
 type ModalContactsProps = {
   open?: boolean
@@ -98,7 +111,7 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
               boxShadow,
             }}
           >
-            <Text headingS>Contact Us</Text>
+            <Text headingS>{getTitle(language, settings?.contacts)}</Text>
           </Box>
         </Box>
 
@@ -111,7 +124,9 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
               boxShadow,
             }}
           >
-            <Text body>Please tell us a little more about yourself</Text>
+            <Text body>
+              {getPrimaryDescription(language, settings?.contacts)}
+            </Text>
           </Box>
           <Box css={{ column: 1 }} />
 
@@ -122,7 +137,9 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
               opacity: 0.5,
             }}
           >
-            <Text body>Please tell us a little more about yourself KO</Text>
+            <Text body>
+              {getSecondaryDescription(language, settings?.contacts)}
+            </Text>
           </Box>
         </Box>
 
@@ -146,7 +163,7 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
               <Box css={{ column: 1 }} />
               <Input
                 name="name"
-                placeholder="Full Name"
+                placeholder={getName(language, settings?.contacts)}
                 required
                 disabled={sending}
               />
@@ -162,7 +179,7 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
               <Box css={{ column: 5 }}>
                 <Input
                   name="phone"
-                  placeholder="Phone Number"
+                  placeholder={getPhone(language, settings?.contacts)}
                   type="tel"
                   required
                   disabled={sending}
@@ -171,7 +188,7 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
               <Box css={{ column: 5 }}>
                 <Input
                   name="organisation"
-                  placeholder="Organisation"
+                  placeholder={getOrganisation(language, settings?.contacts)}
                   disabled={sending}
                 />
               </Box>
@@ -186,7 +203,7 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
               <Box css={{ column: 1 }} />
               <Input
                 name="email"
-                placeholder="Email address"
+                placeholder={getEmail(language, settings?.contacts)}
                 required
                 disabled={sending}
               />
@@ -201,20 +218,10 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
               <Box css={{ column: 1 }} />
               <Select
                 name="subject"
-                placeholder="What would you like to discuss with us?"
+                placeholder={getSubject(language, settings?.contacts)}
                 required
                 disabled={sending}
-                options={[
-                  { value: "0", label: "Arranging a meeting with an expert" },
-                  {
-                    value: "1",
-                    label: "A bespoke asset portfolio health check",
-                  },
-                  { value: "2", label: "Customised asset management" },
-                  { value: "3", label: "Tax, inheritance, gift advice" },
-                  { value: "4", label: "Corporate consulting" },
-                  { value: "5", label: "General queries/Other" },
-                ]}
+                options={getSubjectsArray(language, settings?.contacts)}
               />
             </Box>
             <Box
@@ -227,7 +234,7 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
 
               <Input
                 name="message"
-                placeholder="Your Message"
+                placeholder={getMessage(language, settings?.contacts)}
                 disabled={sending}
                 required
                 textarea
@@ -238,7 +245,7 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
               <Box css={{ column: 1 }} />
               <Checkbox
                 name="subscribe"
-                label="Please check this box to be added to our mailing list"
+                label={getSubscribe(language, settings?.contacts)}
                 disabled={sending}
               />
             </Box>
