@@ -98,6 +98,39 @@ export type Settings = {
   cookiesMessage?: Array<{
     _key: string;
   } & InternationalizedArrayBlockContentValue>;
+  contactsTitle?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  contactsDescription?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  contactsName?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  contactsPhone?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  contactsOrganisation?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  contactsEmail?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  contactsSubject?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  subjects?: Array<{
+    label?: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue>;
+    _key: string;
+  }>;
+  contactsMessage?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  contactsSubscribe?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
   buttonsReadBio?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
@@ -117,6 +150,9 @@ export type Settings = {
     _key: string;
   } & InternationalizedArrayStringValue>;
   buttonsMap?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  buttonsSubmit?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
 };
@@ -434,7 +470,7 @@ export type PageQueryResult = Array<{
 
 // Source: src/state/reducers/global.ts
 // Variable: settingsQuery
-// Query: *[_type == "settings"]{    "links": links[]->{_id,title, slug},    socialLinks,    "newsletter": {      "title": newsletterTitle,      "agreement": newsletterAgreement,      "placeholder": newsletterPlaceholder,    },    "cookies":{      "message": cookiesMessage,    },    "buttons": {      "biography": buttonsReadBio,      "email": buttonsEmail,      "linkedin": buttonsLinkedIn,      "gotit": buttonsGotIt,      "learnmore": buttonsLearnMore,      "contactus": buttonsContactUs,      "map": buttonsMap,    }  }
+// Query: *[_type == "settings"]{    "links": links[]->{_id,title, slug},    socialLinks,    "newsletter": {      "title": newsletterTitle,      "agreement": newsletterAgreement,      "placeholder": newsletterPlaceholder,    },    "cookies":{      "message": cookiesMessage,    },    "buttons": {      "biography": buttonsReadBio,      "email": buttonsEmail,      "linkedin": buttonsLinkedIn,      "gotit": buttonsGotIt,      "learnmore": buttonsLearnMore,      "contactus": buttonsContactUs,      "map": buttonsMap,      "submit": buttonsSubmit,    }  }
 export type SettingsQueryResult = Array<{
   links: Array<{
     _id: string;
@@ -482,6 +518,9 @@ export type SettingsQueryResult = Array<{
       _key: string;
     } & InternationalizedArrayStringValue> | null;
     map: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+    submit: Array<{
       _key: string;
     } & InternationalizedArrayStringValue> | null;
   };

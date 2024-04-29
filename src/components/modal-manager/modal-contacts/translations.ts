@@ -29,3 +29,8 @@ export const getLinkedinButton = (language: string, props: any) => {
   const data = props?.linkedin?.find((g: any) => g._key === language)
   return data?.value
 }
+
+export const getSubmitButton = (language: string, props: any) => {
+  const data = props?.submit?.find((g: any) => g._key === language)
+  return data?.value
+}

@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState } from "react"
+import { FormEvent, useState } from "react"
+import { useSelector } from "react-redux"
 
 import { Box } from "@/components/box"
 import { Button } from "@/components/button"
@@ -11,6 +12,9 @@ import { Select } from "@/components/select"
 import { Spinner } from "@/components/spinner"
 import { Text } from "@/components/text"
 import { sendContactForm } from "@/lib/api"
+import { RootState } from "@/state/store"
+
+import { getSubmitButton } from "./translations"
 
 type ModalContactsProps = {
   open?: boolean
@@ -19,6 +23,8 @@ type ModalContactsProps = {
 
 export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
   const { boxShadow } = useDebug()
+  const settings = useSelector((state: RootState) => state.global.settings)
+  const language = useSelector((state: RootState) => state.global.language)
   const [sending, setSending] = useState(false)
   const [sent, setSent] = useState(false)
 
@@ -26,7 +32,7 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
     if (onOpenChange) onOpenChange(value)
   }
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setSending(true)
 
@@ -245,7 +251,7 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
                     <Spinner />
                   </Box>
                 )}
-                Submit
+                {getSubmitButton(language, settings?.buttons)}
               </Button>
             </Box>
           </Box>

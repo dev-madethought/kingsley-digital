@@ -22,6 +22,10 @@ export default defineType({
       name: "cookies",
     },
     {
+      title: "Contacts",
+      name: "contacts",
+    },
+    {
       title: "Buttons",
       name: "buttons",
     },
@@ -82,6 +86,80 @@ export default defineType({
       group: "cookies",
     }),
 
+    // CONTACTS
+    defineField({
+      name: "contactsTitle",
+      title: "Title",
+      type: "internationalizedArrayString",
+      group: "contacts",
+    }),
+    defineField({
+      name: "contactsDescription",
+      title: "Description",
+      type: "internationalizedArrayString",
+      group: "contacts",
+    }),
+    defineField({
+      name: "contactsName",
+      title: "Name",
+      type: "internationalizedArrayString",
+      group: "contacts",
+    }),
+    defineField({
+      name: "contactsPhone",
+      title: "Phone",
+      type: "internationalizedArrayString",
+      group: "contacts",
+    }),
+    defineField({
+      name: "contactsOrganisation",
+      title: "Organisation",
+      type: "internationalizedArrayString",
+      group: "contacts",
+    }),
+    defineField({
+      name: "contactsEmail",
+      title: "Email",
+      type: "internationalizedArrayString",
+      group: "contacts",
+    }),
+    defineField({
+      name: "contactsSubject",
+      title: "Subject",
+      type: "internationalizedArrayString",
+      group: "contacts",
+    }),
+    defineField({
+      name: "subjects",
+      title: "Subjects",
+      type: "array",
+      group: "contacts",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "label",
+              type: "internationalizedArrayString",
+              title: "Label",
+            },
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: "contactsMessage",
+      title: "Message",
+      type: "internationalizedArrayString",
+      group: "contacts",
+    }),
+    defineField({
+      name: "contactsSubscribe",
+      title: "Subscribe",
+      type: "internationalizedArrayString",
+      group: "contacts",
+    }),
+
     // BUTTONS
     defineField({
       name: "buttonsReadBio",
@@ -122,6 +200,12 @@ export default defineType({
     defineField({
       name: "buttonsMap",
       title: "Map",
+      type: "internationalizedArrayString",
+      group: "buttons",
+    }),
+    defineField({
+      name: "buttonsSubmit",
+      title: "Submit",
       type: "internationalizedArrayString",
       group: "buttons",
     }),
