@@ -578,6 +578,29 @@ export type SettingsQueryResult = Array<{
 // Variable: menuQuery
 // Query: *[_type == "page" && title == "Homepage"] {    "content": content[!(_type == "hero" && !defined(menu))] {      _type,      menu    }  }  
 export type MenuQueryResult = Array<{
-  content: Array<null>;
+  content: Array<{
+    _type: "contacts";
+    menu: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+  } | {
+    _type: "hero";
+    menu: null;
+  } | {
+    _type: "people";
+    menu: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+  } | {
+    _type: "philosophy";
+    menu: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+  } | {
+    _type: "services";
+    menu: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+  }> | null;
 }>;
 

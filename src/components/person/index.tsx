@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useDispatch, useSelector } from "react-redux"
 
+import { urlForImage } from "@/sanity/lib/image"
 import { setModal } from "@/state/reducers/modals"
 import { setPerson } from "@/state/reducers/people"
 import { RootState } from "@/state/store"
@@ -43,7 +44,7 @@ export const Person = ({ person }: { person: PersonProps }) => {
       <Box css={{ column: 6, gap: 10 }}>
         <Box css={{ column: 1 }} />
         <Box css={{ flexShrink: 0, column: 2 }}>
-          <img src="/test.png" alt="Yo" />
+          <img src={urlForImage(person.image)} alt="Person image" />
         </Box>
       </Box>
 

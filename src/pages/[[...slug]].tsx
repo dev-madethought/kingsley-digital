@@ -37,35 +37,35 @@ type PageProps = {
 }
 
 const renderComponent = (props: ContentItem) => {
-  const common = { key: props._key, id: props._type }
+  const common = { id: props._type }
   switch (props._type) {
     case "hero":
       return (
-        <Section {...common}>
+        <Section key={props._key} {...common}>
           <Hero {...props} />
         </Section>
       )
     case "philosophy":
       return (
-        <Section {...common}>
+        <Section key={props._key} {...common}>
           <Philosophy {...props} />
         </Section>
       )
     case "people":
       return (
-        <Section {...common}>
+        <Section key={props._key} {...common}>
           <People {...props} />
         </Section>
       )
     case "services":
       return (
-        <Section {...common}>
+        <Section key={props._key} {...common}>
           <Services {...props} />
         </Section>
       )
     case "contacts":
       return (
-        <Section {...common}>
+        <Section key={props._key} {...common}>
           <Contacts {...props} />
         </Section>
       )

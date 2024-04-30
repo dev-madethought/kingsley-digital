@@ -95,6 +95,7 @@ function fetchMenuData() {
     }
   }
   `
+
   return client.fetch(menuQuery)
 }
 

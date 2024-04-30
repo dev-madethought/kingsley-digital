@@ -5,9 +5,11 @@ import { PortableText } from "@portabletext/react"
 
 import { AnimateRectMask } from "@/components/animate-rect-mask"
 import { Box } from "@/components/box"
+import { Button } from "@/components/button"
 import { Container } from "@/components/container"
 import { Grid } from "@/components/grid"
 import { useDebug } from "@/components/grid"
+import { Header } from "@/components/header"
 import { components } from "@/components/portable-text"
 import { Text } from "@/components/text"
 import { RootState } from "@/state/store"
@@ -39,7 +41,10 @@ export const Hero = (props: HeroProps) => {
     <AnimateRectMask expanded={expanded}>
       <Container
         debug={debug}
-        css={{ position: "relative", overflow: "hidden" }}
+        css={{
+          position: "relative",
+          overflow: "hidden",
+        }}
       >
         <Grid>
           <Box
@@ -59,6 +64,19 @@ export const Hero = (props: HeroProps) => {
               objectFit: "cover",
             }}
           />
+
+          <Box
+            css={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              zIndex: 99999999,
+              border: "1px dashed red",
+            }}
+          >
+            <Header color="white" />
+          </Box>
+
           <Box
             css={{
               marginTop: "calc(100vh - 48px)",

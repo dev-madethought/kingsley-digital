@@ -155,7 +155,7 @@ const Layout = ({
             fontStyle: "normal",
             fontWeight: 400,
             letterSpacing: "0.28px",
-            color: "$typography",
+            color: "inherit",
             cursor: disabled ? "not-allowed" : "pointer",
             alignItems: "center",
             gap: 8,
@@ -163,13 +163,8 @@ const Layout = ({
 
             ...(!disabled && {
               "&:hover": {
-                color: "$black",
+                opacity: 0.8,
               },
-            }),
-
-            ...(disabled && {
-              opacity: 0.5,
-              pointerEvents: "none",
             }),
           }}
         >
@@ -179,10 +174,7 @@ const Layout = ({
 
     default:
       return (
-        <Box
-          as="span"
-          css={{ display: "inline-block", border: "1px dashed red" }}
-        >
+        <Box as="span" css={{ display: "inline-block" }}>
           {children}
         </Box>
       )

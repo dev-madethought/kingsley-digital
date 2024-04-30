@@ -180,13 +180,12 @@ export const Services = (props: ServicesProps) => {
               },
             }}
           >
-            <Image
+            {/* <Image
               src={urlForImage(props.image)}
               alt="default"
               width={504}
               height={756}
-              priority
-            />
+            /> */}
           </Box>
         )
     }

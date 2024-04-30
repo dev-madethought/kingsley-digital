@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { ReactNode } from "react"
 
 type SectionProps = {
