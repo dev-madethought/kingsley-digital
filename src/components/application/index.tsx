@@ -5,8 +5,6 @@ import { getInitialData } from "@/state/reducers/global"
 import { RootState } from "@/state/store"
 
 import { Main, useDebug } from "../grid"
-import { Header } from "../header"
-import ModalManager from "../modal-manager"
 
 export function Application({ children }: { children?: ReactNode }) {
   const dispatch = useDispatch()
@@ -19,11 +17,5 @@ export function Application({ children }: { children?: ReactNode }) {
     }
   }, [dispatch, ready])
 
-  return (
-    <Main debug={debug}>
-      <Header />
-      {children}
-      <ModalManager />
-    </Main>
-  )
+  return <Main debug={debug}>{children}</Main>
 }

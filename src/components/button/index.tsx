@@ -6,7 +6,7 @@ import { theme } from "@/styles/stitches"
 
 import { Box } from "../box"
 
-type variants = "primary" | "secondary" | "tertiary"
+type variants = "primary" | "secondary" | "tertiary" | "menu"
 
 interface ButtonProps {
   variant?: variants
@@ -126,6 +126,40 @@ const Layout = ({
             cursor: disabled ? "not-allowed" : "pointer",
             alignItems: "center",
             gap: 8,
+
+            ...(!disabled && {
+              "&:hover": {
+                color: "$black",
+              },
+            }),
+
+            ...(disabled && {
+              opacity: 0.5,
+              pointerEvents: "none",
+            }),
+          }}
+        >
+          {children}
+        </Box>
+      )
+
+    // copy of tertiary with exception of "textTransform"
+    case "menu":
+      return (
+        <Box
+          as="span"
+          css={{
+            display: "inline-flex",
+            fontFamily: "$favorit",
+            fontSize: 14,
+            fontStyle: "normal",
+            fontWeight: 400,
+            letterSpacing: "0.28px",
+            color: "$typography",
+            cursor: disabled ? "not-allowed" : "pointer",
+            alignItems: "center",
+            gap: 8,
+            textTransform: "uppercase",
 
             ...(!disabled && {
               "&:hover": {

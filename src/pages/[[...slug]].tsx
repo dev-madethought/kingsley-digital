@@ -3,6 +3,9 @@ import { useRouter } from "next/router"
 import groq from "groq"
 
 import { Box } from "@/components/box"
+import { Header } from "@/components/header"
+import ModalManager from "@/components/modal-manager"
+import { Section } from "@/components/section"
 import { Contacts } from "@/containers/contacts"
 import { Cookies } from "@/containers/cookies"
 import { Footer } from "@/containers/footer"
@@ -34,17 +37,38 @@ type PageProps = {
 }
 
 const renderComponent = (props: ContentItem) => {
+  const common = { key: props._key, id: props._type }
   switch (props._type) {
     case "hero":
-      return <Hero key={props._key} {...props} />
+      return (
+        <Section {...common}>
+          <Hero {...props} />
+        </Section>
+      )
     case "philosophy":
-      return <Philosophy key={props._key} {...props} />
+      return (
+        <Section {...common}>
+          <Philosophy {...props} />
+        </Section>
+      )
     case "people":
-      return <People key={props._key} {...props} />
+      return (
+        <Section {...common}>
+          <People {...props} />
+        </Section>
+      )
     case "services":
-      return <Services key={props._key} {...props} />
+      return (
+        <Section {...common}>
+          <Services {...props} />
+        </Section>
+      )
     case "contacts":
-      return <Contacts key={props._key} {...props} />
+      return (
+        <Section {...common}>
+          <Contacts {...props} />
+        </Section>
+      )
     default:
       return null
   }
@@ -78,10 +102,14 @@ export default function Page() {
   if (!pageData) return <Box>Loading...</Box>
 
   return (
-    <Box css={{ flexDirection: "column" }}>
-      {pageData?.content?.map(renderComponent)}
-      <Footer />
-      <Cookies />
-    </Box>
+    <>
+      <Header />
+      <Box css={{ flexDirection: "column" }}>
+        {pageData?.content?.map(renderComponent)}
+        <Footer />
+        <Cookies />
+      </Box>
+      <ModalManager />
+    </>
   )
 }

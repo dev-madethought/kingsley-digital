@@ -162,7 +162,9 @@ export type Settings = {
 
 export type Services = {
   _type: "services";
-  anchor?: string;
+  menu?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
   title?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
@@ -212,7 +214,9 @@ export type Service = {
 
 export type Philosophy = {
   _type: "philosophy";
-  anchor?: string;
+  menu?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
   title?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
@@ -261,7 +265,9 @@ export type Person = {
 
 export type People = {
   _type: "people";
-  anchor?: string;
+  menu?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
   title?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
@@ -302,7 +308,6 @@ export type Slug = {
 
 export type Hero = {
   _type: "hero";
-  anchor?: string;
   greeting?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
@@ -319,7 +324,9 @@ export type Hero = {
 
 export type Contacts = {
   _type: "contacts";
-  anchor?: string;
+  menu?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
   title?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
@@ -567,5 +574,10 @@ export type SettingsQueryResult = Array<{
       _key: string;
     } & InternationalizedArrayStringValue> | null;
   };
+}>;
+// Variable: menuQuery
+// Query: *[_type == "page" && title == "Homepage"] {    "content": content[!(_type == "hero" && !defined(menu))] {      _type,      menu    }  }  
+export type MenuQueryResult = Array<{
+  content: Array<null>;
 }>;
 

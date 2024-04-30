@@ -34,6 +34,7 @@ export const Overlay = styled(Dialog.Overlay, {
   '&[data-state="closed"]': {
     animation: `${fadeOut} 0.5s ease-out`,
   },
+  zIndex: 9999,
 })
 
 export const Content = styled(Dialog.Content, {

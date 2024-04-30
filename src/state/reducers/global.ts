@@ -14,12 +14,14 @@ interface IState {
   ready: boolean
   language: Languages
   settings: any
+  menu: any
 }
 
 const initialState: IState = {
   ready: false,
   language: English,
   settings: null,
+  menu: null,
 }
 
 const slice = createSlice({
@@ -34,6 +36,9 @@ const slice = createSlice({
     },
     getInitialData(state) {
       state.ready = false
+    },
+    setMenu(state, action: PayloadAction<any>) {
+      state.menu = action.payload
     },
     setInitialData(state, action: PayloadAction<any>) {
       state.settings = action.payload
@@ -82,6 +87,17 @@ function fetchSettingsData() {
   return client.fetch(settingsQuery)
 }
 
+function fetchMenuData() {
+  const menuQuery = groq`*[_type == "page" && title == "Homepage"] {
+    "content": content[!(_type == "hero" && !defined(menu))] {
+      _type,
+      menu
+    }
+  }
+  `
+  return client.fetch(menuQuery)
+}
+
 function* handleSaga(): any {
   // 1) load footer
   const settings = yield call(fetchSettingsData)
@@ -106,10 +122,17 @@ function* handleSaga(): any {
   }
   yield put(slice.actions.setLanguage(nextLanguage))
 
-  // 3) fire ready event
+  // 3) fetch menu data from homepage
+  const data = yield call(fetchMenuData)
+  const menu = data?.[0]?.content
+    .filter((item: any) => item.menu !== null)
+    .map((item: any) => ({ id: item._type, label: item.menu }))
+  yield put(slice.actions.setMenu(menu))
+
+  // 4) fire ready event
   yield put(slice.actions.setReady(true))
 
-  // 4) fake modal
+  // 5) simulate fake modal
   // yield put(setModal({ type: "contacts" }))
 }
 
