@@ -3,7 +3,7 @@ import { Text } from "./text"
 export const components = {
   block: {
     normal: ({ children }: any) => {
-      return <Text body>{children}</Text>
+      return <Text cta>{children}</Text>
     },
   },
 }

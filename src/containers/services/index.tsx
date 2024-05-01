@@ -71,7 +71,9 @@ export const Services = (props: ServicesProps) => {
                 <Image src={image1} alt="image 1" width={504} height={756} />
               )}
             </Box>
+
             <Box
+              tablet
               css={{
                 column: 5,
 
@@ -93,6 +95,7 @@ export const Services = (props: ServicesProps) => {
         return (
           <Box css={{ gap: 10 }} key={key}>
             <Box
+              tablet
               css={{
                 column: 5,
 
@@ -129,16 +132,19 @@ export const Services = (props: ServicesProps) => {
         )
       case "layout3":
         return (
-          <Box css={{ gap: 10 }} key={key}>
+          <Box css={{ gap: 10, border: "1px dashed red" }} key={key}>
             <Box
+              tablet
               css={{
-                column: 6,
+                "@tablet": {
+                  column: 6,
 
-                img: {
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "contain",
-                  objectPosition: "bottom",
+                  img: {
+                    width: "100%",
+                    height: "auto",
+                    objectFit: "contain",
+                    objectPosition: "bottom",
+                  },
                 },
               }}
             >
@@ -149,14 +155,21 @@ export const Services = (props: ServicesProps) => {
 
             <Box
               css={{
-                column: 8,
+                column: 9,
 
                 img: {
                   width: "100%",
                   height: "auto",
                   objectFit: "contain",
                   objectPosition: "top",
-                  marginBottom: 100,
+                },
+
+                "@tablet": {
+                  column: 8,
+
+                  img: {
+                    marginBottom: 100,
+                  },
                 },
               }}
             >
@@ -180,12 +193,12 @@ export const Services = (props: ServicesProps) => {
               },
             }}
           >
-            {/* <Image
+            <Image
               src={urlForImage(props.image)}
               alt="default"
               width={504}
               height={756}
-            /> */}
+            />
           </Box>
         )
     }
@@ -200,6 +213,9 @@ export const Services = (props: ServicesProps) => {
       debug={debug}
       css={{
         background: "$background",
+        paddingTop: 166,
+        paddingBottom: 56,
+
         "@tablet": {
           paddingTop: 172,
           paddingBottom: 108,
@@ -211,8 +227,12 @@ export const Services = (props: ServicesProps) => {
           css={{
             flexDirection: "column",
             gridColumn: "span 12",
+            alignItems: "flex-end",
+            marginBottom: 40,
             boxShadow,
+
             "@tablet": {
+              alignItems: "flex-start",
               gridColumn: "21 / span 4",
               marginBottom: 88,
             },
@@ -220,10 +240,11 @@ export const Services = (props: ServicesProps) => {
         >
           <Text headingM>{getTitle(language, props)}</Text>
         </Box>
+
         <Box
           css={{
             flexDirection: "column",
-            gridColumn: "span 12",
+            gridColumn: "span 11",
             boxShadow,
 
             "@tablet": {
@@ -235,12 +256,11 @@ export const Services = (props: ServicesProps) => {
         </Box>
 
         <Box
+          tablet
           css={{
-            flexDirection: "column",
-            gridColumn: "span 12",
-            opacity: 0.5,
-            boxShadow,
             "@tablet": {
+              boxShadow,
+              opacity: 0.5,
               gridColumn: "8 / span 6",
             },
           }}
@@ -252,10 +272,12 @@ export const Services = (props: ServicesProps) => {
         <Box
           css={{
             gridColumn: "span 12",
+            marginTop: 113,
+            marginBottom: 48,
 
             "@tablet": {
+              marginBottom: 0,
               gridColumn: "1 / span 14",
-              marginTop: 113,
             },
           }}
         >
@@ -266,7 +288,7 @@ export const Services = (props: ServicesProps) => {
         <Box
           css={{
             gridColumn: "span 12",
-            // boxShadow,
+            boxShadow,
 
             "@tablet": {
               gridColumn: "15 / span 10",
@@ -292,7 +314,7 @@ export const Services = (props: ServicesProps) => {
                     >
                       0{i + 1}
                     </Box>
-                    <Text>{getServiceTitle(language, service)}</Text>
+                    <Text headingS>{getServiceTitle(language, service)}</Text>
                   </Box>
                   <Box
                     css={{
@@ -337,7 +359,7 @@ export const Services = (props: ServicesProps) => {
                         },
                       },
                     }}
-                  ></Box>
+                  />
                 </Styles.AccordionTrigger>
                 <Styles.AccordionContent>
                   <Box css={{ column: 1 }} />

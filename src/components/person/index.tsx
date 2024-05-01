@@ -41,20 +41,40 @@ export const Person = ({ person }: { person: PersonProps }) => {
       }}
     >
       {/* IMAGE */}
-      <Box css={{ column: 6, gap: 10 }}>
-        <Box css={{ column: 1 }} />
-        <Box css={{ flexShrink: 0, column: 2 }}>
+      <Box css={{ column: 9, gap: 10, "@tablet": { column: 6 } }}>
+        <Box css={{ column: 2, "@tablet": { column: 1 } }} />
+        <Box
+          css={{
+            flexShrink: 0,
+            column: 5,
+            "@tablet": {
+              column: 2,
+            },
+          }}
+        >
           <img src={urlForImage(person.image)} alt="Person image" />
         </Box>
       </Box>
 
       {/* TEXT */}
-      <Box css={{ marginTop: 60, gap: 10 }}>
+      <Box
+        css={{
+          marginTop: 28,
+          gap: 10,
+          "@tablet": {
+            marginTop: 60,
+          },
+        }}
+      >
+        <Box mobile css={{ column: 2 }} />
         <Text
           body
           css={{
-            column: 3,
+            column: 5,
             boxShadow,
+            "@tablet": {
+              column: 3,
+            },
           }}
         >
           {getPrimaryName(language, person)}
@@ -62,24 +82,29 @@ export const Person = ({ person }: { person: PersonProps }) => {
           {getPrimaryRole(language, person)}
         </Text>
 
-        <Text
-          body
+        <Box
+          tablet
           css={{
             column: 3,
             opacity: 0.5,
             boxShadow,
           }}
         >
-          {getSecondaryName(language, person)}
-          <br />
-          {getSecondaryRole(language, person)}
-        </Text>
+          <Text body>
+            {getSecondaryName(language, person)}
+            <br />
+            {getSecondaryRole(language, person)}
+          </Text>
+        </Box>
       </Box>
 
       {/* BUTTON */}
-      <Button variant="primary" onClick={handlePersonClick}>
-        {getCTA(language, settings?.buttons)}
-      </Button>
+      <Box>
+        <Box mobile css={{ column: 2 }} />
+        <Button variant="primary" onClick={handlePersonClick}>
+          {getCTA(language, settings?.buttons)}
+        </Button>
+      </Box>
     </Box>
   )
 }

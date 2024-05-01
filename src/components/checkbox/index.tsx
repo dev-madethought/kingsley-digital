@@ -12,6 +12,6 @@ export const Checkbox = ({ label, ...props }: CheckboxProps) => (
   <Styles.Label>
     <Styles.Input type="checkbox" {...props} />
     <span />
-    <Text>{label}</Text>
+    <Text caption>{label}</Text>
   </Styles.Label>
 )

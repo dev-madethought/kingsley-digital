@@ -12,9 +12,10 @@ interface IDialog {
   children?: ReactNode
   open?: boolean
   onOpenChange?: (value: boolean) => void
+  color?: string
 }
 
-export const Dialog = ({ children, open, onOpenChange }: IDialog) => {
+export const Dialog = ({ children, open, onOpenChange, color }: IDialog) => {
   const handleClose = () => {
     if (onOpenChange) {
       onOpenChange(!open)
@@ -28,6 +29,7 @@ export const Dialog = ({ children, open, onOpenChange }: IDialog) => {
         <Styles.Content
           onEscapeKeyDown={handleClose}
           onPointerDownOutside={handleClose}
+          css={{ ...(color && { background: color }) }}
         >
           {children}
           <RadixDialog.Close asChild>

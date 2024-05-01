@@ -12,7 +12,7 @@
 }
 
 .container textarea + .label {
-  background: var(--colors-background);
+  background: var(--colors-darker);
 }
 
 .element,

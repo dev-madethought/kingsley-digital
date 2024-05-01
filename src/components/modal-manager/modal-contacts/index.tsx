@@ -76,16 +76,17 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
   }
 
   return (
-    <Dialog open={open} onOpenChange={handleOpenChange}>
+    <Dialog open={open} onOpenChange={handleOpenChange} color="$darker">
       <Box
         css={{
           height: "var(--vh)",
           overflowY: "auto",
           marginRight: 20,
           flexDirection: "column",
-          column: 11,
+          column: 12,
 
           "@tablet": {
+            column: 11,
             marginRight: 40,
           },
 
@@ -102,26 +103,54 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
           },
         }}
       >
-        <Box css={{ gap: 10, marginTop: 80, marginBottom: 27 }}>
+        <Box
+          css={{
+            gap: 10,
+            marginTop: 56,
+            marginBottom: 32,
+
+            "@tablet": {
+              marginTop: 80,
+              marginBottom: 27,
+            },
+          }}
+        >
           <Box css={{ column: 1 }} />
 
           <Box
             css={{
-              column: 4,
+              column: 10,
               boxShadow,
+
+              "@tablet": {
+                column: 4,
+              },
             }}
           >
             <Text headingS>{getTitle(language, settings?.contacts)}</Text>
           </Box>
         </Box>
 
-        <Box css={{ gap: 10, marginTop: 40, marginBottom: 27 }}>
+        <Box
+          css={{
+            gap: 10,
+            marginTop: 40,
+            marginBottom: 32,
+
+            "@tablet": {
+              marginBottom: 27,
+            },
+          }}
+        >
           <Box css={{ column: 1 }} />
 
           <Box
             css={{
-              column: 4,
+              column: 10,
               boxShadow,
+              "@tablet": {
+                column: 4,
+              },
             }}
           >
             <Text body>
@@ -131,6 +160,7 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
           <Box css={{ column: 1 }} />
 
           <Box
+            tablet
             css={{
               column: 4,
               boxShadow,
@@ -151,6 +181,7 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
               flexDirection: "column",
               gap: 16,
               color: "$typography",
+              boxShadow,
             }}
             onSubmit={handleSubmit}
           >

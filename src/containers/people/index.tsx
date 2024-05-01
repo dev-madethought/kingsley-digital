@@ -58,14 +58,18 @@ export const People = (props: PeopleProps) => {
           css={{
             flexDirection: "column",
             gridColumn: "span 12",
+            marginBottom: 40,
             boxShadow,
+
             "@tablet": {
+              marginBottom: "unset",
               gridColumn: "1 / span 5",
             },
           }}
         >
           <Text headingM>{getTitle(language, props)}</Text>
         </Box>
+
         <Box
           css={{
             flexDirection: "column",
@@ -80,13 +84,13 @@ export const People = (props: PeopleProps) => {
         </Box>
 
         <Box
+          tablet
           css={{
-            flexDirection: "column",
-            gridColumn: "span 12",
-            opacity: 0.5,
-            boxShadow,
             "@tablet": {
+              flexDirection: "column",
               gridColumn: "17 / span 6",
+              opacity: 0.5,
+              boxShadow,
             },
           }}
         >
@@ -96,14 +100,15 @@ export const People = (props: PeopleProps) => {
 
       <Box
         css={{
-          overflowX: "scroll",
-          column: 15,
-          gap: 10,
           paddingTop: 114,
           paddingBottom: 40,
+          overflowX: "scroll",
+          column: 12,
+          gap: 10,
 
           "@tablet": {
             paddingTop: 229,
+            column: 15,
           },
 
           "&::-webkit-scrollbar": {
@@ -122,7 +127,7 @@ export const People = (props: PeopleProps) => {
           <Fragment key={i}>
             <Person person={person} />
             {i < (props.people?.length || 1) - 1 && (
-              <Box css={{ flexShrink: 0, column: 1, boxShadow }} />
+              <Box tablet css={{ flexShrink: 0, column: 1, boxShadow }} />
             )}
           </Fragment>
         ))}

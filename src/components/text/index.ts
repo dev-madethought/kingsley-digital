@@ -6,64 +6,112 @@ export const Text = styled("p", {
   },
 
   variants: {
-    // D/Heading/S
+    // TYPOGRAPHY size
     headingS: {
       true: {
-        leadingTrim: "both",
-        textEdge: "cap",
         fontFamily: "$favorit",
-        fontSize: 18,
-        fontStyle: "normal",
+        fontSize: "18px",
         fontWeight: 400,
-        lineHeight: "120%",
-        letterSpacing: "0.28px",
+        lineHeight: "21.6px",
+        letterSpacing: "0.02em",
+        textAlign: "left",
       },
     },
 
-    // D/Heading/M
     headingM: {
       true: {
-        leadingTrim: "both",
-        textEdge: "cap",
         fontFamily: "$favorit",
-        fontSize: 28,
-        fontStyle: "normal",
+        fontSize: "23px",
         fontWeight: 400,
-        lineHeight: "100%",
-        letterSpacing: "0.56px",
+        lineHeight: "23px",
+        letterSpacing: "0.02em",
+        textAlign: "left",
         textTransform: "uppercase",
+
+        "@tablet": {
+          fontSize: "28px",
+          lineHeight: "28px",
+        },
       },
     },
 
-    // D/Heading/L
     headingL: {
       true: {
         fontFamily: "$favorit",
-        fontSize: 70,
+        fontSize: "40px",
         fontWeight: 400,
-        lineHeight: "70px",
+        lineHeight: "40px",
+        textAlign: "left",
+
+        "@tablet": {
+          fontSize: "70px",
+          lineHeight: "70px",
+        },
       },
     },
 
-    // D/CTA
+    headingXL: {
+      true: {
+        fontFamily: "$favorit",
+        fontSize: "52px",
+        fontWeight: 400,
+        lineHeight: "46.8px",
+        textAlign: "left",
+
+        "&:before": {
+          fontSize: 18,
+          verticalAlign: "middle",
+        },
+
+        "@tablet": {
+          fontSize: "100px",
+          lineHeight: "90px",
+        },
+      },
+    },
+
     cta: {
       true: {
         fontFamily: "$favorit",
-        fontSize: 14,
-        fontStyle: "normal",
+        fontSize: "14px",
         fontWeight: 400,
         lineHeight: "16.8px",
         letterSpacing: "0.02em",
+        textAlign: "left",
+      },
+    },
+
+    cta2: {
+      true: {
+        // not in use
       },
     },
 
     body: {
       true: {
+        fontFamily: "$favorit",
         fontSize: 16,
         lineHeight: "22px",
       },
     },
 
+    body2: {
+      true: {
+        // not in use
+      },
+    },
+
+    caption: {
+      true: {
+        fontFamily: "$favorit",
+        fontSize: "10px",
+        fontWeight: 400,
+        lineHeight: "10px",
+        textAlign: "left",
+      },
+    },
+
+    // FACTORY SETTINGS
     wrap: {
       true: {
         whiteSpace: "nowrap",

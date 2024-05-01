@@ -71,7 +71,6 @@ export const Hero = (props: HeroProps) => {
               top: 0,
               left: 0,
               zIndex: 99999999,
-              border: "1px dashed red",
             }}
           >
             <Header color="white" />

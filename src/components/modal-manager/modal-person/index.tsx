@@ -44,9 +44,10 @@ export const ModalPerson = ({ open, onOpenChange }: ModalPersonProps) => {
           overflowY: "auto",
           marginRight: 20,
           flexDirection: "column",
-          column: 11,
+          column: 12,
 
           "@tablet": {
+            column: 11,
             marginRight: 40,
           },
 
@@ -66,8 +67,11 @@ export const ModalPerson = ({ open, onOpenChange }: ModalPersonProps) => {
         {/* image */}
         <Box
           css={{
-            column: 4,
+            column: 8,
             marginBottom: 44,
+            "@tablet": {
+              column: 4,
+            },
           }}
         >
           {person?.image && (
@@ -84,8 +88,11 @@ export const ModalPerson = ({ open, onOpenChange }: ModalPersonProps) => {
 
           <Box
             css={{
-              column: 4,
+              column: 10,
               boxShadow,
+              "@tablet": {
+                column: 4,
+              },
             }}
           >
             {person && (
@@ -98,13 +105,16 @@ export const ModalPerson = ({ open, onOpenChange }: ModalPersonProps) => {
           </Box>
         </Box>
 
-        <Box css={{ gap: 10 }}>
+        <Box css={{ gap: 10, flex: 1 }}>
           <Box css={{ column: 1 }} />
           <Box
             css={{
               flexDirection: "column",
-              column: 4,
+              column: 10,
               boxShadow,
+              "@tablet": {
+                column: 4,
+              },
             }}
           >
             {person && (
@@ -114,8 +124,9 @@ export const ModalPerson = ({ open, onOpenChange }: ModalPersonProps) => {
               />
             )}
           </Box>
-          <Box css={{ column: 1 }} />
+          <Box tablet css={{ column: 1 }} />
           <Box
+            tablet
             css={{
               flexDirection: "column",
               column: 4,
@@ -135,8 +146,13 @@ export const ModalPerson = ({ open, onOpenChange }: ModalPersonProps) => {
           <Box
             css={{
               gap: 10,
-              marginTop: 50,
-              marginBottom: 50,
+              marginTop: 40,
+              marginBottom: 40,
+
+              "@tablet": {
+                marginTop: 50,
+                marginBottom: 50,
+              },
             }}
           >
             <Box
@@ -156,6 +172,12 @@ export const ModalPerson = ({ open, onOpenChange }: ModalPersonProps) => {
                   justifyContent: "space-between",
                   width: "100%",
                   textTransform: "uppercase",
+                  flexDirection: "column",
+                  gap: 16,
+
+                  "@tablet": {
+                    flexDirection: "row",
+                  },
                 }}
               >
                 <Button variant="secondary" href={`mailto:${person.email}`}>

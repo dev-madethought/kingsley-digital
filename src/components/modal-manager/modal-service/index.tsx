@@ -6,7 +6,6 @@ import { PortableText } from "@portabletext/react"
 import { Box } from "@/components/box"
 import { Dialog } from "@/components/dialog"
 import { useDebug } from "@/components/grid"
-import { components } from "@/components/portable-text"
 import { Text } from "@/components/text"
 import { urlForImage } from "@/sanity/lib/image"
 import { RootState } from "@/state/store"
@@ -22,6 +21,14 @@ import {
 type ModalServiceProps = {
   open?: boolean
   onOpenChange?: (value: boolean) => void
+}
+
+const description = {
+  block: {
+    normal: ({ children }: any) => {
+      return <Text cta>{children}</Text>
+    },
+  },
 }
 
 export const ModalService = ({ open, onOpenChange }: ModalServiceProps) => {
@@ -43,9 +50,10 @@ export const ModalService = ({ open, onOpenChange }: ModalServiceProps) => {
           overflowY: "auto",
           marginRight: 20,
           flexDirection: "column",
-          column: 13,
+          column: 12,
 
           "@tablet": {
+            column: 13,
             marginRight: 40,
           },
 
@@ -84,8 +92,12 @@ export const ModalService = ({ open, onOpenChange }: ModalServiceProps) => {
 
           <Box
             css={{
-              column: 4,
+              column: 10,
               boxShadow,
+
+              "@tablet": {
+                column: 4,
+              },
             }}
           >
             <Text headingS>{getTitle(language, service)}</Text>
@@ -97,15 +109,20 @@ export const ModalService = ({ open, onOpenChange }: ModalServiceProps) => {
           <Box
             css={{
               flexDirection: "column",
-              column: 5,
+              column: 10,
               marginBottom: 48,
               boxShadow,
+              "@tablet": {
+                column: 5,
+              },
             }}
           >
             <Text body>{getPrimarySinopsis(language, service)}</Text>
           </Box>
-          <Box css={{ column: 1 }} />
+
+          <Box tablet css={{ column: 1 }} />
           <Box
+            tablet
             css={{
               flexDirection: "column",
               column: 5,
@@ -123,18 +140,24 @@ export const ModalService = ({ open, onOpenChange }: ModalServiceProps) => {
           <Box
             css={{
               flexDirection: "column",
-              column: 5,
+              column: 10,
               marginBottom: 50,
               boxShadow,
+
+              "@tablet": {
+                column: 5,
+              },
             }}
           >
             <PortableText
               value={getPrimaryDescription(language, service) as any}
-              components={components}
+              components={description}
             />
           </Box>
-          <Box css={{ column: 1 }} />
+
+          <Box tablet css={{ column: 1 }} />
           <Box
+            tablet
             css={{
               flexDirection: "column",
               column: 5,
@@ -145,7 +168,7 @@ export const ModalService = ({ open, onOpenChange }: ModalServiceProps) => {
           >
             <PortableText
               value={getSecondaryDescription(language, service) as any}
-              components={components}
+              components={description}
             />
           </Box>
         </Box>

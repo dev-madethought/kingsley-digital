@@ -39,9 +39,12 @@ export const Contacts = (props: ContactsProps) => {
   }
 
   return (
-    <Container debug={debug} css={{ background: "$background" }}>
+    <Container debug={debug} css={{ background: "$darker" }}>
       <Grid
         css={{
+          paddingTop: 145,
+          paddingBottom: 95,
+
           "@tablet": {
             paddingTop: 172,
             paddingBottom: 78,
@@ -52,10 +55,12 @@ export const Contacts = (props: ContactsProps) => {
         <Box
           css={{
             gridColumn: "1 / span 12",
+            marginBottom: 317,
             boxShadow,
 
             "@tablet": {
               gridColumn: "1 / span 11",
+              marginBottom: 0,
             },
           }}
         >
@@ -79,13 +84,12 @@ export const Contacts = (props: ContactsProps) => {
         </Box>
 
         <Box
+          tablet
           css={{
-            flexDirection: "column",
-            gridColumn: "1 / span 12",
-            opacity: 0.5,
-            boxShadow,
-
             "@tablet": {
+              flexDirection: "column",
+              opacity: 0.5,
+              boxShadow,
               gridColumn: "10 / span 8",
               marginTop: 154,
             },
@@ -100,10 +104,7 @@ export const Contacts = (props: ContactsProps) => {
             flexDirection: "column",
             gridColumn: "1 / span 12",
             boxShadow,
-
-            "@tablet": {
-              marginTop: 36,
-            },
+            marginTop: 40,
           }}
         >
           <Button onClick={handleClick}>
@@ -111,14 +112,58 @@ export const Contacts = (props: ContactsProps) => {
           </Button>
         </Box>
 
-        {/* emails */}
+        {/* emails & links MOBILE*/}
         <Box
+          mobile
           css={{
             flexDirection: "column",
-            gridColumn: "10 / span 3",
+            gridColumn: "1 / span 12",
             boxShadow,
+            marginTop: 36,
+            gap: 20,
+          }}
+        >
+          {/* links mobile */}
+          {props.links?.map((link) => (
+            <Box key={link._key} css={{ flexDirection: "column" }}>
+              <Text cta>{getPrimaryEmailLabel(language, link)}</Text>
+              <Button
+                key={link._key}
+                variant="secondary"
+                href={`mailto:${link.email}`}
+              >
+                <Text cta css={{ textAlign: "right" }}>
+                  {link.email}
+                </Text>
+              </Button>
+            </Box>
+          ))}
 
+          {/* numbers mobile */}
+          {props.numbers?.map((link) => (
+            <Box key={link._key} css={{ flexDirection: "column" }}>
+              <Text cta>{getPrimaryPhoneLabel(language, link)}</Text>
+              <Button
+                key={link._key}
+                variant="secondary"
+                href={`mailto:${link.phone}`}
+              >
+                <Text cta css={{ textAlign: "right" }}>
+                  {link.phone}
+                </Text>
+              </Button>
+            </Box>
+          ))}
+        </Box>
+
+        {/* emails & links DESKTOP*/}
+        <Box
+          tablet
+          css={{
             "@tablet": {
+              flexDirection: "column",
+              gridColumn: "10 / span 3",
+              boxShadow,
               marginTop: 36,
             },
           }}
@@ -131,13 +176,13 @@ export const Contacts = (props: ContactsProps) => {
         </Box>
 
         <Box
+          tablet
           css={{
-            flexDirection: "column",
-            gridColumn: "13 / span 3",
-            boxShadow,
-            opacity: 0.5,
-
             "@tablet": {
+              flexDirection: "column",
+              gridColumn: "13 / span 3",
+              boxShadow,
+              opacity: 0.5,
               marginTop: 36,
             },
           }}
@@ -150,12 +195,12 @@ export const Contacts = (props: ContactsProps) => {
         </Box>
 
         <Box
+          tablet
           css={{
-            flexDirection: "column",
-            gridColumn: "20 / span 5",
-            boxShadow,
-
             "@tablet": {
+              flexDirection: "column",
+              gridColumn: "20 / span 5",
+              boxShadow,
               marginTop: 36,
             },
           }}
@@ -175,12 +220,12 @@ export const Contacts = (props: ContactsProps) => {
 
         {/* phones */}
         <Box
+          tablet
           css={{
-            flexDirection: "column",
-            gridColumn: "10 / span 3",
-            boxShadow,
-
             "@tablet": {
+              flexDirection: "column",
+              gridColumn: "10 / span 3",
+              boxShadow,
               marginTop: 16,
             },
           }}
@@ -193,13 +238,13 @@ export const Contacts = (props: ContactsProps) => {
         </Box>
 
         <Box
+          tablet
           css={{
-            flexDirection: "column",
-            gridColumn: "13 / span 3",
-            boxShadow,
-            opacity: 0.5,
-
             "@tablet": {
+              flexDirection: "column",
+              gridColumn: "13 / span 3",
+              boxShadow,
+              opacity: 0.5,
               marginTop: 16,
             },
           }}
@@ -212,12 +257,12 @@ export const Contacts = (props: ContactsProps) => {
         </Box>
 
         <Box
+          tablet
           css={{
-            flexDirection: "column",
-            gridColumn: "20 / span 5",
-            boxShadow,
-
             "@tablet": {
+              flexDirection: "column",
+              gridColumn: "20 / span 5",
+              boxShadow,
               marginTop: 16,
             },
           }}
@@ -235,11 +280,38 @@ export const Contacts = (props: ContactsProps) => {
           ))}
         </Box>
 
+        {/* image mobile */}
+        <Box
+          mobile
+          css={{
+            flexDirection: "column",
+            gridColumn: "3 / span 10",
+            boxShadow,
+            marginTop: 80,
+          }}
+        >
+          <Box
+            css={{
+              img: {
+                width: "100%",
+                height: "auto",
+                objectFit: "contain",
+                objectPosition: "top",
+              },
+            }}
+          >
+            {image && (
+              <Image src={image} alt="image" width={390} height={521} />
+            )}
+          </Box>
+        </Box>
+
         {/* Address */}
         <Box
           css={{
             flexDirection: "column",
             gridColumn: "1 / span 12",
+            marginTop: 64,
             boxShadow,
 
             "@tablet": {
@@ -259,14 +331,13 @@ export const Contacts = (props: ContactsProps) => {
           </Button>
         </Box>
 
-        {/* image */}
+        {/* image desktop */}
         <Box
+          tablet
           css={{
-            flexDirection: "column",
-            gridColumn: "1 / span 12",
-            boxShadow,
-
             "@tablet": {
+              flexDirection: "column",
+              boxShadow,
               gridColumn: "18 / span 7",
               marginTop: 189,
             },
@@ -274,8 +345,6 @@ export const Contacts = (props: ContactsProps) => {
         >
           <Box
             css={{
-              // column: 9,
-
               img: {
                 width: "100%",
                 height: "auto",

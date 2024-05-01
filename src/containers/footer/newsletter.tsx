@@ -87,7 +87,7 @@ export const Newsletter = ({
             fontSize: 14,
             fontStyle: "normal",
             fontWeight: 400,
-            letterSpacing: "0.28px",
+            letterSpacing: "0.02em",
             padding: "16px 0",
             color:
               invalidEmail && !isTyping ? "$colors$red" : "$colors$typography",
@@ -120,7 +120,12 @@ export const Newsletter = ({
         )}
       </Box>
 
-      <Text css={{ fontSize: 12, color: "#CCCCC6" }}>{agreement}</Text>
+      <Text
+        caption
+        css={{ marginTop: 15, fontStyle: "italic", color: "#CCCCC6" }}
+      >
+        {agreement}
+      </Text>
     </Box>
   )
 }

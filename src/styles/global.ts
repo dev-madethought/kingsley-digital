@@ -122,7 +122,7 @@ export const globalCss = createGlobalCss({
     fontFamily: '"Favorit"',
     fontWeight: 400,
     fontSize: 16,
-    backgroundColor: "$colors$bg",
+    backgroundColor: "$colors$background",
     color: "$colors$typography",
   },
 

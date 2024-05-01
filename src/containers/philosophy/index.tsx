@@ -66,17 +66,17 @@ export const Philosophy = (props: PhilosophyProps) => {
             css={{
               flexDirection: "column",
               gridColumn: "span 12",
-              boxShadow,
+              // boxShadow,
               "@tablet": {
                 gridColumn: "1 / span 5",
               },
             }}
           >
-            <Text headingS css={{ marginBottom: 40 }}>
+            <Text headingS css={{ marginBottom: 40, boxShadow }}>
               {getMainTitle(language, props)}
             </Text>
 
-            <Box css={{ flexDirection: "column", gap: 20 }}>
+            <Box css={{ flexDirection: "column", gap: 20, boxShadow }}>
               <PortableText
                 value={getMainBody(language, props)!}
                 components={components}
@@ -86,21 +86,26 @@ export const Philosophy = (props: PhilosophyProps) => {
 
           {/* Secondary language (hides on mobile) */}
           <Box
+            tablet
             css={{
-              display: "none",
               "@tablet": {
-                display: "flex",
                 flexDirection: "column",
-                boxShadow,
                 gridColumn: "7 / span 5",
               },
             }}
           >
-            <Text headingS css={{ marginBottom: 40, opacity: 0.5 }}>
+            <Text headingS css={{ marginBottom: 40, boxShadow, opacity: 0.5 }}>
               {getSecondaryTitle(language, props)}
             </Text>
 
-            <Box css={{ flexDirection: "column", gap: 20, opacity: 0.5 }}>
+            <Box
+              css={{
+                flexDirection: "column",
+                gap: 20,
+                boxShadow,
+                opacity: 0.5,
+              }}
+            >
               <PortableText
                 value={getSecondaryBody(language, props)!}
                 components={components}

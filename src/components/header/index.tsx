@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 
+import { Box } from "../box"
+
 import { Desktop } from "./desktop"
 
 export const Header = ({ color = "$typography" }: { color?: string }) => {
@@ -26,7 +28,9 @@ export const Header = ({ color = "$typography" }: { color?: string }) => {
           transition={{ duration: 0.4, ease: "easeOut" }}
           style={{ position: "relative", width: "100%" }}
         >
-          <Desktop color={color} />
+          <Box tablet>
+            <Desktop color={color} />
+          </Box>
         </motion.div>
       )}
     </AnimatePresence>

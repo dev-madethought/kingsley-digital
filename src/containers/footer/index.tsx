@@ -32,18 +32,14 @@ export const Footer = () => {
         as="footer"
         css={{
           flexDirection: "column",
-          paddingTop: "$space$20",
-          paddingBottom: "$space$20",
-
-          "@tablet": {
-            paddingTop: "$space$40",
-            paddingBottom: "$space$40",
-          },
+          paddingTop: "$space$40",
+          paddingBottom: "$space$40",
         }}
       >
         <Box
           css={{
             gridColumn: "span 12",
+            paddingBottom: 250,
             boxShadow,
             svg: {
               width: "100%",
@@ -59,6 +55,7 @@ export const Footer = () => {
         </Box>
 
         <Box
+          tablet
           css={{
             flexDirection: "column",
             gridColumn: "span 12",
@@ -82,8 +79,11 @@ export const Footer = () => {
           css={{
             flexDirection: "column",
             gridColumn: "span 12",
+            marginBottom: 40,
             boxShadow,
+
             "@tablet": {
+              marginBottom: 0,
               gridColumn: "1 / span 6",
             },
           }}
@@ -96,6 +96,7 @@ export const Footer = () => {
         </Box>
 
         <Box
+          tablet
           css={{
             flexDirection: "column",
             alignItems: "center",
@@ -115,25 +116,55 @@ export const Footer = () => {
         <Box
           css={{
             flexDirection: "column",
-            alignItems: "flex-end",
             justifyContent: "flex-end",
             gridColumn: "span 12",
             boxShadow,
+
             "@tablet": {
+              alignItems: "flex-end",
+
               gridColumn: "19 / span 6",
             },
           }}
         >
           <Language />
-          {links?.map((link: any) => (
-            <Button
-              key={link._id}
-              variant="secondary"
-              href={`/${link.slug.current}`}
-            >
-              {String(link.title).toUpperCase()}
-            </Button>
-          ))}
+          <Box
+            tablet
+            css={{
+              flexDirection: "column",
+              alignItems: "flex-end",
+              justifyContent: "flex-end",
+            }}
+          >
+            {links?.map((link: any) => (
+              <Button
+                key={link._id}
+                variant="secondary"
+                href={`/${link.slug.current}`}
+              >
+                {String(link.title).toUpperCase()}
+              </Button>
+            ))}
+          </Box>
+        </Box>
+
+        <Box
+          mobile
+          css={{
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            gridColumn: "span 12",
+            boxShadow,
+
+            "@tablet": {
+              gridColumn: "11 / span 4",
+            },
+          }}
+        >
+          <Text cta css={{ color: "$typography" }}>
+            © {new Date().getFullYear()} Alder Partners
+          </Text>
         </Box>
       </Grid>
     </Container>
