@@ -80,6 +80,7 @@ export const Newsletter = ({
           css={{
             background: "transparent",
             border: "none",
+            borderRadius: 0,
             outline: "none",
             borderBottom: `1px solid ${
               invalidEmail && !isTyping ? "$colors$red" : "$colors$typography"
