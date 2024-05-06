@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { Box } from "../box"
 
 import { Desktop } from "./desktop"
+import { Mobile } from "./mobile"
 
 export const Header = ({ color = "$typography" }: { color?: string }) => {
   const [isVisible, setIsVisible] = useState(false)
@@ -28,6 +29,10 @@ export const Header = ({ color = "$typography" }: { color?: string }) => {
           transition={{ duration: 0.4, ease: "easeOut" }}
           style={{ position: "relative", width: "100%" }}
         >
+          <Box mobile>
+            <Mobile color={color} />
+          </Box>
+
           <Box tablet>
             <Desktop color={color} />
           </Box>

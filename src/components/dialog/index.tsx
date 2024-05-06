@@ -13,9 +13,16 @@ interface IDialog {
   open?: boolean
   onOpenChange?: (value: boolean) => void
   color?: string
+  isMenu?: boolean
 }
 
-export const Dialog = ({ children, open, onOpenChange, color }: IDialog) => {
+export const Dialog = ({
+  children,
+  open,
+  onOpenChange,
+  color,
+  isMenu,
+}: IDialog) => {
   const handleClose = () => {
     if (onOpenChange) {
       onOpenChange(!open)
@@ -30,6 +37,7 @@ export const Dialog = ({ children, open, onOpenChange, color }: IDialog) => {
           onEscapeKeyDown={handleClose}
           onPointerDownOutside={handleClose}
           css={{ ...(color && { background: color }) }}
+          menu={isMenu}
         >
           {children}
           <RadixDialog.Close asChild>
@@ -43,6 +51,11 @@ export const Dialog = ({ children, open, onOpenChange, color }: IDialog) => {
                   top: 40,
                   right: "calc(40px + 10px)",
                 },
+
+                ...(isMenu && {
+                  top: 32,
+                  right: 20,
+                }),
               }}
             >
               <Button variant="tertiary">

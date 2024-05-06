@@ -56,4 +56,13 @@ export const Content = styled(Dialog.Content, {
   '&[data-state="closed"]': {
     animation: `${slideOut} 0.3s ease-out`,
   },
+
+  variants: {
+    menu: {
+      true: {
+        left: 0,
+        background: "$background",
+      },
+    },
+  },
 })

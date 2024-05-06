@@ -6,10 +6,10 @@ import { Container } from "@/components/container"
 import { Grid } from "@/components/grid"
 import { useDebug } from "@/components/grid"
 import { ArrowUp } from "@/components/icons"
+import { LogoFull } from "@/components/icons"
 import { Text } from "@/components/text"
 import { RootState } from "@/state/store"
 
-import { Icon } from "./icon"
 import { Language } from "./language"
 import { Newsletter } from "./newsletter"
 import {
@@ -51,7 +51,7 @@ export const Footer = () => {
             },
           }}
         >
-          <Icon />
+          <LogoFull />
         </Box>
 
         <Box
