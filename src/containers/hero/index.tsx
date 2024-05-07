@@ -78,7 +78,7 @@ export const Hero = (props: HeroProps) => {
 
           <Box
             css={{
-              marginTop: "calc(100vh - 48px)",
+              marginTop: "calc(var(--vh) - 48px)",
               transform: "translateY(-100%)",
               zIndex: 1,
               gridColumn: "span 12",

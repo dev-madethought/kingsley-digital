@@ -43,6 +43,12 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
 
   const handleOpenChange = (value: boolean) => {
     if (onOpenChange) onOpenChange(value)
+
+    if (!value) {
+      // reset on modal close
+      setSending(false)
+      setSent(false)
+    }
   }
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {

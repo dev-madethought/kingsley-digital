@@ -66,7 +66,12 @@ export const Newsletter = ({
       as="form"
       onSubmit={handleSubmitForm}
       noValidate
-      css={{ flexDirection: "column", maxWidth: 333 }}
+      css={{
+        flexDirection: "column",
+        "@tablet": {
+          maxWidth: 333,
+        },
+      }}
     >
       <Text headingS>{title}</Text>
       <Box css={{ position: "relative" }}>
@@ -121,10 +126,7 @@ export const Newsletter = ({
         )}
       </Box>
 
-      <Text
-        caption
-        css={{ marginTop: 15, fontStyle: "italic", color: "#CCCCC6" }}
-      >
+      <Text caption css={{ marginTop: 15, fontStyle: "italic" }}>
         {agreement}
       </Text>
     </Box>

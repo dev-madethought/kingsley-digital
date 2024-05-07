@@ -17,6 +17,8 @@ import {
   getSecondaryTitle,
 } from "./translations"
 
+const DURATION = 3000
+
 export const Philosophy = (props: PhilosophyProps) => {
   const language = useSelector((state: RootState) => state.global.language)
   const { debug, boxShadow } = useDebug()
@@ -30,7 +32,7 @@ export const Philosophy = (props: PhilosophyProps) => {
       setIndex((prevIndex) => {
         return (prevIndex += 1)
       })
-    }, 3000)
+    }, DURATION)
     return () => {
       clearInterval(interval)
     }
@@ -52,7 +54,7 @@ export const Philosophy = (props: PhilosophyProps) => {
           },
         }}
       >
-        <video src={"/mobile.mp4"} muted autoPlay loop />
+        <video src={"/mobile.mp4"} muted autoPlay loop playsInline />
       </Box>
 
       {/* mobile, tablet and desktop */}
@@ -76,7 +78,7 @@ export const Philosophy = (props: PhilosophyProps) => {
             css={{
               flexDirection: "column",
               gridColumn: "span 12",
-              // boxShadow,
+
               "@tablet": {
                 gridColumn: "1 / span 5",
               },
@@ -140,6 +142,7 @@ export const Philosophy = (props: PhilosophyProps) => {
               muted
               autoPlay
               loop
+              playsInline
               style={{
                 opacity: index % 3 === 2 ? 1 : 0,
                 transition: "opacity 0.3s ease-out",
@@ -164,6 +167,7 @@ export const Philosophy = (props: PhilosophyProps) => {
               muted
               autoPlay
               loop
+              playsInline
               style={{
                 opacity: index % 3 === 1 ? 1 : 0,
                 transition: "opacity 0.3s ease-out",
@@ -188,6 +192,7 @@ export const Philosophy = (props: PhilosophyProps) => {
               muted
               autoPlay
               loop
+              playsInline
               style={{
                 opacity: index % 3 === 0 ? 1 : 0,
                 transition: "opacity 0.3s ease-out",

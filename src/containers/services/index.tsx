@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Image from "next/image"
+import { AnimatePresence, motion, stagger } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 
 import { Box } from "@/components/box"
@@ -25,6 +26,24 @@ import {
 } from "./translations"
 
 const LAYOUTS = ["layout1", "layout2", "layout1", "layout3"]
+
+const motionProps = {
+  initial: { opacity: 0 },
+  animate: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.5,
+      delayChildren: 0.5,
+      duration: 0.5,
+      delay: 0.3,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: { staggerChildren: 0.05, staggerDirection: -1, duration: 0.3 },
+  },
+  style: { width: "100%" },
+}
 
 export const Services = (props: ServicesProps) => {
   const dispatch = useDispatch()
@@ -55,136 +74,155 @@ export const Services = (props: ServicesProps) => {
       case "layout1":
         return (
           <Box css={{ gap: 10 }} key={key}>
-            <Box
-              css={{
-                column: 9,
-
-                img: {
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "contain",
-                  objectPosition: "top",
-                },
-              }}
-            >
-              {image1 && (
-                <Image src={image1} alt="image 1" width={504} height={756} />
-              )}
-            </Box>
-
-            <Box
-              tablet
-              css={{
-                column: 5,
-
-                img: {
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "contain",
-                  objectPosition: "top",
-                },
-              }}
-            >
-              {image2 && (
-                <Image src={image2} alt="image 2" width={275} height={367} />
-              )}
-            </Box>
-          </Box>
-        )
-      case "layout2":
-        return (
-          <Box css={{ gap: 10 }} key={key}>
-            <Box
-              tablet
-              css={{
-                column: 5,
-
-                img: {
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "contain",
-                  objectPosition: "top",
-                },
-              }}
-            >
-              {image1 && (
-                <Image src={image1} alt="image 1" width={275} height={367} />
-              )}
-            </Box>
-
-            <Box
-              css={{
-                column: 9,
-
-                img: {
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "contain",
-                  objectPosition: "top",
-                },
-              }}
-            >
-              {image2 && (
-                <Image src={image2} alt="image 2" width={504} height={756} />
-              )}
-            </Box>
-          </Box>
-        )
-      case "layout3":
-        return (
-          <Box css={{ gap: 10 }} key={key}>
-            <Box
-              tablet
-              css={{
-                "@tablet": {
-                  column: 6,
+            <motion.div key="layout11" {...motionProps}>
+              <Box
+                css={{
+                  column: 9,
+                  position: "relative",
 
                   img: {
                     width: "100%",
                     height: "auto",
                     objectFit: "contain",
-                    objectPosition: "bottom",
+                    objectPosition: "top",
                   },
-                },
-              }}
-            >
-              {image1 && (
-                <Image src={image1} alt="image 1" width={333} height={445} />
-              )}
-            </Box>
+                }}
+              >
+                {image1 && (
+                  <Image src={image1} alt="image 1" width={504} height={756} />
+                )}
+              </Box>
+            </motion.div>
 
-            <Box
-              css={{
-                column: 9,
-
-                img: {
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "contain",
-                  objectPosition: "top",
-                },
-
-                "@tablet": {
-                  column: 8,
+            <motion.div key="layout12" {...motionProps}>
+              <Box
+                tablet
+                css={{
+                  column: 5,
+                  position: "relative",
 
                   img: {
-                    marginBottom: 100,
+                    width: "100%",
+                    height: "auto",
+                    objectFit: "contain",
+                    objectPosition: "top",
                   },
-                },
-              }}
-            >
-              {image2 && (
-                <Image src={image2} alt="image 2" width={446} height={669} />
-              )}
-            </Box>
+                }}
+              >
+                {image2 && (
+                  <Image src={image2} alt="image 2" width={275} height={367} />
+                )}
+              </Box>
+            </motion.div>
           </Box>
         )
+      case "layout2":
+        return (
+          <Box css={{ gap: 10 }} key={key}>
+            <motion.div key="layout21" {...motionProps}>
+              <Box
+                tablet
+                css={{
+                  column: 5,
+                  position: "relative",
+
+                  img: {
+                    width: "100%",
+                    height: "auto",
+                    objectFit: "contain",
+                    objectPosition: "top",
+                  },
+                }}
+              >
+                {image1 && (
+                  <Image src={image1} alt="image 1" width={275} height={367} />
+                )}
+              </Box>
+            </motion.div>
+
+            <motion.div key="layout22" {...motionProps}>
+              <Box
+                css={{
+                  column: 9,
+                  position: "relative",
+
+                  img: {
+                    width: "100%",
+                    height: "auto",
+                    objectFit: "contain",
+                    objectPosition: "top",
+                  },
+                }}
+              >
+                {image2 && (
+                  <Image src={image2} alt="image 2" width={504} height={756} />
+                )}
+              </Box>
+            </motion.div>
+          </Box>
+        )
+      case "layout3":
+        return (
+          <Box css={{ gap: 10 }} key={key}>
+            <motion.div key="layout31" {...motionProps}>
+              <Box
+                tablet
+                css={{
+                  "@tablet": {
+                    column: 6,
+
+                    img: {
+                      width: "100%",
+                      height: "auto",
+                      objectFit: "contain",
+                      objectPosition: "bottom",
+                      marginTop: 300,
+                    },
+                  },
+                }}
+              >
+                {image1 && (
+                  <Image src={image1} alt="image 1" width={333} height={445} />
+                )}
+              </Box>
+            </motion.div>
+
+            <motion.div key="layout32" {...motionProps}>
+              <Box
+                css={{
+                  column: 9,
+
+                  img: {
+                    width: "100%",
+                    height: "auto",
+                    objectFit: "contain",
+                    objectPosition: "top",
+                  },
+
+                  "@tablet": {
+                    column: 8,
+
+                    img: {
+                      marginBottom: 100,
+                    },
+                  },
+                }}
+              >
+                {image2 && (
+                  <Image src={image2} alt="image 2" width={446} height={669} />
+                )}
+              </Box>
+            </motion.div>
+          </Box>
+        )
+
       default:
         // generic image
         return (
           <Box
             css={{
               column: 9,
+              position: "relative",
 
               img: {
                 width: "100%",
@@ -193,12 +231,14 @@ export const Services = (props: ServicesProps) => {
               },
             }}
           >
-            <Image
-              src={urlForImage(props.image)}
-              alt="default"
-              width={504}
-              height={756}
-            />
+            <motion.div key="layoutdefault1" {...motionProps}>
+              <Image
+                src={urlForImage(props.image)}
+                alt="default"
+                width={504}
+                height={756}
+              />
+            </motion.div>
           </Box>
         )
     }
@@ -281,7 +321,7 @@ export const Services = (props: ServicesProps) => {
             },
           }}
         >
-          {getImageLayout(index)}
+          <AnimatePresence>{getImageLayout(index)}</AnimatePresence>
         </Box>
 
         {/* ACCORDION */}

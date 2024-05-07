@@ -1,5 +1,4 @@
 import { ReactNode } from "react"
-import { AnimatePresence, motion } from "framer-motion"
 
 import * as RadixDialog from "@radix-ui/react-dialog"
 
