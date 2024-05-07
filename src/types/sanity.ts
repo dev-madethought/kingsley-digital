@@ -68,6 +68,16 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Legal = {
+  _type: "legal";
+  title?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  body?: Array<{
+    _key: string;
+  } & InternationalizedArrayBlockContentValue>;
+};
+
 export type Settings = {
   _id: string;
   _type: "settings";
@@ -217,9 +227,6 @@ export type Philosophy = {
   menu?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
-  title?: Array<{
-    _key: string;
-  } & InternationalizedArrayStringValue>;
   description?: Array<{
     title?: Array<{
       _key: string;
@@ -292,7 +299,9 @@ export type Page = {
     _key: string;
   } & Services) | ({
     _key: string;
-  } & Contacts)>;
+  } & Contacts) | ({
+    _key: string;
+  } & Legal)>;
 };
 
 export type Slug = {
@@ -470,6 +479,8 @@ export type PageQueryResult = Array<{
   } & Contacts) | ({
     _key: string;
   } & Hero) | ({
+    _key: string;
+  } & Legal) | ({
     _key: string;
   } & People) | ({
     _key: string;

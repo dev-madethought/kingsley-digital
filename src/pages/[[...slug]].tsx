@@ -10,6 +10,7 @@ import { Contacts } from "@/containers/contacts"
 import { Cookies } from "@/containers/cookies"
 import { Footer } from "@/containers/footer"
 import { Hero } from "@/containers/hero"
+import { Legal } from "@/containers/legal"
 import { People } from "@/containers/people"
 import { Philosophy } from "@/containers/philosophy"
 import { Services } from "@/containers/services"
@@ -17,6 +18,7 @@ import { client } from "@/sanity/lib/client"
 import {
   Contacts as ContactsProps,
   Hero as HeroProps,
+  Legal as LegalProps,
   People as PeopleProps,
   Philosophy as PhilosophyProps,
   Services as ServicesProps,
@@ -28,6 +30,7 @@ type ContentItem = (
   | PeopleProps
   | PhilosophyProps
   | ServicesProps
+  | LegalProps
 ) & {
   _key: string
 }
@@ -67,6 +70,12 @@ const renderComponent = (props: ContentItem) => {
       return (
         <Section key={props._key} {...common}>
           <Contacts {...props} />
+        </Section>
+      )
+    case "legal":
+      return (
+        <Section key={props._key} {...common}>
+          <Legal {...props} />
         </Section>
       )
     default:

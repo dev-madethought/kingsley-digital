@@ -30,14 +30,6 @@ export default defineType({
               type: "internationalizedArrayString",
             },
           ],
-
-          preview: {
-            prepare() {
-              return {
-                title: "Item",
-              }
-            },
-          },
         },
       ],
     }),

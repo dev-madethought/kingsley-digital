@@ -3,6 +3,7 @@ import { type SchemaTypeDefinition } from "sanity"
 import blockContent from "./schemaTypes/blockContent"
 import contacts from "./schemaTypes/contacts"
 import hero from "./schemaTypes/hero"
+import legal from "./schemaTypes/legal"
 import page from "./schemaTypes/page"
 import people from "./schemaTypes/people"
 import person from "./schemaTypes/person"
@@ -23,5 +24,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     service,
     services,
     settings,
+    legal,
   ],
 }
