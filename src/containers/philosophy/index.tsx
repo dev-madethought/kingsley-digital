@@ -1,28 +1,40 @@
 /* eslint-disable @next/next/no-img-element */
+import { Fragment, useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
-
-import { PortableText } from "@portabletext/react"
 
 import { Box } from "@/components/box"
 import { Container } from "@/components/container"
 import { Grid } from "@/components/grid"
 import { useDebug } from "@/components/grid"
-import { components } from "@/components/portable-text"
 import { Text } from "@/components/text"
-import { urlForImage } from "@/sanity/lib/image"
 import { RootState } from "@/state/store"
 import { Philosophy as PhilosophyProps } from "@/types/sanity"
 
 import {
-  getMainBody,
-  getMainTitle,
-  getSecondaryBody,
+  getPrimaryDescription,
+  getPrimaryTitle,
+  getSecondaryDescription,
   getSecondaryTitle,
 } from "./translations"
 
 export const Philosophy = (props: PhilosophyProps) => {
   const language = useSelector((state: RootState) => state.global.language)
   const { debug, boxShadow } = useDebug()
+  const video1 = useRef<HTMLVideoElement>(null)
+  const video2 = useRef<HTMLVideoElement>(null)
+  const video3 = useRef<HTMLVideoElement>(null)
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => {
+        return (prevIndex += 1)
+      })
+    }, 3000)
+    return () => {
+      clearInterval(interval)
+    }
+  }, [])
 
   return (
     <>
@@ -33,16 +45,14 @@ export const Philosophy = (props: PhilosophyProps) => {
           gridColumn: "span 12",
           boxShadow,
 
-          img: {
+          video: {
             width: "100%",
             alignSelf: "center",
             justifyContent: "center",
           },
         }}
       >
-        {props.image && (
-          <img src={urlForImage(props.image)} alt="philosophy image" />
-        )}
+        <video src={"/mobile.mp4"} muted autoPlay loop />
       </Box>
 
       {/* mobile, tablet and desktop */}
@@ -72,15 +82,15 @@ export const Philosophy = (props: PhilosophyProps) => {
               },
             }}
           >
-            <Text headingS css={{ marginBottom: 40, boxShadow }}>
-              {getMainTitle(language, props)}
-            </Text>
-
-            <Box css={{ flexDirection: "column", gap: 20, boxShadow }}>
-              <PortableText
-                value={getMainBody(language, props)!}
-                components={components}
-              />
+            <Box css={{ flexDirection: "column", gap: 40, boxShadow }}>
+              {props.description?.map((item) => {
+                return (
+                  <Fragment key={item._key}>
+                    <Text headingS>{getPrimaryTitle(language, item)}</Text>
+                    <Text body>{getPrimaryDescription(language, item)}</Text>
+                  </Fragment>
+                )
+              })}
             </Box>
           </Box>
 
@@ -94,23 +104,71 @@ export const Philosophy = (props: PhilosophyProps) => {
               },
             }}
           >
-            <Text headingS css={{ marginBottom: 40, boxShadow, opacity: 0.5 }}>
-              {getSecondaryTitle(language, props)}
-            </Text>
-
             <Box
               css={{
                 flexDirection: "column",
-                gap: 20,
+                gap: 40,
                 boxShadow,
                 opacity: 0.5,
               }}
             >
-              <PortableText
-                value={getSecondaryBody(language, props)!}
-                components={components}
-              />
+              {props.description?.map((item) => {
+                return (
+                  <Fragment key={item._key}>
+                    <Text headingS>{getSecondaryTitle(language, item)}</Text>
+                    <Text body>{getSecondaryDescription(language, item)}</Text>
+                  </Fragment>
+                )
+              })}
             </Box>
+          </Box>
+
+          <Box
+            tablet
+            css={{
+              gridColumn: "16 / span 3",
+              boxShadow,
+
+              video: {
+                width: "100%",
+              },
+            }}
+          >
+            <video
+              ref={video3}
+              src={"/desktop-3.mp4"}
+              muted
+              autoPlay
+              loop
+              style={{
+                opacity: index % 3 === 2 ? 1 : 0,
+                transition: "opacity 0.3s ease-out",
+              }}
+            />
+          </Box>
+
+          <Box
+            tablet
+            css={{
+              gridColumn: "19 / span 3",
+              boxShadow,
+
+              video: {
+                width: "100%",
+              },
+            }}
+          >
+            <video
+              ref={video2}
+              src={"/desktop-2.mp4"}
+              muted
+              autoPlay
+              loop
+              style={{
+                opacity: index % 3 === 1 ? 1 : 0,
+                transition: "opacity 0.3s ease-out",
+              }}
+            />
           </Box>
 
           <Box
@@ -119,16 +177,22 @@ export const Philosophy = (props: PhilosophyProps) => {
               gridColumn: "22 / span 3",
               boxShadow,
 
-              img: {
+              video: {
                 width: "100%",
-                alignSelf: "center",
-                justifyContent: "center",
               },
             }}
           >
-            {props.image && (
-              <img src={urlForImage(props.image)} alt="philosophy image" />
-            )}
+            <video
+              ref={video1}
+              src={"/desktop-1.mp4"}
+              muted
+              autoPlay
+              loop
+              style={{
+                opacity: index % 3 === 0 ? 1 : 0,
+                transition: "opacity 0.3s ease-out",
+              }}
+            />
           </Box>
         </Grid>
       </Container>

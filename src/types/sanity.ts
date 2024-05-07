@@ -220,20 +220,15 @@ export type Philosophy = {
   title?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
-  body?: Array<{
+  description?: Array<{
+    title?: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue>;
+    description?: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue>;
     _key: string;
-  } & InternationalizedArrayBlockContentValue>;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
+  }>;
 };
 
 export type Person = {
@@ -578,29 +573,6 @@ export type SettingsQueryResult = Array<{
 // Variable: menuQuery
 // Query: *[_type == "page" && title == "Homepage"] {    "content": content[!(_type == "hero" && !defined(menu))] {      _type,      menu    }  }  
 export type MenuQueryResult = Array<{
-  content: Array<{
-    _type: "contacts";
-    menu: Array<{
-      _key: string;
-    } & InternationalizedArrayStringValue> | null;
-  } | {
-    _type: "hero";
-    menu: null;
-  } | {
-    _type: "people";
-    menu: Array<{
-      _key: string;
-    } & InternationalizedArrayStringValue> | null;
-  } | {
-    _type: "philosophy";
-    menu: Array<{
-      _key: string;
-    } & InternationalizedArrayStringValue> | null;
-  } | {
-    _type: "services";
-    menu: Array<{
-      _key: string;
-    } & InternationalizedArrayStringValue> | null;
-  }> | null;
+  content: Array<null>;
 }>;
 

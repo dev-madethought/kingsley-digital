@@ -132,7 +132,7 @@ export const Services = (props: ServicesProps) => {
         )
       case "layout3":
         return (
-          <Box css={{ gap: 10, border: "1px dashed red" }} key={key}>
+          <Box css={{ gap: 10 }} key={key}>
             <Box
               tablet
               css={{

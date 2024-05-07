@@ -10,20 +10,36 @@ export default defineType({
       title: "Menu",
       type: "internationalizedArrayString",
     }),
+
     defineField({
-      name: "title",
-      title: "Title",
-      type: "internationalizedArrayString",
-    }),
-    defineField({
-      name: "body",
-      title: "Body",
-      type: "internationalizedArrayBlockContent",
-    }),
-    defineField({
-      name: "image",
-      type: "image",
-      title: "Image",
+      name: "description",
+      title: "Description",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "title",
+              title: "Title",
+              type: "internationalizedArrayString",
+            },
+            {
+              name: "description",
+              title: "Description",
+              type: "internationalizedArrayString",
+            },
+          ],
+
+          preview: {
+            prepare() {
+              return {
+                title: "Item",
+              }
+            },
+          },
+        },
+      ],
     }),
   ],
 

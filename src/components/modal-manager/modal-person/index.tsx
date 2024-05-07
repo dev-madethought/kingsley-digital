@@ -130,6 +130,7 @@ export const ModalPerson = ({ open, onOpenChange }: ModalPersonProps) => {
             css={{
               flexDirection: "column",
               column: 4,
+              opacity: 0.5,
               boxShadow,
             }}
           >
