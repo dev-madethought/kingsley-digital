@@ -11,6 +11,7 @@ import { Grid, useDebug } from "@/components/grid"
 import { ArrowUp, LogoMark } from "@/components/icons"
 import { Text } from "@/components/text"
 import { Language } from "@/containers/footer/language"
+import useScroll from "@/hooks/useScroll"
 import { RootState } from "@/state/store"
 
 import { getPrimaryLabel } from "./translations"
@@ -23,6 +24,8 @@ type ModalMenuProps = {
 export const ModalMenu = ({ open, onOpenChange }: ModalMenuProps) => {
   const router = useRouter()
   const { boxShadow } = useDebug()
+  const { section } = useScroll()
+
   const settings = useSelector((state: RootState) => state.global.settings)
   const language = useSelector((state: RootState) => state.global.language)
   const menu = useSelector((state: RootState) => state.global.menu)
@@ -62,6 +65,10 @@ export const ModalMenu = ({ open, onOpenChange }: ModalMenuProps) => {
       handleOpenChange(false)
     }
   }, [router.asPath])
+
+  const handleSocialLinks = () => {
+    handleOpenChange(false)
+  }
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange} isMenu>
@@ -108,15 +115,29 @@ export const ModalMenu = ({ open, onOpenChange }: ModalMenuProps) => {
                   },
                 }}
               >
-                {menu?.map((item: any, i: number) => (
-                  <Button
-                    key={i}
-                    variant="tertiary"
-                    onClick={() => handleNavigation(item.id)}
-                  >
-                    <Text headingS>{getPrimaryLabel(language, item)}</Text>
-                  </Button>
-                ))}
+                {menu?.map((item: any, i: number) => {
+                  const selected =
+                    (section === "hero" && i === 0) || section === item.id
+                  return (
+                    <Button
+                      key={i}
+                      variant="tertiary"
+                      onClick={() => handleNavigation(item.id)}
+                    >
+                      {selected && (
+                        <Box
+                          css={{
+                            width: 4,
+                            height: 4,
+                            borderRadius: 4,
+                            background: "$typography",
+                          }}
+                        />
+                      )}
+                      <Text headingS>{getPrimaryLabel(language, item)}</Text>
+                    </Button>
+                  )
+                })}
               </Box>
 
               <Box
@@ -140,7 +161,12 @@ export const ModalMenu = ({ open, onOpenChange }: ModalMenuProps) => {
                 ))}
 
                 {socialLinks?.map((link: any) => (
-                  <Button key={link._key} variant="secondary" href={link.url}>
+                  <Button
+                    key={link._key}
+                    variant="secondary"
+                    href={link.url}
+                    onClick={handleSocialLinks}
+                  >
                     {String(link.label).toUpperCase()}
                     <ArrowUp />
                   </Button>

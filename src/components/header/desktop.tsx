@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import Link from "next/link"
 import { useSelector } from "react-redux"
 
 import useScroll from "@/hooks/useScroll"
@@ -63,9 +64,15 @@ export const Desktop = ({ color }: { color: string }) => {
             css={{
               gridColumn: "1 / span 2",
               boxShadow,
+
+              a: {
+                color: "inherit",
+              },
             }}
           >
-            <LogoWords />
+            <Link href="/">
+              <LogoWords />
+            </Link>
           </Box>
           <Box
             css={{

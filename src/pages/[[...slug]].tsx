@@ -1,94 +1,36 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import groq from "groq"
+import { useDispatch, useSelector } from "react-redux"
 
+import { AnimateRectMask } from "@/components/animate-rect-mask"
+// import { AnimateRectMask } from "@/components/animate-rect-mask"
 import { Box } from "@/components/box"
 import { Header } from "@/components/header"
+import { LoadingAnimation } from "@/components/loading-animation"
 import ModalManager from "@/components/modal-manager"
-import { Section } from "@/components/section"
-import { Contacts } from "@/containers/contacts"
 import { Cookies } from "@/containers/cookies"
 import { Footer } from "@/containers/footer"
-import { Hero } from "@/containers/hero"
-import { Legal } from "@/containers/legal"
-import { People } from "@/containers/people"
-import { Philosophy } from "@/containers/philosophy"
-import { Services } from "@/containers/services"
+import { type ContentItem, renderComponent } from "@/lib/render"
 import { client } from "@/sanity/lib/client"
-import {
-  Contacts as ContactsProps,
-  Hero as HeroProps,
-  Legal as LegalProps,
-  People as PeopleProps,
-  Philosophy as PhilosophyProps,
-  Services as ServicesProps,
-} from "@/types/sanity"
+import { setStep } from "@/state/reducers/intro"
+import { RootState } from "@/state/store"
 
-type ContentItem = (
-  | ContactsProps
-  | HeroProps
-  | PeopleProps
-  | PhilosophyProps
-  | ServicesProps
-  | LegalProps
-) & {
-  _key: string
-}
+// import { delay } from "@/utils"
 
 type PageProps = {
   content: ContentItem[]
 }
 
-const renderComponent = (props: ContentItem) => {
-  const common = { id: props._type }
-  switch (props._type) {
-    case "hero":
-      return (
-        <Section key={props._key} {...common}>
-          <Hero {...props} />
-        </Section>
-      )
-    case "philosophy":
-      return (
-        <Section key={props._key} {...common}>
-          <Philosophy {...props} />
-        </Section>
-      )
-    case "people":
-      return (
-        <Section key={props._key} {...common}>
-          <People {...props} />
-        </Section>
-      )
-    case "services":
-      return (
-        <Section key={props._key} {...common}>
-          <Services {...props} />
-        </Section>
-      )
-    case "contacts":
-      return (
-        <Section key={props._key} {...common}>
-          <Contacts {...props} />
-        </Section>
-      )
-    case "legal":
-      return (
-        <Section key={props._key} {...common}>
-          <Legal {...props} />
-        </Section>
-      )
-    default:
-      return null
-  }
-}
-
 const pageQuery = groq`*[_type == "page" && slug.current == $slug]`
 
 export default function Page() {
+  const dispatch = useDispatch()
   const router = useRouter()
   const { slug } = router.query
   const [pageData, setPageData] = useState<PageProps | null>(null)
+  const { step } = useSelector((state: RootState) => state.intro)
+  console.log("render", step)
 
   useEffect(() => {
     // on initial page load, the router is not ready yet
@@ -97,28 +39,37 @@ export default function Page() {
 
     client
       .fetch(pageQuery, { slug: nextSlug[0] })
-      .then((data) => {
+      .then(async (data) => {
         // if no data is returned, redirect to homepage
         if (data.length === 0) {
           router.push("/")
         } else {
+          // fake a 2 second delay
+          // await delay(2000)
           setPageData(data[0])
+          dispatch(setStep(1))
         }
       })
       .catch(console.error)
-  }, [router, slug, router.asPath])
-
-  if (!pageData) return <Box>Loading...</Box>
+  }, [dispatch, router, slug, router.asPath])
 
   return (
     <>
-      <Header />
-      <Box css={{ flexDirection: "column" }}>
-        {pageData?.content?.map(renderComponent)}
+      <LoadingAnimation />
+      <AnimateRectMask>
+        <Header />
+        <Box
+          css={{
+            flexDirection: "column",
+            minHeight: "100vh",
+          }}
+        >
+          {pageData?.content?.map(renderComponent)}
+        </Box>
         <Footer />
         <Cookies />
-      </Box>
-      <ModalManager />
+        <ModalManager />
+      </AnimateRectMask>
     </>
   )
 }

@@ -51,6 +51,7 @@ export const Philosophy = (props: PhilosophyProps) => {
             width: "100%",
             alignSelf: "center",
             justifyContent: "center",
+            pointerEvents: "none",
           },
         }}
       >

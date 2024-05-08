@@ -4,6 +4,7 @@ import { all, fork } from "redux-saga/effects"
 import { configureStore } from "@reduxjs/toolkit"
 
 import global, { saga as globalSaga } from "./reducers/global"
+import intro from "./reducers/intro"
 import modals from "./reducers/modals"
 import people from "./reducers/people"
 import service from "./reducers/service"
@@ -18,6 +19,7 @@ export const store: any = configureStore({
     modals,
     people,
     service,
+    intro,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(middleware),

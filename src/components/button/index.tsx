@@ -201,6 +201,7 @@ export const Button = ({
         rel={rel}
         className={className}
         target={target}
+        onClick={onClick}
         {...props}
       >
         <Layout variant={variant} disabled={disabled}>
@@ -221,6 +222,10 @@ export const Button = ({
       css={{
         background: "none",
         border: "none",
+
+        "&:focus": {
+          outline: "none",
+        },
       }}
     >
       <Layout variant={variant} disabled={disabled}>

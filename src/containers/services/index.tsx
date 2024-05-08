@@ -252,7 +252,6 @@ export const Services = (props: ServicesProps) => {
     <Container
       debug={debug}
       css={{
-        background: "$background",
         paddingTop: 166,
         paddingBottom: 56,
 
@@ -314,6 +313,7 @@ export const Services = (props: ServicesProps) => {
             gridColumn: "span 12",
             marginTop: 113,
             marginBottom: 48,
+            zIndex: -1,
 
             "@tablet": {
               marginBottom: 0,
