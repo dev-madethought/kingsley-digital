@@ -67,6 +67,23 @@ export const Hero = (props: HeroProps) => {
             zIndex: -1,
           }}
         />
+        <Box
+          css={{
+            aspectRatio: 1,
+            width: "100%",
+            backgroundColor: "transparent",
+            backgroundImage:
+              "radial-gradient(circle, black 1px, transparent 1px)",
+            backgroundSize: "6px 6px",
+            backgroundPosition: "center center",
+
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+          }}
+        />
 
         <Box
           css={{
