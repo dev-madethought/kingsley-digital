@@ -63,3 +63,8 @@ export const getSubmitButton = (language: string, props: any) => {
   const data = props?.submit?.find((g: any) => g._key === language)
   return data?.value
 }
+
+export const getSuccessMessage = (language: string, props: any) => {
+  const data = props?.success?.find((g: any) => g._key === language)
+  return data?.value
+}

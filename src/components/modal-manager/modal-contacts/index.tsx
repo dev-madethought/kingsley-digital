@@ -26,6 +26,7 @@ import {
   getSubjectsArray,
   getSubmitButton,
   getSubscribe,
+  getSuccessMessage,
   getTitle,
 } from "./translations"
 
@@ -302,19 +303,12 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
         ) : (
           <Box css={{ gap: 10 }}>
             <Box css={{ column: 1 }} />
-            <Text>Email sent</Text>
+            <Box css={{ column: 9, boxShadow }}>
+              <Text>{getSuccessMessage(language, settings?.contacts)}</Text>
+            </Box>
           </Box>
         )}
       </Box>
     </Dialog>
   )
 }
-
-/*
-Missing:
-
-Add some labels to the settings,
-add some of this to the translations.
-
-Mobile layouts
-*/

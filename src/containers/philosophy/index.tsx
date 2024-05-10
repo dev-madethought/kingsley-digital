@@ -59,12 +59,7 @@ export const Philosophy = (props: PhilosophyProps) => {
       </Box>
 
       {/* mobile, tablet and desktop */}
-      <Container
-        debug={debug}
-        css={{
-          background: "$background",
-        }}
-      >
+      <Container debug={debug}>
         <Grid
           css={{
             paddingTop: 88,

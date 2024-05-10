@@ -55,7 +55,7 @@ export const Contacts = (props: ContactsProps) => {
         <Box
           css={{
             gridColumn: "1 / span 12",
-            marginBottom: 317,
+            marginBottom: 56,
             boxShadow,
 
             "@tablet": {

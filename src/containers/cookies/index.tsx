@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { useSelector } from "react-redux"
@@ -8,6 +9,7 @@ import { PortableText } from "@portabletext/react"
 import { Box } from "@/components/box"
 import { Button } from "@/components/button"
 import { RootState } from "@/state/store"
+import { STEPS } from "@/types/intro"
 
 import { components } from "./components"
 import { getButtonGotIt, getCookiesMessage } from "./translations"
@@ -15,22 +17,20 @@ import { getButtonGotIt, getCookiesMessage } from "./translations"
 export const Cookies = () => {
   const settings = useSelector((state: RootState) => state.global.settings)
   const language = useSelector((state: RootState) => state.global.language)
+  const { step } = useSelector((state: RootState) => state.intro)
+
   const [isVisible, setIsVisible] = useState(false)
   const cookies = new Cookie()
 
   useEffect(() => {
     const savedCookie = cookies.get("userAcceptedCookies")
 
-    const timeout = setTimeout(() => {
-      if (!savedCookie) {
-        setIsVisible(true)
-      }
-    }, 1000)
-    return () => {
-      clearTimeout(timeout)
+    if (step !== STEPS.DONE) return
+
+    if (!savedCookie) {
+      setIsVisible(true)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [step])
 
   const handleAccept = () => {
     cookies.set("userAcceptedCookies", "true", { path: "/" })
@@ -46,6 +46,7 @@ export const Cookies = () => {
             bottom: "$space$20",
             right: "$space$20",
             column: 12,
+            zIndex: 999,
 
             "@tablet": {
               bottom: "$space$40",

@@ -1,10 +1,10 @@
+"use client"
+
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import groq from "groq"
 import { useDispatch, useSelector } from "react-redux"
 
-import { AnimateRectMask } from "@/components/animate-rect-mask"
-// import { AnimateRectMask } from "@/components/animate-rect-mask"
 import { Box } from "@/components/box"
 import { Header } from "@/components/header"
 import { LoadingAnimation } from "@/components/loading-animation"
@@ -15,8 +15,7 @@ import { type ContentItem, renderComponent } from "@/lib/render"
 import { client } from "@/sanity/lib/client"
 import { setStep } from "@/state/reducers/intro"
 import { RootState } from "@/state/store"
-
-// import { delay } from "@/utils"
+import { STEPS } from "@/types/intro"
 
 type PageProps = {
   content: ContentItem[]
@@ -29,8 +28,7 @@ export default function Page() {
   const router = useRouter()
   const { slug } = router.query
   const [pageData, setPageData] = useState<PageProps | null>(null)
-  const { step } = useSelector((state: RootState) => state.intro)
-  console.log("render", step)
+  const { firstTime } = useSelector((state: RootState) => state.intro)
 
   useEffect(() => {
     // on initial page load, the router is not ready yet
@@ -44,32 +42,35 @@ export default function Page() {
         if (data.length === 0) {
           router.push("/")
         } else {
-          // fake a 2 second delay
-          // await delay(2000)
           setPageData(data[0])
-          dispatch(setStep(1))
+          // only animate the very first time the user lands on the homepage.
+          if (firstTime) {
+            dispatch(setStep(STEPS.ANIMATE))
+          }
         }
       })
       .catch(console.error)
-  }, [dispatch, router, slug, router.asPath])
+  }, [dispatch, router, slug, router.asPath, firstTime])
 
   return (
     <>
-      <LoadingAnimation />
-      <AnimateRectMask>
-        <Header />
-        <Box
-          css={{
-            flexDirection: "column",
-            minHeight: "100vh",
-          }}
-        >
-          {pageData?.content?.map(renderComponent)}
-        </Box>
-        <Footer />
-        <Cookies />
-        <ModalManager />
-      </AnimateRectMask>
+      <Box
+        css={{
+          position: "relative",
+          flexDirection: "column",
+          minHeight: "100vh",
+        }}
+      >
+        {pageData?.content?.map(renderComponent)}
+      </Box>
+
+      <Header />
+
+      <Footer />
+      <Cookies />
+      <ModalManager />
+
+      <LoadingAnimation content={pageData?.content} />
     </>
   )
 }

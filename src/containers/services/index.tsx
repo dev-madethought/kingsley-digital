@@ -313,7 +313,6 @@ export const Services = (props: ServicesProps) => {
             gridColumn: "span 12",
             marginTop: 113,
             marginBottom: 48,
-            zIndex: -1,
 
             "@tablet": {
               marginBottom: 0,

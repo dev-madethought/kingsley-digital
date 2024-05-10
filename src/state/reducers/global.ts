@@ -71,7 +71,8 @@ function fetchSettingsData() {
       "subject": contactsSubject,
       "subjects": contactsSubjects,
       "message": contactsMessage,
-      "subscribe": contactsSubscribe
+      "subscribe": contactsSubscribe,
+      "success": contactsSuccess
     },
     "buttons": {
       "biography": buttonsReadBio,
@@ -134,7 +135,7 @@ function* handleSaga(): any {
   yield put(slice.actions.setReady(true))
 
   // 5) simulate fake modal
-  // yield put(setModal({ type: "menu" }))
+  // yield put(setModal({ type: "contacts" }))
 }
 
 export function* saga() {

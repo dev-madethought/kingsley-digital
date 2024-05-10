@@ -1,3 +1,6 @@
+"use client"
+
+import { useEffect, useRef } from "react"
 import { useSelector } from "react-redux"
 
 import { PortableText } from "@portabletext/react"
@@ -10,6 +13,7 @@ import { Header } from "@/components/header"
 import { components } from "@/components/portable-text"
 import { Text } from "@/components/text"
 import { RootState } from "@/state/store"
+import { STEPS } from "@/types/intro"
 import { Hero as HeroProps } from "@/types/sanity"
 
 import { Sentence } from "./sentence"
@@ -24,51 +28,50 @@ import {
 
 export const Hero = (props: HeroProps) => {
   const language = useSelector((state: RootState) => state.global.language)
+  const { step } = useSelector((state: RootState) => state.intro)
   const { debug, boxShadow } = useDebug()
+
+  const video = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    if (step === STEPS.DONE) {
+      video.current?.play()
+    }
+  }, [step])
 
   return (
     <Container
       debug={debug}
       css={{
         position: "relative",
-        overflow: "hidden",
+        clipPath: "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%)",
+        ...(step === STEPS.DONE && { zIndex: 1 }),
       }}
     >
       <Grid>
         <Box
+          ref={video}
           as="video"
           src={"/hero.mp4"}
-          autoPlay
+          autoPlay={false}
           muted
           loop
           playsInline
           css={{
-            display: "unset",
             position: "absolute",
             top: 0,
             left: 0,
             width: "100%",
             height: "100%",
             objectFit: "cover",
+            zIndex: -1,
           }}
         />
 
         <Box
           css={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            zIndex: 99999999,
-          }}
-        >
-          <Header color="white" />
-        </Box>
-
-        <Box
-          css={{
             marginTop: "calc(var(--vh) - 48px)",
             transform: "translateY(-100%)",
-            zIndex: 1,
             gridColumn: "span 12",
             boxShadow,
 
@@ -80,6 +83,7 @@ export const Hero = (props: HeroProps) => {
           <Sentence
             greeting={getGreeting(language, props) as any}
             sentence={getSentence(language, props) as any}
+            opacity={step === STEPS.DONE ? 1 : 0}
           />
         </Box>
 
@@ -89,7 +93,6 @@ export const Hero = (props: HeroProps) => {
             gridColumn: "span 12",
             color: "white",
             boxShadow,
-            zIndex: 1,
             marginBottom: 32,
 
             "@tablet": {
@@ -113,7 +116,6 @@ export const Hero = (props: HeroProps) => {
             color: "white",
             boxShadow,
             gap: 20,
-            zIndex: 1,
             marginBottom: 50,
 
             "@tablet": {
@@ -141,6 +143,17 @@ export const Hero = (props: HeroProps) => {
               components={components}
             />
           </Box>
+        </Box>
+
+        <Box
+          css={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            zIndex: 1, // needs to be on top of the sentence
+          }}
+        >
+          <Header color="white" />
         </Box>
       </Grid>
     </Container>

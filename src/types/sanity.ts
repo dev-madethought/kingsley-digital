@@ -491,7 +491,7 @@ export type PageQueryResult = Array<{
 
 // Source: src/state/reducers/global.ts
 // Variable: settingsQuery
-// Query: *[_type == "settings"]{    "links": links[]->{_id,title, slug},    socialLinks,    "newsletter": {      "title": newsletterTitle,      "agreement": newsletterAgreement,      "placeholder": newsletterPlaceholder,    },    "cookies":{      "message": cookiesMessage,    },    "contacts": {      "title": contactsTitle,      "description": contactsDescription,      "name": contactsName,      "phone": contactsPhone,      "organisation": contactsOrganisation,      "email": contactsEmail,      "subject": contactsSubject,      "subjects": contactsSubjects,      "message": contactsMessage,      "subscribe": contactsSubscribe    },    "buttons": {      "biography": buttonsReadBio,      "email": buttonsEmail,      "linkedin": buttonsLinkedIn,      "gotit": buttonsGotIt,      "learnmore": buttonsLearnMore,      "contactus": buttonsContactUs,      "map": buttonsMap,      "submit": buttonsSubmit    }  }
+// Query: *[_type == "settings"]{    "links": links[]->{_id,title, slug},    socialLinks,    "newsletter": {      "title": newsletterTitle,      "agreement": newsletterAgreement,      "placeholder": newsletterPlaceholder,    },    "cookies":{      "message": cookiesMessage,    },    "contacts": {      "title": contactsTitle,      "description": contactsDescription,      "name": contactsName,      "phone": contactsPhone,      "organisation": contactsOrganisation,      "email": contactsEmail,      "subject": contactsSubject,      "subjects": contactsSubjects,      "message": contactsMessage,      "subscribe": contactsSubscribe,      "success": contactsSuccess    },    "buttons": {      "biography": buttonsReadBio,      "email": buttonsEmail,      "linkedin": buttonsLinkedIn,      "gotit": buttonsGotIt,      "learnmore": buttonsLearnMore,      "contactus": buttonsContactUs,      "map": buttonsMap,      "submit": buttonsSubmit    }  }
 export type SettingsQueryResult = Array<{
   links: Array<{
     _id: string;
@@ -551,6 +551,9 @@ export type SettingsQueryResult = Array<{
       _key: string;
     } & InternationalizedArrayStringValue> | null;
     subscribe: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue> | null;
+    success: Array<{
       _key: string;
     } & InternationalizedArrayStringValue> | null;
   };
