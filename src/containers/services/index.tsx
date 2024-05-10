@@ -35,13 +35,13 @@ const motionProps = {
       staggerChildren: 0.5,
       delayChildren: 0.5,
       duration: 0.5,
-      delay: 0.3,
+      // delay: 0.3,
     },
   },
-  exit: {
-    opacity: 0,
-    transition: { staggerChildren: 0.05, staggerDirection: -1, duration: 0.3 },
-  },
+  // exit: {
+  //   opacity: 0,
+  //   transition: { staggerChildren: 0.05, staggerDirection: -1, duration: 0.3 },
+  // },
   style: { width: "100%" },
 }
 
