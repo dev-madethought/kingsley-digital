@@ -12,7 +12,7 @@ import { RootState } from "@/state/store"
 import { STEPS } from "@/types/intro"
 
 import { Box } from "../box"
-import { LogoMark, LogoWords } from "../icons"
+import { LogoFull, LogoMark, LogoWords } from "../icons"
 
 const ease = "power2.inOut"
 const centerX = "calc((var(--vw) - 240px) / 2)"
@@ -247,6 +247,7 @@ export const LoadingAnimation = ({ content }: { content?: ContentItem[] }) => {
       <Box
         id="left"
         ref={left}
+        tablet
         css={{
           position: "absolute",
           top: "50%",
@@ -261,6 +262,7 @@ export const LoadingAnimation = ({ content }: { content?: ContentItem[] }) => {
       <Box
         id="right"
         ref={right}
+        tablet
         css={{
           position: "absolute",
           top: "50%",
