@@ -7,6 +7,7 @@ import { setPerson } from "@/state/reducers/people"
 import { RootState } from "@/state/store"
 import { Person as PersonProps } from "@/types/sanity"
 
+import { AnimationFadeIn } from "../animation-fade-in"
 import { Box } from "../box"
 import { Button } from "../button"
 import { useDebug } from "../grid"
@@ -52,7 +53,9 @@ export const Person = ({ person }: { person: PersonProps }) => {
             },
           }}
         >
-          <img src={urlForImage(person.image)} alt="Person image" />
+          <AnimationFadeIn>
+            <img src={urlForImage(person.image)} alt="Person image" />
+          </AnimationFadeIn>
         </Box>
       </Box>
 

@@ -2,6 +2,7 @@
 import { Fragment, useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 
+import { AnimationFadeIn } from "@/components/animation-fade-in"
 import { Box } from "@/components/box"
 import { Container } from "@/components/container"
 import { Grid } from "@/components/grid"
@@ -84,8 +85,12 @@ export const Philosophy = (props: PhilosophyProps) => {
               {props.description?.map((item) => {
                 return (
                   <Fragment key={item._key}>
-                    <Text headingS>{getPrimaryTitle(language, item)}</Text>
-                    <Text body>{getPrimaryDescription(language, item)}</Text>
+                    <AnimationFadeIn>
+                      <Text headingS>{getPrimaryTitle(language, item)}</Text>
+                    </AnimationFadeIn>
+                    <AnimationFadeIn>
+                      <Text body>{getPrimaryDescription(language, item)}</Text>
+                    </AnimationFadeIn>
                   </Fragment>
                 )
               })}
@@ -113,8 +118,14 @@ export const Philosophy = (props: PhilosophyProps) => {
               {props.description?.map((item) => {
                 return (
                   <Fragment key={item._key}>
-                    <Text headingS>{getSecondaryTitle(language, item)}</Text>
-                    <Text body>{getSecondaryDescription(language, item)}</Text>
+                    <AnimationFadeIn>
+                      <Text headingS>{getSecondaryTitle(language, item)}</Text>
+                    </AnimationFadeIn>
+                    <AnimationFadeIn>
+                      <Text body>
+                        {getSecondaryDescription(language, item)}
+                      </Text>
+                    </AnimationFadeIn>
                   </Fragment>
                 )
               })}

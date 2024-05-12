@@ -2,6 +2,8 @@ import { Fragment, useEffect, useRef } from "react"
 import { scroll } from "framer-motion/dom"
 import { useSelector } from "react-redux"
 
+import { AnimationCharacterReveal } from "@/components/animate-character-reveal"
+import { AnimationFadeIn } from "@/components/animation-fade-in"
 import { Box } from "@/components/box"
 import { Container } from "@/components/container"
 import { Grid } from "@/components/grid"
@@ -67,7 +69,9 @@ export const People = (props: PeopleProps) => {
             },
           }}
         >
-          <Text headingM>{getTitle(language, props)}</Text>
+          <Text headingM>
+            <AnimationCharacterReveal text={getTitle(language, props)} />
+          </Text>
         </Box>
 
         <Box
@@ -80,7 +84,9 @@ export const People = (props: PeopleProps) => {
             },
           }}
         >
-          {getPrimaryDescription(language, props)}
+          <AnimationFadeIn>
+            {getPrimaryDescription(language, props)}
+          </AnimationFadeIn>
         </Box>
 
         <Box
@@ -94,7 +100,9 @@ export const People = (props: PeopleProps) => {
             },
           }}
         >
-          {getSecondaryDescription(language, props)}
+          <AnimationFadeIn>
+            {getSecondaryDescription(language, props)}
+          </AnimationFadeIn>
         </Box>
       </Grid>
 
