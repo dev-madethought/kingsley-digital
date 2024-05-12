@@ -1,4 +1,5 @@
 import type { AppProps } from "next/app"
+import { ParallaxProvider } from "react-scroll-parallax"
 
 import { Application } from "@/components/application"
 import { ClientProvider } from "@/state/client-provider"
@@ -9,9 +10,11 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ClientProvider>
-      <Application>
-        <Component {...pageProps} />
-      </Application>
+      <ParallaxProvider>
+        <Application>
+          <Component {...pageProps} />
+        </Application>
+      </ParallaxProvider>
     </ClientProvider>
   )
 }
