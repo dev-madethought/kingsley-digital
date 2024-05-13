@@ -59,7 +59,7 @@ export const Contacts = (props: ContactsProps) => {
             boxShadow,
 
             "@tablet": {
-              gridColumn: "1 / span 15",
+              gridColumn: "1 / span 19",
               marginBottom: 0,
             },
 
@@ -80,7 +80,7 @@ export const Contacts = (props: ContactsProps) => {
             boxShadow,
 
             "@tablet": {
-              gridColumn: "1 / span 10",
+              gridColumn: "1 / span 11",
               marginTop: 154,
             },
 
@@ -100,7 +100,7 @@ export const Contacts = (props: ContactsProps) => {
               flexDirection: "column",
               opacity: 0.5,
               boxShadow,
-              gridColumn: "12 / span 10",
+              gridColumn: "13 / span 11",
               marginTop: 154,
             },
 
@@ -119,6 +119,10 @@ export const Contacts = (props: ContactsProps) => {
             gridColumn: "1 / span 12",
             boxShadow,
             marginTop: 40,
+
+            "@tablet": {
+              marginBottom: 80,
+            },
           }}
         >
           <Button onClick={handleClick}>
@@ -170,13 +174,13 @@ export const Contacts = (props: ContactsProps) => {
           ))}
         </Box>
 
-        {/* emails & links DESKTOP*/}
+        {/* emails & links TABLET / DESKTOP */}
         <Box
           tablet
           css={{
             "@tablet": {
               flexDirection: "column",
-              gridColumn: "5 / span 5",
+              gridColumn: "1 / span 5",
               boxShadow,
               marginTop: 36,
             },
@@ -201,7 +205,7 @@ export const Contacts = (props: ContactsProps) => {
           css={{
             "@tablet": {
               flexDirection: "column",
-              gridColumn: "10 / span 5",
+              gridColumn: "7 / span 5",
               boxShadow,
               opacity: 0.5,
               marginTop: 36,
@@ -224,7 +228,7 @@ export const Contacts = (props: ContactsProps) => {
           css={{
             "@tablet": {
               flexDirection: "column",
-              gridColumn: "17 / span 8",
+              gridColumn: "13 / span 8",
               boxShadow,
               marginTop: 36,
             },
@@ -253,7 +257,7 @@ export const Contacts = (props: ContactsProps) => {
           css={{
             "@tablet": {
               flexDirection: "column",
-              gridColumn: "5 / span 5",
+              gridColumn: "1 / span 5",
               boxShadow,
               marginTop: 16,
             },
@@ -275,7 +279,7 @@ export const Contacts = (props: ContactsProps) => {
           css={{
             "@tablet": {
               flexDirection: "column",
-              gridColumn: "10 / span 5",
+              gridColumn: "7 / span 5",
               boxShadow,
               opacity: 0.5,
               marginTop: 16,
@@ -298,7 +302,7 @@ export const Contacts = (props: ContactsProps) => {
           css={{
             "@tablet": {
               flexDirection: "column",
-              gridColumn: "17 / span 8",
+              gridColumn: "13 / span 8",
               boxShadow,
               marginTop: 16,
             },
@@ -356,7 +360,7 @@ export const Contacts = (props: ContactsProps) => {
             boxShadow,
 
             "@tablet": {
-              gridColumn: "8 / span 7",
+              gridColumn: "7 / span 8",
               marginTop: 189,
             },
 
@@ -383,8 +387,12 @@ export const Contacts = (props: ContactsProps) => {
             "@tablet": {
               flexDirection: "column",
               boxShadow,
-              gridColumn: "18 / span 7",
+              gridColumn: "17 / span 8",
               marginTop: 189,
+            },
+
+            "@desktop": {
+              gridColumn: "18 / span 7",
             },
           }}
         >
