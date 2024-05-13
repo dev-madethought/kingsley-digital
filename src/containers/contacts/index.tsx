@@ -59,6 +59,11 @@ export const Contacts = (props: ContactsProps) => {
             boxShadow,
 
             "@tablet": {
+              gridColumn: "1 / span 15",
+              marginBottom: 0,
+            },
+
+            "@desktop": {
               gridColumn: "1 / span 11",
               marginBottom: 0,
             },
@@ -75,6 +80,11 @@ export const Contacts = (props: ContactsProps) => {
             boxShadow,
 
             "@tablet": {
+              gridColumn: "1 / span 10",
+              marginTop: 154,
+            },
+
+            "@desktop": {
               gridColumn: "1 / span 8",
               marginTop: 154,
             },
@@ -90,8 +100,12 @@ export const Contacts = (props: ContactsProps) => {
               flexDirection: "column",
               opacity: 0.5,
               boxShadow,
-              gridColumn: "10 / span 8",
+              gridColumn: "12 / span 10",
               marginTop: 154,
+            },
+
+            "@desktop": {
+              gridColumn: "10 / span 8",
             },
           }}
         >
@@ -162,7 +176,14 @@ export const Contacts = (props: ContactsProps) => {
           css={{
             "@tablet": {
               flexDirection: "column",
-              gridColumn: "10 / span 3",
+              gridColumn: "5 / span 5",
+              boxShadow,
+              marginTop: 36,
+            },
+
+            "@desktop": {
+              flexDirection: "column",
+              gridColumn: "10 / span 4",
               boxShadow,
               marginTop: 36,
             },
@@ -180,10 +201,14 @@ export const Contacts = (props: ContactsProps) => {
           css={{
             "@tablet": {
               flexDirection: "column",
-              gridColumn: "13 / span 3",
+              gridColumn: "10 / span 5",
               boxShadow,
               opacity: 0.5,
               marginTop: 36,
+            },
+
+            "@desktop": {
+              gridColumn: "14 / span 4",
             },
           }}
         >
@@ -199,9 +224,13 @@ export const Contacts = (props: ContactsProps) => {
           css={{
             "@tablet": {
               flexDirection: "column",
-              gridColumn: "20 / span 5",
+              gridColumn: "17 / span 8",
               boxShadow,
               marginTop: 36,
+            },
+
+            "@desktop": {
+              gridColumn: "20 / span 5",
             },
           }}
         >
@@ -224,9 +253,13 @@ export const Contacts = (props: ContactsProps) => {
           css={{
             "@tablet": {
               flexDirection: "column",
-              gridColumn: "10 / span 3",
+              gridColumn: "5 / span 5",
               boxShadow,
               marginTop: 16,
+            },
+
+            "@desktop": {
+              gridColumn: "10 / span 4",
             },
           }}
         >
@@ -242,10 +275,14 @@ export const Contacts = (props: ContactsProps) => {
           css={{
             "@tablet": {
               flexDirection: "column",
-              gridColumn: "13 / span 3",
+              gridColumn: "10 / span 5",
               boxShadow,
               opacity: 0.5,
               marginTop: 16,
+            },
+
+            "@desktop": {
+              gridColumn: "14 / span 4",
             },
           }}
         >
@@ -261,9 +298,13 @@ export const Contacts = (props: ContactsProps) => {
           css={{
             "@tablet": {
               flexDirection: "column",
-              gridColumn: "20 / span 5",
+              gridColumn: "17 / span 8",
               boxShadow,
               marginTop: 16,
+            },
+
+            "@desktop": {
+              gridColumn: "20 / span 5",
             },
           }}
         >
@@ -315,8 +356,12 @@ export const Contacts = (props: ContactsProps) => {
             boxShadow,
 
             "@tablet": {
-              gridColumn: "10 / span 5",
+              gridColumn: "8 / span 7",
               marginTop: 189,
+            },
+
+            "@desktop": {
+              gridColumn: "10 / span 5",
             },
           }}
         >

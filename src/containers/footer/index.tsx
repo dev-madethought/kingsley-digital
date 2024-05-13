@@ -84,6 +84,11 @@ export const Footer = () => {
 
             "@tablet": {
               marginBottom: 0,
+              gridColumn: "1 / span 8",
+            },
+
+            "@desktop": {
+              marginBottom: 0,
               gridColumn: "1 / span 6",
             },
           }}
@@ -103,12 +108,13 @@ export const Footer = () => {
             justifyContent: "flex-end",
             gridColumn: "span 12",
             boxShadow,
+
             "@tablet": {
-              gridColumn: "11 / span 4",
+              gridColumn: "9 / span 8",
             },
           }}
         >
-          <Text cta css={{ color: "$typography" }}>
+          <Text cta css={{ color: "$typography", textAlign: "center" }}>
             © {new Date().getFullYear()} Alder Partners
           </Text>
         </Box>
@@ -123,6 +129,11 @@ export const Footer = () => {
             "@tablet": {
               alignItems: "flex-end",
 
+              gridColumn: "17 / span 8",
+            },
+
+            "@desktop": {
+              alignItems: "flex-end",
               gridColumn: "19 / span 6",
             },
           }}
