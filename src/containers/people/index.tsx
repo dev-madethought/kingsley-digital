@@ -2,7 +2,6 @@ import { Fragment, useEffect, useRef } from "react"
 import { scroll } from "framer-motion/dom"
 import { useSelector } from "react-redux"
 
-import { AnimationCharacterReveal } from "@/components/animate-character-reveal"
 import { AnimationFadeIn } from "@/components/animation-fade-in"
 import { Box } from "@/components/box"
 import { Container } from "@/components/container"
@@ -79,7 +78,12 @@ export const People = (props: PeopleProps) => {
             flexDirection: "column",
             gridColumn: "span 12",
             boxShadow,
+
             "@tablet": {
+              gridColumn: "8 / span 8",
+            },
+
+            "@desktop": {
               gridColumn: "10 / span 6",
             },
           }}
@@ -94,9 +98,13 @@ export const People = (props: PeopleProps) => {
           css={{
             "@tablet": {
               flexDirection: "column",
-              gridColumn: "17 / span 6",
+              gridColumn: "17 / span 8",
               opacity: 0.5,
               boxShadow,
+            },
+
+            "@desktop": {
+              gridColumn: "17 / span 6",
             },
           }}
         >
@@ -116,6 +124,10 @@ export const People = (props: PeopleProps) => {
 
           "@tablet": {
             paddingTop: 229,
+            column: 24,
+          },
+
+          "@desktop": {
             column: 15,
           },
 

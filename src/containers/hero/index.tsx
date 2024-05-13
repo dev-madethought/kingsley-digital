@@ -66,6 +66,7 @@ export const Hero = (props: HeroProps) => {
             height: "100%",
             objectFit: "cover",
             zIndex: -1,
+            opacity: 0.1,
           }}
         />
 
@@ -77,6 +78,10 @@ export const Hero = (props: HeroProps) => {
             boxShadow,
 
             "@tablet": {
+              gridColumn: "1 / span 20",
+            },
+
+            "@desktop": {
               gridColumn: "1 / span 14",
             },
           }}
@@ -97,6 +102,11 @@ export const Hero = (props: HeroProps) => {
             marginBottom: 32,
 
             "@tablet": {
+              gridColumn: "9 / span 6",
+              marginBottom: 115,
+            },
+
+            "@desktop": {
               gridColumn: "13 / span 4",
               marginBottom: 115,
             },
@@ -125,6 +135,11 @@ export const Hero = (props: HeroProps) => {
             marginBottom: 50,
 
             "@tablet": {
+              gridColumn: "15 / span 10",
+              marginBottom: 115,
+            },
+
+            "@desktop": {
               gridColumn: "17 / span 8",
               marginBottom: 115,
             },

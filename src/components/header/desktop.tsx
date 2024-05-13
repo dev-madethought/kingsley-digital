@@ -96,10 +96,16 @@ export const Desktop = ({ color }: { color: string }) => {
           {step === STEPS.DONE && (
             <Box
               css={{
-                gridColumn: "4 / span 19",
-                boxShadow,
-                flexDirection: "column",
-                justifyContent: "flex-end",
+                "@tablet": {
+                  gridColumn: "7 / span 12",
+                  boxShadow,
+                  flexDirection: "column",
+                  justifyContent: "flex-end",
+                },
+
+                "@desktop": {
+                  gridColumn: "4 / span 13",
+                },
               }}
             >
               {/* BIG */}
@@ -212,8 +218,10 @@ export const Desktop = ({ color }: { color: string }) => {
               gridColumn: "23 / span 2",
               boxShadow,
               justifyContent: "flex-end",
-              flexShrink: 0,
-              border: "1px dashed red",
+
+              svg: {
+                flexShrink: 0,
+              },
             }}
           >
             {step === STEPS.DONE && <LogoMark />}

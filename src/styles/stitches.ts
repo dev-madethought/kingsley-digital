@@ -49,8 +49,8 @@ export const {
     },
   },
   media: {
-    tablet: `(min-width: 640px)`,
-    desktop: `(min-width: 1280px)`,
+    tablet: `(min-width: 700px)`,
+    desktop: `(min-width: 1024px)`,
     large: `(min-width: 1600px)`,
   },
   utils: {

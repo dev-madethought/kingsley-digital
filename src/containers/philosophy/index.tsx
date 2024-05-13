@@ -43,9 +43,7 @@ export const Philosophy = (props: PhilosophyProps) => {
     <>
       {/* mobile only */}
       <Box
-        mobile
         css={{
-          gridColumn: "span 12",
           boxShadow,
 
           video: {
@@ -53,6 +51,17 @@ export const Philosophy = (props: PhilosophyProps) => {
             alignSelf: "center",
             justifyContent: "center",
             pointerEvents: "none",
+          },
+
+          "@tablet": {
+            video: {
+              width: "calc(100% - 80px)",
+              margin: "0 auto",
+            },
+          },
+
+          "@desktop": {
+            display: "none",
           },
         }}
       >
@@ -65,7 +74,12 @@ export const Philosophy = (props: PhilosophyProps) => {
           css={{
             paddingTop: 88,
             paddingBottom: 60,
+
             "@tablet": {
+              paddingTop: 80,
+            },
+
+            "@desktop": {
               paddingTop: 250,
             },
           }}
@@ -77,7 +91,11 @@ export const Philosophy = (props: PhilosophyProps) => {
               gridColumn: "span 12",
 
               "@tablet": {
-                gridColumn: "1 / span 5",
+                gridColumn: "1 / span 11",
+              },
+
+              "@desktop": {
+                gridColumn: "1 / span 6",
               },
             }}
           >
@@ -104,7 +122,12 @@ export const Philosophy = (props: PhilosophyProps) => {
             css={{
               "@tablet": {
                 flexDirection: "column",
-                gridColumn: "7 / span 5",
+                gridColumn: "13 / span 11",
+              },
+
+              "@desktop": {
+                flexDirection: "column",
+                gridColumn: "8 / span 6",
               },
             }}
           >
@@ -135,7 +158,7 @@ export const Philosophy = (props: PhilosophyProps) => {
           </Box>
 
           <Box
-            tablet
+            desktop
             css={{
               gridColumn: "16 / span 3",
               boxShadow,
@@ -160,7 +183,7 @@ export const Philosophy = (props: PhilosophyProps) => {
           </Box>
 
           <Box
-            tablet
+            desktop
             css={{
               gridColumn: "19 / span 3",
               boxShadow,
@@ -185,7 +208,7 @@ export const Philosophy = (props: PhilosophyProps) => {
           </Box>
 
           <Box
-            tablet
+            desktop
             css={{
               gridColumn: "22 / span 3",
               boxShadow,

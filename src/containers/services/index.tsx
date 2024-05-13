@@ -28,24 +28,6 @@ import {
 
 const LAYOUTS = ["layout1", "layout2", "layout1", "layout3"]
 
-const motionProps = {
-  initial: { opacity: 0 },
-  animate: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.5,
-      delayChildren: 0.5,
-      duration: 0.5,
-      // delay: 0.3,
-    },
-  },
-  // exit: {
-  //   opacity: 0,
-  //   transition: { staggerChildren: 0.05, staggerDirection: -1, duration: 0.3 },
-  // },
-  style: { width: "100%" },
-}
-
 export const Services = (props: ServicesProps) => {
   const dispatch = useDispatch()
   const language = useSelector((state: RootState) => state.global.language)
@@ -96,7 +78,7 @@ export const Services = (props: ServicesProps) => {
             </Box>
 
             <Box
-              tablet
+              desktop
               css={{
                 column: 5,
                 position: "relative",
@@ -121,7 +103,7 @@ export const Services = (props: ServicesProps) => {
         return (
           <Box css={{ gap: 10 }} key={key}>
             <Box
-              tablet
+              desktop
               css={{
                 column: 5,
                 position: "relative",
@@ -166,7 +148,7 @@ export const Services = (props: ServicesProps) => {
         return (
           <Box css={{ gap: 10 }} key={key}>
             <Box
-              tablet
+              desktop
               css={{
                 "@tablet": {
                   column: 6,
@@ -272,6 +254,11 @@ export const Services = (props: ServicesProps) => {
             boxShadow,
 
             "@tablet": {
+              gridColumn: "15 / span 10",
+              marginBottom: 88,
+            },
+
+            "@desktop": {
               alignItems: "flex-start",
               gridColumn: "21 / span 4",
               marginBottom: 88,
@@ -288,6 +275,10 @@ export const Services = (props: ServicesProps) => {
             boxShadow,
 
             "@tablet": {
+              gridColumn: "1 / span 8",
+            },
+
+            "@desktop": {
               gridColumn: "1 / span 6",
             },
           }}
@@ -301,6 +292,10 @@ export const Services = (props: ServicesProps) => {
             "@tablet": {
               boxShadow,
               opacity: 0.5,
+              gridColumn: "10 / span 8",
+            },
+
+            "@desktop": {
               gridColumn: "8 / span 6",
             },
           }}
@@ -311,11 +306,16 @@ export const Services = (props: ServicesProps) => {
         {/* IMAGES */}
         <Box
           css={{
-            gridColumn: "span 12",
+            gridColumn: "span 10",
             marginTop: 113,
             marginBottom: 48,
 
             "@tablet": {
+              marginBottom: 0,
+              gridColumn: "1 / span 9",
+            },
+
+            "@desktop": {
               marginBottom: 0,
               gridColumn: "1 / span 14",
             },
@@ -331,6 +331,11 @@ export const Services = (props: ServicesProps) => {
             boxShadow,
 
             "@tablet": {
+              gridColumn: "10 / span 15",
+              marginTop: 113,
+            },
+
+            "@desktop": {
               gridColumn: "15 / span 10",
               marginTop: 113,
             },
@@ -410,6 +415,16 @@ export const Services = (props: ServicesProps) => {
                       gap: 24,
                       paddingTop: 24,
                       paddingBottom: 64,
+
+                      "@tablet": {
+                        column: 12,
+                        paddingBottom: 48,
+                      },
+
+                      "@desktop": {
+                        column: 8,
+                        paddingBottom: 64,
+                      },
                     }}
                   >
                     {getServiceSinopsis(language, service)}

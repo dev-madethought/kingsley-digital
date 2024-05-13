@@ -43,13 +43,30 @@ export const Person = ({ person }: { person: PersonProps }) => {
       }}
     >
       {/* IMAGE */}
-      <Box css={{ column: 9, gap: 10, "@tablet": { column: 6 } }}>
+      <Box
+        css={{
+          column: 9,
+          gap: 10,
+
+          "@tablet": {
+            column: 9,
+          },
+
+          "@desktop": {
+            column: 6,
+          },
+        }}
+      >
         <Box css={{ column: 2, "@tablet": { column: 1 } }} />
         <Box
           css={{
             flexShrink: 0,
             column: 5,
             "@tablet": {
+              column: 5,
+            },
+
+            "@desktop": {
               column: 2,
             },
           }}
@@ -76,7 +93,12 @@ export const Person = ({ person }: { person: PersonProps }) => {
           css={{
             column: 5,
             boxShadow,
+
             "@tablet": {
+              column: 5,
+            },
+
+            "@desktop": {
               column: 3,
             },
           }}
@@ -89,9 +111,13 @@ export const Person = ({ person }: { person: PersonProps }) => {
         <Box
           tablet
           css={{
-            column: 3,
+            column: 4,
             opacity: 0.5,
             boxShadow,
+
+            "@desktop": {
+              column: 3,
+            },
           }}
         >
           <Text body>
