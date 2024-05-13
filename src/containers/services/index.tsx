@@ -3,6 +3,7 @@ import Image from "next/image"
 import { AnimatePresence, motion, stagger } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 
+import { AnimationMaskReveal } from "@/components/animation-mask-reveal"
 import { Box } from "@/components/box"
 import { Button } from "@/components/button"
 import { Container } from "@/components/container"
@@ -74,145 +75,145 @@ export const Services = (props: ServicesProps) => {
       case "layout1":
         return (
           <Box css={{ gap: 10 }} key={key}>
-            <motion.div key="layout11" {...motionProps}>
-              <Box
-                css={{
-                  column: 9,
-                  position: "relative",
+            <Box
+              css={{
+                column: 9,
+                position: "relative",
 
-                  img: {
-                    width: "100%",
-                    height: "auto",
-                    objectFit: "contain",
-                    objectPosition: "top",
-                  },
-                }}
-              >
-                {image1 && (
+                img: {
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "contain",
+                  objectPosition: "top",
+                },
+              }}
+            >
+              {image1 && (
+                <AnimationMaskReveal>
                   <Image src={image1} alt="image 1" width={504} height={756} />
-                )}
-              </Box>
-            </motion.div>
+                </AnimationMaskReveal>
+              )}
+            </Box>
 
-            <motion.div key="layout12" {...motionProps}>
-              <Box
-                tablet
-                css={{
-                  column: 5,
-                  position: "relative",
+            <Box
+              tablet
+              css={{
+                column: 5,
+                position: "relative",
 
-                  img: {
-                    width: "100%",
-                    height: "auto",
-                    objectFit: "contain",
-                    objectPosition: "top",
-                  },
-                }}
-              >
-                {image2 && (
+                img: {
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "contain",
+                  objectPosition: "top",
+                },
+              }}
+            >
+              {image2 && (
+                <AnimationMaskReveal>
                   <Image src={image2} alt="image 2" width={275} height={367} />
-                )}
-              </Box>
-            </motion.div>
+                </AnimationMaskReveal>
+              )}
+            </Box>
           </Box>
         )
       case "layout2":
         return (
           <Box css={{ gap: 10 }} key={key}>
-            <motion.div key="layout21" {...motionProps}>
-              <Box
-                tablet
-                css={{
-                  column: 5,
-                  position: "relative",
+            <Box
+              tablet
+              css={{
+                column: 5,
+                position: "relative",
 
-                  img: {
-                    width: "100%",
-                    height: "auto",
-                    objectFit: "contain",
-                    objectPosition: "top",
-                  },
-                }}
-              >
-                {image1 && (
+                img: {
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "contain",
+                  objectPosition: "top",
+                },
+              }}
+            >
+              {image1 && (
+                <AnimationMaskReveal>
                   <Image src={image1} alt="image 1" width={275} height={367} />
-                )}
-              </Box>
-            </motion.div>
+                </AnimationMaskReveal>
+              )}
+            </Box>
 
-            <motion.div key="layout22" {...motionProps}>
-              <Box
-                css={{
-                  column: 9,
-                  position: "relative",
+            <Box
+              css={{
+                column: 9,
+                position: "relative",
 
-                  img: {
-                    width: "100%",
-                    height: "auto",
-                    objectFit: "contain",
-                    objectPosition: "top",
-                  },
-                }}
-              >
-                {image2 && (
+                img: {
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "contain",
+                  objectPosition: "top",
+                },
+              }}
+            >
+              {image2 && (
+                <AnimationMaskReveal>
                   <Image src={image2} alt="image 2" width={504} height={756} />
-                )}
-              </Box>
-            </motion.div>
+                </AnimationMaskReveal>
+              )}
+            </Box>
           </Box>
         )
       case "layout3":
         return (
           <Box css={{ gap: 10 }} key={key}>
-            <motion.div key="layout31" {...motionProps}>
-              <Box
-                tablet
-                css={{
-                  "@tablet": {
-                    column: 6,
-
-                    img: {
-                      width: "100%",
-                      height: "auto",
-                      objectFit: "contain",
-                      objectPosition: "bottom",
-                      marginTop: 300,
-                    },
-                  },
-                }}
-              >
-                {image1 && (
-                  <Image src={image1} alt="image 1" width={333} height={445} />
-                )}
-              </Box>
-            </motion.div>
-
-            <motion.div key="layout32" {...motionProps}>
-              <Box
-                css={{
-                  column: 9,
+            <Box
+              tablet
+              css={{
+                "@tablet": {
+                  column: 6,
 
                   img: {
                     width: "100%",
                     height: "auto",
                     objectFit: "contain",
-                    objectPosition: "top",
+                    objectPosition: "bottom",
+                    marginTop: 300,
                   },
+                },
+              }}
+            >
+              {image1 && (
+                <AnimationMaskReveal>
+                  <Image src={image1} alt="image 1" width={333} height={445} />
+                </AnimationMaskReveal>
+              )}
+            </Box>
 
-                  "@tablet": {
-                    column: 8,
+            <Box
+              css={{
+                column: 9,
 
-                    img: {
-                      marginBottom: 100,
-                    },
+                img: {
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "contain",
+                  objectPosition: "top",
+                },
+
+                "@tablet": {
+                  column: 8,
+
+                  img: {
+                    marginBottom: 100,
                   },
-                }}
-              >
-                {image2 && (
+                },
+              }}
+            >
+              {image2 && (
+                <AnimationMaskReveal>
                   <Image src={image2} alt="image 2" width={446} height={669} />
-                )}
-              </Box>
-            </motion.div>
+                </AnimationMaskReveal>
+              )}
+            </Box>
           </Box>
         )
 
@@ -231,14 +232,14 @@ export const Services = (props: ServicesProps) => {
               },
             }}
           >
-            <motion.div key="layoutdefault1" {...motionProps}>
+            <AnimationMaskReveal>
               <Image
                 src={urlForImage(props.image)}
                 alt="default"
                 width={504}
                 height={756}
               />
-            </motion.div>
+            </AnimationMaskReveal>
           </Box>
         )
     }

@@ -13,6 +13,7 @@ interface IDialog {
   onOpenChange?: (value: boolean) => void
   color?: string
   isMenu?: boolean
+  slide?: boolean
 }
 
 export const Dialog = ({
@@ -21,6 +22,7 @@ export const Dialog = ({
   onOpenChange,
   color,
   isMenu,
+  slide,
 }: IDialog) => {
   const handleClose = () => {
     if (onOpenChange) {
@@ -37,6 +39,7 @@ export const Dialog = ({
           onPointerDownOutside={handleClose}
           css={{ ...(color && { background: color }) }}
           menu={isMenu}
+          slide={slide}
         >
           {children}
           <RadixDialog.Close asChild>

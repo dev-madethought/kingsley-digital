@@ -8,6 +8,7 @@ import { RootState } from "@/state/store"
 import { Person as PersonProps } from "@/types/sanity"
 
 import { AnimationFadeIn } from "../animation-fade-in"
+import { AnimationMaskReveal } from "../animation-mask-reveal"
 import { Box } from "../box"
 import { Button } from "../button"
 import { useDebug } from "../grid"
@@ -53,9 +54,9 @@ export const Person = ({ person }: { person: PersonProps }) => {
             },
           }}
         >
-          <AnimationFadeIn>
+          <AnimationMaskReveal>
             <img src={urlForImage(person.image)} alt="Person image" />
-          </AnimationFadeIn>
+          </AnimationMaskReveal>
         </Box>
       </Box>
 

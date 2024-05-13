@@ -212,6 +212,8 @@ export const Desktop = ({ color }: { color: string }) => {
               gridColumn: "23 / span 2",
               boxShadow,
               justifyContent: "flex-end",
+              flexShrink: 0,
+              border: "1px dashed red",
             }}
           >
             {step === STEPS.DONE && <LogoMark />}

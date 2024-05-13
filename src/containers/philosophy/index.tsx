@@ -88,6 +88,7 @@ export const Philosophy = (props: PhilosophyProps) => {
                     <AnimationFadeIn>
                       <Text headingS>{getPrimaryTitle(language, item)}</Text>
                     </AnimationFadeIn>
+
                     <AnimationFadeIn>
                       <Text body>{getPrimaryDescription(language, item)}</Text>
                     </AnimationFadeIn>
@@ -121,6 +122,7 @@ export const Philosophy = (props: PhilosophyProps) => {
                     <AnimationFadeIn>
                       <Text headingS>{getSecondaryTitle(language, item)}</Text>
                     </AnimationFadeIn>
+
                     <AnimationFadeIn>
                       <Text body>
                         {getSecondaryDescription(language, item)}

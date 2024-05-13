@@ -22,6 +22,16 @@ const slideOut = keyframes({
   to: { transform: "translateX(100%)" },
 })
 
+const dropIn = keyframes({
+  from: { transform: "translateY(-100%)" },
+  to: { transform: "translateY(0%)" },
+})
+
+const dropOut = keyframes({
+  from: { transform: "translateY(0%)" },
+  to: { transform: "translateY(-100%)" },
+})
+
 export const Overlay = styled(Dialog.Overlay, {
   position: "fixed",
   inset: 0,
@@ -62,6 +72,18 @@ export const Content = styled(Dialog.Content, {
       true: {
         left: 0,
         background: "$background",
+      },
+    },
+
+    slide: {
+      true: {
+        '&[data-state="open"]': {
+          animation: `${dropIn} 0.3s ease-out`,
+        },
+
+        '&[data-state="closed"]': {
+          animation: `${dropOut} 0.3s ease-out`,
+        },
       },
     },
   },

@@ -1,9 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 
 import { CSSProperties, ReactNode } from "react"
 
 import { AnimationCharacterReveal } from "@/components/animate-character-reveal"
 import { AnimationFadeIn } from "@/components/animation-fade-in"
+import { AnimationMaskReveal } from "@/components/animation-mask-reveal"
 import { AnimationWordReveal } from "@/components/animation-word-reveal"
 import { Box } from "@/components/box"
 import { Text } from "@/components/text"
@@ -22,6 +24,8 @@ const Section = ({
       justifyContent: "center",
       width: "100vw",
       height: "100vh",
+      flexDirection: "column",
+      border: "1px dashed black",
       ...css,
     }}
   >
@@ -32,8 +36,15 @@ const Section = ({
 export default function Page() {
   return (
     <>
+      {/* MASK REVEAL */}
+      <Section>
+        <AnimationMaskReveal>
+          <img src="/test.jpg" alt="test" />
+        </AnimationMaskReveal>
+      </Section>
+
       {/* CHARACTER REVEAL */}
-      <Section css={{ flexDirection: "column", border: "1px dashed black" }}>
+      <Section>
         <Text headingS>
           <AnimationCharacterReveal text="This is an animation character reveal" />
         </Text>
@@ -43,7 +54,7 @@ export default function Page() {
       </Section>
 
       {/* WORD REVEAL */}
-      <Section css={{ flexDirection: "column", border: "1px dashed black" }}>
+      <Section>
         <Text headingS>
           <AnimationWordReveal text="This is an animation word reveal" />
         </Text>
@@ -53,7 +64,7 @@ export default function Page() {
       </Section>
 
       {/* FADE IN */}
-      <Section css={{ flexDirection: "column", border: "1px dashed black" }}>
+      <Section>
         <AnimationFadeIn>This is a fade in</AnimationFadeIn>
       </Section>
     </>

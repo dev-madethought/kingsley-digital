@@ -69,9 +69,9 @@ export const People = (props: PeopleProps) => {
             },
           }}
         >
-          <Text headingM>
-            <AnimationCharacterReveal text={getTitle(language, props)} />
-          </Text>
+          <AnimationFadeIn>
+            <Text headingM>{getTitle(language, props)}</Text>
+          </AnimationFadeIn>
         </Box>
 
         <Box

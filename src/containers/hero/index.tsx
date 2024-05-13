@@ -5,6 +5,7 @@ import { useSelector } from "react-redux"
 
 import { PortableText } from "@portabletext/react"
 
+import { AnimationFadeIn } from "@/components/animation-fade-in"
 import { Box } from "@/components/box"
 import { Container } from "@/components/container"
 import { Grid } from "@/components/grid"
@@ -101,12 +102,17 @@ export const Hero = (props: HeroProps) => {
             },
           }}
         >
-          <Text uppercase wrap>
-            {getMainTitle(language, props)}
-          </Text>
-          <Text uppercase wrap css={{ opacity: 0.5 }}>
-            {getSecondaryTitle(language, props)}
-          </Text>
+          <AnimationFadeIn>
+            <Text uppercase wrap>
+              {getMainTitle(language, props)}
+            </Text>
+          </AnimationFadeIn>
+
+          <AnimationFadeIn>
+            <Text uppercase wrap css={{ opacity: 0.5 }}>
+              {getSecondaryTitle(language, props)}
+            </Text>
+          </AnimationFadeIn>
         </Box>
 
         <Box
@@ -124,10 +130,12 @@ export const Hero = (props: HeroProps) => {
             },
           }}
         >
-          <PortableText
-            value={getMainDescription(language, props) as any}
-            components={components}
-          />
+          <AnimationFadeIn>
+            <PortableText
+              value={getMainDescription(language, props) as any}
+              components={components}
+            />
+          </AnimationFadeIn>
           <Box
             css={{
               display: "none",
@@ -138,10 +146,12 @@ export const Hero = (props: HeroProps) => {
               },
             }}
           >
-            <PortableText
-              value={getSecondaryDescription(language, props) as any}
-              components={components}
-            />
+            <AnimationFadeIn>
+              <PortableText
+                value={getSecondaryDescription(language, props) as any}
+                components={components}
+              />
+            </AnimationFadeIn>
           </Box>
         </Box>
 

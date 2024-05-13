@@ -71,7 +71,7 @@ export const ModalMenu = ({ open, onOpenChange }: ModalMenuProps) => {
   }
 
   return (
-    <Dialog open={open} onOpenChange={handleOpenChange} isMenu>
+    <Dialog open={open} onOpenChange={handleOpenChange} isMenu slide>
       <Box
         css={{
           height: "var(--vh)",
