@@ -38,11 +38,11 @@ export const Overlay = styled(Dialog.Overlay, {
   backgroundColor: "$black50",
 
   '&[data-state="open"]': {
-    animation: `${fadeIn} 0.5s ease-out`,
+    animation: `${fadeIn} 0.25s ease-in-out`,
   },
 
   '&[data-state="closed"]': {
-    animation: `${fadeOut} 0.5s ease-out`,
+    animation: `${fadeOut} 0.25s ease-in-out`,
   },
   zIndex: 9999,
 })
@@ -60,11 +60,11 @@ export const Content = styled(Dialog.Content, {
   },
 
   '&[data-state="open"]': {
-    animation: `${slideIn} 0.3s ease-out`,
+    animation: `${slideIn} 0.25s ease-in-out`,
   },
 
   '&[data-state="closed"]': {
-    animation: `${slideOut} 0.3s ease-out`,
+    animation: `${slideOut} 0.25s ease-in-out`,
   },
 
   variants: {
@@ -78,11 +78,11 @@ export const Content = styled(Dialog.Content, {
     slide: {
       true: {
         '&[data-state="open"]': {
-          animation: `${dropIn} 0.3s ease-out`,
+          animation: `${dropIn} 0.25s ease-in-out`,
         },
 
         '&[data-state="closed"]': {
-          animation: `${dropOut} 0.3s ease-out`,
+          animation: `${dropOut} 0.25s ease-in-out`,
         },
       },
     },

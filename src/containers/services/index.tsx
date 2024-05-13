@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import { AnimatePresence, motion, stagger } from "framer-motion"
+import { relative } from "path"
 import { useDispatch, useSelector } from "react-redux"
 
 import { AnimationMaskReveal } from "@/components/animation-mask-reveal"
@@ -61,6 +62,7 @@ export const Services = (props: ServicesProps) => {
               css={{
                 column: 9,
                 position: "relative",
+                alignItems: "flex-start",
 
                 img: {
                   width: "100%",
@@ -82,6 +84,7 @@ export const Services = (props: ServicesProps) => {
               css={{
                 column: 5,
                 position: "relative",
+                alignItems: "flex-start",
 
                 img: {
                   width: "100%",
@@ -92,7 +95,7 @@ export const Services = (props: ServicesProps) => {
               }}
             >
               {image2 && (
-                <AnimationMaskReveal>
+                <AnimationMaskReveal delay={0.125}>
                   <Image src={image2} alt="image 2" width={275} height={367} />
                 </AnimationMaskReveal>
               )}
@@ -107,6 +110,7 @@ export const Services = (props: ServicesProps) => {
               css={{
                 column: 5,
                 position: "relative",
+                alignItems: "flex-start",
 
                 img: {
                   width: "100%",
@@ -127,6 +131,7 @@ export const Services = (props: ServicesProps) => {
               css={{
                 column: 9,
                 position: "relative",
+                alignItems: "flex-start",
 
                 img: {
                   width: "100%",
@@ -137,7 +142,7 @@ export const Services = (props: ServicesProps) => {
               }}
             >
               {image2 && (
-                <AnimationMaskReveal>
+                <AnimationMaskReveal delay={0.125}>
                   <Image src={image2} alt="image 2" width={504} height={756} />
                 </AnimationMaskReveal>
               )}
@@ -150,8 +155,10 @@ export const Services = (props: ServicesProps) => {
             <Box
               desktop
               css={{
-                "@tablet": {
+                "@desktop": {
+                  position: "relative",
                   column: 6,
+                  alignItems: "flex-start",
 
                   img: {
                     width: "100%",
@@ -172,6 +179,8 @@ export const Services = (props: ServicesProps) => {
 
             <Box
               css={{
+                position: "relative",
+                alignItems: "flex-start",
                 column: 9,
 
                 img: {
@@ -183,6 +192,7 @@ export const Services = (props: ServicesProps) => {
 
                 "@tablet": {
                   column: 8,
+                  // marginBottom: 100,
 
                   img: {
                     marginBottom: 100,
@@ -191,7 +201,7 @@ export const Services = (props: ServicesProps) => {
               }}
             >
               {image2 && (
-                <AnimationMaskReveal>
+                <AnimationMaskReveal delay={0.125}>
                   <Image src={image2} alt="image 2" width={446} height={669} />
                 </AnimationMaskReveal>
               )}
@@ -204,8 +214,9 @@ export const Services = (props: ServicesProps) => {
         return (
           <Box
             css={{
-              column: 9,
               position: "relative",
+              alignItems: "flex-start",
+              column: 9,
 
               img: {
                 width: "100%",

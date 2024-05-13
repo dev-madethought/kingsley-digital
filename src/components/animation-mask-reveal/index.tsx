@@ -11,7 +11,7 @@ export type AnimationMaskRevealProps = {
 
 export const AnimationMaskReveal = ({
   children,
-  duration = 1,
+  duration = 0.7,
   delay = 0,
 }: AnimationMaskRevealProps) => {
   const maskRef = useRef<HTMLSpanElement>(null)

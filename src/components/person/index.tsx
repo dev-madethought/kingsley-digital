@@ -22,7 +22,13 @@ import {
   getSecondaryRole,
 } from "./translations"
 
-export const Person = ({ person }: { person: PersonProps }) => {
+export const Person = ({
+  person,
+  index,
+}: {
+  person: PersonProps
+  index: number
+}) => {
   const dispatch = useDispatch()
   const language = useSelector((state: RootState) => state.global.language)
   const settings = useSelector((state: RootState) => state.global.settings)
@@ -71,7 +77,7 @@ export const Person = ({ person }: { person: PersonProps }) => {
             },
           }}
         >
-          <AnimationMaskReveal>
+          <AnimationMaskReveal delay={Math.min(0.1 * index, 0.2)}>
             <img src={urlForImage(person.image)} alt="Person image" />
           </AnimationMaskReveal>
         </Box>

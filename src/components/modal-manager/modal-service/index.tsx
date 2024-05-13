@@ -53,8 +53,12 @@ export const ModalService = ({ open, onOpenChange }: ModalServiceProps) => {
           column: 12,
 
           "@tablet": {
-            column: 13,
+            column: 20,
             marginRight: 40,
+          },
+
+          "@desktop": {
+            column: 13,
           },
 
           "&::-webkit-scrollbar": {
@@ -81,6 +85,14 @@ export const ModalService = ({ open, onOpenChange }: ModalServiceProps) => {
               aspectRatio: "16 / 7",
               objectFit: "cover",
             },
+
+            "@tablet": {
+              column: 18,
+            },
+
+            "@desktop": {
+              column: 11,
+            },
           }}
         >
           {image && <img src={urlForImage(image)} alt="header image" />}
@@ -96,6 +108,10 @@ export const ModalService = ({ open, onOpenChange }: ModalServiceProps) => {
               boxShadow,
 
               "@tablet": {
+                column: 10,
+              },
+
+              "@desktop": {
                 column: 4,
               },
             }}
@@ -112,7 +128,12 @@ export const ModalService = ({ open, onOpenChange }: ModalServiceProps) => {
               column: 10,
               marginBottom: 48,
               boxShadow,
+
               "@tablet": {
+                column: 8,
+              },
+
+              "@desktop": {
                 column: 5,
               },
             }}
@@ -124,11 +145,17 @@ export const ModalService = ({ open, onOpenChange }: ModalServiceProps) => {
           <Box
             tablet
             css={{
-              flexDirection: "column",
-              column: 5,
-              opacity: 0.5,
-              marginBottom: 48,
-              boxShadow,
+              "@tablet": {
+                flexDirection: "column",
+                column: 8,
+                opacity: 0.5,
+                marginBottom: 48,
+                boxShadow,
+              },
+
+              "@desktop": {
+                column: 5,
+              },
             }}
           >
             <Text body>{getSecondarySinopsis(language, service)}</Text>
@@ -145,6 +172,10 @@ export const ModalService = ({ open, onOpenChange }: ModalServiceProps) => {
               boxShadow,
 
               "@tablet": {
+                column: 8,
+              },
+
+              "@desktop": {
                 column: 5,
               },
             }}
@@ -159,11 +190,17 @@ export const ModalService = ({ open, onOpenChange }: ModalServiceProps) => {
           <Box
             tablet
             css={{
-              flexDirection: "column",
-              column: 5,
-              opacity: 0.5,
-              marginBottom: 50,
-              boxShadow,
+              "@tablet": {
+                flexDirection: "column",
+                column: 8,
+                opacity: 0.5,
+                marginBottom: 50,
+                boxShadow,
+              },
+
+              "@desktop": {
+                column: 5,
+              },
             }}
           >
             <PortableText

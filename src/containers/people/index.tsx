@@ -145,7 +145,7 @@ export const People = (props: PeopleProps) => {
       >
         {props.people?.map((person, i) => (
           <Fragment key={i}>
-            <Person person={person} />
+            <Person person={person} index={i} />
             {i < (props.people?.length || 1) - 1 && (
               <Box tablet css={{ flexShrink: 0, column: 1, boxShadow }} />
             )}

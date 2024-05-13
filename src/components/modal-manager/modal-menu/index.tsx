@@ -3,12 +3,13 @@ import { useEffect, useRef } from "react"
 import { useRouter } from "next/router"
 import { useSelector } from "react-redux"
 
+import { AnimationFadeIn } from "@/components/animation-fade-in"
 import { Box } from "@/components/box"
 import { Button } from "@/components/button"
 import { Container } from "@/components/container"
 import { Dialog } from "@/components/dialog"
 import { Grid, useDebug } from "@/components/grid"
-import { ArrowUp, LogoMark } from "@/components/icons"
+import { ArrowUp, LogoFull, LogoMark } from "@/components/icons"
 import { Text } from "@/components/text"
 import { Language } from "@/containers/footer/language"
 import useScroll from "@/hooks/useScroll"
@@ -101,7 +102,7 @@ export const ModalMenu = ({ open, onOpenChange }: ModalMenuProps) => {
                   },
                 }}
               >
-                <LogoMark />
+                <LogoFull />
               </Box>
 
               <Box
@@ -119,23 +120,25 @@ export const ModalMenu = ({ open, onOpenChange }: ModalMenuProps) => {
                   const selected =
                     (section === "hero" && i === 0) || section === item.id
                   return (
-                    <Button
-                      key={i}
-                      variant="tertiary"
-                      onClick={() => handleNavigation(item.id)}
-                    >
-                      {selected && (
-                        <Box
-                          css={{
-                            width: 4,
-                            height: 4,
-                            borderRadius: 4,
-                            background: "$typography",
-                          }}
-                        />
-                      )}
-                      <Text headingS>{getPrimaryLabel(language, item)}</Text>
-                    </Button>
+                    <AnimationFadeIn key={i} delay={0.1 * i}>
+                      <Button
+                        key={i}
+                        variant="tertiary"
+                        onClick={() => handleNavigation(item.id)}
+                      >
+                        {selected && (
+                          <Box
+                            css={{
+                              width: 4,
+                              height: 4,
+                              borderRadius: 4,
+                              background: "$typography",
+                            }}
+                          />
+                        )}
+                        <Text headingS>{getPrimaryLabel(language, item)}</Text>
+                      </Button>
+                    </AnimationFadeIn>
                   )
                 })}
               </Box>
@@ -150,30 +153,31 @@ export const ModalMenu = ({ open, onOpenChange }: ModalMenuProps) => {
                   },
                 }}
               >
-                {links?.map((link: any) => (
-                  <Button
-                    key={link._id}
-                    variant="secondary"
-                    href={`/${link.slug.current}`}
-                  >
-                    {String(link.title).toUpperCase()}
-                  </Button>
+                {links?.map((link: any, i: number) => (
+                  <AnimationFadeIn key={link._id} delay={0.1 * i}>
+                    <Button variant="secondary" href={`/${link.slug.current}`}>
+                      {String(link.title).toUpperCase()}
+                    </Button>
+                  </AnimationFadeIn>
                 ))}
 
-                {socialLinks?.map((link: any) => (
-                  <Button
-                    key={link._key}
-                    variant="secondary"
-                    href={link.url}
-                    onClick={handleSocialLinks}
-                  >
-                    {String(link.label).toUpperCase()}
-                    <ArrowUp />
-                  </Button>
+                {socialLinks?.map((link: any, i: number) => (
+                  <AnimationFadeIn key={link._key} delay={0.1 * i}>
+                    <Button
+                      variant="secondary"
+                      href={link.url}
+                      onClick={handleSocialLinks}
+                    >
+                      {String(link.label).toUpperCase()}
+                      <ArrowUp />
+                    </Button>
+                  </AnimationFadeIn>
                 ))}
 
                 <Box css={{ width: "100%" }}>
-                  <Language />
+                  <AnimationFadeIn>
+                    <Language />
+                  </AnimationFadeIn>
                 </Box>
               </Box>
             </Box>

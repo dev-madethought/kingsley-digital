@@ -47,8 +47,12 @@ export const ModalPerson = ({ open, onOpenChange }: ModalPersonProps) => {
           column: 12,
 
           "@tablet": {
-            column: 11,
+            column: 20,
             marginRight: 40,
+          },
+
+          "@desktop": {
+            column: 11,
           },
 
           "&::-webkit-scrollbar": {
@@ -69,7 +73,12 @@ export const ModalPerson = ({ open, onOpenChange }: ModalPersonProps) => {
           css={{
             column: 8,
             marginBottom: 44,
+
             "@tablet": {
+              column: 8,
+            },
+
+            "@desktop": {
               column: 4,
             },
           }}
@@ -90,7 +99,12 @@ export const ModalPerson = ({ open, onOpenChange }: ModalPersonProps) => {
             css={{
               column: 10,
               boxShadow,
+
               "@tablet": {
+                column: 10,
+              },
+
+              "@desktop": {
                 column: 4,
               },
             }}
@@ -112,7 +126,12 @@ export const ModalPerson = ({ open, onOpenChange }: ModalPersonProps) => {
               flexDirection: "column",
               column: 10,
               boxShadow,
+
               "@tablet": {
+                column: 8,
+              },
+
+              "@desktop": {
                 column: 4,
               },
             }}
@@ -128,10 +147,16 @@ export const ModalPerson = ({ open, onOpenChange }: ModalPersonProps) => {
           <Box
             tablet
             css={{
-              flexDirection: "column",
-              column: 4,
-              opacity: 0.5,
-              boxShadow,
+              "@tablet": {
+                flexDirection: "column",
+                column: 8,
+                opacity: 0.5,
+                boxShadow,
+              },
+
+              "@desktop": {
+                column: 4,
+              },
             }}
           >
             {person && (
@@ -164,7 +189,7 @@ export const ModalPerson = ({ open, onOpenChange }: ModalPersonProps) => {
 
             <Box
               css={{
-                column: 10,
+                column: 17,
                 boxShadow,
               }}
             >

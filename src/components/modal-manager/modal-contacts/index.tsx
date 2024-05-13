@@ -2,6 +2,7 @@
 import { FormEvent, useState } from "react"
 import { useSelector } from "react-redux"
 
+import { AnimationFadeIn } from "@/components/animation-fade-in"
 import { Box } from "@/components/box"
 import { Button } from "@/components/button"
 import { Checkbox } from "@/components/checkbox"
@@ -93,8 +94,12 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
           column: 12,
 
           "@tablet": {
-            column: 11,
+            column: 20,
             marginRight: 40,
+          },
+
+          "@desktop": {
+            column: 11,
           },
 
           "&::-webkit-scrollbar": {
@@ -130,11 +135,17 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
               boxShadow,
 
               "@tablet": {
+                column: 10,
+              },
+
+              "@desktop": {
                 column: 4,
               },
             }}
           >
-            <Text headingS>{getTitle(language, settings?.contacts)}</Text>
+            <AnimationFadeIn>
+              <Text headingS>{getTitle(language, settings?.contacts)}</Text>
+            </AnimationFadeIn>
           </Box>
         </Box>
 
@@ -155,23 +166,37 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
             css={{
               column: 10,
               boxShadow,
+
               "@tablet": {
+                column: 8,
+              },
+
+              "@desktop": {
                 column: 4,
               },
             }}
           >
-            <Text body>
-              {getPrimaryDescription(language, settings?.contacts)}
-            </Text>
+            <AnimationFadeIn>
+              <Text body>
+                {getPrimaryDescription(language, settings?.contacts)}
+              </Text>
+            </AnimationFadeIn>
           </Box>
+
           <Box css={{ column: 1 }} />
 
           <Box
             tablet
             css={{
-              column: 4,
-              boxShadow,
-              opacity: 0.5,
+              "@tablet": {
+                column: 8,
+                boxShadow,
+                opacity: 0.5,
+              },
+
+              "@desktop": {
+                column: 4,
+              },
             }}
           >
             <Text body>
@@ -182,129 +207,147 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
 
         {/* FORM */}
         {!sent ? (
-          <Box
-            as="form"
-            css={{
-              flexDirection: "column",
-              gap: 16,
-              color: "$typography",
-              boxShadow,
-            }}
-            onSubmit={handleSubmit}
-          >
+          <AnimationFadeIn>
             <Box
+              as="form"
               css={{
-                gap: 10,
-                borderBottom: "1px solid $typography",
+                flexDirection: "column",
+                gap: 16,
+                color: "$typography",
+                boxShadow,
               }}
+              onSubmit={handleSubmit}
             >
-              <Box css={{ column: 1 }} />
-              <Input
-                name="name"
-                placeholder={getName(language, settings?.contacts)}
-                required
-                disabled={sending}
-              />
-            </Box>
-
-            <Box
-              css={{
-                gap: 10,
-                borderBottom: "1px solid $typography",
-              }}
-            >
-              <Box css={{ column: 1 }} />
-              <Box css={{ column: 5 }}>
+              <Box
+                css={{
+                  gap: 10,
+                  borderBottom: "1px solid $typography",
+                }}
+              >
+                <Box css={{ column: 1 }} />
                 <Input
-                  name="phone"
-                  placeholder={getPhone(language, settings?.contacts)}
-                  type="tel"
+                  name="name"
+                  placeholder={getName(language, settings?.contacts)}
                   required
                   disabled={sending}
                 />
               </Box>
-              <Box css={{ column: 5 }}>
+
+              <Box
+                css={{
+                  gap: 10,
+                  borderBottom: "1px solid $typography",
+                }}
+              >
+                <Box css={{ column: 1 }} />
+                <Box
+                  css={{
+                    column: 5,
+
+                    "@tablet": { column: 9 },
+                    "@desktop": { column: 5 },
+                  }}
+                >
+                  <Input
+                    name="phone"
+                    placeholder={getPhone(language, settings?.contacts)}
+                    type="tel"
+                    required
+                    disabled={sending}
+                  />
+                </Box>
+                <Box
+                  css={{
+                    column: 5,
+
+                    "@tablet": { column: 5 },
+                    "@desktop": { column: 5 },
+                  }}
+                >
+                  <Input
+                    name="organisation"
+                    placeholder={getOrganisation(language, settings?.contacts)}
+                    disabled={sending}
+                  />
+                </Box>
+              </Box>
+
+              <Box
+                css={{
+                  gap: 10,
+                  borderBottom: "1px solid $typography",
+                }}
+              >
+                <Box css={{ column: 1 }} />
                 <Input
-                  name="organisation"
-                  placeholder={getOrganisation(language, settings?.contacts)}
+                  name="email"
+                  placeholder={getEmail(language, settings?.contacts)}
+                  required
                   disabled={sending}
                 />
               </Box>
-            </Box>
 
-            <Box
-              css={{
-                gap: 10,
-                borderBottom: "1px solid $typography",
-              }}
-            >
-              <Box css={{ column: 1 }} />
-              <Input
-                name="email"
-                placeholder={getEmail(language, settings?.contacts)}
-                required
-                disabled={sending}
-              />
-            </Box>
+              <Box
+                css={{
+                  gap: 10,
+                  borderBottom: "1px solid $typography",
+                }}
+              >
+                <Box css={{ column: 1 }} />
+                <Select
+                  name="subject"
+                  placeholder={getSubject(language, settings?.contacts)}
+                  required
+                  disabled={sending}
+                  options={getSubjectsArray(language, settings?.contacts)}
+                />
+              </Box>
+              <Box
+                css={{
+                  gap: 10,
+                  borderBottom: "1px solid $typography",
+                }}
+              >
+                <Box css={{ column: 1 }} />
 
-            <Box
-              css={{
-                gap: 10,
-                borderBottom: "1px solid $typography",
-              }}
-            >
-              <Box css={{ column: 1 }} />
-              <Select
-                name="subject"
-                placeholder={getSubject(language, settings?.contacts)}
-                required
-                disabled={sending}
-                options={getSubjectsArray(language, settings?.contacts)}
-              />
-            </Box>
-            <Box
-              css={{
-                gap: 10,
-                borderBottom: "1px solid $typography",
-              }}
-            >
-              <Box css={{ column: 1 }} />
+                <Input
+                  name="message"
+                  placeholder={getMessage(language, settings?.contacts)}
+                  disabled={sending}
+                  required
+                  textarea
+                />
+              </Box>
 
-              <Input
-                name="message"
-                placeholder={getMessage(language, settings?.contacts)}
-                disabled={sending}
-                required
-                textarea
-              />
-            </Box>
+              <Box css={{ gap: 10 }}>
+                <Box css={{ column: 1 }} />
+                <Checkbox
+                  name="subscribe"
+                  label={getSubscribe(language, settings?.contacts)}
+                  disabled={sending}
+                />
+              </Box>
 
-            <Box css={{ gap: 10 }}>
-              <Box css={{ column: 1 }} />
-              <Checkbox
-                name="subscribe"
-                label={getSubscribe(language, settings?.contacts)}
-                disabled={sending}
-              />
+              <Box css={{ gap: 10 }}>
+                <Box css={{ column: 1 }} />
+                <Button type="submit" disabled={sending}>
+                  {sending && (
+                    <Box css={{ marginRight: 16 }}>
+                      <Spinner />
+                    </Box>
+                  )}
+                  {getSubmitButton(language, settings?.buttons)}
+                </Button>
+              </Box>
             </Box>
-
-            <Box css={{ gap: 10 }}>
-              <Box css={{ column: 1 }} />
-              <Button type="submit" disabled={sending}>
-                {sending && (
-                  <Box css={{ marginRight: 16 }}>
-                    <Spinner />
-                  </Box>
-                )}
-                {getSubmitButton(language, settings?.buttons)}
-              </Button>
-            </Box>
-          </Box>
+          </AnimationFadeIn>
         ) : (
           <Box css={{ gap: 10 }}>
             <Box css={{ column: 1 }} />
             <Box css={{ column: 9, boxShadow }}>
-              <Text>{getSuccessMessage(language, settings?.contacts)}</Text>
+              <AnimationFadeIn>
+                <Text>{getSuccessMessage(language, settings?.contacts)}</Text>
+              </AnimationFadeIn>
             </Box>
           </Box>
         )}
