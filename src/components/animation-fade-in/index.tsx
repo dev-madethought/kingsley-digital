@@ -12,8 +12,8 @@ export const AnimationFadeIn = ({ children }: { children: ReactNode }) => {
         if (entry.isIntersecting) {
           gsap.to(entry.target, {
             opacity: 1,
-            duration: 2,
-            ease: "power2.inOut",
+            duration: 1,
+            ease: "power3.inOut",
           })
           observer.unobserve(entry.target)
         }

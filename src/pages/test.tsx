@@ -6,6 +6,7 @@ import { AnimationCharacterReveal } from "@/components/animate-character-reveal"
 import { AnimationFadeIn } from "@/components/animation-fade-in"
 import { AnimationWordReveal } from "@/components/animation-word-reveal"
 import { Box } from "@/components/box"
+import { Text } from "@/components/text"
 
 const Section = ({
   children,
@@ -21,7 +22,6 @@ const Section = ({
       justifyContent: "center",
       width: "100vw",
       height: "100vh",
-      border: "1px dashed red",
       ...css,
     }}
   >
@@ -32,15 +32,29 @@ const Section = ({
 export default function Page() {
   return (
     <>
-      <Section css={{ flexDirection: "column" }}>
-        <AnimationWordReveal text="This is a word reveal animation" />
-        <AnimationCharacterReveal text="This is a character reveal animation" />
+      {/* CHARACTER REVEAL */}
+      <Section css={{ flexDirection: "column", border: "1px dashed black" }}>
+        <Text headingS>
+          <AnimationCharacterReveal text="This is an animation character reveal" />
+        </Text>
+        <Text headingM>
+          <AnimationCharacterReveal text="This is an animation character reveal" />
+        </Text>
       </Section>
-      <Section>
+
+      {/* WORD REVEAL */}
+      <Section css={{ flexDirection: "column", border: "1px dashed black" }}>
+        <Text headingS>
+          <AnimationWordReveal text="This is an animation word reveal" />
+        </Text>
+        <Text headingM>
+          <AnimationWordReveal text="This is an animation word reveal" />
+        </Text>
+      </Section>
+
+      {/* FADE IN */}
+      <Section css={{ flexDirection: "column", border: "1px dashed black" }}>
         <AnimationFadeIn>This is a fade in</AnimationFadeIn>
-      </Section>
-      <Section>
-        <AnimationCharacterReveal text="This is a character reveal animation" />
       </Section>
     </>
   )

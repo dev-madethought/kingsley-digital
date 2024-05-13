@@ -15,9 +15,9 @@ export const AnimationCharacterReveal = ({ text }: { text?: string }) => {
           if (spans && spans.length > 0) {
             gsap.from(spans, {
               y: "100%",
-              duration: 0.2,
+              duration: 0.5,
               stagger: 0.03,
-              ease: "power4.inOut",
+              ease: "power3.inOut",
             })
           }
 
@@ -42,25 +42,27 @@ export const AnimationCharacterReveal = ({ text }: { text?: string }) => {
     <span
       ref={elementRef}
       style={{
+        display: "inline-block",
         overflow: "clip",
         whiteSpace: "pre",
       }}
     >
-      {text.split("").map((char, index) => (
-        <Fragment key={index}>
-          {char !== " " ? (
-            <span
-              style={{
-                display: "inline-block",
-              }}
-            >
-              {char}
-            </span>
-          ) : (
-            <> </>
-          )}
-        </Fragment>
-      ))}
+      {text &&
+        text.split("").map((char, index) => (
+          <Fragment key={index}>
+            {char !== " " ? (
+              <span
+                style={{
+                  display: "inline-block",
+                }}
+              >
+                {char}
+              </span>
+            ) : (
+              <> </>
+            )}
+          </Fragment>
+        ))}
     </span>
   )
 }

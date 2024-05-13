@@ -16,8 +16,8 @@ export const AnimationWordReveal = ({ text }: { text?: string }) => {
             gsap.from(spans, {
               y: "100%",
               duration: 0.5,
-              stagger: 0.125,
-              ease: "power2.inOut",
+              stagger: 0.1,
+              ease: "power3.inOut",
             })
           }
 
@@ -42,23 +42,25 @@ export const AnimationWordReveal = ({ text }: { text?: string }) => {
     <span
       ref={elementRef}
       style={{
+        display: "inline-block",
         overflow: "clip",
         whiteSpace: "pre",
       }}
     >
-      {text.split(" ").map((word, index) => {
-        return (
-          <Fragment key={index}>
-            <span
-              style={{
-                display: "inline-block",
-              }}
-            >
-              {word}
-            </span>{" "}
-          </Fragment>
-        )
-      })}
+      {text &&
+        text.split(" ").map((word, index) => {
+          return (
+            <Fragment key={index}>
+              <span
+                style={{
+                  display: "inline-block",
+                }}
+              >
+                {word}
+              </span>{" "}
+            </Fragment>
+          )
+        })}
     </span>
   )
 }
