@@ -66,7 +66,6 @@ export const Hero = (props: HeroProps) => {
             height: "100%",
             objectFit: "cover",
             zIndex: -1,
-            opacity: 0.1,
           }}
         />
 
