@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { useDispatch } from "react-redux"
 
 import { setModal } from "@/state/reducers/modals"
@@ -29,9 +30,15 @@ export const Mobile = ({ color }: { color: string }) => {
               svg: {
                 height: 24,
               },
+
+              a: {
+                color: "inherit",
+              },
             }}
           >
-            <LogoFull />
+            <Link href="/">
+              <LogoFull />
+            </Link>
           </Box>
           <Box
             css={{

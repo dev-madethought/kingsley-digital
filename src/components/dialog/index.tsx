@@ -47,7 +47,7 @@ export const Dialog = ({
               css={{
                 position: "fixed",
                 top: 20,
-                right: "calc(20px - 10px)",
+                right: "calc(20px + 10px)",
 
                 "@tablet": {
                   top: 40,

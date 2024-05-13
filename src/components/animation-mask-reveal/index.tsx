@@ -3,7 +3,17 @@ import { gsap } from "gsap"
 
 import styles from "./styles.module.css"
 
-export const AnimationMaskReveal = ({ children }: { children: ReactNode }) => {
+export type AnimationMaskRevealProps = {
+  children: ReactNode
+  duration?: number
+  delay?: number
+}
+
+export const AnimationMaskReveal = ({
+  children,
+  duration = 1,
+  delay = 0,
+}: AnimationMaskRevealProps) => {
   const maskRef = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
@@ -14,7 +24,8 @@ export const AnimationMaskReveal = ({ children }: { children: ReactNode }) => {
         if (entry.isIntersecting) {
           gsap.to(entry.target, {
             scaleY: 0,
-            duration: 1,
+            duration,
+            delay,
             ease: "power3.inOut",
           })
           observer.unobserve(entry.target)
@@ -31,6 +42,7 @@ export const AnimationMaskReveal = ({ children }: { children: ReactNode }) => {
         observer.unobserve(domElement)
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

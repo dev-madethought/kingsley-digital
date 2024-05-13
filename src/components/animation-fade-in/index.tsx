@@ -1,7 +1,17 @@
 import { ReactNode, useEffect, useRef } from "react"
 import { gsap } from "gsap"
 
-export const AnimationFadeIn = ({ children }: { children: ReactNode }) => {
+export type AnimationFadeInProps = {
+  children: ReactNode
+  duration?: number
+  delay?: number
+}
+
+export const AnimationFadeIn = ({
+  children,
+  duration = 1,
+  delay = 0,
+}: AnimationFadeInProps) => {
   const elementRef = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
@@ -12,7 +22,8 @@ export const AnimationFadeIn = ({ children }: { children: ReactNode }) => {
         if (entry.isIntersecting) {
           gsap.to(entry.target, {
             opacity: 1,
-            duration: 1,
+            duration,
+            delay,
             ease: "power3.inOut",
           })
           observer.unobserve(entry.target)
@@ -29,6 +40,7 @@ export const AnimationFadeIn = ({ children }: { children: ReactNode }) => {
         observer.unobserve(domElement)
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

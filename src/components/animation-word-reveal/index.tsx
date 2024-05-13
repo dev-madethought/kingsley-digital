@@ -1,7 +1,17 @@
 import { Fragment, useEffect, useRef } from "react"
 import { gsap } from "gsap"
 
-export const AnimationWordReveal = ({ text }: { text?: string }) => {
+export type AnimationWordRevealProps = {
+  text?: string
+  duration?: number
+  delay?: number
+}
+
+export const AnimationWordReveal = ({
+  text,
+  duration = 0.5,
+  delay = 0,
+}: AnimationWordRevealProps) => {
   const elementRef = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
@@ -15,7 +25,8 @@ export const AnimationWordReveal = ({ text }: { text?: string }) => {
           if (spans && spans.length > 0) {
             gsap.from(spans, {
               y: "100%",
-              duration: 0.5,
+              duration,
+              delay,
               stagger: 0.1,
               ease: "power3.inOut",
             })
