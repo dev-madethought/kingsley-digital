@@ -9,8 +9,8 @@ interface IState {
 }
 
 const initialState: IState = {
-  step: STEPS.DONE, //  STEPS.LOADING,
-  firstTime: false, //  true,
+  step: STEPS.LOADING, //  STEPS.DONE,
+  firstTime: true, //  false,
 }
 
 const slice = createSlice({
