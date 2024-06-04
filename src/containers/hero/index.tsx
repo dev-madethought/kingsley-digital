@@ -1,6 +1,6 @@
 "use client"
 
-// import { useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import { useSelector } from "react-redux"
 
 import { PortableText } from "@portabletext/react"
@@ -32,13 +32,13 @@ export const Hero = (props: HeroProps) => {
   const { step } = useSelector((state: RootState) => state.intro)
   const { debug, boxShadow } = useDebug()
 
-  // const video = useRef<HTMLVideoElement>(null)
+  const video = useRef<HTMLVideoElement>(null)
 
-  // useEffect(() => {
-  //   if (step === STEPS.DONE) {
-  //     video.current?.play()
-  //   }
-  // }, [step])
+  useEffect(() => {
+    if (step === STEPS.DONE) {
+      video.current?.play()
+    }
+  }, [step])
 
   return (
     <Container
@@ -50,6 +50,7 @@ export const Hero = (props: HeroProps) => {
       }}
     >
       <Grid>
+        {/* VIDEO */}
         {/* <Box
           ref={video}
           as="video"
@@ -70,6 +71,20 @@ export const Hero = (props: HeroProps) => {
         /> */}
 
         <Box
+          css={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            backgroundColor: "blue",
+            zIndex: -1,
+          }}
+        />
+
+        {/* IFRAME*/}
+        {/* <Box
           as="iframe"
           src="/hero/index.html"
           css={{
@@ -82,7 +97,7 @@ export const Hero = (props: HeroProps) => {
             objectFit: "cover",
             zIndex: -1,
           }}
-        />
+        /> */}
 
         <Box
           css={{
