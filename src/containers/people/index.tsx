@@ -118,7 +118,7 @@ export const People = (props: PeopleProps) => {
         css={{
           paddingTop: 114,
           paddingBottom: 40,
-          overflowX: "scroll",
+          overflowX: "auto",
           column: 12,
           gap: 10,
 

@@ -3,7 +3,6 @@ import Cookie from "universal-cookie"
 
 import { Box } from "@/components/box"
 import { Button } from "@/components/button"
-import { Text } from "@/components/text"
 import { setLanguage } from "@/state/reducers/global"
 import { RootState } from "@/state/store"
 import { English, Korean, Languages } from "@/types/language"
@@ -25,7 +24,6 @@ export const Language = () => {
         alignItems: "center",
         justifyContent: "center",
         gap: 4,
-        marginBottom: 24,
       }}
     >
       <Button

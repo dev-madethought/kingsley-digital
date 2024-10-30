@@ -4,12 +4,16 @@ import { AnimatePresence, motion, stagger } from "framer-motion"
 import { relative } from "path"
 import { useDispatch, useSelector } from "react-redux"
 
+import { PortableText } from "@portabletext/react"
+
+import { AnimationFadeIn } from "@/components/animation-fade-in"
 import { AnimationMaskReveal } from "@/components/animation-mask-reveal"
 import { Box } from "@/components/box"
-import { Button } from "@/components/button"
+// import { Button } from "@/components/button"
 import { Container } from "@/components/container"
 import { Grid } from "@/components/grid"
 import { useDebug } from "@/components/grid"
+import { components } from "@/components/portable-text"
 import { Text } from "@/components/text"
 import { urlForImage } from "@/sanity/lib/image"
 import { setModal } from "@/state/reducers/modals"
@@ -19,10 +23,10 @@ import { Services as ServicesProps } from "@/types/sanity"
 
 import * as Styles from "./styles"
 import {
-  getLearnMoreButton,
   getPrimaryDescription,
   getSecondaryDescription,
-  getServiceSinopsis,
+  // getLearnMoreButton,
+  getServiceDescription,
   getServiceTitle,
   getTitle,
 } from "./translations"
@@ -438,10 +442,16 @@ export const Services = (props: ServicesProps) => {
                       },
                     }}
                   >
-                    {getServiceSinopsis(language, service)}
-                    <Button onClick={handleLearnMore}>
+                    {/* {getServiceSinopsis(language, service)} */}
+                    <AnimationFadeIn>
+                      <PortableText
+                        value={getServiceDescription(language, service) as any}
+                        components={components}
+                      />
+                    </AnimationFadeIn>
+                    {/* <Button onClick={handleLearnMore}>
                       {getLearnMoreButton(language, settings?.buttons)}
-                    </Button>
+                    </Button> */}
                   </Box>
                 </Styles.AccordionContent>
               </Styles.AccordionItem>

@@ -20,8 +20,8 @@ export const getServiceTitle = (language: string, props: Service) => {
   return data?.value
 }
 
-export const getServiceSinopsis = (language: string, props: Service) => {
-  const data = props.sinopsis?.find((g) => g._key === language)
+export const getServiceDescription = (language: string, props: Service) => {
+  const data = props.description?.find((g) => g._key === language)
   return data?.value
 }
 

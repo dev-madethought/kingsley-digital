@@ -196,7 +196,7 @@ export const ModalPerson = ({ open, onOpenChange }: ModalPersonProps) => {
               <Box
                 css={{
                   justifyContent: "space-between",
-                  width: "100%",
+                  width: "calc(100% - 10px)",
                   textTransform: "uppercase",
                   flexDirection: "column",
                   gap: 16,

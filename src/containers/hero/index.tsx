@@ -51,7 +51,7 @@ export const Hero = (props: HeroProps) => {
     >
       <Grid>
         {/* VIDEO */}
-        {/* <Box
+        <Box
           ref={video}
           as="video"
           src={"/hero.mp4"}
@@ -68,9 +68,9 @@ export const Hero = (props: HeroProps) => {
             objectFit: "cover",
             zIndex: -1,
           }}
-        /> */}
+        />
 
-        <Box
+        {/* <Box
           css={{
             position: "absolute",
             top: 0,
@@ -81,7 +81,7 @@ export const Hero = (props: HeroProps) => {
             backgroundColor: "blue",
             zIndex: -1,
           }}
-        />
+        /> */}
 
         {/* IFRAME*/}
         {/* <Box
@@ -111,7 +111,7 @@ export const Hero = (props: HeroProps) => {
             },
 
             "@desktop": {
-              gridColumn: "1 / span 14",
+              gridColumn: "1 / span 20", // old 16
             },
           }}
         >

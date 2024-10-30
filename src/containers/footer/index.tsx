@@ -11,12 +11,6 @@ import { Text } from "@/components/text"
 import { RootState } from "@/state/store"
 
 import { Language } from "./language"
-import { Newsletter } from "./newsletter"
-import {
-  getNewsletterAgreement,
-  getNewsletterPlaceholder,
-  getNewsletterTitle,
-} from "./translations"
 
 export const Footer = () => {
   const language = useSelector((state: RootState) => state.global.language)
@@ -93,11 +87,28 @@ export const Footer = () => {
             },
           }}
         >
-          <Newsletter
-            title={getNewsletterTitle(language, settings)}
-            placeholder={getNewsletterPlaceholder(language, settings)}
-            agreement={getNewsletterAgreement(language, settings)}
-          />
+          <Box
+            // tablet
+            css={{
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "flex-start",
+
+              "@tablet": {
+                alignItems: "flex-start",
+              },
+            }}
+          >
+            {links?.map((link: any) => (
+              <Button
+                key={link._id}
+                variant="secondary"
+                href={`/${link.slug.current}`}
+              >
+                {String(link.title).toUpperCase()}
+              </Button>
+            ))}
+          </Box>
         </Box>
 
         <Box
@@ -139,24 +150,6 @@ export const Footer = () => {
           }}
         >
           <Language />
-          <Box
-            tablet
-            css={{
-              flexDirection: "column",
-              alignItems: "flex-end",
-              justifyContent: "flex-end",
-            }}
-          >
-            {links?.map((link: any) => (
-              <Button
-                key={link._id}
-                variant="secondary"
-                href={`/${link.slug.current}`}
-              >
-                {String(link.title).toUpperCase()}
-              </Button>
-            ))}
-          </Box>
         </Box>
 
         <Box
