@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { useSelector } from "react-redux"
 
 import { Language } from "@/containers/footer/language"
@@ -147,23 +147,23 @@ export const Desktop = ({ color }: { color: string }) => {
               }}
             >
               {/* BIG */}
-              {expanded &&
-                menu?.map((m: any, i: number) => {
-                  return (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                    >
-                      <MenuItem
-                        primaryLabel={getPrimaryLabel(language, m)}
-                        secondaryLabel={getSecondaryLabel(language, m)}
-                        onClick={() => handleNavigation(m.id)}
-                        color={color}
-                      />
-                    </motion.div>
-                  )
-                })}
+              {expanded && (
+                <AnimatePresence>
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                    {menu?.map((m: any, i: number) => {
+                      return (
+                        <MenuItem
+                          key={i}
+                          primaryLabel={getPrimaryLabel(language, m)}
+                          secondaryLabel={getSecondaryLabel(language, m)}
+                          onClick={() => handleNavigation(m.id)}
+                          color={color}
+                        />
+                      )
+                    })}
+                  </motion.div>
+                </AnimatePresence>
+              )}
 
               {/* SMALL */}
               {!expanded && (
@@ -219,14 +219,20 @@ export const Desktop = ({ color }: { color: string }) => {
             </Box>
           )}
 
-          <Box
-            css={{
-              alignItems: "start",
-              button: { color },
-            }}
-          >
-            <Language />
-          </Box>
+          {expanded && (
+            <AnimatePresence>
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                <Box
+                  css={{
+                    alignItems: "start",
+                    button: { color },
+                  }}
+                >
+                  <Language />
+                </Box>
+              </motion.div>
+            </AnimatePresence>
+          )}
 
           <Box
             css={{
