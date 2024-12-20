@@ -18,6 +18,44 @@ import { Text } from "../text"
 import * as Styles from "./styles"
 import { getPrimaryLabel, getSecondaryLabel } from "./translations"
 
+interface MenuItemProps {
+  primaryLabel: string
+  secondaryLabel: string
+  onClick: () => void
+  color: string
+}
+
+const MenuItem = ({ primaryLabel, secondaryLabel, onClick, color }: MenuItemProps) => (
+  <Box
+    css={{
+      display: 'grid',
+      gridTemplateColumns: 'repeat(6, 1fr)',
+      gap: 10,
+      color,
+
+      a: { color },
+      button: { color },
+    }}
+  >
+    <Box css={{ gridColumn: '1 / span 3' }}>
+      <Button
+        variant="menu"
+        onClick={onClick}
+      >
+        {primaryLabel}
+      </Button>
+    </Box>
+    <Box css={{ gridColumn: '4 / span 3', opacity: 0.5 }}>
+      <Button
+        variant="menu"
+        onClick={onClick}
+      >
+        {secondaryLabel}
+      </Button>
+    </Box>
+  </Box>
+)
+
 export const Desktop = ({ color }: { color: string }) => {
   const router = useRouter()
   const language = useSelector((state: RootState) => state.global.language)
@@ -78,8 +116,12 @@ export const Desktop = ({ color }: { color: string }) => {
         <Grid css={{ paddingTop: 40, color }}>
           <Box
             css={{
-              gridColumn: "1 / span 2",
+              gridColumn: "span 12",
               boxShadow,
+
+              "@tablet": {
+                gridColumn: "1 / span 5",
+              },
 
               a: {
                 color: "inherit",
@@ -96,15 +138,13 @@ export const Desktop = ({ color }: { color: string }) => {
           {step === STEPS.DONE && (
             <Box
               css={{
+                gridColumn: "span 12",
+                boxShadow,
+
                 "@tablet": {
-                  gridColumn: "7 / span 12",
-                  boxShadow,
+                  gridColumn: "7 / span 6",
                   flexDirection: "column",
                   justifyContent: "flex-end",
-                },
-
-                "@desktop": {
-                  gridColumn: "4 / span 13",
                 },
               }}
             >
@@ -117,47 +157,26 @@ export const Desktop = ({ color }: { color: string }) => {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                     >
-                      <Box
-                        css={{
-                          gap: 20,
-                          color,
-
-                          a: {
-                            color,
-                          },
-
-                          button: {
-                            color,
-                          },
-                        }}
-                      >
-                        <Button
-                          variant="menu"
-                          onClick={() => handleNavigation(m.id)}
-                        >
-                          {getPrimaryLabel(language, m)}
-                        </Button>
-                        <Box css={{ opacity: 0.5 }}>
-                          <Button
-                            variant="menu"
-                            onClick={() => handleNavigation(m.id)}
-                          >
-                            {getSecondaryLabel(language, m)}
-                          </Button>
-                        </Box>
-                      </Box>
+                      <MenuItem
+                        primaryLabel={getPrimaryLabel(language, m)}
+                        secondaryLabel={getSecondaryLabel(language, m)}
+                        onClick={() => handleNavigation(m.id)}
+                        color={color}
+                      />
                     </motion.div>
                   )
                 })}
 
               {/* SMALL */}
-
               {!expanded && (
-                <Box
-                  css={{ gap: 5, flexDirection: "column", userSelect: "none" }}
-                >
+                <>
                   {/* dots */}
-                  <Box css={{ gap: 16 }}>
+                  <Box css={{
+                    gridColumn: '1 / span 6',
+                    display: 'flex',
+                    gap: 16,
+                    marginBottom: 5
+                  }}>
                     {menu?.map((m: any, i: number) => {
                       const selected =
                         (section === "hero" && i === 0) || section === m.id
@@ -182,42 +201,33 @@ export const Desktop = ({ color }: { color: string }) => {
                     if (!selected) return null
 
                     return (
-                      <Box key={i}>
+                      <>
                         {selected && (
-                          <Box
-                            css={{
-                              gap: 20,
-                            }}
-                          >
-                            <Text
-                              cta
-                              css={{ color, textTransform: "uppercase" }}
-                            >
-                              {getPrimaryLabel(language, m)}
-                            </Text>
-                            <Box css={{ opacity: 0.5 }}>
-                              <Text
-                                cta
-                                css={{ color, textTransform: "uppercase" }}
-                              >
-                                {getSecondaryLabel(language, m)}
-                              </Text>
-                            </Box>
-                          </Box>
+                          <MenuItem
+                            primaryLabel={getPrimaryLabel(language, m)}
+                            secondaryLabel={getSecondaryLabel(language, m)}
+                            onClick={() => handleNavigation(m.id)}
+                            color={color}
+                          />
                         )}
-                      </Box>
+                      </>
                     )
                   })}
-                </Box>
+                </>
               )}
             </Box>
           )}
 
           <Box
             css={{
-              gridColumn: "23 / span 2",
+              gridColumn: "span 12",
               boxShadow,
-              justifyContent: "flex-end",
+              justifyContent: "center",
+
+              "@tablet": {
+                gridColumn: "23 / span 2",
+                justifyContent: "flex-end",
+              },
 
               svg: {
                 flexShrink: 0,
