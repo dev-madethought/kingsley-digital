@@ -21,6 +21,51 @@ import {
 
 const DURATION = 3000
 
+const DescriptionRow = ({
+  primary,
+  secondary,
+}: {
+  primary: React.ReactNode
+  secondary: React.ReactNode
+}) => (
+  <>
+    <Box
+      css={{
+        flexDirection: "column",
+        gridColumn: "1 / -1",
+
+        "@tablet": {
+          gridColumn: "1 / span 11",
+        },
+
+        "@desktop": {
+          gridColumn: "1 / span 5",
+        },
+      }}
+    >
+      <AnimationFadeIn>{primary}</AnimationFadeIn>
+    </Box>
+    <Box
+      tablet
+      css={{
+        flexDirection: "column",
+        gridColumn: "1 / -1",
+        opacity: 0.5,
+
+        "@tablet": {
+          gridColumn: "1 / span 11",
+        },
+
+        "@desktop": {
+          gridColumn: "8 / span 5",
+        },
+      }}
+    >
+      <AnimationFadeIn>{secondary}</AnimationFadeIn>
+    </Box>
+  </>
+)
+
 export const Philosophy = (props: PhilosophyProps) => {
   const language = useSelector((state: RootState) => state.global.language)
   const { debug, boxShadow } = useDebug()
@@ -75,6 +120,8 @@ export const Philosophy = (props: PhilosophyProps) => {
           css={{
             paddingTop: 88,
             paddingBottom: 60,
+            rowGap: 40,
+            gridAutoFlow: "dense",
 
             "@tablet": {
               paddingTop: 80,
@@ -85,19 +132,10 @@ export const Philosophy = (props: PhilosophyProps) => {
             },
           }}
         >
-          {/* primary language */}
           <Box
             css={{
-              flexDirection: "column",
-              gridColumn: "span 12",
-
-              "@tablet": {
-                gridColumn: "1 / span 11",
-              },
-
-              "@desktop": {
-                gridColumn: "1 / span 6",
-              },
+              gridColumn: "1 / -1",
+              paddingBottom: "$space$40",
             }}
           >
             <Text headingM>
@@ -107,94 +145,49 @@ export const Philosophy = (props: PhilosophyProps) => {
                 language,
               })}
             </Text>
-
-            <Box css={{ flexDirection: "column", gap: 40, boxShadow }}>
-              {props.description?.map((item) => {
-                return (
-                  <Fragment key={item._key}>
-                    <AnimationFadeIn>
-                      <Text headingS>{getPrimaryTitle(language, item)}</Text>
-                    </AnimationFadeIn>
-                    <AnimationFadeIn>
-                      <Text body>{getPrimaryDescription(language, item)}</Text>
-                    </AnimationFadeIn>
-                  </Fragment>
-                )
-              })}
-            </Box>
           </Box>
-          {/* Secondary language (hides on mobile) */}
+
+          {/* descriptions  */}
+          {props.description?.map((item) => {
+            return (
+              <>
+                <DescriptionRow
+                  key={item._key}
+                  primary={
+                    <Text headingS>{getPrimaryTitle(language, item)}</Text>
+                  }
+                  secondary={
+                    <Text body>{getSecondaryTitle(language, item)}</Text>
+                  }
+                />
+                <DescriptionRow
+                  key={item._key}
+                  primary={
+                    <Text headingS>
+                      {getPrimaryDescription(language, item)}
+                    </Text>
+                  }
+                  secondary={
+                    <Text body>{getSecondaryDescription(language, item)}</Text>
+                  }
+                />
+              </>
+            )
+          })}
+
           <Box
-            tablet
+            desktop
             css={{
+              boxShadow,
+              position: "relative",
+
               "@tablet": {
-                flexDirection: "column",
-                gridColumn: "13 / span 11",
+                gridColumn: "-11 / span 11",
               },
-
-              "@desktop": {
-                flexDirection: "column",
-                gridColumn: "8 / span 6",
-              },
-            }}
-          >
-            <Box
-              css={{
-                flexDirection: "column",
-                gap: 40,
-                boxShadow,
-                opacity: 0.5,
-              }}
-            >
-              {props.description?.map((item) => {
-                return (
-                  <Fragment key={item._key}>
-                    <AnimationFadeIn>
-                      <Text headingS>{getSecondaryTitle(language, item)}</Text>
-                    </AnimationFadeIn>
-
-                    <AnimationFadeIn>
-                      <Text body>
-                        {getSecondaryDescription(language, item)}
-                      </Text>
-                    </AnimationFadeIn>
-                  </Fragment>
-                )
-              })}
-            </Box>
-          </Box>
-          <Box
-            desktop
-            css={{
-              gridColumn: "16 / span 3",
-              boxShadow,
 
               video: {
-                width: "100%",
-              },
-            }}
-          >
-            <video
-              ref={video3}
-              src={"/desktop-3.mp4"}
-              muted
-              autoPlay
-              loop
-              playsInline
-              style={{
-                opacity: index % 3 === 2 ? 1 : 0,
-                transition: "opacity 0.3s ease-out",
-              }}
-            />
-          </Box>
-          <Box
-            desktop
-            css={{
-              gridColumn: "19 / span 3",
-              boxShadow,
-
-              video: {
-                width: "100%",
+                width: "calc(100% + $space$40)",
+                position: "absolute",
               },
             }}
           >
@@ -206,31 +199,6 @@ export const Philosophy = (props: PhilosophyProps) => {
               loop
               playsInline
               style={{
-                opacity: index % 3 === 1 ? 1 : 0,
-                transition: "opacity 0.3s ease-out",
-              }}
-            />
-          </Box>
-          <Box
-            desktop
-            css={{
-              gridColumn: "22 / span 3",
-              boxShadow,
-
-              video: {
-                width: "100%",
-              },
-            }}
-          >
-            <video
-              ref={video1}
-              src={"/desktop-1.mp4"}
-              muted
-              autoPlay
-              loop
-              playsInline
-              style={{
-                opacity: index % 3 === 0 ? 1 : 0,
                 transition: "opacity 0.3s ease-out",
               }}
             />
