@@ -1,9 +1,10 @@
-import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
+import { motion } from "framer-motion"
 import { useSelector } from "react-redux"
 
+import { Language } from "@/containers/footer/language"
 import useScroll from "@/hooks/useScroll"
 import { RootState } from "@/state/store"
 import { STEPS } from "@/types/intro"
@@ -14,7 +15,6 @@ import { Container } from "../container"
 import { Grid, useDebug } from "../grid"
 import { LogoMark, LogoWords } from "../icons"
 
-import { Language } from "@/containers/footer/language"
 import * as Styles from "./styles"
 import { getPrimaryLabel, getSecondaryLabel } from "./translations"
 

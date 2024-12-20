@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import { AnimatePresence, motion } from "framer-motion"
 import { useSelector } from "react-redux"
 
 import { PortableText } from "@portabletext/react"
@@ -17,7 +18,6 @@ import { RootState } from "@/state/store"
 import { STEPS } from "@/types/intro"
 import { Hero as HeroProps } from "@/types/sanity"
 
-import { Sentence } from "./sentence"
 import {
   getGreeting,
   getMainDescription,
@@ -45,11 +45,12 @@ export const Hero = (props: HeroProps) => {
       debug={debug}
       css={{
         position: "relative",
+        minHeight: "var(--vh)",
         clipPath: "polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%)",
         ...(step === STEPS.DONE && { zIndex: 1 }),
       }}
     >
-      <Grid>
+      <Grid css={{ height: "var(--vh)" }}>
         {/* VIDEO */}
         <Box
           ref={video}
@@ -70,88 +71,65 @@ export const Hero = (props: HeroProps) => {
           }}
         />
 
-        {/* <Box
-          css={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            backgroundColor: "blue",
-            zIndex: -1,
-          }}
-        /> */}
-
-        {/* IFRAME*/}
-        {/* <Box
-          as="iframe"
-          src="/hero/index.html"
-          css={{
-            border: "none",
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            zIndex: -1,
-          }}
-        /> */}
-
         <Box
           css={{
-            marginTop: "calc(var(--vh) - 48px)",
-            transform: "translateY(-100%)",
-            gridColumn: "span 12",
-            boxShadow,
-
-            "@tablet": {
-              gridColumn: "1 / span 20",
-            },
-
-            "@desktop": {
-              gridColumn: "1 / span 20", // old 16
-            },
-          }}
-        >
-          <Sentence
-            greeting={getGreeting(language, props) as any}
-            sentence={getSentence(language, props) as any}
-            opacity={step === STEPS.DONE ? 1 : 0}
-          />
-        </Box>
-
-        <Box
-          css={{
-            flexDirection: "column",
-            gridColumn: "span 12",
+            paddingTop: "$space$40",
             color: "white",
-            boxShadow,
-            marginBottom: 32,
+            fontSize: 18,
+            marginTop: "5vh",
 
             "@tablet": {
-              gridColumn: "9 / span 6",
-              marginBottom: 115,
-            },
-
-            "@desktop": {
-              gridColumn: "13 / span 4",
-              marginBottom: 115,
+              marginTop: "25vh",
             },
           }}
         >
-          <AnimationFadeIn>
-            <Text uppercase wrap>
-              {getMainTitle(language, props)}
-            </Text>
-          </AnimationFadeIn>
+          <AnimatePresence>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: step === STEPS.DONE ? 1 : 0,
+                transition: { duration: 0.5, ease: "easeInOut" },
+              }}
+            >
+              {getGreeting(language, props)}
+            </motion.div>
+          </AnimatePresence>
+        </Box>
+        <Box
+          css={{
+            gridColumn: "span 12",
+            boxShadow,
+            marginTop: "$space$10",
 
-          <AnimationFadeIn>
-            <Text uppercase wrap css={{ opacity: 0.5 }}>
-              {getSecondaryTitle(language, props)}
-            </Text>
-          </AnimationFadeIn>
+            "@tablet": {
+              marginTop: "25vh",
+              gridColumn: "2 / span 18",
+            },
+
+            "@desktop": {
+              gridColumn: "2 / span 18",
+            },
+          }}
+        >
+          <Text
+            headingXL
+            css={{
+              position: "relative",
+              color: "white",
+            }}
+          >
+            <AnimatePresence>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: step === STEPS.DONE ? 1 : 0,
+                  transition: { duration: 0.5, ease: "easeInOut" },
+                }}
+              >
+                {getSentence(language, props)}
+              </motion.div>
+            </AnimatePresence>
+          </Text>
         </Box>
 
         <Box
@@ -161,19 +139,28 @@ export const Hero = (props: HeroProps) => {
             color: "white",
             boxShadow,
             gap: 20,
+            marginTop: "$space$20",
             marginBottom: 50,
 
             "@tablet": {
+              marginTop: "auto",
               gridColumn: "15 / span 10",
-              marginBottom: 115,
-            },
-
-            "@desktop": {
-              gridColumn: "17 / span 8",
-              marginBottom: 115,
             },
           }}
         >
+          <Box css={{ flexDirection: "column", marginBottom: "auto" }}>
+            <AnimationFadeIn>
+              <Text uppercase headingS>
+                {getMainTitle(language, props)}
+              </Text>
+            </AnimationFadeIn>
+
+            <AnimationFadeIn>
+              <Text uppercase wrap css={{ opacity: 0.5 }}>
+                {getSecondaryTitle(language, props)}
+              </Text>
+            </AnimationFadeIn>
+          </Box>
           <AnimationFadeIn>
             <PortableText
               value={getMainDescription(language, props) as any}

@@ -58,11 +58,6 @@ export const Text = styled("p", {
         lineHeight: "46.8px",
         textAlign: "left",
 
-        "&:before": {
-          fontSize: 18,
-          verticalAlign: "middle",
-        },
-
         "@tablet": {
           fontSize: "100px",
           lineHeight: "90px",

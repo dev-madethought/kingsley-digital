@@ -23,3 +23,8 @@ export const Grid = styled("div", {
 })
 
 Grid.displayName = "Grid"
+
+// Add CSS property support
+Grid.defaultProps = {
+  css: {},
+}
