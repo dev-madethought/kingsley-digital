@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
+import { motion } from "framer-motion"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 
 import useScroll from "@/hooks/useScroll"
@@ -13,8 +13,8 @@ import { Button } from "../button"
 import { Container } from "../container"
 import { Grid, useDebug } from "../grid"
 import { LogoMark, LogoWords } from "../icons"
-import { Text } from "../text"
 
+import { Language } from "@/containers/footer/language"
 import * as Styles from "./styles"
 import { getPrimaryLabel, getSecondaryLabel } from "./translations"
 
@@ -25,31 +25,29 @@ interface MenuItemProps {
   color: string
 }
 
-const MenuItem = ({ primaryLabel, secondaryLabel, onClick, color }: MenuItemProps) => (
+const MenuItem = ({
+  primaryLabel,
+  secondaryLabel,
+  onClick,
+  color,
+}: MenuItemProps) => (
   <Box
     css={{
-      display: 'grid',
-      gridTemplateColumns: 'repeat(6, 1fr)',
+      display: "grid",
+      gridTemplateColumns: "repeat(6, 1fr)",
       gap: 10,
       color,
-
       a: { color },
       button: { color },
     }}
   >
-    <Box css={{ gridColumn: '1 / span 3' }}>
-      <Button
-        variant="menu"
-        onClick={onClick}
-      >
+    <Box css={{ gridColumn: "1 / span 3" }}>
+      <Button variant="menu" onClick={onClick}>
         {primaryLabel}
       </Button>
     </Box>
-    <Box css={{ gridColumn: '4 / span 3', opacity: 0.5 }}>
-      <Button
-        variant="menu"
-        onClick={onClick}
-      >
+    <Box css={{ gridColumn: "4 / span 3", opacity: 0.5 }}>
+      <Button variant="menu" onClick={onClick}>
         {secondaryLabel}
       </Button>
     </Box>
@@ -171,12 +169,15 @@ export const Desktop = ({ color }: { color: string }) => {
               {!expanded && (
                 <>
                   {/* dots */}
-                  <Box css={{
-                    gridColumn: '1 / span 6',
-                    display: 'flex',
-                    gap: 16,
-                    marginBottom: 5
-                  }}>
+                  <Box
+                    css={{
+                      gridColumn: "1 / span 6",
+                      display: "flex",
+                      gap: 16,
+                      marginBottom: 5,
+                      color: "$typography",
+                    }}
+                  >
                     {menu?.map((m: any, i: number) => {
                       const selected =
                         (section === "hero" && i === 0) || section === m.id
@@ -217,6 +218,15 @@ export const Desktop = ({ color }: { color: string }) => {
               )}
             </Box>
           )}
+
+          <Box
+            css={{
+              alignItems: "start",
+              button: { color },
+            }}
+          >
+            <Language />
+          </Box>
 
           <Box
             css={{

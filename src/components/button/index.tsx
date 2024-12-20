@@ -156,10 +156,11 @@ const Layout = ({
             fontWeight: 400,
             letterSpacing: "0.28px",
             color: "inherit",
-            cursor: disabled ? "not-allowed" : "pointer",
+            cursor: disabled ? "default" : "pointer",
             alignItems: "center",
             gap: 8,
             textTransform: "uppercase",
+            opacity: disabled ? 0.5 : 1,
 
             ...(!disabled && {
               "&:hover": {

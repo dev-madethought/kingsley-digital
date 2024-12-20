@@ -27,7 +27,7 @@ export const Language = () => {
       }}
     >
       <Button
-        variant="tertiary"
+        variant="menu"
         disabled={language === English}
         onClick={() => handleLanguage(English)}
       >
@@ -35,7 +35,7 @@ export const Language = () => {
       </Button>
       <span>/</span>
       <Button
-        variant="tertiary"
+        variant="menu"
         disabled={language === Korean}
         onClick={() => handleLanguage(Korean)}
       >

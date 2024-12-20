@@ -131,28 +131,6 @@ export const Footer = () => {
         </Box>
 
         <Box
-          css={{
-            flexDirection: "column",
-            justifyContent: "flex-end",
-            gridColumn: "span 12",
-            boxShadow,
-
-            "@tablet": {
-              alignItems: "flex-end",
-
-              gridColumn: "17 / span 8",
-            },
-
-            "@desktop": {
-              alignItems: "flex-end",
-              gridColumn: "19 / span 6",
-            },
-          }}
-        >
-          <Language />
-        </Box>
-
-        <Box
           mobile
           css={{
             flexDirection: "column",
