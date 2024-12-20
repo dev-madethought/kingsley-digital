@@ -4,13 +4,21 @@
 
 import { defineConfig } from "sanity"
 import { structureTool } from "sanity/structure"
-import { internationalizedArray } from "sanity-plugin-internationalized-array"
+import {
+  internationalizedArray,
+  Language,
+} from "sanity-plugin-internationalized-array"
 
 import { visionTool } from "@sanity/vision"
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import { apiVersion, dataset, projectId } from "./src/sanity/env"
 import { schema } from "./src/sanity/schema"
+
+export const languages = [
+  { id: "en", title: "English" },
+  { id: "ko", title: "Korean" },
+] as const
 
 export default defineConfig({
   basePath: "/admin",
@@ -22,10 +30,7 @@ export default defineConfig({
     structureTool(),
     visionTool({ defaultApiVersion: apiVersion }),
     internationalizedArray({
-      languages: [
-        { id: "en", title: "English" },
-        { id: "ko", title: "Korean" },
-      ],
+      languages: languages as unknown as Language[],
       defaultLanguages: ["en"],
       fieldTypes: ["string", "blockContent"],
     }),

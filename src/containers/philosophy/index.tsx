@@ -8,6 +8,7 @@ import { Container } from "@/components/container"
 import { Grid } from "@/components/grid"
 import { useDebug } from "@/components/grid"
 import { Text } from "@/components/text"
+import { getTranslationForKey } from "@/lib/utils"
 import { RootState } from "@/state/store"
 import { Philosophy as PhilosophyProps } from "@/types/sanity"
 
@@ -99,6 +100,14 @@ export const Philosophy = (props: PhilosophyProps) => {
               },
             }}
           >
+            <Text headingM>
+              {getTranslationForKey({
+                key: "menu",
+                props,
+                language,
+              })}
+            </Text>
+
             <Box css={{ flexDirection: "column", gap: 40, boxShadow }}>
               {props.description?.map((item) => {
                 return (
@@ -106,7 +115,6 @@ export const Philosophy = (props: PhilosophyProps) => {
                     <AnimationFadeIn>
                       <Text headingS>{getPrimaryTitle(language, item)}</Text>
                     </AnimationFadeIn>
-
                     <AnimationFadeIn>
                       <Text body>{getPrimaryDescription(language, item)}</Text>
                     </AnimationFadeIn>
@@ -115,7 +123,6 @@ export const Philosophy = (props: PhilosophyProps) => {
               })}
             </Box>
           </Box>
-
           {/* Secondary language (hides on mobile) */}
           <Box
             tablet
@@ -156,7 +163,6 @@ export const Philosophy = (props: PhilosophyProps) => {
               })}
             </Box>
           </Box>
-
           <Box
             desktop
             css={{
@@ -181,7 +187,6 @@ export const Philosophy = (props: PhilosophyProps) => {
               }}
             />
           </Box>
-
           <Box
             desktop
             css={{
@@ -206,7 +211,6 @@ export const Philosophy = (props: PhilosophyProps) => {
               }}
             />
           </Box>
-
           <Box
             desktop
             css={{
