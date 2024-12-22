@@ -6,11 +6,12 @@ import {
   People,
   Person,
   Philosophy,
+  Services,
 } from "@/types/sanity"
 
 import { languages } from "../../sanity.config"
 
-type ContentTypes = Hero | Philosophy | People | Person | Contacts
+type ContentTypes = Hero | Philosophy | People | Person | Contacts | Services
 
 // Define the structure we are interested in exactly
 type ValuesWithTranslations =
@@ -43,19 +44,31 @@ type BaseProps = {
   language: (typeof languages)[number]["id"]
 }
 
-type TranslatableProps<P> = BaseProps & {
-  props: P
-  key: KeysOfMatchingType<P, ValuesWithTranslations>
+type GenericTranslatableProps<T> = {
+  props: T
+  translationKey: KeysOfMatchingType<T, ValuesWithTranslations>
 }
 
-export function getTranslationForKey<T extends ContentTypes = ContentTypes>({
+export type TranslatableProps = BaseProps &
+  (
+    | GenericTranslatableProps<Hero>
+    | GenericTranslatableProps<Philosophy>
+    | GenericTranslatableProps<People>
+    | GenericTranslatableProps<Person>
+    | GenericTranslatableProps<Contacts>
+    | GenericTranslatableProps<Services>
+  )
+
+export function getTranslationForKey({
   language,
   props,
-  key,
-}: TranslatableProps<T>): string | undefined {
-  const data = (props[key] as Array<{ _key: string; value: any }>)?.find(
-    (g) => g._key === language
-  )
+  translationKey,
+}: TranslatableProps): string | undefined {
+  if (!translationKey) return undefined
+
+  const data = (
+    props[translationKey] as Array<{ _key: string; value: any }>
+  )?.find((g) => g._key === language)
   return data?.value
 }
 

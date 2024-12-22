@@ -1,89 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
-import { Fragment, useEffect, useRef, useState } from "react"
+import { useRef } from "react"
 import { useSelector } from "react-redux"
 
-import { AnimationFadeIn } from "@/components/animation-fade-in"
 import { Box } from "@/components/box"
 import { Container } from "@/components/container"
-import { Grid } from "@/components/grid"
-import { useDebug } from "@/components/grid"
-import { Text } from "@/components/text"
-import { getTranslationForKey } from "@/lib/utils"
+import { Grid, useDebug } from "@/components/grid"
+import { Heading } from "@/components/heading"
+import { TranslatedRow } from "@/components/translated-row"
 import { RootState } from "@/state/store"
 import { Philosophy as PhilosophyProps } from "@/types/sanity"
-
-import {
-  getPrimaryDescription,
-  getPrimaryTitle,
-  getSecondaryDescription,
-  getSecondaryTitle,
-} from "./translations"
-
-const DURATION = 3000
-
-const DescriptionRow = ({
-  primary,
-  secondary,
-}: {
-  primary: React.ReactNode
-  secondary: React.ReactNode
-}) => (
-  <>
-    <Box
-      css={{
-        flexDirection: "column",
-        gridColumn: "1 / -1",
-
-        "@tablet": {
-          gridColumn: "1 / span 11",
-        },
-
-        "@desktop": {
-          gridColumn: "1 / span 5",
-        },
-      }}
-    >
-      <AnimationFadeIn>{primary}</AnimationFadeIn>
-    </Box>
-    <Box
-      tablet
-      css={{
-        flexDirection: "column",
-        gridColumn: "1 / -1",
-        opacity: 0.5,
-
-        "@tablet": {
-          gridColumn: "1 / span 11",
-        },
-
-        "@desktop": {
-          gridColumn: "8 / span 5",
-        },
-      }}
-    >
-      <AnimationFadeIn>{secondary}</AnimationFadeIn>
-    </Box>
-  </>
-)
 
 export const Philosophy = (props: PhilosophyProps) => {
   const language = useSelector((state: RootState) => state.global.language)
   const { debug, boxShadow } = useDebug()
-  const video1 = useRef<HTMLVideoElement>(null)
   const video2 = useRef<HTMLVideoElement>(null)
-  const video3 = useRef<HTMLVideoElement>(null)
-  const [index, setIndex] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prevIndex) => {
-        return (prevIndex += 1)
-      })
-    }, DURATION)
-    return () => {
-      clearInterval(interval)
-    }
-  }, [])
 
   return (
     <>
@@ -132,44 +62,21 @@ export const Philosophy = (props: PhilosophyProps) => {
             },
           }}
         >
-          <Box
-            css={{
-              gridColumn: "1 / -1",
-              paddingBottom: "$space$40",
-            }}
-          >
-            <Text headingM>
-              {getTranslationForKey({
-                key: "menu",
-                props,
-                language,
-              })}
-            </Text>
-          </Box>
+          <Heading props={props} language={language} translationKey="menu" />
 
           {/* descriptions  */}
           {props.description?.map((item) => {
             return (
               <>
-                <DescriptionRow
+                <TranslatedRow
                   key={item._key}
-                  primary={
-                    <Text headingS>{getPrimaryTitle(language, item)}</Text>
-                  }
-                  secondary={
-                    <Text body>{getSecondaryTitle(language, item)}</Text>
-                  }
+                  props={item as any}
+                  translationKey="title"
                 />
-                <DescriptionRow
+                <TranslatedRow
                   key={item._key}
-                  primary={
-                    <Text headingS>
-                      {getPrimaryDescription(language, item)}
-                    </Text>
-                  }
-                  secondary={
-                    <Text body>{getSecondaryDescription(language, item)}</Text>
-                  }
+                  props={item as any}
+                  translationKey="description"
                 />
               </>
             )

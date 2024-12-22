@@ -1,7 +1,6 @@
 import { useState } from "react"
 import Image from "next/image"
-import { AnimatePresence, motion, stagger } from "framer-motion"
-import { relative } from "path"
+import { AnimatePresence } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 
 import { PortableText } from "@portabletext/react"
@@ -11,10 +10,11 @@ import { AnimationMaskReveal } from "@/components/animation-mask-reveal"
 import { Box } from "@/components/box"
 // import { Button } from "@/components/button"
 import { Container } from "@/components/container"
-import { Grid } from "@/components/grid"
-import { useDebug } from "@/components/grid"
+import { Grid, useDebug } from "@/components/grid"
+import Heading from "@/components/heading"
 import { components } from "@/components/portable-text"
 import { Text } from "@/components/text"
+import { TranslatedRow } from "@/components/translated-row"
 import { urlForImage } from "@/sanity/lib/image"
 import { setModal } from "@/state/reducers/modals"
 import { setService } from "@/state/reducers/service"
@@ -23,12 +23,9 @@ import { Services as ServicesProps } from "@/types/sanity"
 
 import * as Styles from "./styles"
 import {
-  getPrimaryDescription,
-  getSecondaryDescription,
   // getLearnMoreButton,
   getServiceDescription,
   getServiceTitle,
-  getTitle,
 } from "./translations"
 
 const LAYOUTS = ["layout1", "layout2", "layout1", "layout3"]
@@ -260,63 +257,9 @@ export const Services = (props: ServicesProps) => {
       }}
     >
       <Grid>
-        <Box
-          css={{
-            flexDirection: "column",
-            gridColumn: "span 12",
-            alignItems: "flex-end",
-            marginBottom: 40,
-            boxShadow,
+        <Heading props={props} language={language} translationKey="title" />
 
-            "@tablet": {
-              gridColumn: "15 / span 10",
-              marginBottom: 88,
-            },
-
-            "@desktop": {
-              alignItems: "flex-start",
-              gridColumn: "21 / span 4",
-              marginBottom: 88,
-            },
-          }}
-        >
-          <Text headingM>{getTitle(language, props)}</Text>
-        </Box>
-
-        <Box
-          css={{
-            flexDirection: "column",
-            gridColumn: "span 11",
-            boxShadow,
-
-            "@tablet": {
-              gridColumn: "1 / span 8",
-            },
-
-            "@desktop": {
-              gridColumn: "1 / span 6",
-            },
-          }}
-        >
-          {getPrimaryDescription(language, props)}
-        </Box>
-
-        <Box
-          tablet
-          css={{
-            "@tablet": {
-              boxShadow,
-              opacity: 0.5,
-              gridColumn: "10 / span 8",
-            },
-
-            "@desktop": {
-              gridColumn: "8 / span 6",
-            },
-          }}
-        >
-          {getSecondaryDescription(language, props)}
-        </Box>
+        <TranslatedRow props={props} translationKey="description" />
 
         {/* IMAGES */}
         <Box

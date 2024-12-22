@@ -110,7 +110,19 @@ export const Desktop = ({ color }: { color: string }) => {
 
   return (
     <Styles.Header>
-      <Container debug={debug}>
+      <Container
+        debug={debug}
+        css={
+          !expanded
+            ? {
+                backgroundColor: "rgba(231, 230, 226, 0.9)",
+                borderColor: "rgba(0, 0, 0, 0.1)",
+                borderBottom: "1px solid",
+                paddingBottom: "$space$40",
+              }
+            : {}
+        }
+      >
         <Grid css={{ paddingTop: 40, color }}>
           <Box
             css={{
@@ -153,7 +165,7 @@ export const Desktop = ({ color }: { color: string }) => {
                     {menu?.map((m: any, i: number) => {
                       return (
                         <MenuItem
-                          key={i}
+                          key={m.id}
                           primaryLabel={getPrimaryLabel(language, m)}
                           secondaryLabel={getSecondaryLabel(language, m)}
                           onClick={() => handleNavigation(m.id)}
