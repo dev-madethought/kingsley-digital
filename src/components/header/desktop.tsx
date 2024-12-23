@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useSelector } from "react-redux"
 
 import { Language } from "@/containers/footer/language"
+import useHeroInView from "@/hooks/useHeroInView"
 import useScroll from "@/hooks/useScroll"
 import { RootState } from "@/state/store"
 import { STEPS } from "@/types/intro"
@@ -59,6 +60,7 @@ export const Desktop = ({ color }: { color: string }) => {
   const language = useSelector((state: RootState) => state.global.language)
   const menu = useSelector((state: RootState) => state.global.menu)
   const { step } = useSelector((state: RootState) => state.intro)
+  const isHeroInView = useHeroInView()
 
   const [expanded, setExpanded] = useState(false)
 
@@ -112,16 +114,18 @@ export const Desktop = ({ color }: { color: string }) => {
     <Styles.Header>
       <Container
         debug={debug}
-        css={
-          !expanded
-            ? {
-                backgroundColor: "rgba(231, 230, 226, 0.9)",
-                borderColor: "rgba(0, 0, 0, 0.1)",
-                borderBottom: "1px solid",
-                paddingBottom: "$space$40",
-              }
-            : {}
-        }
+        css={{
+          transition: "all 0.3s ease",
+          backgroundColor: "rgba(231, 230, 226, 0)",
+          borderBottom: "1px solid",
+          borderColor: "rgba(0, 0, 0, 0)",
+          paddingBottom: "$space$40",
+
+          ...(!isHeroInView && {
+            backgroundColor: "rgba(231, 230, 226, 0.9)",
+            borderColor: "rgba(0, 0, 0, 0.1)",
+          }),
+        }}
       >
         <Grid css={{ paddingTop: 40, color }}>
           <Box
