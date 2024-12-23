@@ -66,9 +66,10 @@ export function getTranslationForKey({
 }: TranslatableProps): string | undefined {
   if (!translationKey) return undefined
 
-  const data = (
-    props[translationKey] as Array<{ _key: string; value: any }>
-  )?.find((g) => g._key === language)
+  const data = // @ts-ignore
+    (props[translationKey] as Array<{ _key: string; value: any }>)?.find(
+      (g) => g._key === language
+    )
   return data?.value
 }
 
