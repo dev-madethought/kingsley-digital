@@ -9,7 +9,7 @@ import { Button } from "@/components/button"
 import { Container } from "@/components/container"
 import { Dialog } from "@/components/dialog"
 import { Grid, useDebug } from "@/components/grid"
-import { ArrowUp, LogoFull, LogoMark } from "@/components/icons"
+import { ArrowUp, LogoWords } from "@/components/icons"
 import { Text } from "@/components/text"
 import { Language } from "@/containers/footer/language"
 import useScroll from "@/hooks/useScroll"
@@ -82,34 +82,29 @@ export const ModalMenu = ({ open, onOpenChange }: ModalMenuProps) => {
           width: "100%",
         }}
       >
-        <Container>
-          <Grid>
+        <Container style={{ height: "100%" }}>
+          <Grid style={{ height: "100%", gridTemplateRows: "150px auto" }}>
+            <Box
+              css={{
+                gridColumn: "1 / span 10",
+                paddingTop: 32,
+              }}
+            >
+              <LogoWords />
+            </Box>
             <Box
               css={{
                 flexDirection: "column",
                 gridColumn: "1 / span 12",
-                height: "var(--vh)",
               }}
             >
               {/* LOGO and cclose */}
-              <Box
-                css={{
-                  paddingTop: 32,
-                  paddingBottom: 80,
-
-                  svg: {
-                    height: 24,
-                  },
-                }}
-              >
-                <LogoFull />
-              </Box>
 
               <Box
                 css={{
                   flexDirection: "column",
                   gap: 20,
-                  flexGrow: 1,
+                  flex: 1,
 
                   "& > *": {
                     boxShadow,

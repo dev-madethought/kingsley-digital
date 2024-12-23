@@ -48,10 +48,10 @@ export const Philosophy = (props: PhilosophyProps) => {
       <Container debug={debug}>
         <Grid
           css={{
-            paddingTop: 88,
+            paddingTop: 60,
             paddingBottom: 60,
-            rowGap: 40,
             gridAutoFlow: "dense",
+            rowGap: "$space$40",
 
             "@tablet": {
               paddingTop: 80,

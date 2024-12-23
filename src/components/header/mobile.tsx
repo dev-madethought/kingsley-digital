@@ -6,7 +6,7 @@ import { setModal } from "@/state/reducers/modals"
 import { Box } from "../box"
 import { Container } from "../container"
 import { Grid, useDebug } from "../grid"
-import { Hamburger, LogoFull } from "../icons"
+import { Hamburger, LogoWords } from "../icons"
 
 import * as Styles from "./styles"
 
@@ -33,7 +33,7 @@ export const Mobile = ({ color }: { color: string }) => {
             }}
           >
             <Link href="/">
-              <LogoFull />
+              <LogoWords />
             </Link>
           </Box>
           <Box

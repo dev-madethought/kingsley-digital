@@ -128,7 +128,7 @@ export const Services = (props: ServicesProps) => {
     <Container
       debug={debug}
       css={{
-        paddingTop: 166,
+        paddingTop: "$space$40",
         paddingBottom: 56,
 
         "@tablet": {
@@ -138,17 +138,40 @@ export const Services = (props: ServicesProps) => {
       }}
     >
       <Grid css={{ rowGap: "$space$40" }}>
+        {/* IMAGES */}
+        <Box
+          mobile
+          css={{
+            gridColumn: "1 / -1",
+            height: "100vw",
+            marginLeft: "calc(-1*$space$20)",
+            paddingBottom: "$space$20",
+          }}
+        >
+          <AnimationMaskReveal>
+            <Image
+              style={{
+                aspectRatio: 1,
+                maxWidth: "none",
+                width: "100vw",
+                height: "auto",
+              }}
+              src={urlForImage(props.image)}
+              alt="default"
+              width={500}
+              height={500}
+            />
+          </AnimationMaskReveal>
+        </Box>
+
         <Heading props={props} language={language} translationKey="title" />
 
         <TranslatedRow props={props} translationKey="description" />
 
         {/* IMAGES */}
         <Box
+          tablet
           css={{
-            gridColumn: "span 10",
-            marginTop: 64,
-            marginBottom: 48,
-
             "@tablet": {
               marginBottom: 0,
               gridColumn: "1 / span 9",
@@ -166,17 +189,15 @@ export const Services = (props: ServicesProps) => {
         {/* ACCORDION */}
         <Box
           css={{
-            gridColumn: "span 12",
+            gridColumn: "1  / -1",
             boxShadow,
 
             "@tablet": {
               gridColumn: "10 / span 15",
-              marginTop: 64,
             },
 
             "@desktop": {
               gridColumn: "15 / span 10",
-              marginTop: 64,
             },
           }}
         >

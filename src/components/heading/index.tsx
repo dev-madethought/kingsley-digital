@@ -10,7 +10,10 @@ export const Heading = (
   <Box
     css={{
       gridColumn: "1 / -1",
-      paddingBottom: "$space$40",
+
+      "@tablet": {
+        paddingBottom: "$space$40",
+      },
     }}
   >
     <Text headingM>{getTranslationForKey(translatableProps)}</Text>

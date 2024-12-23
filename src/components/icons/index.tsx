@@ -49,9 +49,9 @@ export const LogoMark = () => (
 export const LogoWords = () => (
   <svg
     style={{ width: "100%" }}
+    viewBox="0 0 275 23"
     width="275"
     height="23"
-    viewBox="0 0 275 23"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
