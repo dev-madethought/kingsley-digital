@@ -50,6 +50,21 @@ export const getSubjectsArray = (language: string, props: any) => {
   return data
 }
 
+export const getPreferredContactMethod = (language: string, props: any) => {
+  const data = props?.preferredContactMethod?.find(
+    (g: any) => g._key === language
+  )
+  return data?.value
+}
+
+export const getPreferredContactMethods = (language: string, props: any) => {
+  const data = props?.preferredContactMethods?.map((g: any) => {
+    const found = g.label.find((g: any) => g._key === language)
+    return { value: found.value, label: found.value, key: g._key }
+  })
+  return data
+}
+
 export const getMessage = (language: string, props: any) => {
   const data = props?.message?.find((g: any) => g._key === language)
   return data?.value

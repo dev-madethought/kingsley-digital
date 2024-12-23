@@ -9,6 +9,7 @@ export const EmailTemplate = ({
   subject,
   message,
   organisation,
+  preferredContactMethod,
 }: EmailProps) => (
   <div>
     <p>
@@ -18,6 +19,7 @@ export const EmailTemplate = ({
     {organisation && <p>Organisation: {organisation}</p>}
     <p>Phone Number: {phone}</p>
     <p>Email: {email}</p>
+    <p>Preferred Contact Method: {preferredContactMethod}</p>
     <br />
     <p>
       <strong>{subject}</strong>

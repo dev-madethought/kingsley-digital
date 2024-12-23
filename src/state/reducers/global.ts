@@ -70,6 +70,8 @@ function fetchSettingsData() {
       "email": contactsEmail,
       "subject": contactsSubject,
       "subjects": contactsSubjects,
+      preferredContactMethod,
+      preferredContactMethods,
       "message": contactsMessage,
       "subscribe": contactsSubscribe,
       "success": contactsSuccess

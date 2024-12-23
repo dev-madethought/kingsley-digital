@@ -9,11 +9,27 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
-    const { name, phone, email, subject, message, organisation, subscribe } =
-      req.body
+    const {
+      name,
+      phone,
+      email,
+      subject,
+      message,
+      organisation,
+      subscribe,
+      preferredContactMethod,
+    } = req.body
     const recipient = process.env.RESEND_EMAIL_RECIPIENT
 
-    if (!name || !phone || !email || !subject || !message || !recipient) {
+    if (
+      !name ||
+      !phone ||
+      !email ||
+      !subject ||
+      !message ||
+      !recipient ||
+      !preferredContactMethod
+    ) {
       return res.status(400).json({ message: "Bad request" })
     }
 
@@ -36,12 +52,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         subject,
         message,
         organisation,
+        preferredContactMethod,
       }),
     })
 
     if (error) {
+      console.log("error", error)
       return res.status(400).json({ error })
     }
+    console.log("data", data)
 
     return res.status(200).json(data)
   }

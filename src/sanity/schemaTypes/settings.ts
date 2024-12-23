@@ -148,6 +148,30 @@ export default defineType({
       ],
     }),
     defineField({
+      name: "preferredContactMethod",
+      title: "Preferred Contact Method",
+      type: "internationalizedArrayString",
+      group: "contacts",
+    }),
+    defineField({
+      name: "preferredContactMethods",
+      title: "Contact Methods",
+      type: "array",
+      group: "contacts",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "label",
+              type: "internationalizedArrayString",
+              title: "Label",
+            },
+          ],
+        },
+      ],
+    }),
+    defineField({
       name: "contactsMessage",
       title: "Message",
       type: "internationalizedArrayString",

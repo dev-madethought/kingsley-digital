@@ -21,6 +21,8 @@ import {
   getName,
   getOrganisation,
   getPhone,
+  getPreferredContactMethod,
+  getPreferredContactMethods,
   getPrimaryDescription,
   getSecondaryDescription,
   getSubject,
@@ -63,6 +65,7 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
     const organisation = data.get("organisation")
     const email = data.get("email")
     const subject = data.get("subject")
+    const preferredContactMethod = data.get("preferredContactMethod")
     const message = data.get("message")
     const subscribe = data.get("subscribe") === "on"
 
@@ -73,6 +76,7 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
       organisation,
       email,
       subject,
+      preferredContactMethod,
       message,
       subscribe,
     })
@@ -300,6 +304,27 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
                   required
                   disabled={sending}
                   options={getSubjectsArray(language, settings?.contacts)}
+                />
+              </Box>
+              <Box
+                css={{
+                  gap: 10,
+                  borderBottom: "1px solid $typography",
+                }}
+              >
+                <Box css={{ column: 1 }} />
+                <Select
+                  name="preferredContactMethod"
+                  placeholder={getPreferredContactMethod(
+                    language,
+                    settings?.contacts
+                  )}
+                  required
+                  disabled={sending}
+                  options={getPreferredContactMethods(
+                    language,
+                    settings?.contacts
+                  )}
                 />
               </Box>
               <Box
