@@ -27,10 +27,6 @@ export const Mobile = ({ color }: { color: string }) => {
               gridColumn: "1 / span 9",
               boxShadow,
 
-              svg: {
-                height: 24,
-              },
-
               a: {
                 color: "inherit",
               },

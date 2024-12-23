@@ -33,15 +33,15 @@ export const Footer = () => {
         <Box
           css={{
             gridColumn: "span 12",
-            paddingBottom: 250,
+            paddingBottom: 80,
             boxShadow,
             svg: {
               width: "100%",
             },
 
             "@tablet": {
-              gridColumn: "1 / span 13",
-              paddingBottom: 250,
+              gridColumn: "1 / -1",
+              paddingBottom: 350,
             },
           }}
         >
@@ -49,31 +49,10 @@ export const Footer = () => {
         </Box>
 
         <Box
-          tablet
           css={{
             flexDirection: "column",
             gridColumn: "span 12",
-            justifyContent: "flex-start",
-            alignItems: "flex-end",
-            boxShadow,
-            "@tablet": {
-              gridColumn: "19 / span 6",
-            },
-          }}
-        >
-          {socialLinks?.map((link: any) => (
-            <Button key={link._key} variant="secondary" href={link.url}>
-              {String(link.label).toUpperCase()}
-              <ArrowUp />
-            </Button>
-          ))}
-        </Box>
-
-        <Box
-          css={{
-            flexDirection: "column",
-            gridColumn: "span 12",
-            marginBottom: 40,
+            marginBottom: 80,
             boxShadow,
 
             "@tablet": {
@@ -108,6 +87,15 @@ export const Footer = () => {
                 {String(link.title).toUpperCase()}
               </Button>
             ))}
+
+            <Box mobile>
+              {socialLinks?.map((link: any) => (
+                <Button key={link._key} variant="secondary" href={link.url}>
+                  {String(link.label).toUpperCase()}
+                  <ArrowUp />
+                </Button>
+              ))}
+            </Box>
           </Box>
         </Box>
 
@@ -147,6 +135,27 @@ export const Footer = () => {
           <Text cta css={{ color: "$typography" }}>
             © {new Date().getFullYear()} Alder Partners
           </Text>
+        </Box>
+
+        <Box
+          tablet
+          css={{
+            flexDirection: "column",
+            gridColumn: "span 12",
+            justifyContent: "flex-end",
+            alignItems: "flex-end",
+            boxShadow,
+            "@tablet": {
+              gridColumn: "19 / span 6",
+            },
+          }}
+        >
+          {socialLinks?.map((link: any) => (
+            <Button key={link._key} variant="secondary" href={link.url}>
+              {String(link.label).toUpperCase()}
+              <ArrowUp />
+            </Button>
+          ))}
         </Box>
       </Grid>
     </Container>
