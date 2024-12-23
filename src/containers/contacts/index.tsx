@@ -57,6 +57,7 @@ export const Contacts = (props: ContactsProps) => {
             gridColumn: "1 / span 12",
             marginBottom: 56,
             boxShadow,
+            textWrap: "balance",
 
             "@tablet": {
               gridColumn: "1 / span 19",
@@ -187,7 +188,7 @@ export const Contacts = (props: ContactsProps) => {
 
             "@desktop": {
               flexDirection: "column",
-              gridColumn: "10 / span 4",
+              gridColumn: "10 / span 2",
               boxShadow,
               marginTop: 36,
             },
@@ -212,7 +213,7 @@ export const Contacts = (props: ContactsProps) => {
             },
 
             "@desktop": {
-              gridColumn: "14 / span 4",
+              gridColumn: "13 / span 3",
             },
           }}
         >
@@ -228,13 +229,13 @@ export const Contacts = (props: ContactsProps) => {
           css={{
             "@tablet": {
               flexDirection: "column",
-              gridColumn: "13 / span 8",
+              gridColumn: "13 / span 3",
               boxShadow,
               marginTop: 36,
             },
 
             "@desktop": {
-              gridColumn: "20 / span 5",
+              gridColumn: "16 / span 5",
             },
           }}
         >
@@ -263,7 +264,7 @@ export const Contacts = (props: ContactsProps) => {
             },
 
             "@desktop": {
-              gridColumn: "10 / span 4",
+              gridColumn: "10 / span 2",
             },
           }}
         >
@@ -286,7 +287,7 @@ export const Contacts = (props: ContactsProps) => {
             },
 
             "@desktop": {
-              gridColumn: "14 / span 4",
+              gridColumn: "13 / span 3",
             },
           }}
         >
@@ -302,13 +303,13 @@ export const Contacts = (props: ContactsProps) => {
           css={{
             "@tablet": {
               flexDirection: "column",
-              gridColumn: "13 / span 8",
+              gridColumn: "13 / span 3",
               boxShadow,
               marginTop: 16,
             },
 
             "@desktop": {
-              gridColumn: "20 / span 5",
+              gridColumn: "16 / span 5",
             },
           }}
         >
