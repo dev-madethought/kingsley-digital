@@ -2,21 +2,14 @@ import { Fragment, useEffect, useRef } from "react"
 import { scroll } from "framer-motion/dom"
 import { useSelector } from "react-redux"
 
-import { AnimationFadeIn } from "@/components/animation-fade-in"
 import { Box } from "@/components/box"
 import { Container } from "@/components/container"
-import { Grid } from "@/components/grid"
-import { useDebug } from "@/components/grid"
+import { Grid, useDebug } from "@/components/grid"
+import Heading from "@/components/heading"
 import { Person } from "@/components/person"
-import { Text } from "@/components/text"
+import { TranslatedRow } from "@/components/translated-row"
 import { RootState } from "@/state/store"
 import { People as PeopleProps } from "@/types/sanity"
-
-import {
-  getPrimaryDescription,
-  getSecondaryDescription,
-  getTitle,
-} from "./translations"
 
 export const People = (props: PeopleProps) => {
   const language = useSelector((state: RootState) => state.global.language)
@@ -55,63 +48,9 @@ export const People = (props: PeopleProps) => {
       }}
     >
       <Grid>
-        <Box
-          css={{
-            flexDirection: "column",
-            gridColumn: "span 12",
-            marginBottom: 40,
-            boxShadow,
+        <Heading props={props} language={language} translationKey="title" />
 
-            "@tablet": {
-              marginBottom: "unset",
-              gridColumn: "1 / span 5",
-            },
-          }}
-        >
-          <AnimationFadeIn>
-            <Text headingM>{getTitle(language, props)}</Text>
-          </AnimationFadeIn>
-        </Box>
-
-        <Box
-          css={{
-            flexDirection: "column",
-            gridColumn: "span 12",
-            boxShadow,
-
-            "@tablet": {
-              gridColumn: "8 / span 8",
-            },
-
-            "@desktop": {
-              gridColumn: "10 / span 6",
-            },
-          }}
-        >
-          <AnimationFadeIn>
-            {getPrimaryDescription(language, props)}
-          </AnimationFadeIn>
-        </Box>
-
-        <Box
-          tablet
-          css={{
-            "@tablet": {
-              flexDirection: "column",
-              gridColumn: "17 / span 8",
-              opacity: 0.5,
-              boxShadow,
-            },
-
-            "@desktop": {
-              gridColumn: "17 / span 6",
-            },
-          }}
-        >
-          <AnimationFadeIn>
-            {getSecondaryDescription(language, props)}
-          </AnimationFadeIn>
-        </Box>
+        <TranslatedRow props={props} translationKey="description" />
       </Grid>
 
       <Box
