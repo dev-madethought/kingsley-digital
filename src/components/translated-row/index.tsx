@@ -3,12 +3,12 @@ import { useSelector } from "react-redux"
 import { Box } from "@/components/box"
 import getTranslationForKey, { TranslatableProps } from "@/lib/utils"
 import { RootState } from "@/state/store"
+import { otherLanguage } from "@/utils"
 
 import { AnimationFadeIn } from "../animation-fade-in"
 
 export const TranslatedRow = (props: Omit<TranslatableProps, "language">) => {
   const language = useSelector((state: RootState) => state.global.language)
-  const otherLanguage = language === "en" ? "ko" : "en"
 
   // @ts-ignore, TODO: fix this
   const primary = getTranslationForKey({ ...props, language })
@@ -16,7 +16,7 @@ export const TranslatedRow = (props: Omit<TranslatableProps, "language">) => {
   // @ts-ignore, TODO: fix this
   const secondary = getTranslationForKey({
     ...props,
-    language: otherLanguage,
+    language: otherLanguage(language),
   })
 
   return (

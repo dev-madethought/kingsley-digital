@@ -1,11 +1,9 @@
-import { ReactElement, useState } from "react"
+import { useState } from "react"
 import Image from "next/image"
 import { AnimatePresence } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 
 import { PortableText } from "@portabletext/react"
-import { getImageDimensions } from "@sanity/asset-utils"
-import { type SanityImageSource } from "@sanity/image-url/lib/types/types"
 
 import { AnimationFadeIn } from "@/components/animation-fade-in"
 import { AnimationMaskReveal } from "@/components/animation-mask-reveal"
@@ -17,11 +15,11 @@ import Heading from "@/components/heading"
 import { components } from "@/components/portable-text"
 import { Text } from "@/components/text"
 import { TranslatedRow } from "@/components/translated-row"
-import { urlFor, urlForImage } from "@/sanity/lib/image"
-import { setModal } from "@/state/reducers/modals"
+import { urlForImage } from "@/sanity/lib/image"
 import { setService } from "@/state/reducers/service"
 import { RootState } from "@/state/store"
 import { Services as ServicesProps } from "@/types/sanity"
+import { otherLanguage } from "@/utils"
 
 import * as Styles from "./styles"
 import {
@@ -205,10 +203,22 @@ const ServiceAccordionItem = ({
         }}
       >
         <AnimationFadeIn>
-          <PortableText
-            value={getServiceDescription(language, service) as any}
-            components={components}
-          />
+          <Box>
+            <PortableText
+              value={getServiceDescription(language, service) as any}
+              components={components}
+            />
+          </Box>
+        </AnimationFadeIn>
+        <AnimationFadeIn>
+          <Box css={{ opacity: 0.5 }}>
+            <PortableText
+              value={
+                getServiceDescription(otherLanguage(language), service) as any
+              }
+              components={components}
+            />
+          </Box>
         </AnimationFadeIn>
       </Box>
     </Styles.AccordionContent>
