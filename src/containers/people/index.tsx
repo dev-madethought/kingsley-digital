@@ -47,7 +47,20 @@ export const People = (props: PeopleProps) => {
         },
       }}
     >
-      <Grid>
+      <Grid
+        css={{
+          gridAutoFlow: "dense",
+          rowGap: "$space$40",
+
+          "@tablet": {
+            paddingTop: 80,
+          },
+
+          "@desktop": {
+            paddingTop: 250,
+          },
+        }}
+      >
         <Heading props={props} language={language} translationKey="title" />
 
         <TranslatedRow props={props} translationKey="description" />
@@ -82,14 +95,16 @@ export const People = (props: PeopleProps) => {
           },
         }}
       >
-        {props.people?.map((person, i) => (
-          <Fragment key={i}>
-            <Person person={person} index={i} />
-            {i < (props.people?.length || 1) - 1 && (
-              <Box tablet css={{ flexShrink: 0, column: 1, boxShadow }} />
-            )}
-          </Fragment>
-        ))}
+        {props.people?.map((person, i) => {
+          return (
+            <Fragment key={person._key}>
+              <Person person={person} index={i} />
+              {i < (props.people?.length || 1) - 1 && (
+                <Box tablet css={{ flexShrink: 0, column: 1, boxShadow }} />
+              )}
+            </Fragment>
+          )
+        })}
       </Box>
     </Container>
   )

@@ -43,7 +43,6 @@ export const Person = ({
     <Box
       css={{
         flexDirection: "column",
-        flexShrink: 0,
         gap: 10,
         boxShadow,
       }}
