@@ -21,10 +21,16 @@ export const Mobile = ({ color }: { color: string }) => {
   return (
     <Styles.Header>
       <Container debug={debug}>
-        <Grid css={{ paddingTop: 32, color }}>
+        <Grid
+          css={{
+            paddingTop: 32,
+            color,
+            alignItems: "center",
+          }}
+        >
           <Box
             css={{
-              gridColumn: "1 / span 9",
+              gridColumn: "1 / span 10",
               boxShadow,
 
               a: {
@@ -32,7 +38,7 @@ export const Mobile = ({ color }: { color: string }) => {
               },
             }}
           >
-            <Link href="/">
+            <Link style={{ display: "flex" }} href="/">
               <LogoWords />
             </Link>
           </Box>

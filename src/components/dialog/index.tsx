@@ -4,6 +4,7 @@ import * as RadixDialog from "@radix-ui/react-dialog"
 
 import { Box } from "../box"
 import { Button } from "../button"
+import { Close } from "../icons"
 
 import * as Styles from "./styles"
 
@@ -61,7 +62,7 @@ export const Dialog = ({
               }}
             >
               <Button variant="tertiary">
-                <i>close</i>
+                <Close />
               </Button>
             </Box>
           </RadixDialog.Close>

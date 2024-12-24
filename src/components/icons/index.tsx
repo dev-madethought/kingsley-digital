@@ -1,5 +1,3 @@
-import { useState } from "react"
-
 export const ArrowUp = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -75,5 +73,11 @@ export const Hamburger = () => (
       d="M21 7.5H3V6.5H21V7.5ZM21 12.5H3V11.5H21V12.5ZM3 17.5H21V16.5H3V17.5Z"
       fill="currentColor"
     />
+  </svg>
+)
+
+export const Close = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 12.704L18.0104 18.7143L18.7175 18.0072L12.7071 11.9969L18.7176 5.9864L18.0105 5.2793L12 11.2897L5.98958 5.2793L5.28247 5.98641L11.2929 11.9968L5.28255 18.0072L5.98965 18.7143L12 12.704Z" />
   </svg>
 )
