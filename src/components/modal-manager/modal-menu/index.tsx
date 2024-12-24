@@ -82,101 +82,120 @@ export const ModalMenu = ({ open, onOpenChange }: ModalMenuProps) => {
           width: "100%",
         }}
       >
-        <Container style={{ height: "100%" }}>
-          <Grid style={{ height: "100%", gridTemplateRows: "150px auto" }}>
+        <Container
+          css={{
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            padding: "0 $space$20 $space$20 $space$20",
+          }}
+        >
+          <Grid
+            css={{
+              paddingTop: 32,
+              alignItems: "center",
+            }}
+          >
             <Box
               css={{
                 gridColumn: "1 / span 10",
-                paddingTop: 32,
+                boxShadow,
+
+                a: {
+                  color: "inherit",
+                },
               }}
             >
               <LogoWords />
             </Box>
+          </Grid>
+
+          <Box
+            css={{
+              flexDirection: "column",
+              gridColumn: "1 / span 12",
+              flex: 1,
+              gap: "$space$20",
+            }}
+          >
             <Box
               css={{
                 flexDirection: "column",
-                gridColumn: "1 / span 12",
+                padding: "$space$80 0",
+                gap: 15,
+                flex: 1,
+
+                "& > *": {
+                  boxShadow,
+                },
               }}
             >
-              {/* LOGO and cclose */}
+              {menu?.map((item: any, i: number) => {
+                const selected = section === item.id
 
-              <Box
-                css={{
-                  flexDirection: "column",
-                  gap: 20,
-                  flex: 1,
-
-                  "& > *": {
-                    boxShadow,
-                  },
-                }}
-              >
-                {menu?.map((item: any, i: number) => {
-                  const selected =
-                    (section === "hero" && i === 0) || section === item.id
-                  return (
-                    <AnimationFadeIn key={i} delay={0.1 * i}>
-                      <Button
-                        key={i}
-                        variant="tertiary"
-                        onClick={() => handleNavigation(item.id)}
-                      >
-                        {selected && (
-                          <Box
-                            css={{
-                              width: 4,
-                              height: 4,
-                              borderRadius: 4,
-                              background: "$typography",
-                            }}
-                          />
-                        )}
-                        <Text headingS>{getPrimaryLabel(language, item)}</Text>
-                      </Button>
-                    </AnimationFadeIn>
-                  )
-                })}
-              </Box>
-
-              <Box
-                css={{
-                  flexDirection: "column",
-                  gap: 16,
-
-                  "& > *": {
-                    boxShadow,
-                  },
-                }}
-              >
-                {links?.map((link: any, i: number) => (
-                  <AnimationFadeIn key={link._id} delay={0.1 * i}>
-                    <Button variant="secondary" href={`/${link.slug.current}`}>
-                      {String(link.title).toUpperCase()}
-                    </Button>
-                  </AnimationFadeIn>
-                ))}
-
-                {socialLinks?.map((link: any, i: number) => (
-                  <AnimationFadeIn key={link._key} delay={0.1 * i}>
+                return (
+                  <AnimationFadeIn key={item.id} delay={0.1 * i}>
                     <Button
-                      variant="secondary"
-                      href={link.url}
-                      onClick={handleSocialLinks}
+                      key={i}
+                      variant="menu"
+                      onClick={() => handleNavigation(item.id)}
                     >
-                      {String(link.label).toUpperCase()}
-                      <ArrowUp />
+                      {selected && (
+                        <Box
+                          css={{
+                            width: 4,
+                            height: 4,
+                            borderRadius: 4,
+                            background: "$typography",
+                          }}
+                        />
+                      )}
+                      <Text headingS>{getPrimaryLabel(language, item)}</Text>
                     </Button>
                   </AnimationFadeIn>
-                ))}
-
-                <Box css={{ width: "100%" }}>
-                  <AnimationFadeIn>
-                    <Language />
-                  </AnimationFadeIn>
-                </Box>
-              </Box>
+                )
+              })}
             </Box>
-          </Grid>
+
+            <Box
+              css={{
+                flexDirection: "column",
+                gap: "$space$10",
+                textTransform: "uppercase",
+
+                "& > *": {
+                  boxShadow,
+                },
+              }}
+            >
+              {links?.map((link: any, i: number) => (
+                <AnimationFadeIn key={link._id} delay={0.1 * i}>
+                  <Button variant="secondary" href={`/${link.slug.current}`}>
+                    {link.title}
+                  </Button>
+                </AnimationFadeIn>
+              ))}
+
+              {socialLinks?.map((link: any, i: number) => (
+                <AnimationFadeIn key={link._key} delay={0.1 * i}>
+                  <Button
+                    variant="secondary"
+                    href={link.url}
+                    onClick={handleSocialLinks}
+                  >
+                    {link.label}
+                    <ArrowUp />
+                  </Button>
+                </AnimationFadeIn>
+              ))}
+            </Box>
+
+            <Box css={{ width: "100%" }}>
+              <AnimationFadeIn>
+                <Language />
+              </AnimationFadeIn>
+            </Box>
+          </Box>
         </Container>
       </Box>
     </Dialog>

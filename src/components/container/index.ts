@@ -9,11 +9,6 @@ export const Container = styled("div", {
 
   "@desktop": {},
 
-  // "@large": {
-  //   width: 1600,
-  //   margin: "0 auto",
-  // },
-
   variants: {
     debug: {
       true: {

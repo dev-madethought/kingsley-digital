@@ -19,6 +19,7 @@ export const {
       10: "10px",
       20: "20px",
       40: "40px",
+      80: "80px",
     },
     transitions: {
       fast: "all 0.125s linear",
