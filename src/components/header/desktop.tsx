@@ -78,7 +78,7 @@ export const Desktop = ({ color }: { color: string }) => {
         <Grid css={{ paddingTop: 40, color }}>
           <Box
             css={{
-              gridColumn: "1 / span 2",
+              gridColumn: "1 / span 5",
               boxShadow,
 
               a: {
@@ -104,7 +104,7 @@ export const Desktop = ({ color }: { color: string }) => {
                 },
 
                 "@desktop": {
-                  gridColumn: "4 / span 13",
+                  gridColumn: "7 / span 13",
                 },
               }}
             >
