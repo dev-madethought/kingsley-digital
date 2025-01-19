@@ -40,30 +40,31 @@ export const renderComponent = (props: ContentItem) => {
           <Philosophy {...props} />
         </Section>
       )
-    case "people":
-      return (
-        <Section key={props._key} {...common}>
-          <People {...props} />
-        </Section>
-      )
     case "services":
       return (
         <Section key={props._key} {...common}>
           <Services {...props} />
         </Section>
       )
+    case "people":
+      return (
+        <Section key={props._key} {...common}>
+          <People {...props} />
+        </Section>
+      )
+
     case "contacts":
       return (
         <Section key={props._key} {...common}>
           <Contacts {...props} />
         </Section>
       )
-    case "legal":
-      return (
-        <Section key={props._key} {...common}>
-          <Legal {...props} />
-        </Section>
-      )
+    // case "legal":
+    //   return (
+    //     <Section key={props._key} {...common}>
+    //       <Legal {...props} />
+    //     </Section>
+    //   )
     default:
       return null
   }

@@ -6,7 +6,7 @@ import { theme } from "@/styles/stitches"
 
 import { Box } from "../box"
 
-type variants = "primary" | "secondary" | "tertiary" | "menu"
+type variants = "primary" | "secondary" | "tertiary" | "menu" | "language"
 
 interface ButtonProps {
   variant?: variants
@@ -132,6 +132,33 @@ const Layout = ({
                 color: "$black",
               },
             }),
+
+            ...(disabled && {
+              opacity: 0.5,
+              pointerEvents: "none",
+            }),
+          }}
+        >
+          {children}
+        </Box>
+      )
+
+    // copy of tertiary but white
+    case "language":
+      return (
+        <Box
+          as="span"
+          css={{
+            display: "inline-flex",
+            fontFamily: "$favorit",
+            fontSize: 14,
+            fontStyle: "normal",
+            fontWeight: 400,
+            letterSpacing: "0.28px",
+            color: "white",
+            cursor: disabled ? "not-allowed" : "pointer",
+            alignItems: "center",
+            gap: 8,
 
             ...(disabled && {
               opacity: 0.5,

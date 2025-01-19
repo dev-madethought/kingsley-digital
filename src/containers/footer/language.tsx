@@ -24,10 +24,11 @@ export const Language = () => {
         alignItems: "center",
         justifyContent: "center",
         gap: 4,
+        color: "white",
       }}
     >
       <Button
-        variant="tertiary"
+        variant="language"
         disabled={language === English}
         onClick={() => handleLanguage(English)}
       >
@@ -35,7 +36,7 @@ export const Language = () => {
       </Button>
       <span>/</span>
       <Button
-        variant="tertiary"
+        variant="language"
         disabled={language === Korean}
         onClick={() => handleLanguage(Korean)}
       >

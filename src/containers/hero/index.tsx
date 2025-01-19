@@ -49,8 +49,11 @@ export const Hero = (props: HeroProps) => {
         ...(step === STEPS.DONE && { zIndex: 1 }),
       }}
     >
-      <Grid>
-        {/* VIDEO */}
+      <div
+        style={{
+          minHeight: "100vh",
+        }}
+      >
         <Box
           ref={video}
           as="video"
@@ -70,135 +73,6 @@ export const Hero = (props: HeroProps) => {
           }}
         />
 
-        {/* <Box
-          css={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            backgroundColor: "blue",
-            zIndex: -1,
-          }}
-        /> */}
-
-        {/* IFRAME*/}
-        {/* <Box
-          as="iframe"
-          src="/hero/index.html"
-          css={{
-            border: "none",
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            zIndex: -1,
-          }}
-        /> */}
-
-        <Box
-          css={{
-            marginTop: "calc(var(--vh) - 48px)",
-            transform: "translateY(-100%)",
-            gridColumn: "span 12",
-            boxShadow,
-
-            "@tablet": {
-              gridColumn: "1 / span 20",
-            },
-
-            "@desktop": {
-              gridColumn: "1 / span 20", // old 16
-            },
-          }}
-        >
-          <Sentence
-            greeting={getGreeting(language, props) as any}
-            sentence={getSentence(language, props) as any}
-            opacity={step === STEPS.DONE ? 1 : 0}
-          />
-        </Box>
-
-        <Box
-          css={{
-            flexDirection: "column",
-            gridColumn: "span 12",
-            color: "white",
-            boxShadow,
-            marginBottom: 32,
-
-            "@tablet": {
-              gridColumn: "9 / span 6",
-              marginBottom: 115,
-            },
-
-            "@desktop": {
-              gridColumn: "13 / span 4",
-              marginBottom: 115,
-            },
-          }}
-        >
-          <AnimationFadeIn>
-            <Text uppercase wrap>
-              {getMainTitle(language, props)}
-            </Text>
-          </AnimationFadeIn>
-
-          <AnimationFadeIn>
-            <Text uppercase wrap css={{ opacity: 0.5 }}>
-              {getSecondaryTitle(language, props)}
-            </Text>
-          </AnimationFadeIn>
-        </Box>
-
-        <Box
-          css={{
-            flexDirection: "column",
-            gridColumn: "span 12",
-            color: "white",
-            boxShadow,
-            gap: 20,
-            marginBottom: 50,
-
-            "@tablet": {
-              gridColumn: "15 / span 10",
-              marginBottom: 115,
-            },
-
-            "@desktop": {
-              gridColumn: "17 / span 8",
-              marginBottom: 115,
-            },
-          }}
-        >
-          <AnimationFadeIn>
-            <PortableText
-              value={getMainDescription(language, props) as any}
-              components={components}
-            />
-          </AnimationFadeIn>
-          <Box
-            css={{
-              display: "none",
-
-              "@tablet": {
-                opacity: 0.5,
-                display: "flex",
-              },
-            }}
-          >
-            <AnimationFadeIn>
-              <PortableText
-                value={getSecondaryDescription(language, props) as any}
-                components={components}
-              />
-            </AnimationFadeIn>
-          </Box>
-        </Box>
-
         <Box
           css={{
             position: "fixed",
@@ -209,7 +83,112 @@ export const Hero = (props: HeroProps) => {
         >
           <Header color="white" />
         </Box>
-      </Grid>
+
+        {/* TOP */}
+        <Box css={{ minHeight: "50vh" }}>
+          <Grid>
+            <Box
+              css={{
+                marginTop: "212px",
+                gridColumn: "span 12",
+                boxShadow,
+                marginBottom: 0,
+
+                "@tablet": {
+                  gridColumn: "1 / span 20",
+                },
+
+                "@desktop": {
+                  gridColumn: "1 / span 20",
+                },
+              }}
+            >
+              <Sentence
+                greeting={getGreeting(language, props) as any}
+                sentence={getSentence(language, props) as any}
+                opacity={step === STEPS.DONE ? 1 : 0}
+              />
+            </Box>
+          </Grid>
+        </Box>
+
+        {/* BOTTOM  */}
+        <Box
+          css={{
+            display: "flex",
+            alignItems: "flex-end",
+            minHeight: "50vh",
+          }}
+        >
+          <Grid>
+            <Box
+              css={{
+                flexDirection: "column",
+                gridColumn: "span 12",
+                color: "white",
+                boxShadow,
+                gap: 20,
+                marginBottom: 50,
+
+                "@tablet": {
+                  gridColumn: "15 / span 10",
+                  marginBottom: 65,
+                },
+
+                "@desktop": {
+                  gridColumn: "15 / span 10",
+                  marginBottom: 65,
+                },
+              }}
+            >
+              {true && (
+                <div>
+                  <AnimationFadeIn>
+                    <Text uppercase wrap>
+                      {getMainTitle(language, props)}
+                    </Text>
+                  </AnimationFadeIn>
+
+                  <AnimationFadeIn>
+                    <Text uppercase wrap css={{ opacity: 0.5 }}>
+                      {getSecondaryTitle(language, props)}
+                    </Text>
+                  </AnimationFadeIn>
+                </div>
+              )}
+
+              {true && (
+                <AnimationFadeIn>
+                  <PortableText
+                    value={getMainDescription(language, props) as any}
+                    components={components}
+                  />
+                </AnimationFadeIn>
+              )}
+
+              {true && (
+                <Box
+                  css={{
+                    display: "none",
+
+                    "@tablet": {
+                      opacity: 0.5,
+                      display: "flex",
+                    },
+                  }}
+                >
+                  <AnimationFadeIn>
+                    <PortableText
+                      value={getSecondaryDescription(language, props) as any}
+                      components={components}
+                    />
+                  </AnimationFadeIn>
+                </Box>
+              )}
+            </Box>
+          </Grid>
+        </Box>
+      </div>
     </Container>
   )
 }

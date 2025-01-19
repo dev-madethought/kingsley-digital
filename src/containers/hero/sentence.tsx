@@ -19,17 +19,31 @@ export const Sentence = ({
           opacity,
           transition: { duration: 0.5, ease: "easeInOut" },
         }}
+        style={{
+          display: "flex",
+        }}
       >
+        <Text
+          css={{
+            minWidth: 60,
+            paddingTop: 30,
+            color: "white",
+            justifyContent: "center",
+            display: "flex",
+          }}
+        >
+          {greeting}
+        </Text>
         <Text
           headingXL
           css={{
             position: "relative",
             color: "white",
 
-            "&:before": {
-              content: greeting,
-              padding: "0 $space$40",
-            },
+            // "&:before": {
+            //   content: greeting,
+            //   padding: "0 $space$40",
+            // },
           }}
         >
           {sentence}

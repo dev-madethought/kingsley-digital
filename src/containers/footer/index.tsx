@@ -10,7 +10,7 @@ import { LogoFull } from "@/components/icons"
 import { Text } from "@/components/text"
 import { RootState } from "@/state/store"
 
-import { Language } from "./language"
+// import { Language } from "./language"
 
 export const Footer = () => {
   const language = useSelector((state: RootState) => state.global.language)
@@ -40,33 +40,12 @@ export const Footer = () => {
             },
 
             "@tablet": {
-              gridColumn: "1 / span 13",
+              gridColumn: "1 / span 24",
               paddingBottom: 250,
             },
           }}
         >
           <LogoFull />
-        </Box>
-
-        <Box
-          tablet
-          css={{
-            flexDirection: "column",
-            gridColumn: "span 12",
-            justifyContent: "flex-start",
-            alignItems: "flex-end",
-            boxShadow,
-            "@tablet": {
-              gridColumn: "19 / span 6",
-            },
-          }}
-        >
-          {socialLinks?.map((link: any) => (
-            <Button key={link._key} variant="secondary" href={link.url}>
-              {String(link.label).toUpperCase()}
-              <ArrowUp />
-            </Button>
-          ))}
         </Box>
 
         <Box
@@ -131,28 +110,6 @@ export const Footer = () => {
         </Box>
 
         <Box
-          css={{
-            flexDirection: "column",
-            justifyContent: "flex-end",
-            gridColumn: "span 12",
-            boxShadow,
-
-            "@tablet": {
-              alignItems: "flex-end",
-
-              gridColumn: "17 / span 8",
-            },
-
-            "@desktop": {
-              alignItems: "flex-end",
-              gridColumn: "19 / span 6",
-            },
-          }}
-        >
-          <Language />
-        </Box>
-
-        <Box
           mobile
           css={{
             flexDirection: "column",
@@ -169,6 +126,35 @@ export const Footer = () => {
           <Text cta css={{ color: "$typography" }}>
             © {new Date().getFullYear()} Alder Partners
           </Text>
+        </Box>
+
+        <Box
+          tablet
+          css={{
+            flexDirection: "column",
+            gridColumn: "span 12",
+            marginBottom: 40,
+            boxShadow,
+
+            "@tablet": {
+              marginBottom: 0,
+              gridColumn: "1 / span 8",
+            },
+
+            "@desktop": {
+              marginBottom: 0,
+              gridColumn: "19 / span 6",
+              justifyContent: "flex-end",
+              alignItems: "flex-end",
+            },
+          }}
+        >
+          {socialLinks?.map((link: any) => (
+            <Button key={link._key} variant="secondary" href={link.url}>
+              {String(link.label).toUpperCase()}
+              <ArrowUp />
+            </Button>
+          ))}
         </Box>
       </Grid>
     </Container>

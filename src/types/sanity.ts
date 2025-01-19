@@ -227,6 +227,9 @@ export type Philosophy = {
   menu?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;
+  caption?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
   description?: Array<{
     title?: Array<{
       _key: string;

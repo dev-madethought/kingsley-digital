@@ -4,6 +4,7 @@ import { useRouter } from "next/router"
 import { motion } from "framer-motion"
 import { useSelector } from "react-redux"
 
+import { Language } from "@/containers/footer/language"
 import useScroll from "@/hooks/useScroll"
 import { RootState } from "@/state/store"
 import { STEPS } from "@/types/intro"
@@ -122,6 +123,11 @@ export const Desktop = ({ color }: { color: string }) => {
                           gap: 20,
                           color,
 
+                          gridColumn: "7 / span 13",
+                          display: "grid",
+                          gridTemplateColumns: "repeat(13, 1fr)",
+                          columnGap: "10px",
+
                           a: {
                             color,
                           },
@@ -131,13 +137,16 @@ export const Desktop = ({ color }: { color: string }) => {
                           },
                         }}
                       >
-                        <Button
-                          variant="menu"
-                          onClick={() => handleNavigation(m.id)}
-                        >
-                          {getPrimaryLabel(language, m)}
-                        </Button>
-                        <Box css={{ opacity: 0.5 }}>
+                        <Box css={{ gridColumn: "span 3" }}>
+                          <Button
+                            variant="menu"
+                            onClick={() => handleNavigation(m.id)}
+                          >
+                            {getPrimaryLabel(language, m)}
+                          </Button>
+                        </Box>
+
+                        <Box css={{ opacity: 0.5, gridColumn: "span 4" }}>
                           <Button
                             variant="menu"
                             onClick={() => handleNavigation(m.id)}
@@ -145,6 +154,12 @@ export const Desktop = ({ color }: { color: string }) => {
                             {getSecondaryLabel(language, m)}
                           </Button>
                         </Box>
+
+                        {i === 0 && (
+                          <Box css={{ gridColumn: "span 3" }}>
+                            <Language />
+                          </Box>
+                        )}
                       </Box>
                     </motion.div>
                   )
@@ -182,30 +197,53 @@ export const Desktop = ({ color }: { color: string }) => {
                     if (!selected) return null
 
                     return (
-                      <Box key={i}>
-                        {selected && (
-                          <Box
-                            css={{
-                              gap: 20,
-                            }}
-                          >
-                            <Text
-                              cta
-                              css={{ color, textTransform: "uppercase" }}
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                      >
+                        <Box
+                          css={{
+                            gap: 20,
+                            color,
+
+                            gridColumn: "7 / span 13",
+                            display: "grid",
+                            gridTemplateColumns: "repeat(13, 1fr)",
+                            columnGap: "10px",
+
+                            a: {
+                              color,
+                            },
+
+                            button: {
+                              color,
+                            },
+                          }}
+                        >
+                          <Box css={{ gridColumn: "span 3" }}>
+                            <Button
+                              variant="menu"
+                              onClick={() => handleNavigation(m.id)}
                             >
                               {getPrimaryLabel(language, m)}
-                            </Text>
-                            <Box css={{ opacity: 0.5 }}>
-                              <Text
-                                cta
-                                css={{ color, textTransform: "uppercase" }}
-                              >
-                                {getSecondaryLabel(language, m)}
-                              </Text>
-                            </Box>
+                            </Button>
                           </Box>
-                        )}
-                      </Box>
+
+                          <Box css={{ opacity: 0.5, gridColumn: "span 4" }}>
+                            <Button
+                              variant="menu"
+                              onClick={() => handleNavigation(m.id)}
+                            >
+                              {getSecondaryLabel(language, m)}
+                            </Button>
+                          </Box>
+
+                          <Box css={{ gridColumn: "span 3" }}>
+                            <Language />
+                          </Box>
+                        </Box>
+                      </motion.div>
                     )
                   })}
                 </Box>

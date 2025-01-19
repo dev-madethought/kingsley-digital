@@ -15,13 +15,29 @@ export const getSecondaryDescription = (language: string, props: Services) => {
   return data?.value
 }
 
-export const getServiceTitle = (language: string, props: Service) => {
+export const getPrimaryServiceTitle = (language: string, props: Service) => {
   const data = props.title?.find((g) => g._key === language)
   return data?.value
 }
 
-export const getServiceDescription = (language: string, props: Service) => {
+export const getSecondaryServiceTitle = (language: string, props: Service) => {
+  const data = props.title?.find((g) => g._key !== language)
+  return data?.value
+}
+
+export const getPrimaryServiceDescription = (
+  language: string,
+  props: Service
+) => {
   const data = props.description?.find((g) => g._key === language)
+  return data?.value
+}
+
+export const getSecondaryServiceDescription = (
+  language: string,
+  props: Service
+) => {
+  const data = props.description?.find((g) => g._key !== language)
   return data?.value
 }
 

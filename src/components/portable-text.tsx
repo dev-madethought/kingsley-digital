@@ -6,4 +6,22 @@ export const components = {
       return <Text cta>{children}</Text>
     },
   },
+  marks: {
+    link: ({ children, value }: any) => {
+      const { href, target } = value
+      return (
+        <a
+          href={href}
+          target={target || "_blank"}
+          rel={!target ? "noopener noreferrer" : undefined}
+          style={{
+            color: "inherit",
+            textDecoration: "underline",
+          }}
+        >
+          {children}
+        </a>
+      )
+    },
+  },
 }

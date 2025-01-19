@@ -1,7 +1,6 @@
 import { useState } from "react"
 import Image from "next/image"
-import { AnimatePresence, motion, stagger } from "framer-motion"
-import { relative } from "path"
+import { AnimatePresence } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 
 import { PortableText } from "@portabletext/react"
@@ -9,14 +8,12 @@ import { PortableText } from "@portabletext/react"
 import { AnimationFadeIn } from "@/components/animation-fade-in"
 import { AnimationMaskReveal } from "@/components/animation-mask-reveal"
 import { Box } from "@/components/box"
-// import { Button } from "@/components/button"
 import { Container } from "@/components/container"
 import { Grid } from "@/components/grid"
 import { useDebug } from "@/components/grid"
 import { components } from "@/components/portable-text"
 import { Text } from "@/components/text"
 import { urlForImage } from "@/sanity/lib/image"
-import { setModal } from "@/state/reducers/modals"
 import { setService } from "@/state/reducers/service"
 import { RootState } from "@/state/store"
 import { Services as ServicesProps } from "@/types/sanity"
@@ -24,19 +21,18 @@ import { Services as ServicesProps } from "@/types/sanity"
 import * as Styles from "./styles"
 import {
   getPrimaryDescription,
+  getPrimaryServiceDescription,
+  getPrimaryServiceTitle,
   getSecondaryDescription,
-  // getLearnMoreButton,
-  getServiceDescription,
-  getServiceTitle,
+  getSecondaryServiceDescription,
   getTitle,
 } from "./translations"
 
-const LAYOUTS = ["layout1", "layout2", "layout1", "layout3"]
+const LAYOUTS = ["layout1"]
 
 export const Services = (props: ServicesProps) => {
   const dispatch = useDispatch()
   const language = useSelector((state: RootState) => state.global.language)
-  const settings = useSelector((state: RootState) => state.global.settings)
   const [index, setIndex] = useState(-1)
   const { debug, boxShadow } = useDebug()
 
@@ -53,10 +49,14 @@ export const Services = (props: ServicesProps) => {
       props.allServices?.[index]?.images?.map((i) => urlForImage(i)) || []
     const key = props.allServices?.[index]?._key
 
-    const layout = LAYOUTS[index % LAYOUTS.length]
+    let layout = LAYOUTS[index % LAYOUTS.length]
 
     const image1 = images?.[0]
     const image2 = images?.[1]
+
+    if (index === -1) {
+      layout = "generic"
+    }
 
     switch (layout) {
       case "layout1":
@@ -64,7 +64,7 @@ export const Services = (props: ServicesProps) => {
           <Box css={{ gap: 10 }} key={key}>
             <Box
               css={{
-                column: 9,
+                column: 7,
                 position: "relative",
                 alignItems: "flex-start",
 
@@ -82,11 +82,12 @@ export const Services = (props: ServicesProps) => {
                 </AnimationMaskReveal>
               )}
             </Box>
+            <Box css={{ column: 1 }} />
 
             <Box
               desktop
               css={{
-                column: 5,
+                column: 6,
                 position: "relative",
                 alignItems: "flex-start",
 
@@ -106,112 +107,6 @@ export const Services = (props: ServicesProps) => {
             </Box>
           </Box>
         )
-      case "layout2":
-        return (
-          <Box css={{ gap: 10 }} key={key}>
-            <Box
-              desktop
-              css={{
-                column: 5,
-                position: "relative",
-                alignItems: "flex-start",
-
-                img: {
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "contain",
-                  objectPosition: "top",
-                },
-              }}
-            >
-              {image1 && (
-                <AnimationMaskReveal>
-                  <Image src={image1} alt="image 1" width={275} height={367} />
-                </AnimationMaskReveal>
-              )}
-            </Box>
-
-            <Box
-              css={{
-                column: 9,
-                position: "relative",
-                alignItems: "flex-start",
-
-                img: {
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "contain",
-                  objectPosition: "top",
-                },
-              }}
-            >
-              {image2 && (
-                <AnimationMaskReveal delay={0.125}>
-                  <Image src={image2} alt="image 2" width={504} height={756} />
-                </AnimationMaskReveal>
-              )}
-            </Box>
-          </Box>
-        )
-      case "layout3":
-        return (
-          <Box css={{ gap: 10 }} key={key}>
-            <Box
-              desktop
-              css={{
-                "@desktop": {
-                  position: "relative",
-                  column: 6,
-                  alignItems: "flex-start",
-
-                  img: {
-                    width: "100%",
-                    height: "auto",
-                    objectFit: "contain",
-                    objectPosition: "bottom",
-                    marginTop: 300,
-                  },
-                },
-              }}
-            >
-              {image1 && (
-                <AnimationMaskReveal>
-                  <Image src={image1} alt="image 1" width={333} height={445} />
-                </AnimationMaskReveal>
-              )}
-            </Box>
-
-            <Box
-              css={{
-                position: "relative",
-                alignItems: "flex-start",
-                column: 9,
-
-                img: {
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "contain",
-                  objectPosition: "top",
-                },
-
-                "@tablet": {
-                  column: 8,
-                  // marginBottom: 100,
-
-                  img: {
-                    marginBottom: 100,
-                  },
-                },
-              }}
-            >
-              {image2 && (
-                <AnimationMaskReveal delay={0.125}>
-                  <Image src={image2} alt="image 2" width={446} height={669} />
-                </AnimationMaskReveal>
-              )}
-            </Box>
-          </Box>
-        )
 
       default:
         // generic image
@@ -220,7 +115,7 @@ export const Services = (props: ServicesProps) => {
             css={{
               position: "relative",
               alignItems: "flex-start",
-              column: 9,
+              column: 13,
 
               img: {
                 width: "100%",
@@ -242,10 +137,6 @@ export const Services = (props: ServicesProps) => {
     }
   }
 
-  const handleLearnMore = () => {
-    dispatch(setModal({ type: "service" }))
-  }
-
   return (
     <Container
       debug={debug}
@@ -260,22 +151,15 @@ export const Services = (props: ServicesProps) => {
       }}
     >
       <Grid>
+        {/* title */}
         <Box
           css={{
             flexDirection: "column",
-            gridColumn: "span 12",
-            alignItems: "flex-end",
+            gridColumn: "1 / span 12",
             marginBottom: 40,
             boxShadow,
 
             "@tablet": {
-              gridColumn: "15 / span 10",
-              marginBottom: 88,
-            },
-
-            "@desktop": {
-              alignItems: "flex-start",
-              gridColumn: "21 / span 4",
               marginBottom: 88,
             },
           }}
@@ -283,6 +167,7 @@ export const Services = (props: ServicesProps) => {
           <Text headingM>{getTitle(language, props)}</Text>
         </Box>
 
+        {/* primary description */}
         <Box
           css={{
             flexDirection: "column",
@@ -301,6 +186,7 @@ export const Services = (props: ServicesProps) => {
           {getPrimaryDescription(language, props)}
         </Box>
 
+        {/* secondary description */}
         <Box
           tablet
           css={{
@@ -367,14 +253,16 @@ export const Services = (props: ServicesProps) => {
                   <Box css={{ gap: 10 }}>
                     <Box
                       css={{
-                        column: 2,
+                        column: 1,
                         paddingLeft: 8,
                         alignItems: "center",
                       }}
                     >
                       0{i + 1}
                     </Box>
-                    <Text headingS>{getServiceTitle(language, service)}</Text>
+                    <Text headingS>
+                      {getPrimaryServiceTitle(language, service)}
+                    </Text>
                   </Box>
                   <Box
                     css={{
@@ -442,16 +330,26 @@ export const Services = (props: ServicesProps) => {
                       },
                     }}
                   >
-                    {/* {getServiceSinopsis(language, service)} */}
                     <AnimationFadeIn>
                       <PortableText
-                        value={getServiceDescription(language, service) as any}
+                        value={
+                          getPrimaryServiceDescription(language, service) as any
+                        }
                         components={components}
                       />
                     </AnimationFadeIn>
-                    {/* <Button onClick={handleLearnMore}>
-                      {getLearnMoreButton(language, settings?.buttons)}
-                    </Button> */}
+
+                    <AnimationFadeIn>
+                      <PortableText
+                        value={
+                          getSecondaryServiceDescription(
+                            language,
+                            service
+                          ) as any
+                        }
+                        components={components}
+                      />
+                    </AnimationFadeIn>
                   </Box>
                 </Styles.AccordionContent>
               </Styles.AccordionItem>

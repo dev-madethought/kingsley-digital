@@ -1,7 +1,7 @@
 import { Hero } from "@/types/sanity"
 
 export const getGreeting = (language: string, props: Hero) => {
-  const data = props.greeting?.find((g) => g._key === language)
+  const data = props.greeting?.find((g) => g._key !== language)
   return data?.value
 }
 

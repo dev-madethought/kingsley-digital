@@ -7,6 +7,7 @@ export const Text = styled("p", {
 
   variants: {
     // TYPOGRAPHY size
+
     headingS: {
       true: {
         fontFamily: "$favorit",

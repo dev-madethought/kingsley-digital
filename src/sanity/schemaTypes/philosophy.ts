@@ -12,6 +12,12 @@ export default defineType({
     }),
 
     defineField({
+      name: "caption",
+      title: "Caption",
+      type: "internationalizedArrayString",
+    }),
+
+    defineField({
       name: "description",
       title: "Description",
       type: "array",
