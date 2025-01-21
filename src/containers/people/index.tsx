@@ -63,7 +63,7 @@ export const People = (props: PeopleProps) => {
             boxShadow,
 
             "@tablet": {
-              marginBottom: "unset",
+              marginBottom: 88,
               gridColumn: "1 / span 5",
             },
           }}
@@ -84,7 +84,7 @@ export const People = (props: PeopleProps) => {
             },
 
             "@desktop": {
-              gridColumn: "10 / span 6",
+              gridColumn: "1 / span 6",
             },
           }}
         >
@@ -104,7 +104,7 @@ export const People = (props: PeopleProps) => {
             },
 
             "@desktop": {
-              gridColumn: "17 / span 6",
+              gridColumn: "8 / span 6",
             },
           }}
         >
@@ -116,14 +116,14 @@ export const People = (props: PeopleProps) => {
 
       <Box
         css={{
-          paddingTop: 114,
+          paddingTop: 88,
           paddingBottom: 40,
           overflowX: "auto",
           column: 12,
           gap: 10,
 
           "@tablet": {
-            paddingTop: 229,
+            paddingTop: 88,
             column: 24,
           },
 

@@ -10,11 +10,6 @@ export const getPrimaryDescription = (language: string, props: Contacts) => {
   return data?.value
 }
 
-export const getSecondaryDescription = (language: string, props: Contacts) => {
-  const data = props?.description?.find((g: any) => g._key !== language)
-  return data?.value
-}
-
 // form
 export const getName = (language: string, props: any) => {
   const data = props?.name?.find((g: any) => g._key === language)
@@ -43,6 +38,20 @@ export const getSubject = (language: string, props: any) => {
 
 export const getSubjectsArray = (language: string, props: any) => {
   const data = props?.subjects?.map((s: any) => {
+    const found = s.label.find((g: any) => g._key === language)
+    return { value: found.value, label: found.value, key: s._key }
+  })
+
+  return data
+}
+
+export const getContacted = (language: string, props: any) => {
+  const data = props?.contacts?.find((g: any) => g._key === language)
+  return data?.value
+}
+
+export const getContactTypeArray = (language: string, props: any) => {
+  const data = props?.contactType?.map((s: any) => {
     const found = s.label.find((g: any) => g._key === language)
     return { value: found.value, label: found.value, key: s._key }
   })

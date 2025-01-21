@@ -82,7 +82,6 @@ export const Services = (props: ServicesProps) => {
                 </AnimationMaskReveal>
               )}
             </Box>
-            <Box css={{ column: 1 }} />
 
             <Box
               desktop
@@ -339,17 +338,19 @@ export const Services = (props: ServicesProps) => {
                       />
                     </AnimationFadeIn>
 
-                    <AnimationFadeIn>
-                      <PortableText
-                        value={
-                          getSecondaryServiceDescription(
-                            language,
-                            service
-                          ) as any
-                        }
-                        components={components}
-                      />
-                    </AnimationFadeIn>
+                    <div style={{ opacity: 0.5 }}>
+                      <AnimationFadeIn>
+                        <PortableText
+                          value={
+                            getSecondaryServiceDescription(
+                              language,
+                              service
+                            ) as any
+                          }
+                          components={components}
+                        />
+                      </AnimationFadeIn>
+                    </div>
                   </Box>
                 </Styles.AccordionContent>
               </Styles.AccordionItem>

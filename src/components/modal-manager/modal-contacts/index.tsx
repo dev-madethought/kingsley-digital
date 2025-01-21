@@ -16,13 +16,14 @@ import { sendContactForm } from "@/lib/api"
 import { RootState } from "@/state/store"
 
 import {
+  getContacted,
+  getContactTypeArray,
   getEmail,
   getMessage,
   getName,
   getOrganisation,
   getPhone,
   getPrimaryDescription,
-  getSecondaryDescription,
   getSubject,
   getSubjectsArray,
   getSubmitButton,
@@ -65,6 +66,8 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
     const subject = data.get("subject")
     const message = data.get("message")
     const subscribe = data.get("subscribe") === "on"
+    const contactPhone = data.get("contactPhone") === "on"
+    const contactEmail = data.get("contactEmail") === "on"
 
     // send email
     const result = await sendContactForm({
@@ -75,6 +78,8 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
       subject,
       message,
       subscribe,
+      contactPhone,
+      contactEmail,
     })
 
     const d = await result.json()
@@ -82,6 +87,13 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
     setSent(true)
     setSending(false)
   }
+
+  const all = getContactTypeArray(language, settings?.contacts) || [
+    { value: "" },
+    { value: "" },
+  ]
+  const cPhone = all[0].value
+  const cEmail = all[1].value
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange} color="$darker">
@@ -139,7 +151,7 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
               },
 
               "@desktop": {
-                column: 4,
+                column: 8,
               },
             }}
           >
@@ -172,7 +184,7 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
               },
 
               "@desktop": {
-                column: 4,
+                column: 8,
               },
             }}
           >
@@ -184,25 +196,6 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
           </Box>
 
           <Box css={{ column: 1 }} />
-
-          <Box
-            tablet
-            css={{
-              "@tablet": {
-                column: 8,
-                boxShadow,
-                opacity: 0.5,
-              },
-
-              "@desktop": {
-                column: 4,
-              },
-            }}
-          >
-            <Text body>
-              {getSecondaryDescription(language, settings?.contacts)}
-            </Text>
-          </Box>
         </Box>
 
         {/* FORM */}
@@ -302,6 +295,30 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
                   options={getSubjectsArray(language, settings?.contacts)}
                 />
               </Box>
+
+              <Box
+                css={{
+                  gap: 10,
+                  borderBottom: "1px solid $typography",
+                  paddingBottom: 16,
+                }}
+              >
+                <Box css={{ column: 1 }} />
+
+                <Text cta>{getContacted(language, settings?.contacts)}</Text>
+                <Checkbox
+                  name="contactPhone"
+                  label={cPhone}
+                  disabled={sending}
+                />
+
+                <Checkbox
+                  name="contactEmail"
+                  label={cEmail}
+                  disabled={sending}
+                />
+              </Box>
+
               <Box
                 css={{
                   gap: 10,

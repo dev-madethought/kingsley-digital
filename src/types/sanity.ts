@@ -135,6 +135,15 @@ export type Settings = {
     } & InternationalizedArrayStringValue>;
     _key: string;
   }>;
+  contactsContact?: Array<{
+    _key: string;
+  } & InternationalizedArrayStringValue>;
+  contactsContactType?: Array<{
+    label?: Array<{
+      _key: string;
+    } & InternationalizedArrayStringValue>;
+    _key: string;
+  }>;
   contactsMessage?: Array<{
     _key: string;
   } & InternationalizedArrayStringValue>;

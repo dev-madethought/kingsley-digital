@@ -7,7 +7,7 @@ import { setLanguage } from "@/state/reducers/global"
 import { RootState } from "@/state/store"
 import { English, Korean, Languages } from "@/types/language"
 
-export const Language = () => {
+export const Language = ({ color }: { color: string }) => {
   const dispatch = useDispatch()
   const language = useSelector((state: RootState) => state.global.language)
 
@@ -24,7 +24,7 @@ export const Language = () => {
         alignItems: "center",
         justifyContent: "center",
         gap: 4,
-        color: "white",
+        color,
       }}
     >
       <Button

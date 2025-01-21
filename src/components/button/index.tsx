@@ -155,13 +155,14 @@ const Layout = ({
             fontStyle: "normal",
             fontWeight: 400,
             letterSpacing: "0.28px",
-            color: "white",
+            color: "inherit",
             cursor: disabled ? "not-allowed" : "pointer",
             alignItems: "center",
             gap: 8,
+            opacity: 0.5,
 
             ...(disabled && {
-              opacity: 0.5,
+              opacity: 1,
               pointerEvents: "none",
             }),
           }}

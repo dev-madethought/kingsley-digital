@@ -187,7 +187,7 @@ export const Contacts = (props: ContactsProps) => {
 
             "@desktop": {
               flexDirection: "column",
-              gridColumn: "10 / span 4",
+              gridColumn: "10 / span 3",
               boxShadow,
               marginTop: 36,
             },
@@ -205,14 +205,14 @@ export const Contacts = (props: ContactsProps) => {
           css={{
             "@tablet": {
               flexDirection: "column",
-              gridColumn: "7 / span 5",
+              gridColumn: "6 / span 5",
               boxShadow,
               opacity: 0.5,
               marginTop: 36,
             },
 
             "@desktop": {
-              gridColumn: "14 / span 4",
+              gridColumn: "13 / span 3",
             },
           }}
         >
@@ -234,7 +234,7 @@ export const Contacts = (props: ContactsProps) => {
             },
 
             "@desktop": {
-              gridColumn: "20 / span 5",
+              gridColumn: "16 / span 5",
             },
           }}
         >
@@ -263,7 +263,7 @@ export const Contacts = (props: ContactsProps) => {
             },
 
             "@desktop": {
-              gridColumn: "10 / span 4",
+              gridColumn: "10 / span 3",
             },
           }}
         >
@@ -286,7 +286,7 @@ export const Contacts = (props: ContactsProps) => {
             },
 
             "@desktop": {
-              gridColumn: "14 / span 4",
+              gridColumn: "13 / span 3",
             },
           }}
         >
@@ -308,7 +308,7 @@ export const Contacts = (props: ContactsProps) => {
             },
 
             "@desktop": {
-              gridColumn: "20 / span 5",
+              gridColumn: "16 / span 5",
             },
           }}
         >
@@ -365,7 +365,7 @@ export const Contacts = (props: ContactsProps) => {
             },
 
             "@desktop": {
-              gridColumn: "10 / span 5",
+              gridColumn: "10 / span 6",
             },
           }}
         >

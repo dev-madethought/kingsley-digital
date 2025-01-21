@@ -90,7 +90,7 @@ export const Philosophy = (props: PhilosophyProps) => {
                 headingM
                 css={{
                   gridColumn: "1 / span 15",
-                  marginBottom: 88,
+                  marginBottom: 48,
                 }}
               >
                 {getMenuTitle(language, props)}

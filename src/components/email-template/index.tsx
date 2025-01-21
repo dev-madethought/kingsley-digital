@@ -9,19 +9,42 @@ export const EmailTemplate = ({
   subject,
   message,
   organisation,
-}: EmailProps) => (
-  <div>
-    <p>
-      <strong>From:</strong>
-    </p>
-    <p>Name: {name}</p>
-    {organisation && <p>Organisation: {organisation}</p>}
-    <p>Phone Number: {phone}</p>
-    <p>Email: {email}</p>
-    <br />
-    <p>
-      <strong>{subject}</strong>
-    </p>
-    <p>{message}</p>
-  </div>
-)
+  contactPhone,
+  contactEmail,
+}: EmailProps) => {
+  const contactMethods = [contactEmail && "Email", contactPhone && "Phone"]
+    .filter(Boolean)
+    .join(", ")
+
+  return (
+    <div>
+      <p>
+        <strong>Name:</strong> {name}
+      </p>
+      {organisation && (
+        <p>
+          <strong>Organisation:</strong> {organisation}
+        </p>
+      )}
+      <p>
+        <strong>Phone Number:</strong> {phone}
+      </p>
+      <p>
+        <strong>Email:</strong> {email}
+      </p>
+      <br />
+      <br />
+      <p>
+        <strong>Subject:</strong> {subject}
+      </p>
+      <p>
+        <strong>Message:</strong> {message}
+      </p>
+      <br />
+      <p>
+        <strong>Contact via: </strong>
+        {contactMethods}
+      </p>
+    </div>
+  )
+}

@@ -157,7 +157,7 @@ export const Desktop = ({ color }: { color: string }) => {
 
                         {i === 0 && (
                           <Box css={{ gridColumn: "span 3" }}>
-                            <Language />
+                            <Language color={color} />
                           </Box>
                         )}
                       </Box>
@@ -239,8 +239,12 @@ export const Desktop = ({ color }: { color: string }) => {
                             </Button>
                           </Box>
 
-                          <Box css={{ gridColumn: "span 3" }}>
-                            <Language />
+                          <Box
+                            css={{
+                              gridColumn: "span 3",
+                            }}
+                          >
+                            <Language color={color} />
                           </Box>
                         </Box>
                       </motion.div>

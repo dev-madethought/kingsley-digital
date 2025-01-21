@@ -6,4 +6,6 @@ export interface EmailProps {
   message: string
   organisation?: string
   subscribe?: boolean
+  contactPhone?: boolean
+  contactEmail?: boolean
 }
