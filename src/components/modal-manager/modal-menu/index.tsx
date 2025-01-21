@@ -178,7 +178,7 @@ export const ModalMenu = ({ open, onOpenChange }: ModalMenuProps) => {
 
                 <Box css={{ width: "100%" }}>
                   <AnimationFadeIn>
-                    <Language />
+                    <Language color="initial" />
                   </AnimationFadeIn>
                 </Box>
               </Box>
