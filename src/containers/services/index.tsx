@@ -140,7 +140,7 @@ export const Services = (props: ServicesProps) => {
     <Container
       debug={debug}
       css={{
-        paddingTop: 166,
+        paddingTop: 0,
         paddingBottom: 56,
 
         "@tablet": {
@@ -150,6 +150,16 @@ export const Services = (props: ServicesProps) => {
       }}
     >
       <Grid>
+        {/* mobile image */}
+        <Box
+          mobile
+          css={{
+            gridColumn: "span 12",
+            marginBottom: 48,
+          }}
+        >
+          <AnimatePresence>{getImageLayout(-1)}</AnimatePresence>
+        </Box>
         {/* title */}
         <Box
           css={{
@@ -205,8 +215,9 @@ export const Services = (props: ServicesProps) => {
 
         {/* IMAGES */}
         <Box
+          tablet
           css={{
-            gridColumn: "span 10",
+            gridColumn: "span 12",
             marginTop: 113,
             marginBottom: 48,
 
@@ -223,6 +234,14 @@ export const Services = (props: ServicesProps) => {
         >
           <AnimatePresence>{getImageLayout(index)}</AnimatePresence>
         </Box>
+
+        <Box
+          mobile
+          css={{
+            gridColumn: "1/ span 12",
+            height: 40,
+          }}
+        />
 
         {/* ACCORDION */}
         <Box
@@ -266,8 +285,6 @@ export const Services = (props: ServicesProps) => {
                   <Box
                     css={{
                       position: "relative",
-                      // column: 1,
-                      // paddingRight: 8,
                       alignItems: "center",
                       justifyContent: "flex-end",
                       width: 24,
@@ -338,7 +355,7 @@ export const Services = (props: ServicesProps) => {
                       />
                     </AnimationFadeIn>
 
-                    <div style={{ opacity: 0.5 }}>
+                    <Box tablet css={{ opacity: 0.5 }}>
                       <AnimationFadeIn>
                         <PortableText
                           value={
@@ -350,7 +367,7 @@ export const Services = (props: ServicesProps) => {
                           components={components}
                         />
                       </AnimationFadeIn>
-                    </div>
+                    </Box>
                   </Box>
                 </Styles.AccordionContent>
               </Styles.AccordionItem>

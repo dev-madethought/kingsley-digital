@@ -81,9 +81,13 @@ export const Philosophy = (props: PhilosophyProps) => {
             <Box
               css={{
                 display: "grid",
-                gridTemplateColumns: "repeat(15, 1fr)",
+                gridTemplateColumns: "repeat(12, 1fr)",
                 columnGap: "10px",
                 rowGap: 40,
+
+                "@tablet": {
+                  gridTemplateColumns: "repeat(15, 1fr)",
+                },
               }}
             >
               <Text
@@ -100,7 +104,11 @@ export const Philosophy = (props: PhilosophyProps) => {
                   <Fragment key={item._key}>
                     <Box
                       css={{
-                        gridColumn: "1/ 6 span",
+                        gridColumn: "1 / 12 span",
+
+                        "@tablet": {
+                          gridColumn: "1 / 6 span",
+                        },
                       }}
                     >
                       <div>
@@ -118,6 +126,7 @@ export const Philosophy = (props: PhilosophyProps) => {
                     </Box>
 
                     <Box
+                      tablet
                       key={item._key}
                       css={{
                         gridColumn: "9 / 6 span",
@@ -139,66 +148,11 @@ export const Philosophy = (props: PhilosophyProps) => {
                   </Fragment>
                 )
               })}
-              {false && (
-                <Text
-                  headingM
-                  css={{
-                    gridColumn: "1 / span 15",
-                    marginBottom: 88,
-                  }}
-                >
-                  {getMenuTitle(language, props)}
-                </Text>
-              )}
-
-              {/* Secondary language (hides on mobile) */}
-              {false && (
-                <Box
-                  tablet
-                  css={{
-                    "@tablet": {
-                      flexDirection: "column",
-                      gridColumn: "13 / span 11",
-                    },
-
-                    "@desktop": {
-                      flexDirection: "column",
-                      gridColumn: "8 / span 6",
-                    },
-                  }}
-                >
-                  <Box
-                    css={{
-                      flexDirection: "column",
-                      gap: 40,
-                      boxShadow,
-                      opacity: 0.5,
-                    }}
-                  >
-                    {props.description?.map((item) => {
-                      return (
-                        <Fragment key={item._key}>
-                          <AnimationFadeIn>
-                            <Text headingS>
-                              {getSecondaryTitle(language, item)}
-                            </Text>
-                          </AnimationFadeIn>
-
-                          <AnimationFadeIn>
-                            <Text body>
-                              {getSecondaryDescription(language, item)}
-                            </Text>
-                          </AnimationFadeIn>
-                        </Fragment>
-                      )
-                    })}
-                  </Box>
-                </Box>
-              )}
             </Box>
           </Box>
 
           <Box
+            tablet
             css={{
               boxShadow,
               gridColumn: "16 / span 9",

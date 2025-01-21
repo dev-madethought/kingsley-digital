@@ -91,7 +91,7 @@ export const ModalMenu = ({ open, onOpenChange }: ModalMenuProps) => {
                 height: "var(--vh)",
               }}
             >
-              {/* LOGO and cclose */}
+              {/* LOGO and close */}
               <Box
                 css={{
                   paddingTop: 32,
@@ -136,7 +136,9 @@ export const ModalMenu = ({ open, onOpenChange }: ModalMenuProps) => {
                             }}
                           />
                         )}
-                        <Text headingS>{getPrimaryLabel(language, item)}</Text>
+                        <Text headingS css={{ textTransform: "uppercase" }}>
+                          {getPrimaryLabel(language, item)}
+                        </Text>
                       </Button>
                     </AnimationFadeIn>
                   )
