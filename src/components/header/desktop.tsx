@@ -83,12 +83,9 @@ export const Desktop = ({
     <Styles.Header
       css={{
         ...(background && {
-          // solid colod
-          backgroundColor: "rgba(231, 230, 226, 1)",
-          borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
-
           // gradient example
-          // background: "linear-gradient(to bottom, rgba(231, 230, 226, 1) 60%, rgba(231, 230, 226, 0)) 0%",
+          background: "rgba(231, 230, 226, 0.9)",
+          borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
         }),
       }}
     >
