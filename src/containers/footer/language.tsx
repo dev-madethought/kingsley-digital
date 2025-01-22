@@ -18,8 +18,6 @@ export const Language = ({ color }: { color: string }) => {
     cookies.set("language", nextLanguage, { path: "/" })
   }
 
-  console.log("language", color)
-
   return (
     <Box
       css={{
