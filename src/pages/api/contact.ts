@@ -3,8 +3,6 @@ import { Resend } from "resend"
 
 import { EmailTemplate } from "@/components/email-template"
 
-import { subscribeUser, userExists } from "./subscribe"
-
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -16,7 +14,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       email,
       subject,
       message,
-      subscribe,
       contactPhone,
       contactEmail,
     } = req.body
@@ -24,19 +21,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (!name || !phone || !email || !subject || !message || !recipient) {
       return res.status(400).json({ message: "Bad request" })
-    }
-
-    try {
-      if (subscribe) {
-        const exists = await userExists(email)
-        if (exists) {
-          // already exists, bypass
-        } else {
-          await subscribeUser(email)
-        }
-      }
-    } catch (error) {
-      console.log("failed to subscribe", error)
     }
 
     // TODO: change this email to the client's email

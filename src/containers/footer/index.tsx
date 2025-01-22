@@ -87,6 +87,15 @@ export const Footer = () => {
                 {String(link.title).toUpperCase()}
               </Button>
             ))}
+
+            <Box mobile>
+              {socialLinks?.map((link: any) => (
+                <Button key={link._key} variant="secondary" href={link.url}>
+                  {String(link.label).toUpperCase()}
+                  <ArrowUp />
+                </Button>
+              ))}
+            </Box>
           </Box>
         </Box>
 

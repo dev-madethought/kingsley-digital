@@ -13,37 +13,23 @@ export const Label = styled("label", {
     width: 17,
     height: 17,
     backgroundColor: "transparent",
-    // boxShadow: "inset 0px 0px 0px 1px $typography",
     border: "1px solid $typography",
     transition: "background-color 0.3s",
   },
 
   // checkmark
-  // "& input:checked ~ span:after": {
-  //   display: "block",
-  //   content: '""',
-  //   position: "absolute",
-  //   left: 5,
-  //   top: 1,
-  //   width: 4,
-  //   height: 8,
-  //   border: "solid $typography",
-  //   borderWidth: "0 3px 3px 0",
-  //   transform: "rotate(45deg)",
-  // },
-
-  // cross
-  "& input:checked ~ span:before, & input:checked ~ span:after": {
+  "& input:checked ~ span:after": {
+    display: "block",
     content: '""',
     position: "absolute",
-    top: 0,
-    left: 8,
-    height: 17,
-    width: 1,
-    backgroundColor: "$typography",
+    left: 5,
+    top: 3,
+    width: 5,
+    height: 9,
+    border: "solid $typography",
+    borderWidth: "0 1px 1px 0",
+    transform: "rotate(45deg)",
   },
-  "& input:checked ~ span:before": { transform: "rotate(45deg)" },
-  "& input:checked ~ span:after": { transform: "rotate(-45deg)" },
 })
 
 export const Input = styled("input", {

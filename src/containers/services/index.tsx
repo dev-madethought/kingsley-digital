@@ -137,229 +137,232 @@ export const Services = (props: ServicesProps) => {
   }
 
   return (
-    <Container
-      debug={debug}
-      css={{
-        paddingTop: 0,
-        paddingBottom: 56,
+    <>
+      {/* mobile image */}
+      <Box
+        mobile
+        css={{
+          marginBottom: 48,
 
-        "@tablet": {
-          paddingTop: 172,
-          paddingBottom: 108,
-        },
-      }}
-    >
-      <Grid>
-        {/* mobile image */}
-        <Box
-          mobile
-          css={{
-            gridColumn: "span 12",
-            marginBottom: 48,
-          }}
-        >
-          <AnimatePresence>{getImageLayout(-1)}</AnimatePresence>
-        </Box>
-        {/* title */}
-        <Box
-          css={{
-            flexDirection: "column",
-            gridColumn: "1 / span 12",
-            marginBottom: 40,
-            boxShadow,
+          img: {
+            width: "100%",
+            height: "auto",
+            objectFit: "contain",
+          },
+        }}
+      >
+        <AnimatePresence>
+          <Image
+            src={urlForImage(props.image)}
+            alt="default"
+            width={504}
+            height={756}
+          />
+        </AnimatePresence>
+      </Box>
+      <Container
+        debug={debug}
+        css={{
+          paddingTop: 0,
+          paddingBottom: 56,
 
-            "@tablet": {
-              marginBottom: 88,
-            },
-          }}
-        >
-          <Text headingM>{getTitle(language, props)}</Text>
-        </Box>
-
-        {/* primary description */}
-        <Box
-          css={{
-            flexDirection: "column",
-            gridColumn: "span 11",
-            boxShadow,
-
-            "@tablet": {
-              gridColumn: "1 / span 8",
-            },
-
-            "@desktop": {
-              gridColumn: "1 / span 6",
-            },
-          }}
-        >
-          {getPrimaryDescription(language, props)}
-        </Box>
-
-        {/* secondary description */}
-        <Box
-          tablet
-          css={{
-            "@tablet": {
+          "@tablet": {
+            paddingTop: 172,
+            paddingBottom: 108,
+          },
+        }}
+      >
+        <Grid>
+          {/* title */}
+          <Box
+            css={{
+              flexDirection: "column",
+              gridColumn: "1 / span 12",
+              marginBottom: 40,
               boxShadow,
-              opacity: 0.5,
-              gridColumn: "10 / span 8",
-            },
 
-            "@desktop": {
-              gridColumn: "8 / span 6",
-            },
-          }}
-        >
-          {getSecondaryDescription(language, props)}
-        </Box>
-
-        {/* IMAGES */}
-        <Box
-          tablet
-          css={{
-            gridColumn: "span 12",
-            marginTop: 113,
-            marginBottom: 48,
-
-            "@tablet": {
-              marginBottom: 0,
-              gridColumn: "1 / span 9",
-            },
-
-            "@desktop": {
-              marginBottom: 0,
-              gridColumn: "1 / span 14",
-            },
-          }}
-        >
-          <AnimatePresence>{getImageLayout(index)}</AnimatePresence>
-        </Box>
-
-        <Box
-          mobile
-          css={{
-            gridColumn: "1/ span 12",
-            height: 40,
-          }}
-        />
-
-        {/* ACCORDION */}
-        <Box
-          css={{
-            gridColumn: "span 12",
-            boxShadow,
-
-            "@tablet": {
-              gridColumn: "10 / span 15",
-              marginTop: 113,
-            },
-
-            "@desktop": {
-              gridColumn: "15 / span 10",
-              marginTop: 113,
-            },
-          }}
-        >
-          <Styles.AccordionRoot
-            type="single"
-            collapsible
-            onValueChange={handleChange}
+              "@tablet": {
+                marginBottom: 88,
+              },
+            }}
           >
-            {props.allServices?.map((service, i) => (
-              <Styles.AccordionItem key={service._key} value={service._key}>
-                <Styles.AccordionTrigger>
-                  <Box css={{ gap: 10 }}>
+            <Text headingM>{getTitle(language, props)}</Text>
+          </Box>
+
+          {/* primary description */}
+          <Box
+            css={{
+              flexDirection: "column",
+              gridColumn: "span 11",
+              boxShadow,
+
+              "@tablet": {
+                gridColumn: "1 / span 8",
+              },
+
+              "@desktop": {
+                gridColumn: "1 / span 6",
+              },
+            }}
+          >
+            {getPrimaryDescription(language, props)}
+          </Box>
+
+          {/* secondary description */}
+          <Box
+            tablet
+            css={{
+              "@tablet": {
+                boxShadow,
+                opacity: 0.5,
+                gridColumn: "10 / span 8",
+              },
+
+              "@desktop": {
+                gridColumn: "8 / span 6",
+              },
+            }}
+          >
+            {getSecondaryDescription(language, props)}
+          </Box>
+
+          {/* IMAGES */}
+          <Box
+            tablet
+            css={{
+              gridColumn: "span 12",
+              marginTop: 113,
+              marginBottom: 48,
+
+              "@tablet": {
+                marginBottom: 0,
+                gridColumn: "1 / span 9",
+              },
+
+              "@desktop": {
+                marginBottom: 0,
+                gridColumn: "1 / span 14",
+              },
+            }}
+          >
+            <AnimatePresence>{getImageLayout(index)}</AnimatePresence>
+          </Box>
+
+          <Box
+            mobile
+            css={{
+              gridColumn: "1/ span 12",
+              height: 40,
+            }}
+          />
+
+          {/* ACCORDION */}
+          <Box
+            css={{
+              gridColumn: "span 12",
+              boxShadow,
+
+              "@tablet": {
+                gridColumn: "10 / span 15",
+                marginTop: 113,
+              },
+
+              "@desktop": {
+                gridColumn: "15 / span 10",
+                marginTop: 113,
+              },
+            }}
+          >
+            <Styles.AccordionRoot
+              type="single"
+              collapsible
+              onValueChange={handleChange}
+            >
+              {props.allServices?.map((service, i) => (
+                <Styles.AccordionItem key={service._key} value={service._key}>
+                  <Styles.AccordionTrigger>
+                    <Box css={{ gap: 10 }}>
+                      <Box
+                        css={{
+                          column: 1,
+                          paddingLeft: 8,
+                          alignItems: "center",
+                        }}
+                      >
+                        0{i + 1}
+                      </Box>
+                      <Text headingS>
+                        {getPrimaryServiceTitle(language, service)}
+                      </Text>
+                    </Box>
                     <Box
                       css={{
-                        column: 1,
-                        paddingLeft: 8,
+                        position: "relative",
                         alignItems: "center",
-                      }}
-                    >
-                      0{i + 1}
-                    </Box>
-                    <Text headingS>
-                      {getPrimaryServiceTitle(language, service)}
-                    </Text>
-                  </Box>
-                  <Box
-                    css={{
-                      position: "relative",
-                      alignItems: "center",
-                      justifyContent: "flex-end",
-                      width: 24,
-                      height: 24,
+                        justifyContent: "flex-end",
+                        width: 24,
+                        height: 24,
 
-                      "&:before": {
-                        content: '""',
-                        position: "absolute",
-                        top: "50%",
-                        right: 6,
-                        width: 13,
-                        height: 1,
-                        background: "$typography",
-                        transition: "all 300ms ease-out",
-                      },
-
-                      "&:after": {
-                        content: '""',
-                        position: "absolute",
-                        right: 12,
-                        width: 1,
-                        height: 13,
-                        background: "$typography",
-                        opacity: 1,
-                        transition: "all 300ms ease-out",
-                      },
-
-                      "[data-state=open] &": {
                         "&:before": {
-                          transform: "rotate(180deg)",
+                          content: '""',
+                          position: "absolute",
+                          top: "50%",
+                          right: 6,
+                          width: 13,
+                          height: 1,
+                          background: "$typography",
+                          transition: "all 300ms ease-out",
                         },
 
                         "&:after": {
-                          opacity: 0,
-                          transform: "rotate(270deg)",
+                          content: '""',
+                          position: "absolute",
+                          right: 12,
+                          width: 1,
+                          height: 13,
+                          background: "$typography",
+                          opacity: 1,
+                          transition: "all 300ms ease-out",
                         },
-                      },
-                    }}
-                  />
-                </Styles.AccordionTrigger>
-                <Styles.AccordionContent>
-                  <Box css={{ column: 1 }} />
-                  <Box
-                    css={{
-                      column: 8,
-                      flexDirection: "column",
-                      gap: 24,
-                      paddingTop: 24,
-                      paddingBottom: 64,
 
-                      "@tablet": {
-                        column: 12,
-                        paddingBottom: 48,
-                      },
+                        "[data-state=open] &": {
+                          "&:before": {
+                            transform: "rotate(180deg)",
+                          },
 
-                      "@desktop": {
+                          "&:after": {
+                            opacity: 0,
+                            transform: "rotate(270deg)",
+                          },
+                        },
+                      }}
+                    />
+                  </Styles.AccordionTrigger>
+                  <Styles.AccordionContent>
+                    <Box css={{ column: 1 }} />
+                    <Box
+                      css={{
                         column: 8,
+                        flexDirection: "column",
+                        gap: 24,
+                        paddingTop: 24,
                         paddingBottom: 64,
-                      },
-                    }}
-                  >
-                    <AnimationFadeIn>
-                      <PortableText
-                        value={
-                          getPrimaryServiceDescription(language, service) as any
-                        }
-                        components={components}
-                      />
-                    </AnimationFadeIn>
 
-                    <Box tablet css={{ opacity: 0.5 }}>
+                        "@tablet": {
+                          column: 12,
+                          paddingBottom: 48,
+                        },
+
+                        "@desktop": {
+                          column: 8,
+                          paddingBottom: 64,
+                        },
+                      }}
+                    >
                       <AnimationFadeIn>
                         <PortableText
                           value={
-                            getSecondaryServiceDescription(
+                            getPrimaryServiceDescription(
                               language,
                               service
                             ) as any
@@ -367,14 +370,28 @@ export const Services = (props: ServicesProps) => {
                           components={components}
                         />
                       </AnimationFadeIn>
+
+                      <Box tablet css={{ opacity: 0.5 }}>
+                        <AnimationFadeIn>
+                          <PortableText
+                            value={
+                              getSecondaryServiceDescription(
+                                language,
+                                service
+                              ) as any
+                            }
+                            components={components}
+                          />
+                        </AnimationFadeIn>
+                      </Box>
                     </Box>
-                  </Box>
-                </Styles.AccordionContent>
-              </Styles.AccordionItem>
-            ))}
-          </Styles.AccordionRoot>
-        </Box>
-      </Grid>
-    </Container>
+                  </Styles.AccordionContent>
+                </Styles.AccordionItem>
+              ))}
+            </Styles.AccordionRoot>
+          </Box>
+        </Grid>
+      </Container>
+    </>
   )
 }

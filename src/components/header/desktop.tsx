@@ -19,7 +19,13 @@ import { Text } from "../text"
 import * as Styles from "./styles"
 import { getPrimaryLabel, getSecondaryLabel } from "./translations"
 
-export const Desktop = ({ color }: { color: string }) => {
+export const Desktop = ({
+  color,
+  background = false,
+}: {
+  color: string
+  background?: boolean
+}) => {
   const router = useRouter()
   const language = useSelector((state: RootState) => state.global.language)
   const menu = useSelector((state: RootState) => state.global.menu)
@@ -74,9 +80,20 @@ export const Desktop = ({ color }: { color: string }) => {
   }, [section, direction])
 
   return (
-    <Styles.Header>
+    <Styles.Header
+      css={{
+        ...(background && {
+          // solid colod
+          backgroundColor: "rgba(231, 230, 226, 1)",
+          borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
+
+          // gradient example
+          // background: "linear-gradient(to bottom, rgba(231, 230, 226, 1) 60%, rgba(231, 230, 226, 0)) 0%",
+        }),
+      }}
+    >
       <Container debug={debug}>
-        <Grid css={{ paddingTop: 40, color }}>
+        <Grid css={{ paddingTop: 40, paddingBottom: 40, color }}>
           <Box
             css={{
               gridColumn: "1 / span 5",
@@ -156,8 +173,12 @@ export const Desktop = ({ color }: { color: string }) => {
                         </Box>
 
                         {i === 0 && (
-                          <Box css={{ gridColumn: "span 3" }}>
-                            <Language color={color} />
+                          <Box
+                            css={{ gridColumn: "span 3", position: "relative" }}
+                          >
+                            <Box css={{ position: "absolute" }}>
+                              <Language color={color} />
+                            </Box>
                           </Box>
                         )}
                       </Box>
@@ -222,19 +243,13 @@ export const Desktop = ({ color }: { color: string }) => {
                           }}
                         >
                           <Box css={{ gridColumn: "span 3" }}>
-                            <Button
-                              variant="menu"
-                              onClick={() => handleNavigation(m.id)}
-                            >
+                            <Button variant="menu">
                               {getPrimaryLabel(language, m)}
                             </Button>
                           </Box>
 
                           <Box css={{ opacity: 0.5, gridColumn: "span 4" }}>
-                            <Button
-                              variant="menu"
-                              onClick={() => handleNavigation(m.id)}
-                            >
+                            <Button variant="menu">
                               {getSecondaryLabel(language, m)}
                             </Button>
                           </Box>

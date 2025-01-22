@@ -64,7 +64,7 @@ export default function Page() {
         {pageData?.content?.map(renderComponent)}
       </Box>
 
-      <Header />
+      <Header background />
 
       <Footer />
       <Cookies />

@@ -153,18 +153,13 @@ const Layout = ({
             fontFamily: "$favorit",
             fontSize: 14,
             fontStyle: "normal",
+            color: "inherit",
             fontWeight: 400,
             letterSpacing: "0.28px",
-            color: "inherit",
             cursor: disabled ? "not-allowed" : "pointer",
             alignItems: "center",
             gap: 8,
-            opacity: 0.5,
-
-            ...(disabled && {
-              opacity: 1,
-              pointerEvents: "none",
-            }),
+            opacity: `${disabled ? 1 : 0.5}`,
           }}
         >
           {children}
@@ -250,6 +245,7 @@ export const Button = ({
       css={{
         background: "none",
         border: "none",
+        color: "inherit",
 
         "&:focus": {
           outline: "none",

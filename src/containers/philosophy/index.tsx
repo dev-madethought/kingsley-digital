@@ -30,6 +30,8 @@ export const Philosophy = (props: PhilosophyProps) => {
       {/* mobile only */}
       <Box
         css={{
+          display: "flex",
+          flexDirection: "column",
           boxShadow,
 
           video: {
@@ -52,13 +54,16 @@ export const Philosophy = (props: PhilosophyProps) => {
         }}
       >
         <video src={"/mobile.mp4"} muted autoPlay loop playsInline />
+        <Text caption css={{ padding: "16px 20px" }}>
+          {getCaption(language, props)}
+        </Text>
       </Box>
 
       {/* mobile, tablet and desktop */}
       <Container debug={debug}>
         <Grid
           css={{
-            paddingTop: 88,
+            paddingTop: 64,
             paddingBottom: 60,
 
             "@tablet": {
@@ -74,7 +79,8 @@ export const Philosophy = (props: PhilosophyProps) => {
           <Box
             css={{
               display: "grid",
-              gridColumn: "span 15",
+              gridColumn: "span 14",
+              boxShadow,
             }}
           >
             {/* new grid on the 15 cols */}
@@ -86,25 +92,31 @@ export const Philosophy = (props: PhilosophyProps) => {
                 rowGap: 40,
 
                 "@tablet": {
-                  gridTemplateColumns: "repeat(15, 1fr)",
+                  gridTemplateColumns: "repeat(14, 1fr)",
                 },
               }}
             >
               <Text
                 headingM
                 css={{
-                  gridColumn: "1 / span 15",
-                  marginBottom: 48,
+                  gridColumn: "1 / span 14",
+                  marginBottom: 0,
+
+                  "@tablet": {
+                    marginBottom: 48,
+                  },
                 }}
               >
                 {getMenuTitle(language, props)}
               </Text>
+
               {props.description?.map((item) => {
                 return (
                   <Fragment key={item._key}>
                     <Box
                       css={{
                         gridColumn: "1 / 12 span",
+                        boxShadow,
 
                         "@tablet": {
                           gridColumn: "1 / 6 span",
@@ -129,7 +141,8 @@ export const Philosophy = (props: PhilosophyProps) => {
                       tablet
                       key={item._key}
                       css={{
-                        gridColumn: "9 / 6 span",
+                        gridColumn: "8 / 6 span",
+                        boxShadow,
                       }}
                     >
                       <div>
@@ -155,12 +168,12 @@ export const Philosophy = (props: PhilosophyProps) => {
             tablet
             css={{
               boxShadow,
-              gridColumn: "16 / span 9",
+              gridColumn: "15 / span 10",
               flexDirection: "column",
               gap: 16,
 
               video: {
-                width: "100%",
+                width: "calc(100% + 40px)",
                 alignSelf: "flex-start",
                 pointerEvents: "none",
               },

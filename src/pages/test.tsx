@@ -25,7 +25,6 @@ const Section = ({
       width: "100vw",
       height: "100vh",
       flexDirection: "column",
-      border: "1px dashed black",
       ...css,
     }}
   >

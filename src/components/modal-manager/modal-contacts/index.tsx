@@ -27,7 +27,6 @@ import {
   getSubject,
   getSubjectsArray,
   getSubmitButton,
-  getSubscribe,
   getSuccessMessage,
   getTitle,
 } from "./translations"
@@ -65,7 +64,6 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
     const email = data.get("email")
     const subject = data.get("subject")
     const message = data.get("message")
-    const subscribe = data.get("subscribe") === "on"
     const contactPhone = data.get("contactPhone") === "on"
     const contactEmail = data.get("contactEmail") === "on"
 
@@ -77,7 +75,6 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
       email,
       subject,
       message,
-      subscribe,
       contactPhone,
       contactEmail,
     })
@@ -300,7 +297,7 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
                 css={{
                   gap: 10,
                   borderBottom: "1px solid $typography",
-                  paddingBottom: 16,
+                  padding: "16px 0",
                 }}
               >
                 <Box css={{ column: 1 }} />
@@ -333,15 +330,6 @@ export const ModalContacts = ({ open, onOpenChange }: ModalContactsProps) => {
                   disabled={sending}
                   required
                   textarea
-                />
-              </Box>
-
-              <Box css={{ gap: 10 }}>
-                <Box css={{ column: 1 }} />
-                <Checkbox
-                  name="subscribe"
-                  label={getSubscribe(language, settings?.contacts)}
-                  disabled={sending}
                 />
               </Box>
 

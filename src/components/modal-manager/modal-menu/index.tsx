@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef } from "react"
+import Link from "next/link"
 import { useRouter } from "next/router"
 import { useSelector } from "react-redux"
 
@@ -9,11 +10,12 @@ import { Button } from "@/components/button"
 import { Container } from "@/components/container"
 import { Dialog } from "@/components/dialog"
 import { Grid, useDebug } from "@/components/grid"
-import { ArrowUp, LogoFull, LogoMark } from "@/components/icons"
+import { ArrowUp, LogoFull, LogoMark, LogoWords } from "@/components/icons"
 import { Text } from "@/components/text"
 import { Language } from "@/containers/footer/language"
 import useScroll from "@/hooks/useScroll"
 import { RootState } from "@/state/store"
+import { theme } from "@/styles/stitches"
 
 import { getPrimaryLabel } from "./translations"
 
@@ -75,7 +77,6 @@ export const ModalMenu = ({ open, onOpenChange }: ModalMenuProps) => {
     <Dialog open={open} onOpenChange={handleOpenChange} isMenu slide>
       <Box
         css={{
-          height: "var(--vh)",
           overflowY: "auto",
           marginRight: 20,
           flexDirection: "column",
@@ -88,21 +89,27 @@ export const ModalMenu = ({ open, onOpenChange }: ModalMenuProps) => {
               css={{
                 flexDirection: "column",
                 gridColumn: "1 / span 12",
-                height: "var(--vh)",
               }}
             >
-              {/* LOGO and close */}
               <Box
                 css={{
-                  paddingTop: 32,
-                  paddingBottom: 80,
+                  gridColumn: "1 / span 9",
+                  boxShadow,
+                  marginTop: 32,
+                  marginBottom: 48,
 
                   svg: {
                     height: 24,
                   },
+
+                  a: {
+                    color: "inherit",
+                  },
                 }}
               >
-                <LogoFull />
+                <Link href="/">
+                  <LogoWords />
+                </Link>
               </Box>
 
               <Box
@@ -110,6 +117,7 @@ export const ModalMenu = ({ open, onOpenChange }: ModalMenuProps) => {
                   flexDirection: "column",
                   gap: 20,
                   flexGrow: 1,
+                  marginBottom: 214,
 
                   "& > *": {
                     boxShadow,
@@ -117,8 +125,7 @@ export const ModalMenu = ({ open, onOpenChange }: ModalMenuProps) => {
                 }}
               >
                 {menu?.map((item: any, i: number) => {
-                  const selected =
-                    (section === "hero" && i === 0) || section === item.id
+                  const selected = section === item.id
                   return (
                     <AnimationFadeIn key={i} delay={0.1 * i}>
                       <Button
@@ -176,9 +183,9 @@ export const ModalMenu = ({ open, onOpenChange }: ModalMenuProps) => {
                   </AnimationFadeIn>
                 ))}
 
-                <Box css={{ width: "100%" }}>
+                <Box css={{ width: "100%", marginBottom: 24 }}>
                   <AnimationFadeIn>
-                    <Language color="initial" />
+                    <Language color={theme.colors.typography.value} />
                   </AnimationFadeIn>
                 </Box>
               </Box>

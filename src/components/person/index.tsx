@@ -7,7 +7,6 @@ import { setPerson } from "@/state/reducers/people"
 import { RootState } from "@/state/store"
 import { Person as PersonProps } from "@/types/sanity"
 
-import { AnimationFadeIn } from "../animation-fade-in"
 import { AnimationMaskReveal } from "../animation-mask-reveal"
 import { Box } from "../box"
 import { Button } from "../button"

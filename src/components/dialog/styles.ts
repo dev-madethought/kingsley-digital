@@ -71,6 +71,7 @@ export const Content = styled(Dialog.Content, {
     menu: {
       true: {
         left: 0,
+        bottom: "initial",
         background: "$background",
       },
     },

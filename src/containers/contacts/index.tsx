@@ -119,6 +119,7 @@ export const Contacts = (props: ContactsProps) => {
             gridColumn: "1 / span 12",
             boxShadow,
             marginTop: 40,
+            marginBottom: 120,
 
             "@tablet": {
               marginBottom: 80,

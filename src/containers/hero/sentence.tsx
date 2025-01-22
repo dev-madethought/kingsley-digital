@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion"
 
+import { Box } from "@/components/box"
 import { Text } from "@/components/text"
 
 export const Sentence = ({
@@ -23,31 +24,48 @@ export const Sentence = ({
           display: "flex",
         }}
       >
-        <Text
+        <Box
           css={{
-            minWidth: 60,
-            paddingTop: 30,
-            color: "white",
-            justifyContent: "center",
             display: "flex",
-          }}
-        >
-          {greeting}
-        </Text>
-        <Text
-          headingXL
-          css={{
-            position: "relative",
-            color: "white",
+            flexDirection: "column",
+            alignItems: "flex-start",
 
-            // "&:before": {
-            //   content: greeting,
-            //   padding: "0 $space$40",
-            // },
+            "@tablet": {
+              flexDirection: "row",
+            },
           }}
         >
-          {sentence}
-        </Text>
+          <Text
+            css={{
+              paddingTop: 30,
+              color: "white",
+              justifyContent: "center",
+              display: "flex",
+              marginBottom: 24,
+
+              "@tablet": {
+                minWidth: 60,
+                marginBottom: 0,
+              },
+            }}
+          >
+            {greeting}
+          </Text>
+          <Text
+            headingXL
+            css={{
+              position: "relative",
+              color: "white",
+
+              // "&:before": {
+              //   content: greeting,
+              //   padding: "0 $space$40",
+              // },
+            }}
+          >
+            {sentence}
+          </Text>
+        </Box>
       </motion.div>
     </AnimatePresence>
   )
