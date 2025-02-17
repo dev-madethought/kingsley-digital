@@ -40,7 +40,7 @@ export const Language = ({ color }: { color: string }) => {
         disabled={language === Korean}
         onClick={() => handleLanguage(Korean)}
       >
-        KO
+        한국어
       </Button>
     </Box>
   )
