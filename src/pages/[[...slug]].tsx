@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { Box } from "@/components/box"
 import { Header } from "@/components/header"
+import { LogoFull, LogoMark, LogoWords } from "@/components/icons"
 import { LoadingAnimation } from "@/components/loading-animation"
 import ModalManager from "@/components/modal-manager"
 import { Cookies } from "@/containers/cookies"

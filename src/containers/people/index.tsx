@@ -15,7 +15,6 @@ import {
   getPrimaryDepartment,
   getPrimaryName,
   getPrimaryRole,
-  setSecondaryDepartment,
 } from "@/components/person/translations"
 import { Text } from "@/components/text"
 import { urlForImage } from "@/sanity/lib/image"

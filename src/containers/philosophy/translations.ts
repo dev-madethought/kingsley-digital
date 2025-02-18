@@ -27,3 +27,8 @@ export const getCaption = (language: string, props: any) => {
   const data = props.caption?.find((e: any) => e._key === language)
   return data?.value
 }
+
+export const getSecondaryCaption = (language: string, props: any) => {
+  const data = props.caption?.find((e: any) => e._key !== language)
+  return data?.value
+}

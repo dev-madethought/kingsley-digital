@@ -15,8 +15,10 @@ import { Text } from "../text"
 
 import {
   getCTA,
+  getPrimaryDepartment,
   getPrimaryName,
   getPrimaryRole,
+  getSecondaryDepartment,
   getSecondaryName,
   getSecondaryRole,
 } from "./translations"
@@ -46,7 +48,6 @@ export const Person = ({
         gap: 10,
         boxShadow,
       }}
-      onClick={handlePersonClick}
     >
       {/* IMAGE */}
       <Box
@@ -78,7 +79,9 @@ export const Person = ({
           }}
         >
           <AnimationMaskReveal delay={Math.min(0.1 * index, 0.2)}>
-            <img src={urlForImage(person.image)} alt="Person image" />
+            <div style={{ cursor: "pointer" }} onClick={handlePersonClick}>
+              <img src={urlForImage(person.image)} alt="Person image" />
+            </div>
           </AnimationMaskReveal>
         </Box>
       </Box>
@@ -112,6 +115,8 @@ export const Person = ({
           {getPrimaryName(language, person)}
           <br />
           {getPrimaryRole(language, person)}
+          <br />
+          {getPrimaryDepartment(language, person)}
         </Text>
 
         <Box
@@ -130,6 +135,8 @@ export const Person = ({
             {getSecondaryName(language, person)}
             <br />
             {getSecondaryRole(language, person)}
+            <br />
+            {getSecondaryDepartment(language, person)}
           </Text>
         </Box>
       </Box>

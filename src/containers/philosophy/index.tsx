@@ -16,6 +16,7 @@ import {
   getMenuTitle,
   getPrimaryDescription,
   getPrimaryTitle,
+  getSecondaryCaption,
   getSecondaryDescription,
   getSecondaryTitle,
 } from "./translations"
@@ -180,6 +181,9 @@ export const Philosophy = (props: PhilosophyProps) => {
           >
             <video src={"/mobile.mp4"} muted autoPlay loop playsInline />
             <Text caption>{getCaption(language, props)}</Text>
+            <Text caption css={{ opacity: 0.5 }}>
+              {getSecondaryCaption(language, props)}
+            </Text>
           </Box>
         </Grid>
       </Container>

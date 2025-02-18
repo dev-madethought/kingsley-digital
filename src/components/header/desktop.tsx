@@ -34,7 +34,6 @@ function map(
 }
 
 function mapColor(value: number) {
-  console.log("VALUE", value)
   // White and gray colors
   const white = { r: 255, g: 255, b: 255 }
   const gray = { r: 84, g: 84, b: 84 }
