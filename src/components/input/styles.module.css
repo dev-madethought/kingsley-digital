@@ -4,11 +4,12 @@
 }
 
 .container textarea {
-  resize: vertical;
-  height: 44px;
-  min-height: 44px;
-  max-height: 120px;
-  overflow: scroll;
+  /* resize: vertical; */
+  height: 100px;
+  /* min-height: 44px;
+  max-height: 120px; */
+  /* overflow-y: auto; */
+  resize: none;
 }
 
 .container textarea + .label {

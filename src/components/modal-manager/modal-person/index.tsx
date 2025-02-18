@@ -13,6 +13,7 @@ import { urlForImage } from "@/sanity/lib/image"
 import { RootState } from "@/state/store"
 
 import {
+  getDepartment,
   getEmailButton,
   getLinkedinButton,
   getName,
@@ -114,6 +115,8 @@ export const ModalPerson = ({ open, onOpenChange }: ModalPersonProps) => {
                 {getName(language, person)}
                 <br />
                 {getRole(language, person)}
+                <br />
+                {getDepartment(language, person)}
               </Text>
             )}
           </Box>
@@ -206,15 +209,21 @@ export const ModalPerson = ({ open, onOpenChange }: ModalPersonProps) => {
                   },
                 }}
               >
-                <Button variant="secondary" href={`mailto:${person.email}`}>
-                  {getEmailButton(language, settings?.buttons)}
-                </Button>
-                <Button variant="tertiary" href={`tel:${person.phone}`}>
-                  {person.phone}
-                </Button>
-                <Button variant="secondary" href={person.linkedin}>
-                  {getLinkedinButton(language, settings?.buttons)}
-                </Button>
+                {false && (
+                  <Button variant="secondary" href={`mailto:${person.email}`}>
+                    {getEmailButton(language, settings?.buttons)}
+                  </Button>
+                )}
+                {false && (
+                  <Button variant="tertiary" href={`tel:${person.phone}`}>
+                    {person.phone}
+                  </Button>
+                )}
+                {false && (
+                  <Button variant="secondary" href={person.linkedin}>
+                    {getLinkedinButton(language, settings?.buttons)}
+                  </Button>
+                )}
               </Box>
             </Box>
           </Box>

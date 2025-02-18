@@ -289,7 +289,7 @@ export const Services = (props: ServicesProps) => {
                           alignItems: "center",
                         }}
                       >
-                        0{i + 1}
+                        <Text headingS>0{i + 1}</Text>
                       </Box>
                       <Text headingS>
                         {getPrimaryServiceTitle(language, service)}

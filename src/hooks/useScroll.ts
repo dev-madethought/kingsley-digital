@@ -4,7 +4,7 @@ const useScroll = () => {
   const lastScrollY = useRef(0)
 
   // const [x, setX] = useState(0)
-  // const [y, setY] = useState(0)
+  const [y, setY] = useState(0)
   const [direction, setDirection] = useState(-1)
   const [section, setSection] = useState(null)
 
@@ -19,7 +19,7 @@ const useScroll = () => {
 
       // changes state
       // setX(window.scrollX)
-      // setY(window.scrollY)
+      setY(window.scrollY)
       setDirection(nextDirection)
 
       // updates last scroll position
@@ -48,7 +48,7 @@ const useScroll = () => {
     }
   }, [])
 
-  return { /* x, y, */ direction, section }
+  return { y, direction, section }
 }
 
 export default useScroll

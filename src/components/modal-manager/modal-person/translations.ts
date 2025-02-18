@@ -10,6 +10,11 @@ export const getRole = (language: string, props: Person) => {
   return data?.value
 }
 
+export const getDepartment = (language: string, props: Person) => {
+  const data = props.department?.find((g) => g._key === language)
+  return data?.value
+}
+
 export const getPrimaryBio = (language: string, props: Person) => {
   const data = props.bio?.find((g) => g._key === language)
   return data?.value

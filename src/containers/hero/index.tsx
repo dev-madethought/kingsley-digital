@@ -81,7 +81,7 @@ export const Hero = (props: HeroProps) => {
             zIndex: 1, // needs to be on top of the sentence
           }}
         >
-          <Header color="white" />
+          <Header color="white" background />
         </Box>
 
         {/* TOP */}
@@ -141,21 +141,19 @@ export const Hero = (props: HeroProps) => {
                 },
               }}
             >
-              {true && (
-                <div>
-                  <AnimationFadeIn>
-                    <Text uppercase wrap>
-                      {getMainTitle(language, props)}
-                    </Text>
-                  </AnimationFadeIn>
+              <div>
+                <AnimationFadeIn>
+                  <Text uppercase wrap css={{ fontWeight: 700 }}>
+                    {getMainTitle(language, props)}
+                  </Text>
+                </AnimationFadeIn>
 
-                  <AnimationFadeIn>
-                    <Text uppercase wrap css={{ opacity: 0.5 }}>
-                      {getSecondaryTitle(language, props)}
-                    </Text>
-                  </AnimationFadeIn>
-                </div>
-              )}
+                <AnimationFadeIn>
+                  <Text uppercase wrap css={{ opacity: 0.5 }}>
+                    {getSecondaryTitle(language, props)}
+                  </Text>
+                </AnimationFadeIn>
+              </div>
 
               {true && (
                 <AnimationFadeIn>

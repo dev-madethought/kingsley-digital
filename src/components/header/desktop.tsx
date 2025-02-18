@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { ReactNode, useEffect, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { motion } from "framer-motion"
@@ -14,10 +14,38 @@ import { Button } from "../button"
 import { Container } from "../container"
 import { Grid, useDebug } from "../grid"
 import { LogoMark, LogoWords } from "../icons"
-import { Text } from "../text"
 
 import * as Styles from "./styles"
 import { getPrimaryLabel, getSecondaryLabel } from "./translations"
+
+function map(
+  value: number,
+  fromMin: number,
+  fromMax: number,
+  toMin: number,
+  toMax: number
+) {
+  // Calculate the mapped value
+  const mappedValue =
+    toMin + ((value - fromMin) / (fromMax - fromMin)) * (toMax - toMin)
+
+  // Clamp the result to be between toMin (0) and toMax (1)
+  return Math.max(toMin, Math.min(toMax, mappedValue))
+}
+
+function mapColor(value: number) {
+  console.log("VALUE", value)
+  // White and gray colors
+  const white = { r: 255, g: 255, b: 255 }
+  const gray = { r: 84, g: 84, b: 84 }
+
+  // Interpolate the RGB values based on opacity
+  const r = Math.round(white.r * (1 - value) + gray.r * value)
+  const g = Math.round(white.g * (1 - value) + gray.g * value)
+  const b = Math.round(white.b * (1 - value) + gray.b * value)
+
+  return `rgb(${r}, ${g}, ${b})`
+}
 
 export const Desktop = ({
   color,
@@ -33,7 +61,7 @@ export const Desktop = ({
 
   const [expanded, setExpanded] = useState(false)
 
-  const { direction, section } = useScroll()
+  const { direction, section, y } = useScroll()
   const { debug, boxShadow } = useDebug()
 
   const handleNavigation = (id: string) => {
@@ -79,18 +107,23 @@ export const Desktop = ({
     setExpanded(nextExpanded)
   }, [section, direction])
 
+  const maxOffset = 200
+  const opacityBackground = map(y, 0, maxOffset, 0, 0.9)
+  const opacityBorder = map(y, 0, maxOffset, 0, 0.1)
+  const nextColor = mapColor(map(y, 0, maxOffset, 0, 1))
+
   return (
     <Styles.Header
       css={{
         ...(background && {
           // gradient example
-          background: "rgba(231, 230, 226, 0.9)",
-          borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
+          background: `rgba(231, 230, 226, ${opacityBackground})`,
+          borderBottom: `1px solid rgba(0, 0, 0, ${opacityBorder})`,
         }),
       }}
     >
       <Container debug={debug}>
-        <Grid css={{ paddingTop: 40, paddingBottom: 40, color }}>
+        <Grid css={{ paddingTop: 40, paddingBottom: 40, color: nextColor }}>
           <Box
             css={{
               gridColumn: "1 / span 5",
@@ -112,14 +145,14 @@ export const Desktop = ({
             <Box
               css={{
                 "@tablet": {
-                  gridColumn: "7 / span 12",
+                  gridColumn: "7 / span 15",
                   boxShadow,
                   flexDirection: "column",
                   justifyContent: "flex-end",
                 },
 
                 "@desktop": {
-                  gridColumn: "7 / span 13",
+                  gridColumn: "7 / span 15",
                 },
               }}
             >
@@ -135,23 +168,28 @@ export const Desktop = ({
                       <Box
                         css={{
                           gap: 20,
-                          color,
+                          color: nextColor,
 
-                          gridColumn: "7 / span 13",
+                          gridColumn: "7 / span 15",
                           display: "grid",
-                          gridTemplateColumns: "repeat(13, 1fr)",
+                          gridTemplateColumns: "repeat(15, 1fr)",
                           columnGap: "10px",
 
                           a: {
-                            color,
+                            color: nextColor,
                           },
 
                           button: {
-                            color,
+                            color: nextColor,
                           },
                         }}
                       >
-                        <Box css={{ gridColumn: "span 3" }}>
+                        <Box
+                          wrap
+                          css={{
+                            gridColumn: "span 4",
+                          }}
+                        >
                           <Button
                             variant="menu"
                             onClick={() => handleNavigation(m.id)}
@@ -160,7 +198,13 @@ export const Desktop = ({
                           </Button>
                         </Box>
 
-                        <Box css={{ opacity: 0.5, gridColumn: "span 4" }}>
+                        <Box
+                          wrap
+                          css={{
+                            opacity: 0.5,
+                            gridColumn: "span 4",
+                          }}
+                        >
                           <Button
                             variant="menu"
                             onClick={() => handleNavigation(m.id)}
@@ -171,10 +215,13 @@ export const Desktop = ({
 
                         {i === 0 && (
                           <Box
-                            css={{ gridColumn: "span 3", position: "relative" }}
+                            css={{
+                              gridColumn: "span 4",
+                              position: "relative",
+                            }}
                           >
                             <Box css={{ position: "absolute" }}>
-                              <Language color={color} />
+                              <Language color={nextColor} />
                             </Box>
                           </Box>
                         )}
@@ -200,7 +247,7 @@ export const Desktop = ({
                           css={{
                             width: 2,
                             height: 2,
-                            backgroundColor: selected ? color : "$darker",
+                            backgroundColor: selected ? nextColor : "$darker",
                           }}
                         />
                       )
@@ -223,29 +270,32 @@ export const Desktop = ({
                         <Box
                           css={{
                             gap: 20,
-                            color,
+                            color: nextColor,
 
-                            gridColumn: "7 / span 13",
+                            gridColumn: "7 / span 15",
                             display: "grid",
-                            gridTemplateColumns: "repeat(13, 1fr)",
+                            gridTemplateColumns: "repeat(15, 1fr)",
                             columnGap: "10px",
 
                             a: {
-                              color,
+                              color: nextColor,
                             },
 
                             button: {
-                              color,
+                              color: nextColor,
                             },
                           }}
                         >
-                          <Box css={{ gridColumn: "span 3" }}>
+                          <Box wrap css={{ gridColumn: "span 4" }}>
                             <Button variant="menu">
                               {getPrimaryLabel(language, m)}
                             </Button>
                           </Box>
 
-                          <Box css={{ opacity: 0.5, gridColumn: "span 4" }}>
+                          <Box
+                            wrap
+                            css={{ opacity: 0.5, gridColumn: "span 4" }}
+                          >
                             <Button variant="menu">
                               {getSecondaryLabel(language, m)}
                             </Button>
@@ -253,10 +303,10 @@ export const Desktop = ({
 
                           <Box
                             css={{
-                              gridColumn: "span 3",
+                              gridColumn: "span 4",
                             }}
                           >
-                            <Language color={color} />
+                            <Language color={nextColor} />
                           </Box>
                         </Box>
                       </motion.div>

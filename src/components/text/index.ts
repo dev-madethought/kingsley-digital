@@ -105,9 +105,9 @@ export const Text = styled("p", {
     caption: {
       true: {
         fontFamily: "$favorit",
-        fontSize: "10px",
+        fontSize: "12px",
         fontWeight: 400,
-        lineHeight: "10px",
+        lineHeight: "12px",
         textAlign: "left",
       },
     },

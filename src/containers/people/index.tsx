@@ -12,8 +12,10 @@ import { useDebug } from "@/components/grid"
 import { Person } from "@/components/person"
 import {
   getCTA,
+  getPrimaryDepartment,
   getPrimaryName,
   getPrimaryRole,
+  setSecondaryDepartment,
 } from "@/components/person/translations"
 import { Text } from "@/components/text"
 import { urlForImage } from "@/sanity/lib/image"
@@ -177,6 +179,8 @@ export const People = (props: PeopleProps) => {
                   {getPrimaryName(language, person)}
                   <br />
                   {getPrimaryRole(language, person)}
+                  <br />
+                  {getPrimaryDepartment(language, person)}
                 </Box>
 
                 {/* cta */}

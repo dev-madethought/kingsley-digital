@@ -1,7 +1,6 @@
 import {
   ChangeEvent,
   InputHTMLAttributes,
-  ReactElement,
   TextareaHTMLAttributes,
   useState,
 } from "react"
@@ -45,7 +44,7 @@ export const Input = ({
           className={value ? styles.filled : styles.element}
           value={value}
           onChange={handleChange}
-          rows={1}
+          rows={2}
           required={required}
           {...(props as TextareaElementProps)}
         />

@@ -48,6 +48,14 @@ export const Box = styled("div", {
         },
       },
     },
+
+    wrap: {
+      true: {
+        whiteSpace: "nowrap",
+        textOverflow: "ellipsis",
+        overflow: "hidden",
+      },
+    },
   },
 })
 

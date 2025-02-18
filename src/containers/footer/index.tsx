@@ -114,7 +114,7 @@ export const Footer = () => {
           }}
         >
           <Text cta css={{ color: "$typography", textAlign: "center" }}>
-            © {new Date().getFullYear()} Alder Partners
+            © {new Date().getFullYear()} Alder Investments
           </Text>
         </Box>
 
@@ -133,7 +133,7 @@ export const Footer = () => {
           }}
         >
           <Text cta css={{ color: "$typography" }}>
-            © {new Date().getFullYear()} Alder Partners
+            © {new Date().getFullYear()} Alder Investments
           </Text>
         </Box>
 

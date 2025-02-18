@@ -46,6 +46,7 @@ export const Person = ({
         gap: 10,
         boxShadow,
       }}
+      onClick={handlePersonClick}
     >
       {/* IMAGE */}
       <Box

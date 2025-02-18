@@ -59,12 +59,12 @@ export const Contacts = (props: ContactsProps) => {
             boxShadow,
 
             "@tablet": {
-              gridColumn: "1 / span 19",
+              gridColumn: "1 / span 24",
               marginBottom: 0,
             },
 
             "@desktop": {
-              gridColumn: "1 / span 11",
+              gridColumn: "1 / span 24",
               marginBottom: 0,
             },
           }}

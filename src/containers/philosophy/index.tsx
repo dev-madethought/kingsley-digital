@@ -67,11 +67,7 @@ export const Philosophy = (props: PhilosophyProps) => {
             paddingBottom: 60,
 
             "@tablet": {
-              paddingTop: 80,
-            },
-
-            "@desktop": {
-              paddingTop: 250,
+              paddingTop: 172,
             },
           }}
         >
@@ -147,12 +143,15 @@ export const Philosophy = (props: PhilosophyProps) => {
                     >
                       <div>
                         <AnimationFadeIn>
-                          <Text headingS css={{ marginBottom: 40 }}>
+                          <Text
+                            headingS
+                            css={{ marginBottom: 40, opacity: 0.5 }}
+                          >
                             {getSecondaryTitle(language, item)}
                           </Text>
                         </AnimationFadeIn>
                         <AnimationFadeIn>
-                          <Text body>
+                          <Text body css={{ opacity: 0.5 }}>
                             {getSecondaryDescription(language, item)}
                           </Text>
                         </AnimationFadeIn>
