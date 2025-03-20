@@ -54,15 +54,30 @@ export const Hero = (props: HeroProps) => {
           minHeight: "100vh",
         }}
       >
-        <Box
-          ref={video}
-          as="video"
-          src={"/hero.mp4"}
-          autoPlay={false}
-          muted
-          loop
-          playsInline
-          css={{
+        {false && (
+          <Box
+            ref={video}
+            as="video"
+            src={"/hero.mp4"}
+            autoPlay={false}
+            muted
+            loop
+            playsInline
+            css={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              zIndex: -1,
+            }}
+          />
+        )}
+
+        <iframe
+          src={"/hero/index.html"}
+          style={{
             position: "absolute",
             top: 0,
             left: 0,
@@ -70,6 +85,7 @@ export const Hero = (props: HeroProps) => {
             height: "100%",
             objectFit: "cover",
             zIndex: -1,
+            border: "none",
           }}
         />
 
